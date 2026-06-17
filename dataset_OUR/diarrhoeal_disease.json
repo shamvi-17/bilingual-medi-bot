@@ -1,0 +1,60 @@
+{
+  "disease": "Diarrhoeal Disease",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Diarrhoeal disease is the third leading cause of death in children under 5 years old, responsible for killing around 443,832 children every year. Diarrhoea can last several days and can leave the body without the water and salts that are necessary for survival. It is usually a symptom of an infection in the intestinal tract, which can be caused by a variety of bacterial, viral and parasitic organisms.",
+  "symptoms": [
+    "Passage of 3 or more loose or liquid stools per day",
+    "Frequent passing of loose stools",
+    "Lethargy/unconsciousness",
+    "Sunken eyes",
+    "Unable to drink or drink poorly",
+    "Skin pinch goes back very slowly",
+    "Restlessness, irritability",
+    "Drinks eagerly, thirsty",
+    "Dehydration"
+  ],
+  "diagnosis": [
+    "Clinical evaluation of stool frequency and consistency",
+    "Laboratory tests to identify bacterial, viral and parasitic pathogens",
+    "Assessment of dehydration severity"
+  ],
+  "treatment": [
+    "Oral rehydration solution (ORS)",
+    "Dispersible zinc tablets",
+    "Rehydration with oral rehydration salts (ORS) solution"
+  ],
+  "transmission": [
+    "Contaminated food or drinking-water",
+    "Person-to-person contact due to poor hygiene",
+    "Faeces-contaminated water",
+    "Animal faeces",
+    "Unsafe domestic water storage and handling",
+    "Food prepared or stored in unhygienic conditions"
+  ],
+  "prevention": [
+    "Access to safe drinking-water",
+    "Use of improved sanitation",
+    "Hand washing with soap",
+    "Exclusive breastfeeding for the first 6 months of life",
+    "Good personal and food hygiene",
+    "Health education about how infections spread",
+    "Rotavirus vaccination"
+  ],
+  "risk_factors": [
+    "Children under 5 years old",
+    "Malnutrition",
+    "Impaired immunity",
+    "HIV infection",
+    "Poor hygiene",
+    "Lack of access to improved drinking-water and sanitation"
+  ],
+  "complications": [
+    "Dehydration",
+    "Malnutrition",
+    "Septic bacterial infections"
+  ],
+  "key_facts": [
+    "There are nearly 1.7 billion cases of childhood diarrhoeal disease every year",
+    "Diarrhoea is a leading cause of malnutrition in children under 5 years old"
+  ]
+}

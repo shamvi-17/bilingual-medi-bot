@@ -1,0 +1,65 @@
+{
+  "disease": "Measles",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Measles is a highly contagious disease caused by a virus that can lead to severe complications and death. It spreads easily when an infected person breathes, coughs or sneezes and can affect anyone, but is most common in children. Measles infects the respiratory tract and then spreads throughout the body.",
+  "symptoms": [
+    "high fever",
+    "runny nose",
+    "rash all over the body",
+    "red and watery eyes",
+    "small white spots inside the cheeks"
+  ],
+  "diagnosis": [
+    "clinical criteria",
+    "identification of symptoms"
+  ],
+  "treatment": [
+    "relieving symptoms",
+    "making the person comfortable",
+    "preventing complications",
+    "drinking enough water",
+    "treatments for dehydration",
+    "eating a healthy diet",
+    "antibiotics for pneumonia and ear and eye infections",
+    "vitamin A supplements"
+  ],
+  "transmission": [
+    "contact with infected nasal or throat secretions",
+    "coughing or sneezing",
+    "breathing the air that was breathed by someone with measles",
+    "infected surfaces"
+  ],
+  "prevention": [
+    "community-wide vaccination",
+    "measles vaccine",
+    "two doses of the vaccine",
+    "first dose at 9 months of age in countries where measles is common",
+    "first dose at 12–15 months in other countries",
+    "second dose later in childhood",
+    "vitamin A supplements"
+  ],
+  "risk_factors": [
+    "non-immune person",
+    "unvaccinated young children",
+    "pregnant persons",
+    "children under 5 years",
+    "adults over age 30",
+    "malnourished children",
+    "children with weak immune system from HIV or other diseases"
+  ],
+  "complications": [
+    "blindness",
+    "encephalitis",
+    "severe diarrhoea and related dehydration",
+    "ear infections",
+    "severe breathing problems including pneumonia",
+    "premature birth",
+    "low birth weight"
+  ],
+  "key_facts": [
+    "Measles vaccination averted nearly 59 million deaths between 2000 and 2024",
+    "84% of children received a first dose of measles vaccine in 2024",
+    "2.6 million deaths each year before the introduction of measles vaccine in 1963",
+    "780 000 measles deaths in 2000, decreased to 95 000 in 2024"
+  ]
+}

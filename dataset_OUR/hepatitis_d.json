@@ -1,0 +1,61 @@
+{
+  "disease": "Hepatitis D",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Hepatitis D is an inflammation of the liver caused by the hepatitis D virus (HDV), which requires hepatitis B virus (HBV) for its replication. HDV–HBV co-infection is considered the most severe form of chronic viral hepatitis due to more rapid progression towards hepatocellular carcinoma and liver-related death. Vaccination against hepatitis B can prevent HDV infection.",
+  "symptoms": [
+    "fatigue",
+    "loss of appetite",
+    "nausea",
+    "vomiting",
+    "dark urine",
+    "pale-coloured stools",
+    "jaundice (yellow eyes)",
+    "fulminant hepatitis"
+  ],
+  "diagnosis": [
+    "serology to demonstrate exposure",
+    "molecular methods to demonstrate the presence of HDV RNA",
+    "HDV RNA assays"
+  ],
+  "treatment": [
+    "pegylated interferon α (PEG-IFNα)",
+    "Bulevirtide",
+    "nucleoside analogues for managing chronic HBV infection",
+    "combination therapy with PEG-IFNα and other agents"
+  ],
+  "transmission": [
+    "contact with infected human blood",
+    "contact with other bodily fluids",
+    "sexual intercourse",
+    "vertical transmission from mother to child",
+    "transmission within families in endemic areas"
+  ],
+  "prevention": [
+    "hepatitis B immunization",
+    "timely birth dose",
+    "antiviral prophylaxis for eligible pregnant women",
+    "blood safety",
+    "safe injection practices",
+    "harm reduction services with clean needles and syringes"
+  ],
+  "risk_factors": [
+    "chronic HBV infection",
+    "indigenous populations",
+    "recipients of haemodialysis",
+    "people who inject drugs",
+    "people with hepatitis C virus or HIV infection",
+    "men who have sex with men",
+    "commercial sex workers"
+  ],
+  "complications": [
+    "liver-related death",
+    "hepatocellular carcinoma",
+    "cirrhosis",
+    "fulminant hepatitis"
+  ],
+  "key_facts": [
+    "HDV affects nearly 5% of people globally who have a chronic infection with HBV",
+    "HDV has recently been classified as carcinogenic to humans",
+    "vaccination against hepatitis B can prevent HDV infection"
+  ]
+}

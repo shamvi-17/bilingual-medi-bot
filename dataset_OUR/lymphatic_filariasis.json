@@ -1,0 +1,37 @@
+{
+  "disease": "Lymphatic Filariasis",
+  "symptoms": [
+    "asymptomatic",
+    "acute and chronic conditions",
+    "lymphoedema (tissue swelling)",
+    "elephantiasis (skin/tissue thickening)",
+    "hydrocele (scrotal swelling)",
+    "involvement of breasts and genital organs"
+  ],
+  "diagnosis": [],
+  "treatment": [
+    "preventive chemotherapy",
+    "mass drug administration",
+    "safe medicine combinations repeated annually"
+  ],
+  "transmission": [
+    "transmitted to humans through mosquitoes"
+  ],
+  "prevention": [
+    "preventive chemotherapy with safe medicine combinations repeated annually"
+  ],
+  "risk_factors": [
+    "infection is usually acquired in childhood"
+  ],
+  "complications": [
+    "permanent disability",
+    "mental, social and financial losses",
+    "social stigma and poverty",
+    "loss of income-earning opportunities",
+    "increased medical expenses for patients and their caretakers"
+  ],
+  "key_facts": [
+    "871 million people no longer require preventive chemotherapy"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

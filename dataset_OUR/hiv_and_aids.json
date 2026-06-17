@@ -1,0 +1,65 @@
+{
+  "disease": "HIV and AIDS",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "HIV is a virus that attacks the body’s immune system, and if left untreated, can progress to AIDS. HIV targets the body’s white blood cells, weakening the immune system, making it easier to get sick with diseases like tuberculosis, infections and some cancers. With access to effective HIV prevention, diagnosis, treatment and care, HIV infection has become a manageable chronic health condition.",
+  "symptoms": [
+    "headache",
+    "sore throat",
+    "swollen lymph nodes",
+    "weight loss",
+    "diarrhoea",
+    "tuberculosis (TB)",
+    "cryptococcal meningitis",
+    "severe bacterial infections",
+    "cancers such as lymphomas and Kaposi's sarcoma"
+  ],
+  "diagnosis": [
+    "rapid diagnostic tests",
+    "HIV self-tests",
+    "confirmatory testing",
+    "WHO prequalified tests",
+    "antibody tests",
+    "virological testing"
+  ],
+  "treatment": [
+    "antiretroviral therapy (ART)",
+    "treatment of opportunistic infections"
+  ],
+  "transmission": [
+    "exchange of body fluids",
+    "blood",
+    "breast milk",
+    "semen",
+    "vaginal secretions",
+    "mother-to-child transmission during pregnancy and delivery",
+    "sharing contaminated needles, syringes and other injecting equipment"
+  ],
+  "prevention": [
+    "using a male or female condom during sex",
+    "being tested for HIV and other sexually transmitted infections",
+    "avoiding sharing contaminated needles, syringes and other injecting equipment",
+    "avoiding unsafe injections, blood transfusions, or tissue transplantation",
+    "practicing safe sexual behavior"
+  ],
+  "risk_factors": [
+    "having anal or vaginal sex without a condom",
+    "having another sexually transmitted infection (STI)",
+    "harmful use of alcohol or drugs in the context of sexual behaviour",
+    "sharing contaminated needles, syringes and other injecting equipment",
+    "receiving unsafe injections, blood transfusions, or tissue transplantation"
+  ],
+  "complications": [
+    "AIDS",
+    "tuberculosis (TB)",
+    "cryptococcal meningitis",
+    "severe bacterial infections",
+    "cancers such as lymphomas and Kaposi's sarcoma"
+  ],
+  "key_facts": [
+    "An estimated 44.1 million lives have been claimed by HIV to date",
+    "There were an estimated 40.8 million people living with HIV at the end of 2024",
+    "An estimated 630 000 people died from HIV-related causes in 2024",
+    "An estimated 1.3 million people acquired HIV in 2024",
+    "87% of people living with HIV knew their status in 2024"
+  ]
+}

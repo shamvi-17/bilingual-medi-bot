@@ -1,0 +1,44 @@
+{
+  "disease": "Dracunculiasis (Guinea-Worm)",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Dracunculiasis, also called Guinea-worm disease, is a parasitic disease transmitted through contaminated drinking water, causing a painful blister from which a worm slowly emerges. It results from ingesting the parasite Dracunculus medinensis. Although it rarely causes death, infected individuals are often incapacitated for weeks or months.",
+  "symptoms": [
+    "Painful blister on the lower leg",
+    "Burning sensation",
+    "Worm emergence from the body",
+    "Incapacitation for weeks or months"
+  ],
+  "diagnosis": [
+    "Laboratory confirmation of infection"
+  ],
+  "treatment": [
+    "No cure available",
+    "Wound care for infected individuals"
+  ],
+  "transmission": [
+    "Drinking stagnant water contaminated by parasite-infected water fleas",
+    "Consuming raw or undercooked aquatic hosts harbouring the infective larvae",
+    "Ingestion of infected water fleas by people and certain animals"
+  ],
+  "prevention": [
+    "Safe water access",
+    "Regularly applying temephos (Abate) to stagnant water",
+    "Community education on early case detection and reporting",
+    "Proper management of aquatic animals' waste"
+  ],
+  "risk_factors": [
+    "Rural, underserved, and remote populations",
+    "Drinking contaminated water",
+    "Consuming raw or undercooked aquatic hosts"
+  ],
+  "complications": [
+    "Incapacitation for weeks or months"
+  ],
+  "key_facts": [
+    "13 human cases reported in 2024 (provisional)",
+    "14 human cases reported in 2023",
+    "10–14 months for the transmission cycle to complete",
+    "20 countries were endemic in the mid-1980s",
+    "5 countries – Angola, Chad, Ethiopia, Mali, and South Sudan – remain endemic"
+  ]
+}

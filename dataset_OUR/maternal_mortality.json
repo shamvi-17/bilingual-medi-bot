@@ -1,0 +1,32 @@
+{
+  "disease": "Maternal Mortality",
+  "key_facts": [
+    "A maternal death occurred almost every 2 minutes in 2023."
+  ],
+  "risk_factors": [
+    "Low-income countries",
+    "Conflict or institutional/social fragility",
+    "Inadequate access to quality health services"
+  ],
+  "complications": [
+    "Severe bleeding (mostly bleeding after childbirth)",
+    "Infections (usually after childbirth)",
+    "High blood pressure during pregnancy (pre-eclampsia and eclampsia)",
+    "Complications from delivery",
+    "Unsafe abortion"
+  ],
+  "prevention": [
+    "Preventing unintended pregnancies",
+    "Access to contraception",
+    "Safe abortion services to the full extent of the law",
+    "Quality post-abortion care",
+    "High quality care in pregnancy, and during and after childbirth",
+    "Skilled health professionals attending births",
+    "Administering drugs such as magnesium sulfate for pre-eclampsia"
+  ],
+  "treatment": [
+    "Injecting oxytocics immediately after childbirth to reduce the risk of bleeding",
+    "Timely management and treatment of complications"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

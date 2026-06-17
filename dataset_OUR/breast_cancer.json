@@ -1,0 +1,54 @@
+{
+  "disease": "Breast Cancer",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Breast cancer is a disease in which abnormal cells in the breast grow out of control and form tumours. If left unchecked, the tumours can spread throughout the body and become fatal. Breast cancer cells begin inside the milk ducts and/or the milk-producing lobules of the breast.",
+  "symptoms": [
+    "a breast lump or thickening, often without pain",
+    "change in size, shape or appearance of the breast",
+    "dimpling, redness, pitting or other changes in the skin",
+    "abnormal or bloody fluid from the nipple",
+    "bone pain",
+    "headaches"
+  ],
+  "diagnosis": [
+    "clinical evaluation",
+    "mammography",
+    "timely diagnosis and referral for treatment services"
+  ],
+  "treatment": [
+    "surgery to remove the breast tumour",
+    "medications to kill cancer cells and prevent spread",
+    "hormonal therapies",
+    "chemotherapy",
+    "targeted biological therapies",
+    "lumpectomy",
+    "mastectomy"
+  ],
+  "transmission": [],
+  "prevention": [
+    "chemoprevention",
+    "surgical removal of both breasts"
+  ],
+  "risk_factors": [
+    "female gender",
+    "increasing age",
+    "obesity",
+    "harmful use of alcohol",
+    "family history of breast cancer",
+    "history of radiation exposure",
+    "reproductive history",
+    "tobacco use",
+    "postmenopausal hormone therapy",
+    "inherited high penetrance gene mutations (BRCA1, BRCA2, PALB-2)"
+  ],
+  "complications": [
+    "metastasis",
+    "spread to nearby lymph nodes or other organs",
+    "bone pain",
+    "headaches"
+  ],
+  "key_facts": [
+    "Breast cancer caused an estimated 670 000 deaths globally in 2022",
+    "Approximately 0.5–1% of breast cancers occur in men"
+  ]
+}

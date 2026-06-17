@@ -1,0 +1,59 @@
+{
+  "disease": "Pneumonia",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Pneumonia is a form of acute respiratory infection that affects the lungs, causing the alveoli to fill with pus and fluid, which makes breathing painful and limits oxygen intake. Pneumonia is the single largest infectious cause of death in children worldwide. It can be prevented with simple interventions and treated with low-cost, low-tech medication and care.",
+  "symptoms": [
+    "difficult breathing",
+    "fast breathing",
+    "lower chest wall indrawing",
+    "wheezing",
+    "inability to feed or drink",
+    "unconsciousness",
+    "hypothermia",
+    "convulsions"
+  ],
+  "diagnosis": [
+    "presence of fast breathing",
+    "lower chest wall indrawing",
+    "clinical criteria"
+  ],
+  "treatment": [
+    "antibiotics",
+    "amoxicillin dispersible tablets",
+    "oral antibiotics",
+    "hospitalization for severe cases",
+    "cotrimoxazole for HIV-infected children"
+  ],
+  "transmission": [
+    "air-borne droplets from a cough or sneeze",
+    "inhalation of viruses and bacteria",
+    "blood transmission during and shortly after birth"
+  ],
+  "prevention": [
+    "immunization against Hib, pneumococcus, measles and whooping cough",
+    "exclusive breastfeeding for the first 6 months of life",
+    "adequate nutrition",
+    "addressing environmental factors such as indoor air pollution",
+    "good hygiene in crowded homes",
+    "cotrimoxazole prophylaxis for HIV-infected and exposed children"
+  ],
+  "risk_factors": [
+    "compromised immune system",
+    "malnutrition or undernourishment",
+    "pre-existing illnesses such as symptomatic HIV infections and measles",
+    "indoor air pollution",
+    "living in crowded homes",
+    "parental smoking"
+  ],
+  "complications": [
+    "death",
+    "severe illness",
+    "respiratory failure"
+  ],
+  "key_facts": [
+    "Pneumonia is the single largest infectious cause of death in children worldwide",
+    "740 180 children under the age of 5 died from pneumonia in 2019",
+    "14% of all deaths of children under 5 years old are due to pneumonia",
+    "22% of all deaths in children aged 1 to 5 years are due to pneumonia"
+  ]
+}

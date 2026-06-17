@@ -1,0 +1,25 @@
+{
+  "disease": "Infertility",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Infertility is a disease of the male or female reproductive system defined by the failure to achieve a pregnancy after 12 months or more of regular unprotected sexual intercourse.",
+  "symptoms": [],
+  "diagnosis": [
+    "In-vitro fertilization (IVF) and other types of medically assisted reproduction"
+  ],
+  "treatment": [
+    "In-vitro fertilization (IVF) and other types of medically assisted reproduction"
+  ],
+  "transmission": [
+    "Not applicable, as infertility is not a transmissible disease"
+  ],
+  "prevention": [
+    "Prevention of sexually transmitted infections (STIs)"
+  ],
+  "risk_factors": [
+    "Lifestyle factors such as smoking, excessive alcohol intake, and obesity",
+    "Exposure to environmental pollutants and toxins",
+    "Hormonal disorders, testicular failure, and abnormal sperm function and quality"
+  ],
+  "complications": [],
+  "key_facts": []
+}

@@ -1,0 +1,53 @@
+{
+  "disease": "Rabies",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Rabies is a vaccine-preventable, zoonotic, viral disease affecting the central nervous system. It is a serious public health problem in over 150 countries and territories, mainly in Asia and Africa. Rabies is fatal in 100% of cases if not treated promptly after exposure.",
+  "symptoms": [
+    "Hyperactivity",
+    "Excitable behaviour",
+    "Hallucinations",
+    "Lack of coordination",
+    "Hydrophobia (fear of water)",
+    "Aerophobia (fear of drafts or of fresh air)",
+    "Muscle paralysis"
+  ],
+  "diagnosis": [
+    "Clinical diagnosis based on symptoms and history of contact with a rabid animal",
+    "Postmortem confirmation of rabies infection through laboratory techniques"
+  ],
+  "treatment": [
+    "Prompt post exposure prophylaxis (PEP) through thorough wound washing",
+    "Administration of a course of human rabies vaccine",
+    "Rabies immunoglobulins (RIG) when indicated",
+    "Comprehensive and compassionate palliative care once symptoms emerge"
+  ],
+  "transmission": [
+    "Bites from infected animals",
+    "Scratches from infected animals",
+    "Inhalation of virus-containing aerosols (rare)",
+    "Consumption of raw meat or milk of infected animals (rare)",
+    "Organ transplantation from an infected donor (rare)"
+  ],
+  "prevention": [
+    "Vaccinating dogs through mass dog vaccination programs",
+    "Public education on dog behaviour and bite prevention",
+    "Responsible pet ownership",
+    "Vaccinating people before and after potential exposures"
+  ],
+  "risk_factors": [
+    "Children under 15 years old",
+    "People living in areas with high rabies incidence",
+    "People who work with animals",
+    "People who engage in outdoor activities that increase the risk of animal bites"
+  ],
+  "complications": [
+    "Fatal inflammation of the brain and spinal cord",
+    "Cardio-respiratory arrest",
+    "Severe neurological deficits"
+  ],
+  "key_facts": [
+    "Dog bites and scratches cause 99% of human rabies cases",
+    "The global cost of rabies is estimated to be around US$ 8.6 billion per year",
+    "Over 29 million people worldwide receive human rabies vaccine annually"
+  ]
+}

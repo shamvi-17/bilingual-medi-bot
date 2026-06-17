@@ -1,0 +1,49 @@
+{
+  "disease": "Guillain-Barre Syndrome",
+  "overview": "Guillain-Barré syndrome is a rare condition in which a person’s immune system attacks the peripheral nerves. People of all ages can be affected, but it is more common in adults and in males. Most people recover fully from even the most severe cases of Guillain-Barré syndrome.",
+  "symptoms": [
+    "weakness or tingling sensations",
+    "muscle weakness, loss of sensation in the legs and/or arms, and problems swallowing or breathing",
+    "paralysis of the legs, arms, or muscles in the face",
+    "problems breathing",
+    "ability to speak and swallow may become affected"
+  ],
+  "diagnosis": [
+    "diminished or loss of deep-tendon reflexes",
+    "lumbar puncture or electromyography (EMG)"
+  ],
+  "treatment": [
+    "supportive care",
+    "immunotherapy",
+    "plasma exchange to remove antibodies from the blood",
+    "intravenous immunoglobulin (IVIG)",
+    "rehabilitation services to strengthen their muscles and restore movement"
+  ],
+  "transmission": [
+    "infection with a virus or bacteria",
+    "Campylobacter jejuni",
+    "the flu or other viral infections including cytomegalovirus, Epstein-Barr virus, and the Zika virus"
+  ],
+  "prevention": [
+    "vaccination against the flu"
+  ],
+  "risk_factors": [
+    "infection with a virus or bacteria",
+    "Campylobacter jejuni",
+    "the flu or other viral infections including cytomegalovirus, Epstein-Barr virus, and the Zika virus",
+    "vaccination",
+    "surgery"
+  ],
+  "complications": [
+    "paralysis of the muscles that control breathing",
+    "blood infection",
+    "lung clots",
+    "cardiac arrest"
+  ],
+  "key_facts": [
+    "Guillain-Barré syndrome is a rare condition in which a person’s immune system attacks the peripheral nerves.",
+    "Most people recover fully from even the most severe cases of Guillain-Barré syndrome.",
+    "Severe cases of Guillain-Barré syndrome are rare but can result in near-total paralysis and problems breathing.",
+    "Guillain-Barré syndrome is potentially life-threatening."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "disease": "Asthma",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Asthma is a chronic lung disease affecting people of all ages, caused by inflammation and muscle tightening around the airways, which makes it harder to breathe. Symptoms can include coughing, wheezing, shortness of breath and chest tightness, and can be mild or severe. Asthma can be managed with the right treatment, allowing people to lead a normal, active life.",
+  "symptoms": [
+    "persistent cough, especially at night",
+    "wheezing when exhaling and sometimes when inhaling",
+    "chest tightness, making it difficult to breathe deeply",
+    "wheeze",
+    "shortness of breath",
+    "chest tightness"
+  ],
+  "diagnosis": [
+    "clinical evaluation",
+    "medical history",
+    "physical examination",
+    "symptom assessment"
+  ],
+  "treatment": [
+    "inhalers",
+    "bronchodilators (such as salbutamol)",
+    "steroids (such as beclometasone)",
+    "combination inhalers",
+    "spacer device"
+  ],
+  "transmission": [],
+  "prevention": [
+    "avoiding asthma triggers",
+    "reducing exposure to environmental allergens and irritants",
+    "improving indoor and outdoor air quality",
+    "maintaining a healthy weight"
+  ],
+  "risk_factors": [
+    "family history of asthma",
+    "allergic conditions (such as eczema and rhinitis)",
+    "urbanization",
+    "low birth weight",
+    "prematurity",
+    "exposure to tobacco smoke",
+    "exposure to air pollution",
+    "viral respiratory infections",
+    "overweight or obesity"
+  ],
+  "complications": [
+    "severe asthma attacks",
+    "respiratory failure",
+    "death"
+  ],
+  "key_facts": [
+    "Asthma affects an estimated 363 million people worldwide",
+    "Asthma caused 442,000 deaths in 2023",
+    "Most asthma-related deaths occur in low- and lower-middle-income countries",
+    "Asthma is the most common chronic disease among children"
+  ]
+}

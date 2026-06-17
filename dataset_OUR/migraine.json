@@ -1,0 +1,28 @@
+{
+  "disease": "Migraine",
+  "symptoms": [
+    "moderate or severe intensity",
+    "one-sided or behind the eye",
+    "pulsating in quality",
+    "aggravated by routine physical activity",
+    "sensitive to light and sounds",
+    "accompanied by nausea"
+  ],
+  "diagnosis": [],
+  "treatment": [],
+  "transmission": [],
+  "prevention": [],
+  "risk_factors": [
+    "alcohol",
+    "sleep disruption",
+    "certain foods"
+  ],
+  "complications": [
+    "anxiety",
+    "depression"
+  ],
+  "key_facts": [
+    "Headache disorders are among the most common disorders of the nervous system."
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

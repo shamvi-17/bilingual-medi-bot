@@ -1,0 +1,46 @@
+{
+  "disease": "Multiple Sclerosis",
+  "symptoms": [
+    "vision problems",
+    "difficulty walking or keeping balance",
+    "difficulty thinking clearly",
+    "numbness or weakness especially in the arms and legs",
+    "muscle stiffness",
+    "depression",
+    "problems with sexual function or urination",
+    "feeling very tired"
+  ],
+  "diagnosis": [
+    "Magnetic resonance imaging (MRI)",
+    "lumbar puncture",
+    "optical coherence tomography (OCT)",
+    "visual evoked potentials"
+  ],
+  "treatment": [
+    "disease modifying therapies (DMTs)",
+    "steroids",
+    "rehabilitation specialists"
+  ],
+  "causes": [
+    "inflammatory demyelinating condition",
+    "autoimmune attack on myelin",
+    "genetic and environmental factors"
+  ],
+  "risk_factors": [
+    "family history of the disease",
+    "young to middle-aged adults",
+    "females more than males",
+    "higher latitudes"
+  ],
+  "complications": [
+    "fatigue",
+    "muscle stiffness and spasms"
+  ],
+  "key_facts": [
+    "MS is not always easy to diagnose in its early stages",
+    "MS can affect any part of the central nervous system",
+    "MS symptoms can worsen with heat or during other infections",
+    "MS is a diagnosis of exclusion"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

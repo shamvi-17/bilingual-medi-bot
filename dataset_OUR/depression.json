@@ -1,0 +1,61 @@
+{
+  "disease": "Depression",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Depression is a common mental disorder characterized by a depressed mood or loss of pleasure or interest in activities for long periods of time, affecting all aspects of life. It can result from or lead to problems at school and at work, and can happen to anyone. Depression is different from regular mood changes and feelings about everyday life.",
+  "symptoms": [
+    "depressed mood",
+    "feeling sad",
+    "irritability",
+    "empty feeling",
+    "loss of pleasure or interest in activities",
+    "poor concentration",
+    "feelings of excessive guilt or low self-worth",
+    "hopelessness about the future",
+    "thoughts about dying or suicide",
+    "disrupted sleep",
+    "changes in appetite or weight",
+    "feeling very tired or low in energy"
+  ],
+  "diagnosis": [
+    "clinical criteria",
+    "psychological evaluation"
+  ],
+  "treatment": [
+    "psychological treatment",
+    "antidepressant medications",
+    "behavioural activation",
+    "cognitive behavioural therapy",
+    "interpersonal psychotherapy",
+    "problem-solving therapy",
+    "selective serotonin reuptake inhibitors (SSRIs)",
+    "fluoxetine"
+  ],
+  "transmission": [],
+  "prevention": [
+    "interventions for parents of children with behavioural problems",
+    "exercise programmes for older persons",
+    "self-care"
+  ],
+  "risk_factors": [
+    "adverse life events",
+    "unemployment",
+    "bereavement",
+    "traumatic events",
+    "physical inactivity",
+    "harmful use of alcohol",
+    "women",
+    "people who have lived through abuse or severe losses"
+  ],
+  "complications": [
+    "suicide",
+    "difficulties in all aspects of life",
+    "problems at school and at work"
+  ],
+  "key_facts": [
+    "an estimated 5.7% of adults suffer from depression",
+    "more women are affected by depression than men",
+    "depression can lead to suicide",
+    "approximately 332 million people in the world have depression",
+    "in 2021, an estimated 727 000 people lost their lives to suicide"
+  ]
+}

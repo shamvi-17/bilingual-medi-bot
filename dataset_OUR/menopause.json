@@ -1,0 +1,38 @@
+{
+  "disease": "Menopause",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Menopause is one point in a continuum of life stages for women and marks the end of their reproductive years. After menopause, a woman cannot become pregnant, except in rare cases when specialized fertility treatments are used.",
+  "symptoms": [
+    "hot flushes and night sweats",
+    "vaginal dryness, pain during sexual intercourse and incontinence",
+    "difficulty sleeping/insomnia",
+    "changes in mood, depression and anxiety"
+  ],
+  "diagnosis": [],
+  "treatment": [
+    "non-hormonal and hormonal interventions",
+    "contraception to avoid unintended pregnancy"
+  ],
+  "transmission": [
+    "unprotected sexual contact, including oral, anal and vaginal sex"
+  ],
+  "prevention": [
+    "contraception to avoid unintended pregnancy"
+  ],
+  "risk_factors": [
+    "certain chromosomal abnormalities",
+    "autoimmune disorders",
+    "other unknown causes",
+    "certain demographic, health and genetic factors"
+  ],
+  "complications": [
+    "osteoporosis and fractures",
+    "pelvic organ prolapse",
+    "loss of bone density",
+    "weakening of the pelvic support structures",
+    "acquiring sexually transmitted infections (STIs), including HIV"
+  ],
+  "key_facts": [
+    "Menopause can also be a consequence of surgical or medical procedures."
+  ]
+}

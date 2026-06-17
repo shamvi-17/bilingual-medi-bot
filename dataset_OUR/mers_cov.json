@@ -1,0 +1,34 @@
+{
+  "disease": "MERS-CoV",
+  "symptoms": [
+    "fever",
+    "cough",
+    "shortness of breath"
+  ],
+  "diagnosis": [
+    "laboratory testing"
+  ],
+  "treatment": [
+    "no specific treatment or vaccine licensed"
+  ],
+  "transmission": [
+    "direct contact with dromedary camels",
+    "human-to-human transmission among close contacts and in health-care settings"
+  ],
+  "prevention": [
+    "enhancements in surveillance",
+    "respiratory patient triage",
+    "infection prevention and control"
+  ],
+  "risk_factors": [],
+  "complications": [
+    "pneumonia",
+    "death"
+  ],
+  "key_facts": [
+    "over 2600 laboratory-confirmed cases reported to WHO",
+    "approximately 37% of MERS cases reported to WHO have died",
+    "MERS-CoV is a zoonotic virus and dromedary camels are the primary reservoir"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

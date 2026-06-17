@@ -1,0 +1,61 @@
+{
+  "disease": "Hepatitis C",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Hepatitis C is a viral infection that affects the liver, causing both acute and chronic illness, and can be life-threatening. It is spread through contact with infected blood and can cause liver cirrhosis and cancer. Hepatitis C can be treated and cured with antiviral medications, and early detection and treatment can prevent serious liver damage and improve long-term health.",
+  "symptoms": [
+    "fatigue",
+    "loss of appetite",
+    "nausea",
+    "vomiting",
+    "abdominal pain",
+    "dark urine",
+    "pale faeces",
+    "joint pain",
+    "jaundice (yellowing of the skin or eyes)"
+  ],
+  "diagnosis": [
+    "serological test for anti-HCV antibodies",
+    "nucleic acid test for HCV ribonucleic acid (RNA)",
+    "liver biopsy",
+    "non-invasive blood tests"
+  ],
+  "treatment": [
+    "direct-acting antiviral medicines (DAAs)",
+    "antiviral medications"
+  ],
+  "transmission": [
+    "reuse or inadequate sterilization of medical equipment",
+    "transfusion of unscreened blood and blood products",
+    "injecting drug use through the sharing of injection equipment",
+    "mother to baby",
+    "sexual practices that lead to exposure to blood"
+  ],
+  "prevention": [
+    "safe injections and procedures in healthcare settings",
+    "screening of blood and blood products",
+    "avoidance of sharing injection equipment",
+    "safe sexual practices"
+  ],
+  "risk_factors": [
+    "people who inject drugs",
+    "people with multiple sexual partners",
+    "men who have sex with men",
+    "people living with HIV",
+    "people with signs of liver disease",
+    "migrants from endemic regions",
+    "health-care workers",
+    "people in prisons and other closed settings",
+    "transgender people",
+    "sex workers"
+  ],
+  "complications": [
+    "liver cirrhosis",
+    "liver cancer (hepatocellular carcinoma)",
+    "serious liver damage"
+  ],
+  "key_facts": [
+    "an estimated 50 million people have chronic hepatitis C virus infection globally",
+    "approximately 1.0 million new infections occur per year",
+    "about 242 000 people died from hepatitis C in 2022"
+  ]
+}

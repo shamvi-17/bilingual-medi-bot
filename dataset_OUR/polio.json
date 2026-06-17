@@ -1,0 +1,44 @@
+{
+  "disease": "Polio",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Polio is a highly infectious disease caused by a virus. It invades the nervous system and can cause total paralysis in a matter of hours. The virus is transmitted by person-to-person spread mainly through the faecal-oral route or, less frequently, by a common vehicle (for example, contaminated water or food) and multiplies in the intestine.",
+  "symptoms": [
+    "Fatigue",
+    "Headache",
+    "Vomiting",
+    "Stiffness of the neck",
+    "Pain in the limbs",
+    "Total paralysis in a matter of hours",
+    "Irreversible paralysis (usually in the legs)"
+  ],
+  "diagnosis": [
+    "Clinical criteria"
+  ],
+  "treatment": [
+    "There is no cure for polio, it can only be prevented"
+  ],
+  "transmission": [
+    "Person-to-person spread",
+    "Faecal-oral route",
+    "Common vehicle (contaminated water or food)"
+  ],
+  "prevention": [
+    "Polio vaccine",
+    "Oral polio vaccine",
+    "Inactivated polio vaccine",
+    "Immunization"
+  ],
+  "risk_factors": [
+    "Children under 5 years of age",
+    "Unvaccinated individuals of any age"
+  ],
+  "complications": [
+    "Irreversible paralysis",
+    "Death when breathing muscles become immobilized"
+  ],
+  "key_facts": [
+    "One in 200 infections leads to irreversible paralysis",
+    "5–10% of those paralysed die when their breathing muscles become immobilized",
+    "Cases due to wild poliovirus have decreased by over 99% since 1988"
+  ]
+}

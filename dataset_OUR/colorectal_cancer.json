@@ -1,0 +1,61 @@
+{
+  "disease": "Colorectal Cancer",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Colorectal cancer affects the colon or rectum and is one of the most common cancers worldwide, causing severe illness and premature death, particularly when diagnosed at advanced stages. The risk of colorectal cancer increases with age, with most cases occurring in people over 50 years. Common symptoms include diarrhoea or constipation, blood in the stool, abdominal pain, unexplained weight loss, fatigue and low iron levels.",
+  "symptoms": [
+    "diarrhoea or constipation",
+    "blood in the stool",
+    "abdominal cramps, pain or bloating",
+    "unexplained weight loss",
+    "persistent fatigue",
+    "iron deficiency anaemia due to chronic bleeding",
+    "changes in bowel habits",
+    "narrowing of the stool",
+    "abdominal pain that won’t go away"
+  ],
+  "diagnosis": [
+    "physical examination",
+    "examination of the inside of the colon using colonoscopy or sigmoidoscopy",
+    "taking a sample of tissue (biopsy) for histopathology examination",
+    "molecular testing to identify specific genetic mutations or biomarkers"
+  ],
+  "treatment": [
+    "surgery",
+    "radiotherapy (radiation)",
+    "chemotherapy",
+    "targeted therapy",
+    "immunotherapy",
+    "adjuvant chemotherapy",
+    "neoadjuvant therapy",
+    "ablation",
+    "clinical trials"
+  ],
+  "transmission": [],
+  "prevention": [
+    "eating a healthy diet rich in fruits and vegetables",
+    "not using tobacco",
+    "keeping an active lifestyle",
+    "maintaining a healthy body weight",
+    "limiting alcohol consumption",
+    "avoiding exposure to environmental risk factors",
+    "early detection and screening"
+  ],
+  "risk_factors": [
+    "diets high in processed and red meat and low in fruits and vegetables",
+    "physical inactivity",
+    "overweight and obesity",
+    "tobacco use",
+    "alcohol consumption",
+    "family history of colorectal cancer",
+    "previous colorectal cancer or certain types of polyps",
+    "age (risk increases markedly after age 50)"
+  ],
+  "complications": [
+    "severe illness",
+    "premature death",
+    "advanced disease"
+  ],
+  "key_facts": [
+    "It is the second leading cause of cancer-related deaths worldwide"
+  ]
+}

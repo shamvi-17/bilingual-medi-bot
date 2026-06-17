@@ -1,0 +1,70 @@
+{
+  "disease": "Cancer",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Cancer is a generic term for a large group of diseases that can affect any part of the body. Other terms used are malignant tumours and neoplasms. One defining feature of cancer is the rapid creation of abnormal cells that grow beyond their usual boundaries, and which can then invade adjoining parts of the body and spread to other organs; the latter process is referred to as metastasis. Widespread metastases are the primary cause of death from cancer.",
+  "symptoms": [
+    "fever",
+    "fatigue",
+    "painful blisters",
+    "abnormal findings",
+    "symptoms of different forms of cancer"
+  ],
+  "diagnosis": [
+    "diagnostic test or method",
+    "clinical evaluation and diagnostic services"
+  ],
+  "treatment": [
+    "effective treatment",
+    "early detection and treatment",
+    "screening",
+    "timely referral to treatment services"
+  ],
+  "transmission": [
+    "infections from certain viruses, bacteria, or parasites",
+    "tobacco use",
+    "alcohol consumption",
+    "unhealthy diet",
+    "physical inactivity",
+    "air pollution"
+  ],
+  "prevention": [
+    "not using tobacco",
+    "maintaining a healthy body weight",
+    "eating a healthy diet, including fruit and vegetables",
+    "doing physical activity on a regular basis",
+    "avoiding or reducing consumption of alcohol",
+    "getting vaccinated against HPV and hepatitis B",
+    "avoiding ultraviolet radiation exposure",
+    "ensuring safe and appropriate use of radiation in health care",
+    "minimizing occupational exposure to ionizing radiation",
+    "reducing exposure to outdoor air pollution and indoor air pollution"
+  ],
+  "risk_factors": [
+    "tobacco use",
+    "alcohol consumption",
+    "unhealthy diet",
+    "physical inactivity",
+    "air pollution",
+    "chronic infections",
+    "Helicobacter pylori",
+    "human papillomavirus (HPV)",
+    "hepatitis B virus",
+    "hepatitis C virus",
+    "Epstein-Barr virus",
+    "HIV",
+    "Kaposi sarcoma"
+  ],
+  "complications": [
+    "metastasis",
+    "widespread metastases",
+    "cancer mortality"
+  ],
+  "key_facts": [
+    "Cancer is a leading cause of death worldwide, accounting for nearly 10 million deaths in 2020, or nearly one in six deaths.",
+    "The most common cancers are lung, breast, colon and rectum and prostate cancers.",
+    "Nearly a quarter of deaths from cancer are due to tobacco use, alcohol consumption, high body mass index, low fruit and vegetable intake, and lack of physical activity.",
+    "Cancer-causing infections, such as human papillomavirus (HPV) and hepatitis, are responsible for approximately 30% of cancer cases in low- and lower-middle-income countries.",
+    "Many cancers can be cured if detected early and treated effectively.",
+    "Approximately 38% of cancers can currently be prevented by avoiding risk factors and implementing existing evidence-based prevention strategies."
+  ]
+}

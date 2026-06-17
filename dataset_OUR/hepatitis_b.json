@@ -1,0 +1,72 @@
+{
+  "disease": "Hepatitis B",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Hepatitis B is a viral infection that attacks the liver and can cause both acute and chronic disease. It can spread through contact with infected body fluids like blood, saliva, vaginal fluids and semen. Hepatitis B can be prevented with a safe and effective vaccine.",
+  "symptoms": [
+    "yellowing of the skin and eyes (jaundice)",
+    "dark urine",
+    "feeling very tired",
+    "nausea",
+    "vomiting",
+    "pain in the abdomen",
+    "liver failure"
+  ],
+  "diagnosis": [
+    "blood tests",
+    "laboratory confirmation",
+    "physical examination",
+    "ultrasound",
+    "elastography",
+    "HBsAg testing"
+  ],
+  "treatment": [
+    "vaccination",
+    "tenofovir",
+    "antiviral therapy"
+  ],
+  "transmission": [
+    "mother to child during birth",
+    "contact with infected blood or body fluids",
+    "sex with an infected partner",
+    "unsafe injections",
+    "exposures to sharp instruments",
+    "needlestick injury",
+    "tattooing",
+    "piercing",
+    "sharing or reuse of contaminated needles and syringes"
+  ],
+  "prevention": [
+    "vaccination",
+    "safe and effective vaccine",
+    "HBsAg testing",
+    "linkage to prevention and care and treatment services"
+  ],
+  "risk_factors": [
+    "mother to child transmission",
+    "early childhood infection",
+    "contact with infected body fluids",
+    "multiple sexual partners",
+    "infection in infancy and early childhood",
+    "migrants from endemic regions",
+    "partners or family members of infected persons",
+    "health-care workers",
+    "people who inject drugs",
+    "people in prisons and other closed settings",
+    "men who have sex with men",
+    "sex workers",
+    "transgender people",
+    "people living with HIV"
+  ],
+  "complications": [
+    "cirrhosis",
+    "hepatocellular carcinoma (liver cancer)",
+    "liver failure"
+  ],
+  "key_facts": [
+    "254 million people were living with chronic hepatitis B infection in 2022",
+    "1.2 million new infections each year",
+    "1.1 million deaths in 2022, mostly from cirrhosis and hepatocellular carcinoma",
+    "97 million people are chronically infected in the WHO Western Pacific Region",
+    "65 million people are chronically infected in the WHO African Region"
+  ]
+}

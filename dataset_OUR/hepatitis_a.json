@@ -1,0 +1,55 @@
+{
+  "disease": "Hepatitis A",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Hepatitis A is an inflammation of the liver caused by the hepatitis A virus, primarily spread through contaminated food or water, and can cause mild to severe symptoms. Unlike hepatitis B and C, hepatitis A does not cause chronic liver disease but can cause fulminant hepatitis, which is often fatal. Hepatitis A occurs sporadically and in epidemics worldwide.",
+  "symptoms": [
+    "malaise",
+    "loss of appetite",
+    "diarrhoea",
+    "nausea",
+    "abdominal discomfort",
+    "dark-coloured urine",
+    "jaundice"
+  ],
+  "diagnosis": [
+    "detection of HAV-specific immunoglobulin G (IgM) antibodies in the blood"
+  ],
+  "treatment": [
+    "supportive care to relieve symptoms",
+    "adequate hydration and nutrition",
+    "avoidance of unnecessary medications that can adversely affect the liver"
+  ],
+  "transmission": [
+    "faecal-oral route",
+    "close physical contact",
+    "oral-anal sex",
+    "contaminated food or water",
+    "sewage-contaminated or inadequately treated water"
+  ],
+  "prevention": [
+    "improved sanitation",
+    "food safety",
+    "safer sex practices",
+    "immunization",
+    "adequate supplies of safe drinking water",
+    "proper disposal of sewage",
+    "personal hygiene practices",
+    "use of condoms, dental dams and good hygiene practices"
+  ],
+  "risk_factors": [
+    "poor sanitation",
+    "lack of safe water",
+    "living in a household with an infected person",
+    "being a sexual partner of someone with acute hepatitis A infection",
+    "use of recreational drugs",
+    "sex between men",
+    "travelling to areas of high endemicity without being immunized"
+  ],
+  "complications": [
+    "fulminant hepatitis (acute liver failure)"
+  ],
+  "key_facts": [
+    "7134 persons died from hepatitis A worldwide in 2016",
+    "0.5% of the mortality due to viral hepatitis is caused by hepatitis A"
+  ]
+}

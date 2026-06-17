@@ -1,0 +1,60 @@
+{
+  "disease": "Hepatitis E",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Hepatitis E is an inflammation of the liver caused by infection with the hepatitis E virus. The virus is shed in the stools of infected people and enters the human body through the oral route. The infection is usually self-limiting and resolves within 2–6 weeks.",
+  "symptoms": [
+    "mild fever",
+    "reduced appetite (anorexia)",
+    "nausea",
+    "vomiting",
+    "abdominal pain",
+    "itching",
+    "skin rash",
+    "joint pain",
+    "jaundice (yellow colour of the skin)",
+    "dark urine",
+    "pale stools",
+    "enlarged, tender liver (hepatomegaly)"
+  ],
+  "diagnosis": [
+    "detection of specific anti-HEV immunoglobulin M (IgM) antibodies",
+    "rapid tests",
+    "elevated serum concentrations of bilirubin",
+    "elevated serum concentrations of alanine aminotransferase (ALT)",
+    "elevated serum concentrations of aspartate aminotransferase (AST)"
+  ],
+  "treatment": [
+    "no specific antiviral treatment",
+    "avoidance of unnecessary medications that can adversely affect liver function",
+    "hospitalization for people with fulminant hepatitis",
+    "hospitalization for symptomatic pregnant women"
+  ],
+  "transmission": [
+    "fecal-oral route",
+    "contaminated drinking water",
+    "consumption of uncooked or undercooked meat",
+    "zoonotic transmission through non-human mammals"
+  ],
+  "prevention": [
+    "maintaining quality standards for public water supplies",
+    "establishing proper disposal systems",
+    "vaccination (licensed in China and other countries)"
+  ],
+  "risk_factors": [
+    "young adults aged 15–40 years",
+    "pregnant women",
+    "immunosuppressed people",
+    "organ transplant recipients on immunosuppressive drugs"
+  ],
+  "complications": [
+    "fulminant hepatitis (acute liver failure)",
+    "fetal loss",
+    "mortality",
+    "chronic hepatitis E infection in immunosuppressed people"
+  ],
+  "key_facts": [
+    "3450 deaths and 19.47 million cases of acute hepatitis E globally in 2021",
+    "5.4% of global disability-adjusted life years (DALYs) related to acute hepatitis",
+    "20–25% of pregnant women can die if they get hepatitis E in the third trimester"
+  ]
+}

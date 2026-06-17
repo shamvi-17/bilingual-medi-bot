@@ -1,0 +1,54 @@
+{
+  "disease": "Marburg Virus Disease",
+  "symptoms": [
+    "high fever",
+    "severe headache",
+    "severe malaise",
+    "muscle aches and pains",
+    "severe watery diarrhoea",
+    "abdominal pain and cramping",
+    "nausea and vomiting",
+    "non-itchy rash",
+    "haemorrhagic manifestations",
+    "fresh blood in vomitus and faeces",
+    "bleeding from the nose, gums and vagina",
+    "bleeding at venepuncture sites",
+    "confusion",
+    "irritability",
+    "aggression",
+    "orchitis"
+  ],
+  "diagnosis": [
+    "antibody-capture enzyme-linked immunosorbent assay (ELISA)",
+    "antigen-capture detection tests",
+    "reverse transcriptase polymerase chain reaction (RT-PCR) assay",
+    "virus isolation by cell culture in maximum containment laboratories"
+  ],
+  "treatment": [
+    "early supportive care with rehydration",
+    "symptomatic treatment"
+  ],
+  "transmission": [
+    "prolonged exposure to mines or caves inhabited by Rousettus fruit bat colonies",
+    "burial ceremonies that involve direct contact with the body of the deceased"
+  ],
+  "prevention": [
+    "community engagement",
+    "strict infection control precautions"
+  ],
+  "risk_factors": [
+    "prolonged exposure to mines or caves inhabited by Rousettus fruit bat colonies",
+    "close contact with patients with MVD",
+    "inadequate infection control precautions"
+  ],
+  "complications": [
+    "severe blood loss and shock",
+    "involvement of the central nervous system",
+    "orchitis"
+  ],
+  "key_facts": [
+    "average MVD case fatality rate is around 50%",
+    "case fatality rates have varied from 24% to 88% in past outbreaks"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

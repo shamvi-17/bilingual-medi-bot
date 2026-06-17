@@ -1,0 +1,24 @@
+{
+  "disease": "Bacterial vaginosis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Health Topics Countries Newsroom Emergencies Data About WHO Bacterial vaginosis (BV) is a very common cause of vaginal discharge among women of reproductive age. BV prevalence varies across countries and population groups, but a recent systematic review and meta-analysis of the global BV prevalence among women of reproductive age range from 23–29%.",
+  "transmission": [
+    "pelvic inflammatory disease."
+  ],
+  "symptoms": [
+    "unusual discharge from the vagina",
+    "a strong fishy or musty odour from the vagina",
+    "itching or irritation around the vagina",
+    "burning during urination."
+  ],
+  "risk_factors_triggers": [
+    "pelvic inflammatory disease.",
+    "Vaginal cleansing and douching can increase the risk of developing BV. Intravaginal practice, e.g. insertion of herbs or other products into the vagina, is another risk factor."
+  ],
+  "diagnosis": [],
+  "prevention": [],
+  "treatment": [
+    "BV is treatable and curable."
+  ],
+  "who_response": "Women who present with vaginal discharge, and who are managed based on the syndromic approach are treated for BV, candidiasis and trichomoniasis. Metronidazole is indicated for both BV and trichomonas, while topical or oral antifungals are indicated for candidiasis."
+}

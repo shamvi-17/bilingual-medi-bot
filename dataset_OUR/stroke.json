@@ -1,0 +1,53 @@
+{
+  "disease": "Stroke",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Stroke is a leading cause of death globally, responsible for approximately 10% of total deaths. It is a noncommunicable disease and one of the top 10 causes of death worldwide. Stroke is a condition where the blood supply to the brain is interrupted, either due to a blockage or a rupture of the blood vessels in the brain.",
+  "symptoms": [
+    "Sudden weakness or numbness in the face, arm, or leg",
+    "Sudden confusion or trouble speaking or understanding speech",
+    "Sudden trouble seeing in one or both eyes",
+    "Sudden severe headache with no known cause",
+    "Sudden trouble walking, dizziness, or loss of balance"
+  ],
+  "diagnosis": [
+    "Computed Tomography (CT) scan",
+    "Magnetic Resonance Imaging (MRI)",
+    "Blood tests",
+    "Electrocardiogram (ECG)",
+    "Clinical evaluation"
+  ],
+  "treatment": [
+    "Thrombolytic therapy",
+    "Antithrombotic therapy",
+    "Anticoagulant therapy",
+    "Surgery",
+    "Rehabilitation"
+  ],
+  "transmission": [],
+  "prevention": [
+    "Maintaining a healthy diet",
+    "Engaging in regular physical activity",
+    "Not smoking",
+    "Limiting alcohol consumption",
+    "Managing stress"
+  ],
+  "risk_factors": [
+    "Hypertension",
+    "Diabetes",
+    "High cholesterol",
+    "Obesity",
+    "Family history of stroke"
+  ],
+  "complications": [
+    "Permanent brain damage",
+    "Disability",
+    "Death"
+  ],
+  "key_facts": [
+    "Stroke is responsible for approximately 10% of total deaths worldwide",
+    "In 2021, stroke was the third leading cause of death globally",
+    "The number of deaths from stroke has increased by 2.7 million since 2000",
+    "Stroke is a leading cause of disability worldwide",
+    "The risk of stroke increases with age"
+  ]
+}

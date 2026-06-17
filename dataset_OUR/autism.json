@@ -1,0 +1,50 @@
+{
+  "disease": "Autism",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Autism spectrum disorders are a diverse group of conditions characterized by difficulty with social interaction and communication, and atypical patterns of activities and behaviors. The abilities and needs of autistic people vary and can evolve over time. While some people with autism can live independently, others have severe disabilities and require life-long care and support.",
+  "symptoms": [
+    "Difficulty with social interaction",
+    "Difficulty with communication",
+    "Atypical patterns of activities and behaviors",
+    "Difficulty with transition from one activity to another",
+    "Focus on details",
+    "Unusual reactions to sensations",
+    "Epilepsy",
+    "Depression",
+    "Anxiety",
+    "Attention deficit hyperactivity disorder"
+  ],
+  "diagnosis": [
+    "Early evidence-based psychosocial interventions"
+  ],
+  "treatment": [
+    "Evidence-based psychosocial interventions",
+    "Health promotion",
+    "Care and rehabilitation"
+  ],
+  "transmission": [],
+  "prevention": [
+    "Avoidance of advanced parental age",
+    "Avoidance of maternal diabetes during pregnancy",
+    "Avoidance of prenatal exposure to air pollutants or certain heavy metals",
+    "Avoidance of prematurity, severe birth complications and low birth weight"
+  ],
+  "risk_factors": [
+    "Advanced parental age",
+    "Maternal diabetes during pregnancy",
+    "Prenatal exposure to air pollutants or certain heavy metals",
+    "Prematurity, severe birth complications and low birth weight",
+    "Genetic factors"
+  ],
+  "complications": [
+    "Severe disabilities",
+    "Life-long care and support",
+    "Impact on education and employment opportunities",
+    "Stigma and discrimination"
+  ],
+  "key_facts": [
+    "About 1 in 127 persons had autism in 2021",
+    "The prevalence of autism in many low- and middle-income countries is unknown",
+    "Other childhood vaccines do not increase the risk of autism"
+  ]
+}

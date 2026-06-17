@@ -1,0 +1,67 @@
+{
+  "disease": "Ebola",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Ebola disease is a severe, often fatal illness in humans caused by viruses that belong to the Orthoebolavirus genus of the filoviridae family. It is often fatal and has a case fatality rate of around 50%. Early intensive supportive care with rehydration and treatment of symptoms improves survival.",
+  "symptoms": [
+    "fatigue",
+    "malaise",
+    "muscle pain",
+    "headache",
+    "sore throat",
+    "vomiting",
+    "diarrhoea",
+    "abdominal pain",
+    "impaired kidney function",
+    "impaired liver function",
+    "bleeding",
+    "confusion",
+    "irritability",
+    "aggression"
+  ],
+  "diagnosis": [
+    "reverse transcriptase polymerase chain reaction (RT-PCR) assay",
+    "antibody-capture enzyme-linked immunosorbent assay (ELISA)",
+    "antigen-capture detection tests",
+    "virus isolation by cell culture"
+  ],
+  "treatment": [
+    "optimized supportive care",
+    "mAb114 (ansuvimab)",
+    "REGN-EB3 (Inmazeb)",
+    "monoclonal antibodies",
+    "pain management",
+    "nutrition",
+    "co-infection management"
+  ],
+  "transmission": [
+    "direct contact with infected animals",
+    "direct contact with infected people",
+    "contact with contaminated objects or surfaces",
+    "close contact with patients without infection control precautions",
+    "burial ceremonies with direct contact with the body of a person who has died"
+  ],
+  "prevention": [
+    "vaccines",
+    "infection control precautions",
+    "safe and dignified burials",
+    "social mobilization",
+    "hygiene",
+    "behavioral changes"
+  ],
+  "risk_factors": [
+    "health and care workers",
+    "people in close contact with infected animals",
+    "people in close contact with infected people"
+  ],
+  "complications": [
+    "death",
+    "impaired kidney function",
+    "impaired liver function",
+    "bleeding",
+    "septicemia"
+  ],
+  "key_facts": [
+    "The average Ebola disease case fatality rate is around 50%",
+    "Case fatality rates have varied from 25–90% in past outbreaks"
+  ]
+}

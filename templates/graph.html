@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Disease Knowledge Graph</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --crimson:    #7e0000;
+      --crimson-mid:#ad1b1b;
+      --crimson-lit:#DC2626;
+      --rose:       #FECDD3;
+      --rose-mid:   #FDA4AF;
+      --rose-deep:  #FB7185;
+      --white:      #FFFFFF;
+      --cream:      #FDF8F5;
+      --parchment:  #F5EDE8;
+      --ink:        #1A0505;
+      --ink-mid:    #3D1515;
+      --ink-soft:   #7A4040;
+      --border:     #E8C5C5;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 18px; padding: 0 28px;
+      box-shadow: 0 1px 20px rgba(139,0,0,0.06);
+    }
+
+    .topbar-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo-dot {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--crimson), var(--crimson-lit));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; box-shadow: 0 2px 8px rgba(139,0,0,0.3);
+    }
+    .topbar h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--crimson); letter-spacing: 0.01em;
+    }
+
+    .topbar-divider {
+      width: 1px; height: 24px; background: var(--border);
+    }
+
+    .topbar-sub {
+      font-size: 0.75rem; color: var(--ink-soft); font-weight: 400;
+    }
+
+    .legend {
+      display: flex; gap: 18px; margin-left: auto; align-items: center;
+    }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: 0.73rem; color: var(--ink-soft); font-weight: 500; }
+    .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .legend-dot.disease { background: var(--crimson); box-shadow: 0 0 6px rgba(139,0,0,0.4); }
+    .legend-dot.symptom { background: var(--rose-deep); box-shadow: 0 0 6px rgba(251,113,133,0.4); }
+
+    .back-btn {
+      text-decoration: none; color: var(--crimson);
+      font-size: 0.75rem; font-weight: 500;
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 6px 14px; transition: all 0.2s;
+      background: var(--white);
+    }
+    .back-btn:hover {
+      background: var(--crimson); color: var(--white);
+      border-color: var(--crimson);
+      box-shadow: 0 2px 12px rgba(139,0,0,0.25);
+    }
+
+    /* ── Search ── */
+    .search-wrap {
+      position: fixed; top: 76px; left: 24px; z-index: 100;
+      background: var(--white);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 10px 14px 10px 40px; width: 240px;
+      box-shadow: 0 4px 20px rgba(139,0,0,0.07);
+      display: flex; align-items: center;
+    }
+    .search-icon {
+      position: absolute; left: 13px;
+      color: var(--rose-deep); font-size: 14px; pointer-events: none;
+    }
+    .search-wrap input {
+      width: 100%; background: transparent; border: none; outline: none;
+      color: var(--ink); font-size: 0.82rem; font-family: 'Inter', sans-serif;
+    }
+    .search-wrap input::placeholder { color: #C5A3A3; }
+
+    /* ── Stats panel ── */
+    .stats-panel {
+      position: fixed; top: 76px; right: 24px; z-index: 100;
+      background: var(--white);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 16px 20px;
+      box-shadow: 0 4px 20px rgba(139,0,0,0.07);
+      min-width: 160px;
+    }
+    .stats-panel h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.85rem; color: var(--crimson);
+      margin-bottom: 10px; letter-spacing: 0.02em;
+    }
+    .stat-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.73rem; color: var(--ink-soft);
+      padding: 3px 0; border-bottom: 1px solid var(--parchment);
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-row b { color: var(--ink); font-weight: 600; }
+    .stat-hint {
+      margin-top: 12px; font-size: 0.68rem; color: #C5A3A3; line-height: 1.7;
+    }
+    .stat-hint span { color: var(--crimson-mid); font-weight: 500; }
+
+    /* ── Zoom controls ── */
+    .controls {
+      position: fixed; bottom: 28px; right: 24px; z-index: 100;
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .ctrl-btn {
+      width: 38px; height: 38px; border-radius: 10px;
+      background: var(--white); border: 1px solid var(--border);
+      color: var(--crimson); font-size: 17px; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(139,0,0,0.08);
+      transition: all 0.18s;
+    }
+    .ctrl-btn:hover {
+      background: var(--crimson); color: var(--white);
+      box-shadow: 0 4px 14px rgba(139,0,0,0.3);
+    }
+
+    /* ── Tooltip ── */
+    #tooltip {
+      position: fixed; pointer-events: none; z-index: 300;
+      background: var(--white);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 14px 18px;
+      box-shadow: 0 8px 32px rgba(139,0,0,0.14);
+      font-size: 0.78rem; max-width: 260px;
+      opacity: 0; transition: opacity 0.15s;
+      line-height: 1.6;
+    }
+    #tooltip h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem; color: var(--crimson);
+      margin-bottom: 6px; font-weight: 600;
+    }
+    #tooltip .tt-label {
+      font-size: 0.68rem; color: var(--ink-soft);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 5px; font-weight: 600;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--parchment); color: var(--ink-mid);
+      border-radius: 5px; padding: 2px 8px;
+      margin: 2px 2px 0 0; font-size: 0.69rem; font-weight: 500;
+    }
+    .tag.disease-tag { background: #FEE2E2; color: var(--crimson); }
+
+    /* ── Loading ── */
+    #loading {
+      position: fixed; inset: 0; background: var(--cream);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; z-index: 500;
+    }
+    .loading-logo {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--crimson), var(--crimson-lit));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin-bottom: 16px;
+      box-shadow: 0 8px 24px rgba(139,0,0,0.3);
+      animation: pulse-logo 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse-logo {
+      0%,100% { transform: scale(1); box-shadow: 0 8px 24px rgba(139,0,0,0.3); }
+      50% { transform: scale(1.07); box-shadow: 0 12px 36px rgba(139,0,0,0.45); }
+    }
+    #loading h2 {
+      font-family: 'Playfair Display', serif;
+      color: var(--crimson); font-size: 1.1rem; margin-bottom: 6px;
+    }
+    #loading p { color: var(--ink-soft); font-size: 0.8rem; }
+
+    /* ── SVG graph ── */
+    svg { display: block; }
+
+    .link {
+      stroke: var(--rose);
+      stroke-opacity: 0.8;
+      stroke-width: 1px;
+    }
+    .link.highlighted {
+      stroke: var(--crimson-mid);
+      stroke-opacity: 1;
+      stroke-width: 2px;
+    }
+
+    .node circle {
+      stroke-width: 2;
+      cursor: pointer;
+      transition: filter 0.15s;
+    }
+    .node.disease circle {
+      fill: var(--crimson);
+      stroke: #FF6B6B;
+      filter: drop-shadow(0 2px 6px rgba(139,0,0,0.35));
+    }
+    .node.symptom circle {
+      fill: var(--white);
+      stroke: var(--rose-deep);
+      filter: drop-shadow(0 1px 4px rgba(251,113,133,0.3));
+    }
+
+    .node.highlighted.disease circle {
+      fill: var(--crimson-lit);
+      stroke: var(--crimson);
+      filter: drop-shadow(0 4px 12px rgba(139,0,0,0.55));
+    }
+    .node.highlighted.symptom circle {
+      fill: var(--rose);
+      stroke: var(--crimson-mid);
+      filter: drop-shadow(0 3px 10px rgba(185,28,28,0.4));
+    }
+
+    .node.dimmed circle {
+      opacity: 0.12;
+      filter: none;
+    }
+    .node.dimmed text { opacity: 0.08; }
+
+    .node text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      pointer-events: none;
+      text-anchor: middle;
+      dominant-baseline: middle;
+      paint-order: stroke;
+    }
+    .node.disease text {
+      font-size: 9.5px;
+      fill: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      stroke: var(--crimson);
+      stroke-width: 4px;
+    }
+    .node.symptom text {
+      font-size: 8.5px;
+      fill: var(--crimson-mid);
+      stroke: var(--cream);
+      stroke-width: 3px;
+    }
+
+    /* ── Decorative watermark ── */
+    .watermark {
+      position: fixed; bottom: 28px; left: 28px; z-index: 50;
+      font-family: 'Playfair Display', serif;
+      font-size: 0.7rem; color: #E8C5C5; letter-spacing: 0.06em;
+      pointer-events: none; user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="loading-logo"></div>
+  <h2>Knowledge Graph</h2>
+  <p>Mapping disease connections…</p>
+</div>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-dot"></div>
+    <h1>Disease Knowledge Graph</h1>
+  </div>
+  <div class="topbar-divider"></div>
+  <span class="topbar-sub" id="graph-stats">Loading…</span>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot disease"></div>Disease</div>
+    <div class="legend-item"><div class="legend-dot symptom"></div>Symptom</div>
+  </div>
+  <a class="back-btn" href="/">← Back to Chat</a>
+</div>
+
+<!-- Search -->
+<div class="search-wrap">
+  <span class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+  <input id="search" type="text" placeholder="Search disease or symptom…"/>
+</div>
+
+<!-- Stats -->
+<div class="stats-panel">
+  <h3>Graph Overview</h3>
+  <div id="stats-rows"></div>
+  <div class="stat-hint">
+    <span>Hover</span> to explore links<br>
+    <span>Drag</span> to rearrange<br>
+    <span>Scroll</span> to zoom
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div id="tooltip"></div>
+
+<!-- Zoom controls -->
+<div class="controls">
+  <button class="ctrl-btn" id="zoom-in">+</button>
+  <button class="ctrl-btn" id="zoom-out">−</button>
+  <button class="ctrl-btn" id="reset-zoom" title="Reset view">R</button>
+</div>
+
+<div class="watermark">MediBot · Explainable Medical AI</div>
+
+<svg id="graph"></svg>
+
+<script>
+const W = window.innerWidth, H = window.innerHeight;
+
+const svgEl = d3.select("#graph").attr("width", W).attr("height", H);
+
+// Subtle grid background pattern
+const defs = svgEl.append("defs");
+const pattern = defs.append("pattern")
+  .attr("id","grid").attr("width",40).attr("height",40)
+  .attr("patternUnits","userSpaceOnUse");
+pattern.append("path")
+  .attr("d","M 40 0 L 0 0 0 40")
+  .attr("fill","none").attr("stroke","#F0E0E0").attr("stroke-width","0.5");
+svgEl.append("rect").attr("width",W).attr("height",H).attr("fill","url(#grid)");
+
+// Radial gradient for disease nodes
+const radGrad = defs.append("radialGradient").attr("id","disease-grad");
+radGrad.append("stop").attr("offset","0%").attr("stop-color","#DC2626");
+radGrad.append("stop").attr("offset","100%").attr("stop-color","#7F1D1D");
+
+const container = svgEl.append("g");
+
+const zoom = d3.zoom().scaleExtent([0.1,5])
+  .on("zoom", e => container.attr("transform", e.transform));
+svgEl.call(zoom);
+
+document.getElementById("zoom-in").onclick  = () => svgEl.transition().duration(300).call(zoom.scaleBy, 1.4);
+document.getElementById("zoom-out").onclick = () => svgEl.transition().duration(300).call(zoom.scaleBy, 0.7);
+document.getElementById("reset-zoom").onclick = () =>
+  svgEl.transition().duration(500).call(zoom.transform, d3.zoomIdentity.translate(W/2, H/2).scale(0.85).translate(-W/2, -H/2));
+
+fetch("/kg-data").then(r => r.json()).then(data => {
+  document.getElementById("loading").style.display = "none";
+
+  const nDis = data.nodes.filter(n => n.type === "disease").length;
+  const nSym = data.nodes.filter(n => n.type === "symptom").length;
+
+  document.getElementById("graph-stats").textContent =
+    `${nDis} diseases · ${nSym} symptoms · ${data.links.length} connections`;
+
+  document.getElementById("stats-rows").innerHTML = `
+    <div class="stat-row"><span>Diseases</span><b>${nDis}</b></div>
+    <div class="stat-row"><span>Symptoms</span><b>${nSym}</b></div>
+    <div class="stat-row"><span>Connections</span><b>${data.links.length}</b></div>`;
+
+  // Adjacency map
+  const adj = {};
+  data.links.forEach(l => {
+    (adj[l.source] = adj[l.source] || new Set()).add(l.target);
+    (adj[l.target] = adj[l.target] || new Set()).add(l.source);
+  });
+
+  const sim = d3.forceSimulation(data.nodes)
+    .force("link",      d3.forceLink(data.links).id(d => d.id).distance(95).strength(0.5))
+    .force("charge",    d3.forceManyBody().strength(d => d.type === "disease" ? -260 : -120))
+    .force("center",    d3.forceCenter(W / 2, H / 2))
+    .force("collision", d3.forceCollide().radius(d => d.type === "disease" ? 22 : 14));
+
+  // Links
+  const link = container.append("g")
+    .selectAll("line").data(data.links).join("line")
+    .attr("class","link");
+
+  // Nodes
+  const node = container.append("g")
+    .selectAll(".node").data(data.nodes).join("g")
+    .attr("class", d => "node " + d.type)
+    .call(d3.drag()
+      .on("start", (e,d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on("drag",  (e,d) => { d.fx=e.x; d.fy=e.y; })
+      .on("end",   (e,d) => { if (!e.active) sim.alphaTarget(0); d.fx=null; d.fy=null; })
+    );
+
+  node.append("circle")
+    .attr("r", d => d.type === "disease" ? 15 : 9)
+    .style("fill", d => d.type === "disease" ? "url(#disease-grad)" : null);
+
+  node.append("text")
+    .text(d => d.label)
+    .attr("y", d => d.type === "disease" ? 23 : 18);
+
+  // Tooltip
+  const tooltip = document.getElementById("tooltip");
+
+  node
+    .on("mouseover", (event, d) => {
+      const neighbors = adj[d.id] || new Set();
+      const visible   = new Set([d.id, ...neighbors]);
+
+      node.classed("highlighted", n => n.id === d.id);
+      node.classed("dimmed",      n => !visible.has(n.id));
+      link.classed("highlighted", l => l.source.id === d.id || l.target.id === d.id);
+
+      const pills = (ids, cls) => [...ids].map(id => {
+        const n = data.nodes.find(x => x.id === id);
+        return n ? `<span class="tag ${cls}">${n.label}</span>` : "";
+      }).join("");
+
+      let html = `<h4>${d.label}</h4>`;
+      if (d.type === "disease") {
+        html += `<div class="tt-label">Linked symptoms (${neighbors.size})</div>`;
+        html += pills(neighbors, "") || "<span style='color:#C5A3A3;font-size:0.7rem'>None indexed</span>";
+      } else {
+        html += `<div class="tt-label">Diseases with this symptom (${neighbors.size})</div>`;
+        html += pills(neighbors, "disease-tag");
+      }
+      tooltip.innerHTML = html;
+      tooltip.style.opacity = "1";
+    })
+    .on("mousemove", event => {
+      const tx = event.clientX + 16, ty = event.clientY - 12;
+      tooltip.style.left = Math.min(tx, W - 280) + "px";
+      tooltip.style.top  = Math.max(ty, 70) + "px";
+    })
+    .on("mouseleave", () => {
+      node.classed("highlighted dimmed", false);
+      link.classed("highlighted", false);
+      tooltip.style.opacity = "0";
+    });
+
+  sim.on("tick", () => {
+    link.attr("x1",d=>d.source.x).attr("y1",d=>d.source.y)
+        .attr("x2",d=>d.target.x).attr("y2",d=>d.target.y);
+    node.attr("transform", d=>`translate(${d.x},${d.y})`);
+  });
+
+  // Search
+  document.getElementById("search").addEventListener("input", function() {
+    const q = this.value.trim().toLowerCase();
+    if (!q) { node.classed("highlighted dimmed", false); link.classed("highlighted", false); return; }
+
+    const matched  = new Set(data.nodes.filter(n => n.label.toLowerCase().includes(q)).map(n => n.id));
+    const expanded = new Set(matched);
+    matched.forEach(id => (adj[id] || new Set()).forEach(nb => expanded.add(nb)));
+
+    node.classed("highlighted", n => matched.has(n.id));
+    node.classed("dimmed",      n => !expanded.has(n.id));
+    link.classed("highlighted", l => matched.has(l.source.id) || matched.has(l.target.id));
+  });
+});
+</script>
+</body>
+</html>

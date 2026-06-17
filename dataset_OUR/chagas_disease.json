@@ -1,0 +1,66 @@
+{
+  "disease": "Chagas Disease",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Chagas disease is caused by the infection of a protozoan parasite (Trypanosoma cruzi) and is a complex health problem typical of neglected tropical diseases and socially- and environmentally-determined diseases. Approximately 8 million people worldwide are estimated to be infected with T. cruzi, leading to more than 10,000 deaths every year. Chagas disease is curable if antiparasitic treatment is done early, in the acute phase.",
+  "symptoms": [
+    "headache",
+    "enlarged lymph glands",
+    "pallor",
+    "muscle pain",
+    "difficulty in breathing",
+    "swelling",
+    "abdominal or chest pain",
+    "skin lesion (chagoma)",
+    "purplish swelling of the lids of one eye (Romaña’s sign)",
+    "cardiac disorders",
+    "digestive alterations",
+    "neurological alterations",
+    "mixed alterations",
+    "cardiac arrhythmias",
+    "progressive heart failure",
+    "sudden death"
+  ],
+  "diagnosis": [
+    "blood tests",
+    "clinical criteria"
+  ],
+  "treatment": [
+    "benznidazole",
+    "nifurtimox",
+    "antiparasitic treatment"
+  ],
+  "transmission": [
+    "contact with faeces/urine of infected triatomine bugs",
+    "consumption of food or beverages contaminated with T. cruzi",
+    "during pregnancy or childbirth",
+    "through blood or blood product transfusion",
+    "through transplants of some organs",
+    "through laboratory accidents"
+  ],
+  "prevention": [
+    "insect vector control",
+    "blood screening prior to transfusion and transplantation",
+    "earliest possible diagnosis and comprehensive follow-up and health care"
+  ],
+  "risk_factors": [
+    "living in endemic areas of 21 continental Latin American countries",
+    "socioenvironmental changes",
+    "increased population mobility",
+    "immunosuppression"
+  ],
+  "complications": [
+    "cardiac alterations",
+    "digestive alterations",
+    "neurological alterations",
+    "mixed alterations",
+    "cardiac arrhythmias",
+    "progressive heart failure",
+    "sudden death"
+  ],
+  "key_facts": [
+    "8 million people worldwide are estimated to be infected with T. cruzi",
+    "more than 10,000 deaths every year",
+    "100 million people are considered at risk of infection",
+    "10,000 new cases of congenital transmission annually"
+  ]
+}

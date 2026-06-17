@@ -1,0 +1,49 @@
+{
+  "disease": "Typhoid",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Typhoid fever is a life-threatening infection caused by the bacterium Salmonella Typhi, usually spread through contaminated food or water, and can lead to serious complications or death if left untreated. Urbanization and climate change may increase the global burden of typhoid, and antibiotic resistance is a growing concern. Improved living conditions and antibiotics have reduced typhoid fever in industrialized countries, but it remains a public health problem in many developing areas.",
+  "symptoms": [
+    "Prolonged high fever",
+    "Fatigue",
+    "Headache",
+    "Nausea",
+    "Abdominal pain",
+    "Constipation",
+    "Diarrhoea"
+  ],
+  "diagnosis": [
+    "Blood testing"
+  ],
+  "treatment": [
+    "Antibiotics",
+    "Antimicrobial resistance treatment"
+  ],
+  "transmission": [
+    "Contaminated food",
+    "Contaminated water",
+    "Faeces of infected person"
+  ],
+  "prevention": [
+    "Access to safe water",
+    "Adequate sanitation",
+    "Hygiene among food handlers",
+    "Typhoid conjugate vaccine",
+    "Injectable vaccine based on purified antigen",
+    "Live attenuated oral vaccine"
+  ],
+  "risk_factors": [
+    "Lack of access to safe water",
+    "Inadequate sanitation",
+    "Children",
+    "Travellers to endemic areas"
+  ],
+  "complications": [
+    "Serious complications",
+    "Death"
+  ],
+  "key_facts": [
+    "9 million cases of typhoid fever annually",
+    "110,000 deaths per year",
+    "Two typhoid conjugate vaccines have been prequalified by WHO since December 2017"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "disease": "Pertussis (Whooping Cough)",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Pertussis, also known as whooping cough, is a highly contagious respiratory tract infection caused by the bacterium Bordetella pertussis. It is characterized by severe coughing fits, often accompanied by a distinctive whooping sound, and can lead to serious complications, especially in infants and young children. The disease can affect people of all ages, but it is most severe in infants under one year of age.",
+  "symptoms": [
+    "Severe coughing fits",
+    "Whooping sound",
+    "Vomiting",
+    "Exhaustion",
+    "Loss of appetite",
+    "Mild cough",
+    "Runny nose",
+    "Sneezing",
+    "Apnea in infants"
+  ],
+  "diagnosis": [
+    "Polymerase chain reaction (PCR) test",
+    "Culture test",
+    "Serological tests",
+    "Clinical diagnosis based on symptoms"
+  ],
+  "treatment": [
+    "Antibiotics, such as azithromycin or clarithromycin",
+    "Supportive care, such as rest and hydration",
+    "Cough suppressants",
+    "Hospitalization for severe cases"
+  ],
+  "transmission": [
+    "Direct contact with an infected person",
+    "Airborne transmission through respiratory droplets",
+    "Indirect contact with contaminated surfaces"
+  ],
+  "prevention": [
+    "Vaccination with pertussis-containing vaccines, such as DTaP or Tdap",
+    "Good hygiene practices, such as washing hands frequently",
+    "Avoiding close contact with infected individuals",
+    "Staying home when sick"
+  ],
+  "risk_factors": [
+    "Infants under one year of age",
+    "Young children who are not fully vaccinated",
+    "Pregnant women",
+    "People with weakened immune systems",
+    "Older adults"
+  ],
+  "complications": [
+    "Pneumonia",
+    "Bronchiectasis",
+    "Seizures",
+    "Encephalopathy",
+    "Death"
+  ],
+  "key_facts": [
+    "Pertussis affects approximately 24.1 million people worldwide each year",
+    "The disease is responsible for an estimated 160,700 deaths annually",
+    "The majority of pertussis-related deaths occur in infants under one year of age",
+    "Vaccination can prevent up to 80% of pertussis cases",
+    "The global pertussis vaccination coverage is around 84%"
+  ]
+}

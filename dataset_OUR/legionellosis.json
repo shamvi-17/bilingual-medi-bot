@@ -1,0 +1,57 @@
+{
+  "disease": "Legionellosis",
+  "symptoms": [
+    "fever",
+    "chills",
+    "headache",
+    "malaise",
+    "muscle pain (myalgia)",
+    "loss of appetite",
+    "lethargy",
+    "diarrhoea",
+    "confusion",
+    "cough",
+    "phlegm",
+    "blood-streaked phlegm or hemoptysis"
+  ],
+  "diagnosis": [],
+  "treatment": [
+    "administration of appropriate antibiotic treatment"
+  ],
+  "transmission": [
+    "inhalation of contaminated aerosols from contaminated water",
+    "aspiration of contaminated water or ice",
+    "exposure of babies during water births"
+  ],
+  "prevention": [
+    "proper maintenance of artificial water systems",
+    "use of respiratory therapy equipment"
+  ],
+  "risk_factors": [
+    "age over 50",
+    "male",
+    "smoking",
+    "history of heavy drinking",
+    "pulmonary-related illness",
+    "immuno-suppression",
+    "chronic respiratory or renal illnesses",
+    "recent surgery",
+    "intubation",
+    "mechanical ventilation",
+    "aspiration",
+    "presence of nasogastric tubes",
+    "use of respiratory therapy equipment",
+    "immuno-compromised patients",
+    "organ transplant recipients",
+    "cancer patients",
+    "corticosteroid treatment"
+  ],
+  "complications": [
+    "progressive pneumonia with respiratory failure and/or"
+  ],
+  "key_facts": [
+    "75-80% of reported cases are over 50 years",
+    "60-70% of reported cases are male"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

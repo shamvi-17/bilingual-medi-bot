@@ -1,0 +1,45 @@
+{
+  "disease": "Avian Influenza",
+  "symptoms": [
+    "mild, flu-like illness",
+    "eye inflammation (conjunctivitis)",
+    "severe, acute respiratory disease",
+    "gastrointestinal symptoms",
+    "neurological symptoms",
+    "death"
+  ],
+  "diagnosis": [
+    "clinical management",
+    "laboratory testing"
+  ],
+  "treatment": [
+    "clinical management"
+  ],
+  "transmission": [
+    "direct contact with infected animals",
+    "indirect contact through contaminated environments",
+    "human-to-human transmission (rare)"
+  ],
+  "prevention": [
+    "rapid and effective response to outbreaks in animals",
+    "prompt and thorough investigation of every human infection",
+    "risk-based pandemic planning"
+  ],
+  "risk_factors": [
+    "exposure to live or dead infected animals or contaminated environments",
+    "virus causing the infection",
+    "nature of exposure",
+    "clinical management",
+    "laboratory testing",
+    "characteristics of the infected individual"
+  ],
+  "complications": [
+    "severe, acute respiratory disease",
+    "death"
+  ],
+  "key_facts": [
+    "Humans can be infected with avian, swine and other influenza viruses.",
+    "Pandemic potential exists due to the diversity of zoonotic influenza viruses."
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

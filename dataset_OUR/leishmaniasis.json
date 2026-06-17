@@ -1,0 +1,57 @@
+{
+  "disease": "Leishmaniasis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Leishmaniasis is caused by a protozoa parasite from over 20 Leishmania species, with three main forms of the disease: Visceral leishmaniasis, Cutaneous leishmaniasis, and Mucocutaneous leishmaniasis. If left untreated, Visceral leishmaniasis is fatal in over 95% of cases. Leishmaniasis has outbreak and mortality potential, with an estimated 50 000 to 90 000 new cases of Visceral leishmaniasis occurring worldwide annually.",
+  "symptoms": [
+    "irregular bouts of fever",
+    "weight loss",
+    "enlargement of the spleen and liver",
+    "anaemia",
+    "skin lesions",
+    "ulcers",
+    "life-long scars",
+    "serious disability or stigma",
+    "macular, papular or nodular rash"
+  ],
+  "diagnosis": [
+    "clinical signs",
+    "parasitological tests",
+    "serological tests",
+    "rapid diagnostic tests"
+  ],
+  "treatment": [
+    "prompt and complete treatment",
+    "antiretroviral treatment",
+    "medicines that require an immunocompetent system"
+  ],
+  "transmission": [
+    "bites of infected female phlebotomine sandflies",
+    "sandflies feeding on blood to produce eggs",
+    "70 animal species, including humans, as the source of Leishmania parasites"
+  ],
+  "prevention": [
+    "improved socioeconomic conditions",
+    "proper housing and domestic sanitary conditions",
+    "reduced sandfly breeding and resting sites",
+    "avoiding sleeping outside or on the ground"
+  ],
+  "risk_factors": [
+    "poverty",
+    "poor housing and domestic sanitary conditions",
+    "malnutrition",
+    "population mobility",
+    "environmental and climate changes",
+    "HIV co-infection"
+  ],
+  "complications": [
+    "death",
+    "serious disability or stigma",
+    "relapse",
+    "mortality"
+  ],
+  "key_facts": [
+    "50 000 to 90 000 new cases of Visceral leishmaniasis occur worldwide annually",
+    "95% of Visceral leishmaniasis cases are fatal if left untreated",
+    "45 countries have reported Leishmania-HIV co-infection as of 2021"
+  ]
+}

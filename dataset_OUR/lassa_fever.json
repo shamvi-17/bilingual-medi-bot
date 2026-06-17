@@ -1,0 +1,56 @@
+{
+  "disease": "Lassa Fever",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Lassa fever is an acute viral illness caused by Lassa virus that was first identified in 1969 in Nigeria. The virus belongs to the virus family Arenaviridae. Lassa fever is a zoonotic disease, meaning that humans become infected from contact with infected animals. The animal reservoir, or host, of Lassa virus is a rodent of the genus Mastomys, commonly known as the multimammate rat.",
+  "symptoms": [
+    "Fever",
+    "General weakness",
+    "Headache",
+    "Malaise",
+    "Sore throat",
+    "Muscle pain",
+    "Chest pain",
+    "Nausea",
+    "Vomiting",
+    "Diarrhoea",
+    "Cough",
+    "Abdominal pain",
+    "Facial swelling",
+    "Fluid in the lung cavity",
+    "Bleeding from the mouth, nose, vagina or gastrointestinal tract",
+    "Low blood pressure",
+    "Shock",
+    "Seizures",
+    "Tremor",
+    "Disorientation",
+    "Coma"
+  ],
+  "diagnosis": [],
+  "treatment": [],
+  "transmission": [
+    "Humans may also become infected directly via contact with infected rats."
+  ],
+  "prevention": [],
+  "risk_factors": [
+    "Contact with food or household items contaminated with rodent urine or faeces",
+    "Direct contact with infected rats"
+  ],
+  "complications": [
+    "Facial swelling",
+    "Fluid in the lung cavity",
+    "Bleeding from the mouth, nose, vagina or gastrointestinal tract",
+    "Low blood pressure",
+    "Shock",
+    "Seizures",
+    "Tremor",
+    "Disorientation",
+    "Coma",
+    "Sudden hearing loss",
+    "Neurological signs",
+    "Visual impairment",
+    "Joint pain",
+    "Transient hair loss",
+    "Psychological disorders"
+  ],
+  "key_facts": []
+}

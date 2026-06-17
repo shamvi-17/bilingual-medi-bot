@@ -1,0 +1,78 @@
+{
+  "disease": "Hypertension",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Hypertension, also known as high blood pressure, is a condition where the pressure in the blood vessels is too high, typically 140/90 mmHg or higher. It is common but can be serious if not treated. People with high blood pressure may not feel symptoms, and the only way to know is to get blood pressure checked.",
+  "symptoms": [
+    "headaches",
+    "blurred vision",
+    "chest pain",
+    "severe headaches",
+    "dizziness",
+    "difficulty breathing",
+    "nausea",
+    "vomiting",
+    "blurred vision or other vision changes",
+    "anxiety",
+    "confusion",
+    "buzzing in the ears",
+    "nosebleeds",
+    "abnormal heart rhythm"
+  ],
+  "diagnosis": [
+    "blood pressure measurement",
+    "evaluation by a health professional"
+  ],
+  "treatment": [
+    "lifestyle changes",
+    "eating a healthy, low-salt diet",
+    "losing weight",
+    "being physically active",
+    "quitting tobacco",
+    "ACE inhibitors",
+    "Angiotensin-2 receptor blockers (ARBs)",
+    "Calcium channel blockers",
+    "Diuretics"
+  ],
+  "transmission": [],
+  "prevention": [
+    "eating more vegetables and fruits",
+    "being physically active",
+    "getting at least 150 minutes per week of moderate-intensity aerobic activity",
+    "doing strength building exercises",
+    "losing weight if overweight or obese",
+    "taking medicines as prescribed",
+    "keeping appointments with healthcare professional",
+    "reducing and managing stress",
+    "regularly checking blood pressure",
+    "treating high blood pressure",
+    "managing other medical conditions",
+    "reducing exposure to polluted air"
+  ],
+  "risk_factors": [
+    "older age",
+    "genetics",
+    "being overweight or obese",
+    "not being physically active",
+    "high-salt diet",
+    "drinking too much alcohol",
+    "unhealthy diets",
+    "physical inactivity",
+    "consumption of tobacco",
+    "family history of hypertension",
+    "age over 65 years",
+    "co-existing diseases such as diabetes or kidney disease",
+    "air pollution"
+  ],
+  "complications": [
+    "kidney disease",
+    "heart disease",
+    "stroke",
+    "hardening of arteries",
+    "decrease in blood flow and oxygen to the heart"
+  ],
+  "key_facts": [
+    "33% of the population in this age range has hypertension",
+    "44% of adults with hypertension are unaware that they have the condition",
+    "23% of adults with hypertension have it under control"
+  ]
+}

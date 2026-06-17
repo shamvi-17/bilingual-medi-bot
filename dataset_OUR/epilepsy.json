@@ -1,0 +1,59 @@
+{
+  "disease": "Epilepsy",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Epilepsy is a chronic noncommunicable disease of the brain that affects around 50 million people worldwide, characterized by recurrent seizures. Seizure episodes are a result of excessive electrical discharges in a group of brain cells. Epilepsy is defined as having two or more unprovoked seizures.",
+  "symptoms": [
+    "Loss of awareness or consciousness",
+    "Disturbances of movement",
+    "Disturbances of sensation, including vision, hearing and taste",
+    "Mood disturbances",
+    "Other cognitive function disturbances",
+    "Loss of bowel or bladder function",
+    "Muscle jerks",
+    "Convulsions",
+    "Anxiety",
+    "Depression"
+  ],
+  "diagnosis": [
+    "Electroencephalography (EEG) pattern",
+    "Clinical criteria",
+    "Medical history"
+  ],
+  "treatment": [
+    "Antiseizure medicines",
+    "Surgery for patients who respond poorly to drug treatments"
+  ],
+  "transmission": [
+    "None, epilepsy is not contagious"
+  ],
+  "prevention": [
+    "Preventing head injury",
+    "Adequate perinatal care",
+    "Reducing fever in children",
+    "Cardiovascular risk factor reduction",
+    "Avoidance of tobacco and excessive alcohol use"
+  ],
+  "risk_factors": [
+    "Brain damage from prenatal or perinatal causes",
+    "Congenital abnormalities or genetic conditions",
+    "Severe head injury",
+    "Stroke",
+    "Infections of the brain",
+    "Genetic syndromes",
+    "Brain tumour",
+    "Low birth weight"
+  ],
+  "complications": [
+    "Falls",
+    "Drowning",
+    "Burns",
+    "Prolonged seizures",
+    "Premature death"
+  ],
+  "key_facts": [
+    "50 million people worldwide are affected by epilepsy",
+    "25% of epilepsy cases are potentially preventable",
+    "80% of people with epilepsy live in low- and middle-income countries",
+    "5 million people are diagnosed with epilepsy each year globally"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "disease": "Dementia",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Dementia is a term for several diseases that affect memory, thinking, and the ability to perform daily activities. The illness gets worse over time and mainly affects older people. Dementia is a syndrome that can be caused by a number of diseases which over time destroy nerve cells and damage the brain, typically leading to deterioration in cognitive function.",
+  "symptoms": [
+    "forgetting things or recent events",
+    "losing or misplacing things",
+    "getting lost when walking or driving",
+    "being confused, even in familiar places",
+    "losing track of time",
+    "difficulties solving problems or making decisions",
+    "problems following conversations or trouble finding words",
+    "difficulties performing familiar tasks",
+    "misjudging distances to objects visually",
+    "feeling anxious, sad, or angry about memory loss",
+    "personality changes",
+    "inappropriate behaviour",
+    "withdrawal from work or social activities",
+    "being less interested in other people’s emotions",
+    "aggression",
+    "difficulty moving around",
+    "loss of control over bladder and bowels",
+    "trouble eating and drinking"
+  ],
+  "diagnosis": [
+    "clinical criteria",
+    "medical history",
+    "physical examination",
+    "lab tests",
+    "imaging"
+  ],
+  "treatment": [
+    "Cholinesterase inhibitors like donepezil",
+    "NMDA receptor antagonists like memantine",
+    "medicines to control blood pressure and cholesterol",
+    "Selective serotonin reuptake inhibitors (SSRIs)",
+    "haloperidol",
+    "risperidone",
+    "physical activity",
+    "social interactions",
+    "cognitive stimulation"
+  ],
+  "transmission": [],
+  "prevention": [
+    "being physically active",
+    "eating healthily",
+    "stopping smoking",
+    "stopping drinking alcohol",
+    "getting regular check-ups with your doctor"
+  ],
+  "risk_factors": [
+    "age (more common in those 65 or older)",
+    "high blood pressure (hypertension)",
+    "high blood sugar (diabetes)",
+    "being overweight or obese",
+    "smoking",
+    "drinking too much alcohol",
+    "being physically inactive",
+    "being socially isolated",
+    "depression"
+  ],
+  "complications": [
+    "disability",
+    "dependency",
+    "loss of cognitive function",
+    "loss of ability to perform daily activities",
+    "aggression",
+    "incontinence"
+  ],
+  "key_facts": [
+    "57 million people had dementia worldwide in 2021",
+    "10 million new cases of dementia every year",
+    "60-70% of dementia cases are due to Alzheimer disease",
+    "dementia is the seventh leading cause of death",
+    "dementia cost economies globally US$ 1.3 trillion in 2019"
+  ]
+}

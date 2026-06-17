@@ -1,0 +1,66 @@
+{
+  "disease": "Herpes Simplex Virus",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Herpes simplex virus (HSV), known as herpes, is a common infection that can cause painful blisters or ulcers. It primarily spreads by skin-to-skin contact. It is treatable but not curable.",
+  "symptoms": [
+    "painful blisters",
+    "ulcers",
+    "fever",
+    "body aches",
+    "sore throat",
+    "headache",
+    "swollen lymph nodes",
+    "tingling",
+    "itching",
+    "burning",
+    "bumps",
+    "blister",
+    "open sores",
+    "painful sores"
+  ],
+  "diagnosis": [
+    "diagnostic test or method"
+  ],
+  "treatment": [
+    "Medicines are often used to treat first or recurrent symptomatic episodes (outbreaks) of herpes.",
+    "Antiviral medicines commonly given include acyclovir, famciclovir and valacyclovir.",
+    "Taking a lower dose of one of these medicines every day (suppressive therapy) can also decrease how often symptoms occur.",
+    "Medicines to help with pain related to sores include paracetamol (acetaminophen), naproxen or ibuprofen.",
+    "Medicines that can be applied to numb the affected area include benzocaine and lidocaine."
+  ],
+  "transmission": [
+    "skin-to-skin contact",
+    "oral contact",
+    "sexual contact",
+    "contact with the virus in sores, saliva or skin surfaces in or around the mouth",
+    "oral-genital contact"
+  ],
+  "prevention": [
+    "talk to your partner about having herpes",
+    "don’t have sex if you have symptoms and always wear a condom",
+    "don’t share items that touched saliva (oral herpes)",
+    "avoiding sun exposure and wearing sunscreen can lower the risk of recurrences",
+    "sitting in a warm bath for 20 minutes (without soap)",
+    "wearing loose fitting clothes",
+    "using over-the-counter pain medicines"
+  ],
+  "risk_factors": [
+    "illness or fever",
+    "sun exposure",
+    "menstrual period",
+    "injury",
+    "emotional stress",
+    "surgery"
+  ],
+  "complications": [
+    "recurring symptoms",
+    "genital herpes may also be stigmatizing and have an impact on sexual relationships"
+  ],
+  "key_facts": [
+    "An estimated 3.8 billion people under age 50 (64%) globally have herpes simplex virus type 1 (HSV-1) infection, the main cause of oral herpes.",
+    "An estimated 520 million people aged 15–49 (13%) worldwide have herpes simplex virus type 2 (HSV-2) infection, the main cause of genital herpes.",
+    "Most HSV infections are asymptomatic or unrecognized, but symptoms of herpes include painful blisters or ulcers that can recur over time.",
+    "An estimated 205 million people aged 15–49 (5.3%) experienced at least one symptomatic episode of genital herpes in 2020",
+    "Infection with HSV-2 increases the risk of acquiring and transmitting HIV infection."
+  ]
+}

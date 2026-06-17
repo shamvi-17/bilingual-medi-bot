@@ -1,0 +1,66 @@
+{
+  "disease": "Schizophrenia",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Schizophrenia is a mental disorder characterized by significant impairments in the way reality is perceived and changes in behaviour, causing considerable disability and affecting all areas of life. It is associated with psychosis, disorganized thinking and behaviour, and negative symptoms. The disorder can be treated with a range of effective care options, and at least one in three people with schizophrenia will be able to fully recover.",
+  "symptoms": [
+    "persistent delusions",
+    "persistent hallucinations",
+    "experiences of influence, control or passivity",
+    "disorganized thinking",
+    "highly disorganised behaviour",
+    "negative symptoms",
+    "very limited speech",
+    "restricted experience and expression of emotions",
+    "inability to experience interest or pleasure",
+    "social withdrawal",
+    "extreme agitation or slowing of movements",
+    "maintenance of unusual postures",
+    "persistent difficulties with cognitive or thinking skills",
+    "memory problems",
+    "attention problems",
+    "problem-solving difficulties"
+  ],
+  "diagnosis": [
+    "clinical criteria",
+    "psychological evaluation",
+    "psychiatric assessment"
+  ],
+  "treatment": [
+    "medication",
+    "psychoeducation",
+    "family interventions",
+    "cognitive-behavioural therapy",
+    "psychosocial rehabilitation",
+    "life skills training",
+    "facilitated assisted living",
+    "supported housing",
+    "supported employment"
+  ],
+  "transmission": [],
+  "prevention": [
+    "reducing heavy use of cannabis",
+    "early intervention",
+    "psychosocial support"
+  ],
+  "risk_factors": [
+    "genetic predisposition",
+    "environmental factors",
+    "psychosocial factors",
+    "heavy use of cannabis",
+    "young adults",
+    "men more than women"
+  ],
+  "complications": [
+    "physical illnesses, such as cardiovascular, metabolic, and infectious diseases",
+    "human rights violations",
+    "social exclusion",
+    "discrimination",
+    "premature death, with an average of 9 years earlier than the general population"
+  ],
+  "key_facts": [
+    "approximately 23 million people worldwide are affected by schizophrenia",
+    "1 in 345 people (0.29%) worldwide have schizophrenia",
+    "1 in 233 adults (0.43%) have schizophrenia",
+    "people with schizophrenia die 9 years earlier than the general population"
+  ]
+}

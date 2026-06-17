@@ -1,0 +1,51 @@
+{
+  "disease": "Syphilis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Syphilis is a preventable and curable bacterial sexually transmitted infection (STI). If untreated, it can cause serious health issues. Many people with syphilis do not have symptoms or do not notice them.",
+  "symptoms": [
+    "non-itchy rash, usually on the palms and soles of the feet",
+    "rashes",
+    "inflammation in the organs",
+    "anaemia",
+    "bone and joint problems",
+    "neurological conditions including blindness, deafness, meningitis",
+    "developmental delays",
+    "seizures"
+  ],
+  "diagnosis": [
+    "clinical and sexual history",
+    "physical examination",
+    "laboratory testing",
+    "radiology",
+    "direct detection of Treponema pallidum through a microscope",
+    "indirect methods such as blood tests",
+    "rapid tests"
+  ],
+  "treatment": [
+    "benzathine penicillin (BPG) injection",
+    "doxycycline",
+    "ceftriaxone",
+    "azithromycin"
+  ],
+  "transmission": [
+    "oral, anal or vaginal sex through contact with infectious lesions",
+    "during pregnancy through the placenta"
+  ],
+  "prevention": [
+    "correct and consistent use of condoms during sex",
+    "people at higher risk of infection should be tested at least once a year"
+  ],
+  "risk_factors": [
+    "gay men and other men who have sex with men",
+    "people at higher risk of infection"
+  ],
+  "complications": [
+    "brain and cardiovascular diseases",
+    "neurosyphilis, ocular syphilis and otosyphilis",
+    "death"
+  ],
+  "key_facts": [
+    "8 million adults between 15 and 49 years old acquired syphilis in 2022",
+    "Syphilis increases the risk of acquiring HIV infection by approximately two-fold"
+  ]
+}

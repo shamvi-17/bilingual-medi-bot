@@ -1,0 +1,58 @@
+{
+  "disease": "Human Papillomavirus (HPV)",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Globally, cervical cancer is the fourth most common cancer in women, with 660 000 new cases estimated in 2022. In the same year, about 94% of the 350 000 deaths caused by cervical cancer occurred in low- and middle-income countries. The highest rates of incidence and mortality are in sub-Saharan Africa, Central America and South-East Asia.",
+  "symptoms": [
+    "Precancerous lesions",
+    "Abnormal cells on the cervix",
+    "No symptoms in most cases",
+    "Symptoms rarely occur in precancers"
+  ],
+  "diagnosis": [
+    "HPV testing",
+    "High-performance test for cervical cancer screening",
+    "Visual inspection of the cervix for changes"
+  ],
+  "treatment": [
+    "HPV vaccination",
+    "Cervical screening and treatment of precancers",
+    "Screen-and-treat approach",
+    "Screen, triage and treat approach",
+    "Treatment of precancerous lesions",
+    "HPV vaccination for individuals with compromised immune systems"
+  ],
+  "transmission": [
+    "Sexual transmission",
+    "Common sexually transmitted infection",
+    "Can affect the skin, genital area, anal area and throat"
+  ],
+  "prevention": [
+    "HPV vaccination for girls 9–14 years",
+    "Cervical screening from the age of 30 (25 years in women living with HIV)",
+    "HPV vaccination for individuals with compromised immune systems",
+    "Being a non-smoker or stopping smoking",
+    "Using condoms",
+    "Voluntary male circumcision"
+  ],
+  "risk_factors": [
+    "HIV prevalence",
+    "Weakened immune systems",
+    "Presence of other sexually transmitted infections",
+    "Number of births",
+    "Young age at first pregnancy",
+    "Hormonal contraceptive use",
+    "Smoking"
+  ],
+  "complications": [
+    "Cervical cancer",
+    "Precancerous lesions",
+    "Abnormal cells on the cervix"
+  ],
+  "key_facts": [
+    "WHO",
+    "WHO",
+    "WHO",
+    "WHO",
+    "WHO"
+  ]
+}

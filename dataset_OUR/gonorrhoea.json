@@ -1,0 +1,82 @@
+{
+  "disease": "Gonorrhoea",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Gonorrhoea is a common sexually transmitted infection caused by a bacteria. It usually spreads through vaginal, oral or anal sex. Gonorrhoea is treatable and curable with antibiotics. Most cases of gonorrhoea can be prevented with regular and correct condom use.",
+  "symptoms": [
+    "white, yellow or greenish discharge from the penis",
+    "pain or burn when urinating",
+    "painful or swollen testes",
+    "vaginal discharge",
+    "pain or burning when urinating",
+    "vaginal bleeding between periods or during sexual intercourse",
+    "discharge",
+    "bleeding",
+    "itchiness",
+    "soreness",
+    "painful bowel movements",
+    "redness",
+    "sore throat",
+    "redness",
+    "soreness",
+    "ulcers",
+    "tearing"
+  ],
+  "diagnosis": [
+    "Molecular tests",
+    "Rapid diagnostic tests",
+    "Gram stain microscopy",
+    "Syndromic approach",
+    "Sexual history taking and risk assessment",
+    "Clinical examination",
+    "Speculum examination",
+    "Palpation",
+    "Urine samples",
+    "Swabs from genital and other sites (anus, throat, conjunctiva)",
+    "Antimicrobial sensitivity testing"
+  ],
+  "treatment": [
+    "Ceftriaxone",
+    "Cefixime",
+    "Azithromycin",
+    "Wait 7 days after taking the medicine before having sex",
+    "Notify sexual partner(s) to get tested or treated"
+  ],
+  "transmission": [
+    "Vaginal sex",
+    "Oral sex",
+    "Anal sex"
+  ],
+  "prevention": [
+    "Regular and correct condom use"
+  ],
+  "risk_factors": [
+    "Men who have sex with men",
+    "Sex workers",
+    "Transgender women",
+    "Adolescents and young people in high burden countries"
+  ],
+  "complications": [
+    "Pelvic inflammatory disease (PID)",
+    "Ectopic pregnancy",
+    "Infertility",
+    "Scrotal swelling",
+    "Urethral stricture",
+    "Neonatal conjunctivitis (eye infection)",
+    "Disseminated gonococcal infection",
+    "Fever",
+    "Infection in multiple organs of the body (skin, heart, joints and meninges)",
+    "Blindness"
+  ],
+  "key_facts": [
+    "82.4 million new infections among adults globally in 2020",
+    "WHO",
+    "Most women with gonorrhoea do not have symptoms",
+    "WHO",
+    "Antimicrobial resistance to gonorrhoea is a serious and growing problem",
+    "WHO",
+    "Gonorrhoea can be passed from a pregnant mother to her baby",
+    "WHO",
+    "Gonococcal infection increases the risk of getting and spreading HIV",
+    "WHO"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "disease": "Tetanus",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Tetanus is an acute infectious disease caused by spores of the bacterium Clostridium tetani. The spores are found everywhere in the environment, particularly in soil, ash, intestinal tracts/feces of animals and humans, and on the surfaces of skin and rusty tools like nails, needles, barbed wire, etc. Being very resistant to heat and most antiseptics, the spores can survive for years. Anyone can get tetanus, but the disease is particularly common and serious in newborn babies and pregnant women who have not been sufficiently immunized with tetanus-toxoid-containing vaccines.",
+  "symptoms": [
+    "jaw cramping or the inability to open the mouth",
+    "muscle spasms often in the back, abdomen and extremities",
+    "sudden painful muscle spasms often triggered by sudden noises",
+    "trouble swallowing",
+    "seizures",
+    "headache",
+    "fever and sweating",
+    "changes in blood pressure or fast heart rate"
+  ],
+  "diagnosis": [
+    "clinical features"
+  ],
+  "treatment": [
+    "care in the hospital",
+    "immediate treatment with medicine called human tetanus immune globulin (TIG)",
+    "aggressive wound care",
+    "drugs to control muscle spasms",
+    "antibiotics",
+    "tetanus vaccination"
+  ],
+  "transmission": [
+    "infection of a cut or wound with the spores of the bacterium Clostridium tetani"
+  ],
+  "prevention": [
+    "immunization with tetanus-toxoid-containing vaccines (TTCV)",
+    "clean delivery and cord care during childbirth",
+    "proper wound care for surgical and dental procedures",
+    "6 doses (3 primary plus 3 booster doses) of TTCV",
+    "DT vaccines",
+    "DTaP vaccines",
+    "Td vaccines",
+    "Tdap vaccines"
+  ],
+  "risk_factors": [
+    "deliveries carried out by people with unclean hands or on a contaminated surface",
+    "unclean birth practices"
+  ],
+  "complications": [
+    "seizures",
+    "headache",
+    "fever and sweating",
+    "changes in blood pressure or fast heart rate"
+  ],
+  "key_facts": [
+    "25 000 newborns died from neonatal tetanus in 2018",
+    "97% reduction in neonatal tetanus deaths since 1988"
+  ]
+}

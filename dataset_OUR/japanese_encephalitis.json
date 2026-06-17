@@ -1,0 +1,49 @@
+{
+  "disease": "Japanese Encephalitis",
+  "symptoms": [
+    "Fever",
+    "Headache",
+    "Neck stiffness",
+    "Disorientation",
+    "Coma",
+    "Seizures",
+    "Spastic paralysis",
+    "Gastrointestinal pain",
+    "Vomiting"
+  ],
+  "diagnosis": [
+    "Clinical examination",
+    "Lumbar puncture",
+    "JEV-specific IgM antibody test in cerebrospinal fluid (CSF) or serum",
+    "IgM-capture ELISA"
+  ],
+  "treatment": [
+    "Supportive treatment",
+    "Stabilization and relief of symptoms",
+    "Rehabilitation",
+    "Long-term treatment and care"
+  ],
+  "transmission": [
+    "Transmission cycle between mosquitoes, pigs and/or water birds (enzootic cycle)"
+  ],
+  "prevention": [
+    "Safe and effective vaccines"
+  ],
+  "risk_factors": [
+    "Living in or having travelled to a JE-endemic area",
+    "Age (children below 15 years of age)",
+    "Proximity to domestic pigs"
+  ],
+  "complications": [
+    "Permanent cognitive, behavioural or neurological sequelae",
+    "Seizures",
+    "Hearing or vision loss",
+    "Speech, language, memory, and communication problems",
+    "Weakness of the limbs"
+  ],
+  "key_facts": [
+    "Estimated 100 000 clinical cases every year",
+    "Case-fatality rate among those with encephalitis can be as high as 30%"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

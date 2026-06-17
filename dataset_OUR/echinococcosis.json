@@ -1,0 +1,60 @@
+{
+  "disease": "Echinococcosis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Human echinococcosis is a zoonotic disease caused by parasites, namely tapeworms of the genus Echinococcus. It occurs in 4 forms: cystic echinococcosis, alveolar echinococcosis, polycystic echinococcosis, and unicystic echinococcosis.",
+  "symptoms": [
+    "abdominal pain",
+    "nausea",
+    "vomiting",
+    "chronic cough",
+    "chest pain",
+    "shortness of breath",
+    "anorexia",
+    "weight loss",
+    "weakness",
+    "general malaise",
+    "signs of hepatic failure",
+    "weight loss",
+    "abdominal pain",
+    "general malaise"
+  ],
+  "diagnosis": [
+    "ultrasonography imaging",
+    "computed tomography (CT) scans",
+    "magnetic resonance imaging (MRI) scans",
+    "radiography",
+    "serological tests"
+  ],
+  "treatment": [
+    "percutaneous treatment of the hydatid cysts with the PAIR (Puncture, Aspiration, Injection, Re-aspiration) technique",
+    "surgery",
+    "anti-infective drug treatment",
+    "watch and wait"
+  ],
+  "transmission": [
+    "ingesting the parasite eggs in contaminated food and water",
+    "consumption of viscera of intermediate hosts that contain the parasite larvae"
+  ],
+  "prevention": [
+    "avoiding contact with contaminated food and water",
+    "proper disposal of animal waste"
+  ],
+  "risk_factors": [
+    "living in endemic regions",
+    "contact with infected animals"
+  ],
+  "complications": [
+    "progressive and fatal if left untreated",
+    "liver condemnation",
+    "reduction in carcass weight",
+    "decrease in hide value",
+    "decrease of milk production",
+    "reduced fertility"
+  ],
+  "key_facts": [
+    "cystic echinococcosis is globally distributed and found in every continent except Antarctica",
+    "alveolar echinococcosis is confined to the northern hemisphere",
+    "human incidence rates for cystic echinococcosis can reach more than 50 per 100 000 person-years",
+    "prevalence levels as high as 5%–10% may occur in parts of Argentina, Peru, East Africa, Central Asia and China"
+  ]
+}

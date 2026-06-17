@@ -1,0 +1,55 @@
+{
+  "disease": "Anxiety Disorders",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Anxiety disorders are the world’s most common mental disorders, affecting people with fear and worry that is both intense and excessive, accompanied by physical tension and other behavioural and cognitive symptoms. These feelings are typically difficult to control, cause significant distress and can last a long time if untreated. Anxiety disorders interfere with daily activities and can impair a person’s family, social and school or working life.",
+  "symptoms": [
+    "excessive fear or worry about a specific situation",
+    "excessive fear or worry about a broad range of everyday situations",
+    "trouble concentrating or making decisions",
+    "feeling irritable, tense or restless",
+    "experiencing nausea or abdominal distress",
+    "having heart palpitations",
+    "sweating, trembling or shaking",
+    "trouble sleeping",
+    "having a sense of impending danger, panic or doom"
+  ],
+  "diagnosis": [
+    "psychological interventions",
+    "talk therapy with professionals or supervised lay therapists",
+    "clinical criteria"
+  ],
+  "treatment": [
+    "psychological interventions",
+    "cognitive-behavioural therapy",
+    "exposure therapy",
+    "relaxation skills",
+    "mindfulness skills",
+    "antidepressant medications",
+    "selective serotonin reuptake inhibitors (SSRIs)",
+    "benzodiazepines"
+  ],
+  "transmission": [],
+  "prevention": [
+    "parental education",
+    "school-based programmes to enhance social and emotional learning",
+    "exercise programmes",
+    "building positive coping in children and adolescents"
+  ],
+  "risk_factors": [
+    "abuse",
+    "severe losses",
+    "adverse experiences",
+    "physical health",
+    "cardiovascular disease",
+    "harmful use of alcohol"
+  ],
+  "complications": [
+    "depression",
+    "substance use disorders",
+    "suicidal thoughts and behaviours"
+  ],
+  "key_facts": [
+    "More women are affected by anxiety disorders than men",
+    "Symptoms of anxiety often have onset during childhood or adolescence"
+  ]
+}

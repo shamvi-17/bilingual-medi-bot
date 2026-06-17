@@ -1,0 +1,63 @@
+{
+  "disease": "Dengue",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Dengue is a viral infection caused by the dengue virus, transmitted to humans through the bite of infected mosquitoes, mostly in tropical and sub-tropical climates. Most people who get dengue do not have symptoms, but for those who do, the most common symptoms are high fever, headache, body aches, nausea and rash. In severe cases, dengue can be fatal.",
+  "symptoms": [
+    "high fever",
+    "severe headache",
+    "pain behind the eyes",
+    "muscle and joint pains",
+    "nausea",
+    "vomiting",
+    "swollen glands",
+    "severe abdominal pain",
+    "persistent vomiting",
+    "rapid breathing",
+    "bleeding gums or nose",
+    "fatigue",
+    "restlessness",
+    "blood in vomit or stool",
+    "being very thirsty",
+    "pale and cold skin",
+    "feeling weak"
+  ],
+  "diagnosis": [
+    "laboratory-based diagnostics",
+    "point of care diagnostics",
+    "nucleic acid amplification tests (NAATs)",
+    "enzyme-linked immunosorbent assays (ELISAs)",
+    "rapid diagnostic tests (RDTs)",
+    "virus isolation",
+    "molecular detection of nucleic acid",
+    "antigen testing"
+  ],
+  "treatment": [
+    "pain management with medication such as paracetamol (acetaminophen)",
+    "hospitalization for people with severe dengue"
+  ],
+  "transmission": [
+    "mosquito bite",
+    "infected female mosquitoes, primarily the Aedes aegypti mosquito"
+  ],
+  "prevention": [
+    "avoiding mosquito bites",
+    "vector control"
+  ],
+  "risk_factors": [
+    "living in tropical and sub-tropical climates",
+    "being infected for the second time",
+    "climate change",
+    "fragile and overburdened health systems",
+    "limitations in surveillance and reporting",
+    "political and financial instabilities"
+  ],
+  "complications": [
+    "severe dengue",
+    "death"
+  ],
+  "key_facts": [
+    "about half of the world's population is now at risk of dengue",
+    "an estimated 100–400 million infections occur each year",
+    "5.6 billion people are at risk of infection with dengue and other arboviruses"
+  ]
+}

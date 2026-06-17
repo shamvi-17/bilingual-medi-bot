@@ -1,0 +1,45 @@
+{
+  "disease": "Dracunculiasis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "symptoms": [
+    "painful blister",
+    "burning sensation",
+    "fever",
+    "fatigue",
+    "incapacitation for weeks or months"
+  ],
+  "diagnosis": [
+    "promptly detecting and reporting human or animal infections",
+    "confirming infections in a laboratory"
+  ],
+  "treatment": [
+    "no vaccine or cure for dracunculiasis"
+  ],
+  "transmission": [
+    "drinking stagnant water contaminated by parasite-infected water fleas",
+    "consuming raw or undercooked aquatic hosts harbouring the infective larvae"
+  ],
+  "prevention": [
+    "drilling protected wells or boreholes",
+    "promoting the use of cloth or pipe filters in the absence of safe drinking water",
+    "discouraging contact with contaminated sources when worms emerge",
+    "regularly applying temephos (Abate®) to stagnant water to kill infected water fleas",
+    "highlighting the importance of early case detection and reporting",
+    "preventing animals from contaminating water",
+    "proper management of aquatic animals' waste"
+  ],
+  "risk_factors": [
+    "rural, underserved, and remote populations",
+    "relying on open, stagnant water sources for drinking-water"
+  ],
+  "complications": [
+    "incapacitation for weeks or months"
+  ],
+  "key_facts": [
+    "13 human cases reported in 2024 (provisional)",
+    "14 human cases reported in 2023",
+    "5 countries – Angola, Chad, Ethiopia, Mali, and South Sudan – remain endemic",
+    "Sudan is currently in the pre-certification stage",
+    "Cameroon is a certified country experiencing a cross-border transmission at its extreme-northern border with Chad"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "disease": "Schistosomiasis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Schistosomiasis is an acute and chronic parasitic disease caused by blood flukes (trematode worms) of the genus Schistosoma. Estimates show that at least 253.7 million people required preventive treatment in 2024. Preventive treatment, which should be repeated over a number of years, will reduce and prevent morbidity.",
+  "symptoms": [
+    "abdominal pain",
+    "diarrhoea",
+    "blood in the stool",
+    "liver enlargement",
+    "accumulation of fluid in the peritoneal cavity",
+    "hypertension of the abdominal blood vessels",
+    "enlargement of the spleen",
+    "haematuria (blood in urine)",
+    "kidney damage",
+    "fibrosis of the bladder and ureter",
+    "bladder cancer",
+    "genital lesions",
+    "vaginal bleeding",
+    "pain during sexual intercourse",
+    "nodules in the vulva (female genital schistosomiasis)",
+    "ejaculatory pain",
+    "haematospermia",
+    "pathology of the seminal vesicles, prostate and other organs",
+    "anaemia",
+    "stunting",
+    "reduced ability to learn"
+  ],
+  "diagnosis": [
+    "lab tests",
+    "imaging",
+    "clinical criteria"
+  ],
+  "treatment": [
+    "praziquantel",
+    "preventive chemotherapy",
+    "large-scale population treatment"
+  ],
+  "transmission": [
+    "larval forms of the parasite released by freshwater snails",
+    "contact with infested water"
+  ],
+  "prevention": [
+    "access to safe drinking water",
+    "adequate sanitation",
+    "behaviour change interventions",
+    "veterinary public health",
+    "snail control"
+  ],
+  "risk_factors": [
+    "poor communities",
+    "lack of access to safe drinking water and adequate sanitation",
+    "agricultural and fishing populations",
+    "women doing domestic chores in infested water",
+    "children",
+    "migration to urban areas",
+    "population movements",
+    "eco-tourism",
+    "travel to remote areas",
+    "HIV infection"
+  ],
+  "complications": [
+    "liver failure",
+    "kidney failure",
+    "bladder cancer",
+    "ectopic pregnancies due to female genital schistosomiasis",
+    "infertility",
+    "death"
+  ],
+  "key_facts": [
+    "Schistosomiasis transmission has been reported from 79 countries.",
+    "At least 93.9% of those requiring treatment for schistosomiasis live in Africa.",
+    "Deaths due to schistosomiasis are estimated at 14,353 globally per year."
+  ]
+}

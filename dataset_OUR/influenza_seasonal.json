@@ -1,0 +1,56 @@
+{
+  "disease": "Influenza (Seasonal)",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Seasonal influenza is an acute respiratory infection caused by influenza viruses, common in all parts of the world, and most people recover without treatment. Influenza spreads easily between people when they cough or sneeze. Vaccination is the best way to prevent the disease. Symptoms of influenza include acute onset of fever, cough, sore throat, body aches and fatigue.",
+  "symptoms": [
+    "sudden onset of fever",
+    "cough (usually dry)",
+    "headache",
+    "muscle and joint pain",
+    "severe malaise (feeling unwell)",
+    "sore throat",
+    "runny nose",
+    "body aches",
+    "fatigue"
+  ],
+  "diagnosis": [
+    "clinical diagnosis",
+    "collection of respiratory samples",
+    "direct antigen detection",
+    "virus isolation",
+    "rapid diagnostic tests"
+  ],
+  "treatment": [
+    "rest",
+    "drinking plenty of liquids",
+    "medical care for severe cases and people with risk factors"
+  ],
+  "transmission": [
+    "airborne transmission through coughing and sneezing",
+    "contact with contaminated hands",
+    "close proximity to an infected person"
+  ],
+  "prevention": [
+    "vaccination",
+    "covering mouth and nose with a tissue when coughing",
+    "washing hands regularly"
+  ],
+  "risk_factors": [
+    "pregnant women",
+    "children under 5 years of age",
+    "older people",
+    "individuals with chronic medical conditions",
+    "individuals with immunosuppressive conditions/treatments",
+    "health and care workers"
+  ],
+  "complications": [
+    "pneumonia",
+    "sepsis",
+    "worsening of other chronic diseases"
+  ],
+  "key_facts": [
+    "around 1 billion cases of seasonal influenza annually",
+    "3–5 million cases of severe illness annually",
+    "290 000 to 650 000 respiratory deaths annually"
+  ]
+}

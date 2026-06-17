@@ -1,0 +1,31 @@
+{
+  "disease": "Musculoskeletal Health",
+  "symptoms": [
+    "pain",
+    "limitations in mobility and dexterity",
+    "pain in musculoskeletal structures"
+  ],
+  "diagnosis": [
+    "diagnostic tests or methods not specified"
+  ],
+  "treatment": [
+    "rehabilitation services"
+  ],
+  "prevention": [
+    "prevention measures not specified"
+  ],
+  "risk_factors": [
+    "age",
+    "co-existence with other noncommunicable diseases",
+    "mental health issues"
+  ],
+  "complications": [
+    "development of other noncommunicable diseases",
+    "mental health issues",
+    "premature exit from the workforce"
+  ],
+  "key_facts": [
+    "1.71 billion people globally live with musculoskeletal conditions"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

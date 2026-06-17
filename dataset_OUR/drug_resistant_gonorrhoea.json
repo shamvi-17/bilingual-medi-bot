@@ -1,0 +1,69 @@
+{
+  "disease": "Drug-Resistant Gonorrhoea",
+  "symptoms": [
+    "white, yellow or greenish discharge from the penis",
+    "pain or burn when urinating",
+    "painful or swollen testes",
+    "vaginal discharge",
+    "pain or burning when urinating",
+    "vaginal bleeding between periods or during sexual intercourse",
+    "discharge",
+    "bleeding",
+    "itchiness",
+    "soreness",
+    "painful bowel movements",
+    "redness",
+    "pain",
+    "sore throat",
+    "redness",
+    "pain",
+    "soreness",
+    "ulcers",
+    "tearing"
+  ],
+  "diagnosis": [
+    "Molecular tests",
+    "Gram stain microscopy",
+    "Syndromic approach",
+    "Sexual history taking and risk assessment",
+    "Clinical examination",
+    "Speculum examination",
+    "Palpation",
+    "Urine samples",
+    "Swabs from genital and other sites"
+  ],
+  "treatment": [
+    "Antibiotics"
+  ],
+  "transmission": [
+    "Vaginal, oral or anal sex"
+  ],
+  "prevention": [
+    "Regular and correct condom use"
+  ],
+  "risk_factors": [
+    "Men who have sex with men",
+    "Sex workers",
+    "Transgender women",
+    "Adolescents and young people in high burden countries"
+  ],
+  "complications": [
+    "Pelvic inflammatory disease (PID)",
+    "Ectopic pregnancy",
+    "Infertility",
+    "Scrotal swelling",
+    "Urethral stricture",
+    "Neonatal conjunctivitis (eye infection)",
+    "Disseminated gonococcal infection",
+    "Fever and infection in multiple organs of the body",
+    "Skin, heart, joints and meninges"
+  ],
+  "key_facts": [
+    "82.4 million new infections among adults globally in 2020",
+    "Prevalence of gonorrhoea is highest among priority populations",
+    "Gonorrhoea is treatable and can be cured with some antibiotics",
+    "Antimicrobial resistance to gonorrhoea is a serious and growing problem",
+    "Risk of becoming untreatable if no action is taken"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

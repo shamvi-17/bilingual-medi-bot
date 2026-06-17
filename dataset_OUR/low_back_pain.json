@@ -1,0 +1,46 @@
+{
+  "disease": "Low Back Pain",
+  "symptoms": [
+    "dull ache",
+    "sharp pain",
+    "pain radiating into other areas of the body, especially the legs",
+    "restricted movement",
+    "problems with sleep",
+    "low mood",
+    "distress",
+    "spine-related leg pain (sciatica or radicular pain)",
+    "numbness or tingling",
+    "weakness in some muscles"
+  ],
+  "diagnosis": [
+    "comprehensive clinical assessment comprising a careful physical examination",
+    "imaging tests (e.g., X-rays, CT scans, MRI scans)",
+    "electromyography (EMG) or nerve conduction studies (NCS)",
+    "blood tests to rule out underlying diseases"
+  ],
+  "treatment": [
+    "physical therapies (e.g., exercise, stretching, strengthening)",
+    "psychological and social support",
+    "reducing strain during physical work",
+    "medicines (e.g., painkillers, muscle relaxants)",
+    "surgery (in some cases)"
+  ],
+  "risk_factors": [
+    "low physical activity levels",
+    "smoking",
+    "obesity",
+    "high physical stress at work"
+  ],
+  "complications": [
+    "loss of work and retirement wealth",
+    "reduced quality of life",
+    "mental health problems (e.g., depression, anxiety)"
+  ],
+  "key_facts": [
+    "619 million people live with LBP worldwide",
+    "LBP is the leading cause of disability worldwide",
+    "LBP is a major public health issue",
+    "LBP affects people of all ages, including children and adolescents"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

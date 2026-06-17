@@ -1,0 +1,50 @@
+{
+  "disease": "Listeriosis",
+  "causes": "Listeria monocytogenes",
+  "incidence": "0.1 to 10 cases per 1 million people per year",
+  "mortality_rate": "20-30%",
+  "symptoms": [
+    "diarrhoea",
+    "fever",
+    "headache",
+    "myalgia (muscle pain)",
+    "septicemia",
+    "meningitis"
+  ],
+  "incubation_period": "a few days to 90 days",
+  "diagnosis": [
+    "clinical symptoms",
+    "polymerase chain reaction (PCR)"
+  ],
+  "treatment": [
+    "antibiotics",
+    "prompt administration of antibiotics during pregnancy"
+  ],
+  "transmission": [
+    "eating contaminated food",
+    "human-to-human transmission, notably from pregnant women to unborn babies"
+  ],
+  "prevention": [
+    "Good Hygienic Practices (GHP)",
+    "Good Manufacturing Practices (GMP)",
+    "testing against microbiological standards"
+  ],
+  "risk_factors": [
+    "pregnancy",
+    "cancer treatment",
+    "HIV",
+    "organ transplants",
+    "elderly people",
+    "infants"
+  ],
+  "complications": [
+    "miscarriage or stillbirth",
+    "low birth weight",
+    "septicaemia",
+    "meningitis"
+  ],
+  "key_facts": [
+    "L. monocytogenes can survive and multiply at low temperatures"
+  ],
+  "source": "World Health Organization (WHO) – Fact Sheet"
+}

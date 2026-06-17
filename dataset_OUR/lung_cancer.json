@@ -1,0 +1,60 @@
+{
+  "disease": "Lung Cancer",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Lung cancer is a serious disease and remains a major public health challenge worldwide due to its high incidence and mortality. Lung cancer occurs when abnormal cells grow uncontrollably in the lungs. The two main types of lung cancer are non-small cell lung cancer and small cell lung cancer.",
+  "symptoms": [
+    "cough that does not go away",
+    "chest pain",
+    "shortness of breath",
+    "coughing up blood (haemoptysis)",
+    "fatigue",
+    "weight loss with no known cause",
+    "lung infections that keep coming back"
+  ],
+  "diagnosis": [
+    "physical examination",
+    "examination of the lung using bronchoscopy",
+    "taking a sample of tissue for histopathology examination",
+    "molecular testing to identify specific genetic mutations or biomarkers"
+  ],
+  "treatment": [
+    "surgery",
+    "radiotherapy (radiation)",
+    "chemotherapy",
+    "targeted therapy",
+    "immunotherapy",
+    "neoadjuvant therapy",
+    "adjuvant treatment",
+    "supportive and palliative care"
+  ],
+  "transmission": [],
+  "prevention": [
+    "not smoking tobacco",
+    "avoiding secondhand smoke",
+    "reducing air pollution",
+    "avoiding workplace hazards like chemicals and asbestos",
+    "smoking cessation",
+    "promoting smoke-free environments",
+    "implementing tobacco control policies",
+    "addressing occupational hazards"
+  ],
+  "risk_factors": [
+    "smoking tobacco",
+    "exposure to secondhand tobacco smoke",
+    "outdoor and household air pollution",
+    "occupational exposures such as asbestos, silica, and diesel exhaust",
+    "radon exposure",
+    "certain chronic lung diseases",
+    "genetic susceptibility"
+  ],
+  "complications": [
+    "delayed diagnosis",
+    "limited treatment options",
+    "cancer recurrence",
+    "metastatic dissemination to distant organs or lymph nodes"
+  ],
+  "key_facts": [
+    "60-70% of lung cancer cases are attributable to tobacco smoking",
+    "Primary prevention can reduce the incidence of lung cancer and save lives"
+  ]
+}

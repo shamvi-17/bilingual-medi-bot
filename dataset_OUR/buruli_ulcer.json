@@ -1,0 +1,43 @@
+{
+  "disease": "Buruli Ulcer",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Buruli ulcer is caused by a bacterium called Mycobacterium ulcerans. The bacterium produces a toxin that causes the skin damage. Without early treatment, Buruli ulcer can lead to long-term disability.",
+  "symptoms": [
+    "painless swelling (nodule)",
+    "large painless area of induration (plaque)",
+    "diffuse painless swelling of the legs, arms or face (oedema)",
+    "bone is occasionally affected, causing deformities"
+  ],
+  "diagnosis": [
+    "training is essential"
+  ],
+  "treatment": [
+    "a combination of antibiotics and complementary treatments",
+    "physiotherapy is needed in severe cases to prevent disability",
+    "those left with disability require long-term rehabilitation"
+  ],
+  "transmission": [
+    "the exact mode of transmission of M. ulcerans is still unknown"
+  ],
+  "prevention": [
+    "there are currently no primary preventive measures for Buruli ulcer",
+    "the mode of transmission is not known",
+    "Bacillus Calmette–Guérin (BCG) vaccination appears to provide limited protection"
+  ],
+  "risk_factors": [
+    "people living in tropical and subtropical regions",
+    "people with HIV infection",
+    "people with diabetes",
+    "people with arterial and venous insufficiency"
+  ],
+  "complications": [
+    "long-term disability",
+    "bone deformities",
+    "osteomyelitis",
+    "joint involvement"
+  ],
+  "key_facts": [
+    "14 countries regularly report data to WHO",
+    "the annual number of cases can be found under Global Health Observatory"
+  ]
+}

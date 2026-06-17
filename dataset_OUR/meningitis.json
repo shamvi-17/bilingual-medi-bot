@@ -1,0 +1,79 @@
+{
+  "disease": "Meningitis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Meningitis is the inflammation of the tissues surrounding the brain and spinal cord, can be infectious or non-infectious in origin, and requires urgent medical care. It can be caused by several species of bacteria, viruses, fungi and parasites. Meningitis remains a significant global health threat and can be associated with high risk of death and long-term complications.",
+  "symptoms": [
+    "neck stiffness",
+    "confusion or altered mental status",
+    "headache",
+    "sensitivity to light",
+    "nausea and vomiting",
+    "seizures",
+    "neurological deficits, such as weakness of the limbs",
+    "unusual behaviour",
+    "irritability",
+    "weak, continuous cry",
+    "poor feeding",
+    "bulging of the soft spot in the head",
+    "cold hands and feet",
+    "fast breathing",
+    "low blood pressure",
+    "non-blanching skin rash"
+  ],
+  "diagnosis": [
+    "clinical criteria",
+    "lab tests",
+    "imaging"
+  ],
+  "treatment": [
+    "antibiotics",
+    "supportive care",
+    "vaccination"
+  ],
+  "transmission": [
+    "respiratory droplets",
+    "throat secretions",
+    "close contact",
+    "mother to child around the time of birth"
+  ],
+  "prevention": [
+    "vaccines",
+    "maternal Group B streptococcus vaccines",
+    "frequent hand washing",
+    "avoiding close contact",
+    "avoiding sharing cups, utensils or toothbrushes"
+  ],
+  "risk_factors": [
+    "age",
+    "immune system",
+    "living conditions",
+    "geographical location",
+    "newborn babies",
+    "children and adolescents",
+    "adults",
+    "immunocompromised individuals",
+    "people living with HIV",
+    "crowded settings",
+    "mining areas",
+    "mass gatherings",
+    "refugee or displaced persons settings",
+    "closed institutions",
+    "military camps",
+    "high-traffic markets",
+    "border areas"
+  ],
+  "complications": [
+    "hearing loss",
+    "seizures",
+    "limb weakness",
+    "difficulties with vision",
+    "speech, language, memory and communication problems",
+    "scarring",
+    "limb amputations after sepsis"
+  ],
+  "key_facts": [
+    "1 in 6 people who get bacterial meningitis die",
+    "1 in 5 people who get bacterial meningitis have severe complications",
+    "vaccines are the most effective way to deliver long-lasting protection"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "disease": "Chlamydia",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Chlamydia is a common sexually transmitted infection that can occur in both men and women. It is caused by a bacterium called Chlamydia trachomatis. It is easily treated and cured with antibiotics.",
+  "symptoms": [
+    "burning when urinating",
+    "discharge from the penis",
+    "pain in the testicles",
+    "change in vaginal discharge",
+    "bleeding between menstrual periods or after sex",
+    "pain or discomfort in the lower abdomen",
+    "burning sensation when urinating",
+    "itch",
+    "pain",
+    "discharge",
+    "bleeding",
+    "abdominal and pelvic pain",
+    "epididymitis",
+    "epididymo-orchitis",
+    "arthritis",
+    "swollen joints",
+    "inflammation of the eyes",
+    "conjunctivitis",
+    "pneumonia",
+    "preterm deliveries",
+    "low birth weight",
+    "chronic oozing lesions around anorectal region",
+    "stricture",
+    "reactive joint pain and swelling",
+    "fever",
+    "diarrhoea",
+    "constipation",
+    "abdominal cramps",
+    "pain while passing stools"
+  ],
+  "diagnosis": [
+    "nucleic acid amplification tests (NAAT)",
+    "speculum examination",
+    "palpation",
+    "urine samples",
+    "swab-collected samples from genital (vaginal or urethral), anal and oropharyngeal sites",
+    "self-collection of samples"
+  ],
+  "treatment": [
+    "antibiotic tablets including doxycycline or azithromycin"
+  ],
+  "transmission": [
+    "vaginal, oral and anal sex"
+  ],
+  "prevention": [
+    "correct and consistent use of condoms during sex"
+  ],
+  "risk_factors": [
+    "young people",
+    "female sex workers"
+  ],
+  "complications": [
+    "pelvic inflammatory disease (PID)",
+    "infertility",
+    "ectopic pregnancy",
+    "epididymitis",
+    "epididymo-orchitis",
+    "arthritis",
+    "inflammation of the eyes",
+    "conjunctivitis",
+    "pneumonia",
+    "preterm deliveries",
+    "low birth weight",
+    "chronic oozing lesions around anorectal region",
+    "stricture",
+    "reactive joint pain and swelling"
+  ],
+  "key_facts": [
+    "In 2020, an estimated 128.5 million new infections with Chlamydia trachomatis occurred worldwide among adults aged 15 to 49 years.",
+    "The global prevalence among people aged 15–49 years was estimated to be 4.0% for women and 2.5% for men in 2020."
+  ]
+}

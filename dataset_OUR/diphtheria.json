@@ -1,0 +1,41 @@
+{
+  "disease": "Diphtheria",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Diphtheria is a contagious disease that is caused by toxin producing bacteria. It can spread from person to person when an infected person coughs or sneezes. Some people may not develop disease manifestations but can still transmit the bacteria to others. Others will develop mild disease, although severe disease, complications and death can also occur.",
+  "symptoms": [
+    "fever",
+    "sore throat",
+    "swollen neck glands",
+    "weakness",
+    "dead tissue in the respiratory tract forms a thick, grey coating that can cover tissues in the nose, tonsils and throat, making it hard to breathe and swallow"
+  ],
+  "diagnosis": [
+    "testing to confirm the disease"
+  ],
+  "treatment": [
+    "diphtheria antitoxin",
+    "antibiotics",
+    "vaccine"
+  ],
+  "transmission": [
+    "person to person when an infected person coughs or sneezes"
+  ],
+  "prevention": [
+    "vaccines that are often given in combination with tetanus and pertussis and other diseases",
+    "community-wide vaccination with high coverage as a part of routine immunization services embedded in primary health care"
+  ],
+  "risk_factors": [
+    "not vaccinated or under vaccinated",
+    "damaged health infrastructure and health services in countries experiencing or recovering from a natural disaster or conflict",
+    "overcrowding in residential camps"
+  ],
+  "complications": [
+    "inflammation of the heart",
+    "inflammation of the nerves",
+    "death"
+  ],
+  "key_facts": [
+    "For unvaccinated individuals, without proper treatment, diphtheria can be fatal in around 30% of cases, with young children at higher risk of dying",
+    "In 2023, an estimated 84% of children worldwide received the recommended 3 doses of diphtheria-containing vaccine during infancy, leaving 16% with no or incomplete coverage"
+  ]
+}

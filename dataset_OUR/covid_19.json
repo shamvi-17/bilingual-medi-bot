@@ -1,0 +1,69 @@
+{
+  "disease": "COVID-19",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "COVID-19 is a disease caused by the SARS-CoV-2 coronavirus, which spreads through the air in infectious respiratory particles from an infected person. Most people recover without treatment, but some may develop severe disease. The virus can also spread by touching contaminated surfaces and then the eyes, nose or mouth.",
+  "symptoms": [
+    "chills",
+    "sore throat",
+    "muscle aches and heavy arms or legs",
+    "severe fatigue or tiredness",
+    "runny or blocked nose, or sneezing",
+    "headache",
+    "sore eyes",
+    "dizziness",
+    "new and persistent cough",
+    "tight chest or chest pain",
+    "shortness of breath",
+    "hoarse voice",
+    "numbness or tingling",
+    "appetite loss, nausea, vomiting, abdominal pain or diarrhoea",
+    "loss or change of sense of taste or smell",
+    "difficulty sleeping",
+    "confusion",
+    "drowsiness or loss of consciousness",
+    "persistent pain or pressure in the chest",
+    "skin being cold or clammy, or turning pale or a bluish colour",
+    "loss of speech or movement"
+  ],
+  "diagnosis": [
+    "clinical criteria",
+    "lab tests"
+  ],
+  "treatment": [],
+  "transmission": [
+    "airborne transmission through infectious respiratory particles",
+    "close contact with an infected person",
+    "touching contaminated surfaces and then the eyes, nose or mouth"
+  ],
+  "prevention": [
+    "vaccination using a risk-based approach",
+    "single dose for persons who have not yet received a COVID-19 vaccine"
+  ],
+  "risk_factors": [
+    "older adults",
+    "people with underlying health conditions",
+    "unvaccinated individuals",
+    "diabetes",
+    "heart or lung disease",
+    "obesity",
+    "weakened immune systems",
+    "health and care workers due to their work environment",
+    "people with high blood pressure",
+    "people with chronic lung, heart, liver and/or kidney diseases",
+    "people with cancer or dementia",
+    "people with rheumatological problems",
+    "women who are pregnant"
+  ],
+  "complications": [
+    "respiratory failure",
+    "sepsis",
+    "thromboembolism (blood clots)",
+    "multiorgan failure, including injury of the heart, liver or kidneys",
+    "death",
+    "post COVID-19 condition (PCC, or long COVID)"
+  ],
+  "key_facts": [
+    "about 6% of people develop post COVID-19 condition (PCC, or long COVID)",
+    "symptoms usually begin 3-6 days after exposure and last up to 10 days"
+  ]
+}

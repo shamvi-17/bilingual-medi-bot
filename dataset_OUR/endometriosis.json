@@ -1,0 +1,62 @@
+{
+  "disease": "Endometriosis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Endometriosis is a complex disease that affects many women, globally from the onset of their first period (menarche) through menopause, regardless of ethnic origin or social status. Endometriosis can also affect transgender men and non-binary individuals who menstruate. In women with endometriosis, endometrium-like tissue (usually found only in the lining of the uterus) grows outside the uterus, causing inflammation and scar tissue formation.",
+  "symptoms": [
+    "severe pain during menstruation",
+    "heavy menstrual bleeding",
+    "chronic pelvic pain",
+    "infertility",
+    "abdominal bloating",
+    "nausea",
+    "painful intercourse",
+    "bowel movements and/or urination issues",
+    "mental health issues (including depression and anxiety)",
+    "fatigue",
+    "iron deficiency",
+    "poor sexual health",
+    "social isolation"
+  ],
+  "diagnosis": [
+    "imaging techniques such as ultrasound",
+    "invasive procedures like surgery",
+    "careful menstrual health history",
+    "laparoscopic surgery",
+    "symptom checklists",
+    "blood tests",
+    "self-tests using saliva or menstrual blood"
+  ],
+  "treatment": [
+    "medicines",
+    "surgery",
+    "non-steroidal anti-inflammatory drugs (NSAIDs)",
+    "hormonal medicines",
+    "combined hormonal contraceptives",
+    "progestins",
+    "GnRH analogues",
+    "aromatase inhibitors",
+    "hysterectomy",
+    "fertility treatments",
+    "multidisciplinary pain management approaches",
+    "physiotherapy",
+    "cognitive behavioral therapy (CBT)"
+  ],
+  "transmission": "unknown",
+  "prevention": "unknown",
+  "risk_factors": [
+    "family history of endometriosis",
+    "immune system dysregulation"
+  ],
+  "complications": [
+    "infertility",
+    "iron deficiency",
+    "fatigue",
+    "poor sexual health",
+    "social isolation"
+  ],
+  "key_facts": [
+    "Endometriosis affects an estimated 10% (190 million) of reproductive age women worldwide.",
+    "The average time to diagnosis is between 4 and 12 years.",
+    "Endometriosis is associated with infertility globally. Amongst women with infertility, as many as 25-50% have endometriosis."
+  ]
+}

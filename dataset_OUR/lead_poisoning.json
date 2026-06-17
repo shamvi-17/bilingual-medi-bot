@@ -1,0 +1,64 @@
+{
+  "disease": "Lead Poisoning",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Lead is a naturally occurring toxic metal found in the Earth’s crust. Its widespread use has caused extensive environmental contamination, human exposure and significant public health problems globally. Young children are particularly vulnerable to the toxic effects of lead and can suffer permanent adverse health impacts, particularly on the development of the central nervous system.",
+  "symptoms": [
+    "coma",
+    "convulsions",
+    "death",
+    "permanent intellectual disability",
+    "behavioural disorders",
+    "reduced intelligence quotient (IQ)",
+    "behavioural changes",
+    "reduced attention span",
+    "increased antisocial behaviour",
+    "anaemia",
+    "hypertension",
+    "renal impairment",
+    "immunotoxicity",
+    "toxicity to the reproductive organs",
+    "reduced educational attainment",
+    "learning problems",
+    "decreased intelligence in children",
+    "behavioural difficulties"
+  ],
+  "diagnosis": [
+    "measurement of lead in blood"
+  ],
+  "treatment": [
+    "identification of the source of lead exposure and termination of exposure"
+  ],
+  "transmission": [
+    "inhalation of lead particles",
+    "ingestion of contaminated dust, soil, water or food",
+    "pica (compulsive, habitual consumption of non-food items)"
+  ],
+  "prevention": [
+    "legally binding laws to control the use of lead in paint",
+    "elimination of lead paint",
+    "hygiene practices",
+    "behavioural changes"
+  ],
+  "risk_factors": [
+    "young children",
+    "women of child-bearing age",
+    "malnourished children",
+    "children who engage in pica"
+  ],
+  "complications": [
+    "permanent brain damage",
+    "permanent intellectual disability",
+    "behavioural disorders",
+    "reduced intelligence quotient (IQ)",
+    "behavioural changes",
+    "reduced educational attainment",
+    "learning problems",
+    "decreased intelligence in children",
+    "behavioural difficulties"
+  ],
+  "key_facts": [
+    "1.5 million",
+    "33 million",
+    "3.5 µg/dL"
+  ]
+}

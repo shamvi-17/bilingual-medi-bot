@@ -1,0 +1,71 @@
+{
+  "disease": "Chromoblastomycosis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Chromoblastomycosis is a sporadically occurring infection seen in tropical and subtropical climates caused by a number of different pigmented fungi, the most common of which are Fonsecaea pedrosoi, Fonsecaea monophora, and Cladophialophora carrionii. Other fungi can also cause chromoblastomycosis.",
+  "symptoms": [
+    "wart-like lesions on exposed areas of the skin such as the legs or forearms",
+    "wart-like lesions exceeding 10 centimetres in diameter",
+    "patches of skin may also appear flattened (plaque-like) and show central scarring or atrophy",
+    "small dark spots on the surface of lesions",
+    "pain and itching in moderate or severe disease",
+    "large lesions cause severe limb swelling and discomfort, limiting movement",
+    "secondary bacterial infections",
+    "unpleasant smell from affected limbs",
+    "squamous cell carcinoma of the skin in longstanding untreated lesions",
+    "limb enlargement",
+    "inability to work",
+    "considerable social stigma",
+    "brain infection in rare cases",
+    "skin cancer in rare cases"
+  ],
+  "diagnosis": [
+    "microscopy",
+    "culture",
+    "molecular diagnostic methods",
+    "histopathology of biopsy material",
+    "scrapings from lesions"
+  ],
+  "treatment": [
+    "oral itraconazole",
+    "terbinafine",
+    "voriconazole",
+    "intravenous amphotericin B",
+    "oral flucytosine",
+    "local application of heat",
+    "cryotherapy",
+    "photodynamic therapy",
+    "surgical reductions"
+  ],
+  "transmission": [
+    "fungi from the natural environment invade deeper parts of an individual’s skin after their skin is damaged by a superficial abrasion or a penetrating injury"
+  ],
+  "prevention": [
+    "preventing skin damage"
+  ],
+  "risk_factors": [
+    "agricultural workers",
+    "adults",
+    "people living in tropical and subtropical climates"
+  ],
+  "complications": [
+    "limb enlargement",
+    "inability to work",
+    "considerable social stigma",
+    "brain infection in rare cases",
+    "skin cancer in rare cases",
+    "squamous cell carcinoma of the skin in longstanding untreated lesions",
+    "secondary bacterial infections",
+    "unpleasant smell from affected limbs"
+  ],
+  "key_facts": [
+    "Chromoblastomycosis is an infection under the skin caused by fungi.",
+    "It occurs sporadically in tropical and subtropical climates, and its global incidence is unknown.",
+    "The infection can be disfiguring, causing wart-like lesions of the skin which spread slowly to adjacent areas.",
+    "It causes disfigurement and disability, and in rare cases skin cancer.",
+    "Chromoblastomycosis is diagnosed with laboratory tools such as microscopy and culture.",
+    "Safe and effective antifungal medicines are available for treatment.",
+    "Chromoblastomycosis affects normal healthy people and is mainly seen in adults.",
+    "Agricultural workers are the most common occupational group to be infected.",
+    "Chromoblastomycosis is recognized as a neglected tropical disease (NTD) and is included in the NTD road map 2021−2030 to increase surveillance and visibility of the disease."
+  ]
+}

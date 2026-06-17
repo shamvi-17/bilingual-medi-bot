@@ -1,0 +1,72 @@
+{
+  "disease": "Anaemia",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Anaemia is a condition in which the number of red blood cells or the haemoglobin concentration within them is lower than normal, mainly affecting women and children. It occurs when there isn’t enough haemoglobin in the body to carry oxygen to the organs and tissues. In severe cases, anaemia can cause poor cognitive and motor development in children and problems for pregnant women and their babies.",
+  "symptoms": [
+    "fatigue",
+    "reduced physical work capacity",
+    "shortness of breath",
+    "tiredness",
+    "dizziness or feeling light-headed",
+    "cold hands and feet",
+    "headache",
+    "pale mucous membranes",
+    "pale skin and under the fingernails",
+    "rapid breathing and heart rate",
+    "dizziness when standing up",
+    "bruising more easily"
+  ],
+  "diagnosis": [
+    "blood haemoglobin concentrations",
+    "specified thresholds established based on age, sex, and physiological status"
+  ],
+  "treatment": [
+    "changes in diet",
+    "eating foods rich in iron, folate, vitamin B12, vitamin A, and other nutrients",
+    "taking supplements",
+    "preventing and treating malaria",
+    "preventing and treating schistosomiasis and other infections",
+    "getting vaccinated and practicing good hygiene",
+    "managing chronic diseases",
+    "delaying umbilical cord clamping after childbirth",
+    "treating inherited red blood cell disorders"
+  ],
+  "transmission": [
+    "infections",
+    "inherited red blood cell disorders"
+  ],
+  "prevention": [
+    "eating a healthy and diverse diet",
+    "preventing and treating malaria",
+    "preventing and treating schistosomiasis and other infections",
+    "getting vaccinated and practicing good hygiene",
+    "managing chronic diseases",
+    "delaying umbilical cord clamping after childbirth",
+    "treating inherited red blood cell disorders",
+    "waiting at least 24 months between pregnancies",
+    "using birth control to prevent unintended pregnancies",
+    "preventing and treating heavy menstrual bleeding and haemorrhage"
+  ],
+  "risk_factors": [
+    "poor nutrition",
+    "infections",
+    "chronic diseases",
+    "heavy menstruation",
+    "pregnancy issues",
+    "family history",
+    "inherited red blood cell disorders",
+    "children under 5 years of age",
+    "menstruating adolescent girls and women",
+    "pregnant and postpartum women"
+  ],
+  "complications": [
+    "poor cognitive and motor development in children",
+    "problems for pregnant women and their babies",
+    "anaemia of inflammation or anaemia of chronic disease"
+  ],
+  "key_facts": [
+    "half a billion women 15–49 years of age are affected by anaemia worldwide",
+    "269 million children 6–59 months of age are affected by anaemia worldwide",
+    "106 million women and 103 million children are affected by anaemia in Africa"
+  ]
+}

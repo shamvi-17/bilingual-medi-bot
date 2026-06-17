@@ -1,0 +1,58 @@
+{
+  "disease": "Diabetes",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Diabetes is a chronic disease that occurs either when the pancreas does not produce enough insulin or when the body cannot effectively use the insulin it produces. Insulin is a hormone that regulates blood glucose. Hyperglycaemia, also called raised blood glucose or raised blood sugar, is a common effect of uncontrolled diabetes and over time leads to serious damage to many of the body's systems, especially the nerves and blood vessels. Diabetes can be treated and its consequences avoided or delayed with diet, physical activity, medication and regular screening and treatment for complications.",
+  "symptoms": [
+    "feeling very thirsty",
+    "needing to urinate more often than usual",
+    "blurred vision",
+    "feeling tired",
+    "losing weight unintentionally",
+    "foot ulcers",
+    "permanent vision loss",
+    "heart attack",
+    "stroke",
+    "kidney failure"
+  ],
+  "diagnosis": [
+    "blood glucose testing",
+    "prenatal screening",
+    "regular check-ups",
+    "blood tests"
+  ],
+  "treatment": [
+    "insulin injections",
+    "healthy diet",
+    "regular physical activity",
+    "maintaining a normal body weight",
+    "avoiding tobacco use",
+    "medication",
+    "regular screening and treatment for complications"
+  ],
+  "transmission": [],
+  "prevention": [
+    "reaching and keeping a healthy body weight",
+    "eating a healthy diet and avoiding sugar and saturated fat",
+    "not smoking tobacco"
+  ],
+  "risk_factors": [
+    "being overweight",
+    "not getting enough exercise",
+    "genetics",
+    "low- and middle-income countries"
+  ],
+  "complications": [
+    "blindness",
+    "kidney failure",
+    "heart attacks",
+    "stroke",
+    "lower limb amputation",
+    "permanent vision loss",
+    "foot ulcers"
+  ],
+  "key_facts": [
+    "Diabetes caused over 2 million deaths in 2021",
+    "Around 11% of cardiovascular deaths were caused by high blood glucose",
+    "14% of adults aged 18 years and older were living with diabetes in 2022"
+  ]
+}

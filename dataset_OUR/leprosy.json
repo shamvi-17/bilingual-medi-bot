@@ -1,0 +1,56 @@
+{
+  "disease": "Leprosy",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Leprosy is a chronic infectious disease caused by Mycobacterium leprae, affecting the skin, peripheral nerves, mucosa of the upper respiratory tract, and eyes. It can cause progressive and permanent disabilities if left untreated. However, leprosy is curable with multidrug therapy (MDT) and early treatment can prevent disability.",
+  "symptoms": [
+    "Skin lesions",
+    "Peripheral nerve involvement",
+    "Loss of sensation in skin patches",
+    "Thickened or enlarged peripheral nerves",
+    "Weakness of muscles supplied by affected nerves",
+    "Pale or reddish skin patches",
+    "Definite loss of sensation in skin patches"
+  ],
+  "diagnosis": [
+    "Clinical diagnosis",
+    "Laboratory-based services",
+    "Skin smear",
+    "Slit-skin smear",
+    "Microscopic detection of bacilli"
+  ],
+  "treatment": [
+    "Multidrug therapy (MDT)",
+    "Dapsone",
+    "Rifampicin",
+    "Clofazimine",
+    "6-month treatment for paucibacillary cases",
+    "12-month treatment for multibacillary cases"
+  ],
+  "transmission": [
+    "Droplets from the nose and mouth of an untreated case",
+    "Prolonged, close contact with an untreated case"
+  ],
+  "prevention": [
+    "Contact screening",
+    "Post-exposure prophylaxis (SDR-PEP)",
+    "Single dose of rifampicin"
+  ],
+  "risk_factors": [
+    "Close contact with untreated cases",
+    "Living in endemic areas",
+    "Poor hygiene and sanitation"
+  ],
+  "complications": [
+    "Progressive and permanent disabilities",
+    "Nerve damage",
+    "Muscle weakness",
+    "Disfigurement"
+  ],
+  "key_facts": [
+    "200,000 new cases reported every year",
+    "Leprosy is curable with multidrug therapy (MDT)",
+    "Elimination of leprosy as a public health problem was achieved globally in 2000",
+    "55 countries reported 0 cases in 2024",
+    "117 countries reported fewer than 1000 new cases in 2024"
+  ]
+}

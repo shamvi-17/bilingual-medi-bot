@@ -1,0 +1,57 @@
+{
+  "disease": "Tuberculosis",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Tuberculosis is an infectious disease caused by bacteria that most often affects the lungs, spreading through the air when people with TB cough, sneeze or spit. It is preventable and curable, but can be fatal without treatment. About a quarter of the global population is estimated to have been infected with TB bacteria.",
+  "symptoms": [
+    "prolonged cough",
+    "chest pain",
+    "weakness",
+    "fatigue",
+    "weight loss",
+    "night sweats"
+  ],
+  "diagnosis": [
+    "rapid diagnostic tests",
+    "biomarker-based point-of-care tests",
+    "molecular assays",
+    "tuberculin skin test (TST)",
+    "interferon gamma release assay (IGRA)",
+    "antigen-based skin test (TBST)"
+  ],
+  "treatment": [
+    "rifampicin",
+    "isoniazid",
+    "pyrazinamide",
+    "ethambutol",
+    "levofloxacin",
+    "TB preventive treatment"
+  ],
+  "transmission": [
+    "airborne transmission through coughing, sneezing or spitting"
+  ],
+  "prevention": [
+    "seek medical attention for symptoms",
+    "get screened for TB if at increased risk",
+    "complete full course of TB preventive treatment",
+    "practice good hygiene when coughing",
+    "use respirators and well-ventilated spaces in healthcare facilities"
+  ],
+  "risk_factors": [
+    "diabetes",
+    "weakened immune system",
+    "undernutrition",
+    "tobacco use",
+    "harmful use of alcohol",
+    "HIV"
+  ],
+  "complications": [
+    "death"
+  ],
+  "key_facts": [
+    "1.23 million people died from tuberculosis in 2024",
+    "10.7 million people fell ill with TB worldwide in 2024",
+    "83 million lives saved since 2000 through global efforts to combat TB",
+    "only about 2 in 5 people with drug-resistant TB accessed treatment in 2024",
+    "TB is the world’s leading cause of death from a single infectious agent"
+  ]
+}

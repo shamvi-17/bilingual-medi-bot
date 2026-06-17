@@ -1,0 +1,55 @@
+{
+  "disease": "Cholera",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Cholera is a severe diarrheal disease that can be fatal within hours if not treated. It is an acute diarrheal infection caused by consuming food or water contaminated with the bacterium Vibrio cholerae. Access to safe water, basic sanitation and hygiene is essential to prevent cholera.",
+  "symptoms": [
+    "Severe acute watery diarrhoea",
+    "Mild or moderate diarrhoea",
+    "Life-threatening dehydration",
+    "No symptoms, but can spread the bacteria through faeces"
+  ],
+  "diagnosis": [
+    "Rapid diagnostic tests (RDTs)",
+    "Laboratory testing by culture",
+    "Seroagglutination",
+    "Polymerase chain reaction (PCR)"
+  ],
+  "treatment": [
+    "Oral rehydration solution (ORS)",
+    "Intravenous fluids",
+    "Antibiotics"
+  ],
+  "transmission": [
+    "Consuming food or water contaminated with Vibrio cholerae",
+    "Direct contact with an infected person's faeces",
+    "Poor hygiene practices"
+  ],
+  "prevention": [
+    "Access to safe water",
+    "Basic sanitation",
+    "Hygiene practices",
+    "Oral cholera vaccine (OCV)",
+    "Improving WASH in healthcare facilities",
+    "Conducting water quality monitoring",
+    "Distributing WASH kits to communities",
+    "Promoting protective hygiene practices"
+  ],
+  "risk_factors": [
+    "Limited access to safe water",
+    "Basic sanitation facilities",
+    "Poor hygiene practices",
+    "Conflict",
+    "Population displacement",
+    "Climate events like cyclones, floods or drought",
+    "Lack of investment in maintaining and improving WASH services and infrastructure"
+  ],
+  "complications": [
+    "Dehydration",
+    "Death"
+  ],
+  "key_facts": [
+    "535 321 cases and 4007 deaths were reported to WHO from 45 countries in 2023",
+    "Cholera can be fatal within hours if not treated",
+    "The case fatality rate in treatment centres should remain below 1%"
+  ]
+}

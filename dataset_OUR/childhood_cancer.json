@@ -1,0 +1,44 @@
+{
+  "disease": "Childhood Cancer",
+  "source": "World Health Organization (WHO) – Fact Sheet",
+  "overview": "Cancer is a leading cause of death for children and adolescents. The likelihood of surviving a diagnosis of childhood cancer depends on the country in which the child lives; in high-income countries, more than 80% of children with cancer are cured, but in many LMICs less than 30% are cured.",
+  "symptoms": [
+    "fever",
+    "severe and persistent headaches",
+    "bone pain",
+    "weight loss",
+    "painful blisters"
+  ],
+  "diagnosis": [
+    "accurate and timely clinical evaluation",
+    "diagnosis",
+    "staging",
+    "determining the extent to which a cancer has spread"
+  ],
+  "treatment": [
+    "surgery",
+    "radiotherapy",
+    "chemotherapy"
+  ],
+  "transmission": [],
+  "prevention": [
+    "vaccination against hepatitis B to help prevent liver cancer",
+    "vaccination against human papillomavirus to help prevent cervical cancer",
+    "early detection and treatment of chronic infections that can lead to cancer"
+  ],
+  "risk_factors": [
+    "HIV",
+    "Epstein-Barr virus",
+    "malaria",
+    "genetic factors"
+  ],
+  "complications": [
+    "death from toxicity (side effects)",
+    "avoidable relapse"
+  ],
+  "key_facts": [
+    "An estimated 400,000 children and adolescents of 0–19 years old develop cancer each year.",
+    "More than 80% of children with cancer are cured in high-income countries, but less than 30% are cured in many LMICs.",
+    "Approximately 10% of all children with cancer have a predisposition because of genetic factors."
+  ]
+}
