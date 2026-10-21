@@ -5,8 +5,19 @@ import os
 
 load_dotenv()
 
-kg = DiseaseKnowledgeGraph("dataset_OUR/")
-client = Groq(api_key=os.environ["GROQ_API_KEY"])
+kg = DiseaseKnowledgeGraph(os.path.join(os.path.dirname(os.path.abspath(__file__)), "dataset_OUR"))
+# Created lazily so the app still starts (with LLM features disabled) when GROQ_API_KEY is missing.
+_client = None
+
+
+def get_client() -> Groq:
+    global _client
+    if _client is None:
+        key = os.environ.get("GROQ_API_KEY")
+        if not key:
+            raise RuntimeError("GROQ_API_KEY is not set")
+        _client = Groq(api_key=key)
+    return _client
 
 SYSTEM_PROMPT = """You are a trusted, empathetic medical assistant.
 
@@ -70,9 +81,11 @@ def build_messages(user_message: str, history: list[dict]) -> list[dict]:
 
 def get_reply(user_message: str, history: list[dict]) -> str:
     messages = build_messages(user_message, history)
-    for model in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant", "gemma2-9b-it"]:
+    # the original llama/gemma models were decommissioned by Groq; models now come from LLM_MODELS
+    models = [m.strip() for m in os.environ.get("LLM_MODELS", "openai/gpt-oss-120b,openai/gpt-oss-20b").split(",") if m.strip()]
+    for model in models:
         try:
-            response = client.chat.completions.create(
+            response = get_client().chat.completions.create(
                 model=model,
                 messages=messages,
                 max_tokens=300,
@@ -110,7 +123,7 @@ def transcribe_audio(
     if language:                         # hi / en — skip for auto-detect
         kwargs["language"] = language
 
-    transcription = client.audio.transcriptions.create(**kwargs)
+    transcription = get_client().audio.transcriptions.create(**kwargs)
     return transcription.strip() if isinstance(transcription, str) else transcription
 
 def is_emergency(text: str) -> bool:

@@ -1,0 +1,740 @@
+/* MediBot frontend – talks only to the JSON API under /api. All medical content
+   shown here comes from backend responses; nothing clinical is hard-coded. */
+(() => {
+  "use strict";
+
+  // ── UI strings ────────────────────────────────────────────────────────────
+  const I18N = {
+    hi: {
+      brand_sub: "Symptom guide · Hinglish & English",
+      eyebrow: "Explainable symptom guide",
+      hero_title: "Apne symptoms samjhiye — har baat ke saath uska evidence",
+      hero_lead: "Batayein kya ho raha hai. Main pehle warning signs check karunga, kuch zaroori sawaal poochunga, aur phir NHS, WHO aur MedlinePlus jaise sources ke saath samjhaunga ki kaunse common causes match karte hain — aur kyun.",
+      start: "Assessment shuru karein", resume: "Pichla assessment jaari rakhein", how_link: "Kaise kaam karta hai?",
+      example_title: "Example",
+      example_bot: "Samajh gaya — naak band hona aur gale mein mucus. Yeh allergy ya common cold jaisa kuch ho sakta hai, lekin exact cause abhi confirm nahi hota. Isliye main duration aur bukhar ke baare mein poochunga.",
+      example_cite: "Har conclusion ke saath source: NHS · MedlinePlus · WHO",
+      quick_title: "Ya ek category se shuru karein",
+      how_title: "Kaise kaam karta hai",
+      s1_t: "Symptoms batayein", s1_d: "Hindi, English ya Hinglish — jaise aap normally bolte hain.",
+      s2_t: "Safety check + sawaal", s2_d: "Pehle emergency signs check hote hain, phir sirf wahi sawaal jo fark daalte hain.",
+      s3_t: "Samjhaane wala assessment", s3_d: "Kaunse symptoms match karte hain, kaunse nahi, kya pata nahi — har point ka source link ke saath.",
+      scope_title: "Yeh tool kya kar sakta hai, kya nahi",
+      can_t: "Kar sakta hai", cant_t: "Nahi kar sakta",
+      can1: "Common, kam-risk conditions ko compare karna: cold, flu jaisi bimari, naak ki allergy, sinus, gale ki kharash, acidity, kabz, tension headache, migraine, skin irritation",
+      can2: "Emergency warning signs pehchaan kar turant guidance dena",
+      can3: "Har baat ka source dikhana taaki aap khud check kar sakein",
+      cant1: "Diagnosis dena ya doctor ki jagah lena", cant2: "Dawai ya dose batana", cant3: "Serious bimariyon ko rule out karna",
+      emerg_strip_t: "Emergency?", emerg_strip_d: "Seene mein dard, saans lene mein bahut takleef, chehra latakna ya behoshi ho to abhi 112 ya 108 call karein.",
+      footer_disclaimer: "Sirf jaankari ke liye — medical diagnosis nahi. Software tested hai, clinically validated nahi.",
+      footer_sources: "Medical sources", footer_graph: "WHO disease knowledge graph",
+      stepper_note: "Interview progress — yeh medical validation nahi hai.",
+      steps: ["Symptoms", "Safety check", "Sawaal", "Assessment"],
+      input_label: "Apne symptoms likhein", placeholder: "Apne symptoms likhein… jaise \"2 din se sar dard aur halka bukhar\"",
+      composer_hint: "Enter = bhejein · Shift+Enter = nayi line · Aap kabhi bhi kuch correct kar sakte hain",
+      assess_now: "Assessment abhi dikhayein",
+      side_title: "Aapka summary", side_help: "Yahan aapke bataye symptoms dikhenge. Kuch galat ho to yahin badal sakte hain.",
+      side_symptoms: "Symptoms", side_details: "Details", add_symptom: "Symptom jodein", add: "Jodein", close: "Band karein",
+      restart: "Restart", restart_full: "Naya assessment shuru karein", summary_btn: "Summary",
+      no_symptoms: "Abhi koi symptom nahi.", choose_symptom: "Symptom chunein…",
+      st_present: "Hai", st_absent: "Nahi hai", st_unsure: "Pata nahi", remove: "Hatayein",
+      d_duration: "Kab se", d_severity: "Takleef (1–10)", d_onset: "Shuruaat", d_progression: "Badlaav", d_age: "Kiske liye",
+      unknown: "—", dur_opts: [["", "—"], ["0.5", "Ek din se kam"], ["2", "1–3 din"], ["5", "4–7 din"], ["10", "1–2 hafte"], ["21", "2–4 hafte"], ["45", "1 mahine se zyada"]],
+      onset_opts: [["", "—"], ["sudden", "Achanak"], ["gradual", "Dheere-dheere"]],
+      prog_opts: [["", "—"], ["improving", "Behtar"], ["same", "Waise hi"], ["worsening", "Badh raha"]],
+      age_opts: [["", "—"], ["adult", "Adult (18+)"], ["teen", "Teenager (12–17)"], ["child", "12 se chhota bachcha"], ["older", "65+"]],
+      why: "Yeh kyun pooch raha hoon:", cont: "Aage badhein", none: "Inme se koi nahi", skip_to: "Abhi assessment dikhayein",
+      tag_screen: "Safety check", tag_clarify: "Confirm karna", tag_q: "Sawaal",
+      thinking: "Soch raha hoon…", checking: "Warning signs check ho rahe hain…", building: "Sources ke saath assessment ban raha hai…",
+      em_call: "112 call karein", em_amb: "108 ambulance", em_mh: "Tele-MANAS 14416", em_reasons: "Yeh kyun dikh raha hai:",
+      em_mistake: "Yeh mujh par laagu nahi hota", em_you_said: "Aapne likha/chuna:",
+      res_title: "Aapka assessment", res_updated: "Nayi jaankari ke saath update hua",
+      what_fits: "Kya match karta hai", what_not: "Kya kam match karta hai", what_unknown: "Abhi pata nahi", what_unexplained: "Iss condition se explain nahi hota",
+      what_help: "Kya jaankari madad karegi", alternatives: "Yeh bhi ho sakta hai", self_care: "Ghar par kya karein", see_doc: "Doctor ko kab dikhayein",
+      related: "Sources se aur jaankari", how_assessed: "Yeh kaise assess kiya gaya", limitations: "Seemayein (limitations)",
+      sources: "Sources", set_aside: "Kam sambhav maana gaya (rule out nahi)", more_conds: "Aur conditions jo kuch match karti hain",
+      reported: "Aapne bataya", absent_lbl: "Nahi hai", copy: "Copy karein", download: "Download (.txt)", print: "Print",
+      copied: "Summary copy ho gaya", ai_title: "Aasaan shabdon mein (AI)", ai_loading: "AI se aasaan summary ban raha hai…",
+      source_word: "Source", open_src: "Source kholein", reviewed: "Review", validation: "Evidence check",
+      grounded: (g, c) => `${c} mein se ${g} medical statements verified source passage se jude hain.`,
+      net_error: "Server tak nahi pahunch paaye. Internet check karke dobara koshish karein.",
+      timeout: "Jawab aane mein zyada time lag raha hai. Dobara koshish karein.",
+      expired: "Yeh session expire ho gaya. Naya assessment shuru kar rahe hain.",
+      mic_err: "Voice input abhi available nahi hai — kripya type karein.",
+      cat_prompt: "Inme se kya-kya ho raha hai? Sab select karein.", cat_note: "Ya neeche apne shabdon mein likhein.",
+      lang_suggest: "Kya aap English mein jaari rakhna chahenge?",
+      sources_title: "Medical sources (knowledge base)",
+      outdated: "Purana ho sakta hai",
+    },
+    en: {
+      brand_sub: "Symptom guide · Hinglish & English",
+      eyebrow: "Explainable symptom guide",
+      hero_title: "Understand your symptoms — with the evidence for every point",
+      hero_lead: "Tell me what's going on. I'll check for warning signs first, ask only the questions that matter, then explain which common causes fit — and why — using sources like the NHS, WHO and MedlinePlus.",
+      start: "Start assessment", resume: "Continue previous assessment", how_link: "How does it work?",
+      example_title: "Example",
+      example_bot: "Got it — blocked nose and mucus in the throat. This could fit an allergy or a common cold, but the exact cause isn't clear yet. So I'll ask about how long it's lasted and whether you have a fever.",
+      example_cite: "Every conclusion comes with a source: NHS · MedlinePlus · WHO",
+      quick_title: "Or start from a category",
+      how_title: "How it works",
+      s1_t: "Describe your symptoms", s1_d: "In English, Hindi or Hinglish — the way you'd normally say it.",
+      s2_t: "Safety check + questions", s2_d: "Emergency signs are checked first, then only questions that change the picture.",
+      s3_t: "An assessment that explains itself", s3_d: "What fits, what doesn't, what's unknown — each point linked to its source.",
+      scope_title: "What this tool can and can't do",
+      can_t: "It can", cant_t: "It can't",
+      can1: "Compare common, lower-risk conditions: colds, flu-like illness, nasal allergy, sinusitis, sore throat, acidity, constipation, tension headache, migraine, skin irritation",
+      can2: "Recognise emergency warning signs and give immediate guidance",
+      can3: "Show the source of every point so you can check it yourself",
+      cant1: "Diagnose you or replace a doctor", cant2: "Recommend medicines or doses", cant3: "Rule out serious illness",
+      emerg_strip_t: "Emergency?", emerg_strip_d: "For chest pain, severe breathing difficulty, face drooping or fainting, call 112 or 108 now.",
+      footer_disclaimer: "For information only — not a medical diagnosis. Software-tested, not clinically validated.",
+      footer_sources: "Medical sources", footer_graph: "WHO disease knowledge graph",
+      stepper_note: "Interview progress — this is not a medical validation.",
+      steps: ["Symptoms", "Safety check", "Questions", "Assessment"],
+      input_label: "Describe your symptoms", placeholder: "Describe your symptoms… e.g. \"headache and mild fever for 2 days\"",
+      composer_hint: "Enter = send · Shift+Enter = new line · You can correct anything at any time",
+      assess_now: "Show assessment now",
+      side_title: "Your summary", side_help: "Symptoms you mention appear here. If anything is wrong, change it here.",
+      side_symptoms: "Symptoms", side_details: "Details", add_symptom: "Add a symptom", add: "Add", close: "Close",
+      restart: "Restart", restart_full: "Start a new assessment", summary_btn: "Summary",
+      no_symptoms: "No symptoms yet.", choose_symptom: "Choose a symptom…",
+      st_present: "Yes", st_absent: "No", st_unsure: "Not sure", remove: "Remove",
+      d_duration: "How long", d_severity: "Severity (1–10)", d_onset: "Onset", d_progression: "Change", d_age: "For",
+      unknown: "—", dur_opts: [["", "—"], ["0.5", "Less than a day"], ["2", "1–3 days"], ["5", "4–7 days"], ["10", "1–2 weeks"], ["21", "2–4 weeks"], ["45", "More than a month"]],
+      onset_opts: [["", "—"], ["sudden", "Sudden"], ["gradual", "Gradual"]],
+      prog_opts: [["", "—"], ["improving", "Improving"], ["same", "Same"], ["worsening", "Worsening"]],
+      age_opts: [["", "—"], ["adult", "Adult (18+)"], ["teen", "Teen (12–17)"], ["child", "Child under 12"], ["older", "65+"]],
+      why: "Why I'm asking:", cont: "Continue", none: "None of these", skip_to: "Show assessment now",
+      tag_screen: "Safety check", tag_clarify: "Clarifying", tag_q: "Question",
+      thinking: "Thinking…", checking: "Checking warning signs…", building: "Building your assessment with sources…",
+      em_call: "Call 112", em_amb: "108 ambulance", em_mh: "Tele-MANAS 14416", em_reasons: "Why you're seeing this:",
+      em_mistake: "This doesn't apply to me", em_you_said: "You wrote/selected:",
+      res_title: "Your assessment", res_updated: "Updated with new information",
+      what_fits: "What fits", what_not: "What fits less well", what_unknown: "Not known yet", what_unexplained: "Not explained by this condition",
+      what_help: "What would help clarify", alternatives: "Other possibilities", self_care: "Self-care", see_doc: "When to see a doctor",
+      related: "More from the sources", how_assessed: "How this was assessed", limitations: "Limitations",
+      sources: "Sources", set_aside: "Considered less likely (not ruled out)", more_conds: "Other conditions with some overlap",
+      reported: "You reported", absent_lbl: "Not present", copy: "Copy", download: "Download (.txt)", print: "Print",
+      copied: "Summary copied", ai_title: "In plain words (AI)", ai_loading: "Writing a plain-language summary…",
+      source_word: "Source", open_src: "Open source", reviewed: "Reviewed", validation: "Evidence check",
+      grounded: (g, c) => `${g} of ${c} medical statements are linked to a verified source passage.`,
+      net_error: "Couldn't reach the server. Check your connection and try again.",
+      timeout: "The server is taking too long. Please try again.",
+      expired: "This session expired. Starting a new assessment.",
+      mic_err: "Voice input isn't available right now — please type instead.",
+      cat_prompt: "Which of these do you have? Select all that apply.", cat_note: "Or describe it in your own words below.",
+      lang_suggest: "Would you like to continue in Hinglish?",
+      sources_title: "Medical sources (knowledge base)",
+      outdated: "May be outdated",
+    },
+  };
+
+  const CATEGORIES = [
+    { id: "nose", icon: "🤧", en: ["Nose & cold", "Sneezing, blocked/runny nose"], hi: ["Naak & sardi", "Chheenk, naak band/behna"],
+      symptoms: ["blocked_nose", "runny_nose", "sneezing", "itchy_nose", "itchy_eyes", "postnasal_drip", "cough", "fever"] },
+    { id: "throat", icon: "🗣️", en: ["Throat", "Sore, scratchy throat, hoarse voice"], hi: ["Gala", "Gale mein dard, kharash, awaaz baithna"],
+      symptoms: ["sore_throat", "throat_irritation", "hoarse_voice", "cough", "swollen_glands", "fever"] },
+    { id: "stomach", icon: "🔥", en: ["Acidity & stomach", "Burning, bloating, sour burps"], hi: ["Acidity & pet", "Jalan, pet phoolna, khatti dakar"],
+      symptoms: ["heartburn", "sour_regurgitation", "bloating", "burping", "nausea", "worse_after_eating", "abdominal_pain"] },
+    { id: "bowel", icon: "🚽", en: ["Constipation", "Hard or infrequent stools"], hi: ["Kabz", "Potty sakht ya kam"],
+      symptoms: ["infrequent_stools", "hard_stools", "straining", "incomplete_evacuation", "bloating", "abdominal_pain"] },
+    { id: "head", icon: "🤕", en: ["Headache", "Pressure, throbbing, light sensitivity"], hi: ["Sar dard", "Dabaav, dhak-dhak, roshni se takleef"],
+      symptoms: ["headache", "headache_both_sides", "headache_one_side", "headache_pressing", "headache_throbbing", "nausea", "light_sensitivity"] },
+    { id: "skin", icon: "🩹", en: ["Skin", "Itching, rash, bumps"], hi: ["Skin", "Khujli, rash, daane"],
+      symptoms: ["skin_itch", "skin_rash", "raised_welts", "small_raised_spots", "dry_cracked_skin", "blisters"] },
+    { id: "fever", icon: "🌡️", en: ["Fever & body ache", "Temperature, aches, tiredness"], hi: ["Bukhar & badan dard", "Bukhar, dard, thakan"],
+      symptoms: ["fever", "body_ache", "chills", "fatigue", "headache", "cough", "sore_throat"] },
+  ];
+
+  // ── state ────────────────────────────────────────────────────────────────
+  const S = { lang: "hi", sid: null, last: null, busy: false, meta: null, results: null, lastAssessKey: null };
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const t = (k) => (I18N[S.lang][k] !== undefined ? I18N[S.lang][k] : I18N.en[k]);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch { /* storage unavailable */ } },
+  };
+
+  // ── API ──────────────────────────────────────────────────────────────────
+  class ApiError extends Error { constructor(msg, status, code) { super(msg); this.status = status; this.code = code; } }
+  async function api(path, { method = "GET", body, timeout = 45000 } = {}) {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), timeout);
+    let res;
+    try {
+      res = await fetch(path, { method, headers: body ? { "Content-Type": "application/json" } : {}, body: body ? JSON.stringify(body) : undefined, signal: ctrl.signal });
+    } catch (e) {
+      throw new ApiError(e.name === "AbortError" ? t("timeout") : t("net_error"), 0, "network");
+    } finally { clearTimeout(timer); }
+    let data = null;
+    try { data = await res.json(); } catch { /* non-JSON */ }
+    if (!res.ok) {
+      const err = data && data.error ? data.error : {};
+      throw new ApiError(err.message || `Error ${res.status}`, res.status, err.code);
+    }
+    return data;
+  }
+
+  function toast(msg, isError = false) {
+    const el = document.createElement("div");
+    el.className = "toast" + (isError ? " error" : "");
+    el.setAttribute("role", isError ? "alert" : "status");
+    el.textContent = msg;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), isError ? 6000 : 2500);
+  }
+
+  async function guarded(fn, label) {
+    if (S.busy) return;
+    S.busy = true; setBusy(true, label);
+    try { await fn(); }
+    catch (e) {
+      if (e.status === 404 && S.sid) { toast(t("expired"), true); await startAssessment(); }
+      else toast(e.message || t("net_error"), true);
+    } finally { S.busy = false; setBusy(false); }
+  }
+
+  // ── static text / language ───────────────────────────────────────────────
+  function applyStatic() {
+    document.documentElement.lang = S.lang === "hi" ? "hi-Latn" : "en";
+    $$("[data-i18n]").forEach((el) => { const v = t(el.dataset.i18n); if (typeof v === "string") el.textContent = v; });
+    $$("[data-i18n-placeholder]").forEach((el) => { el.placeholder = t(el.dataset.i18nPlaceholder); });
+    $$(".lang-toggle button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === S.lang)));
+    renderCategories();
+    const sb = $("#start-btn");
+    if (sb) sb.textContent = store.get("medibot_sid") ? t("resume") : t("start");
+  }
+
+  async function setLanguage(lang) {
+    if (lang === S.lang) return;
+    S.lang = lang; store.set("medibot_lang", lang); applyStatic();
+    if (S.sid && !$("#workspace").hidden) {
+      await guarded(async () => { const r = await api(`/api/assessments/${S.sid}/language`, { method: "PATCH", body: { language: lang } }); handle(r); });
+    }
+  }
+
+  // ── landing ──────────────────────────────────────────────────────────────
+  function renderCategories() {
+    const box = $("#categories");
+    if (!box) return;
+    box.innerHTML = CATEGORIES.map((c) => `
+      <button type="button" class="category" data-cat="${c.id}">
+        <span class="icon" aria-hidden="true">${c.icon}</span>
+        <strong>${esc(c[S.lang][0])}</strong><span>${esc(c[S.lang][1])}</span>
+      </button>`).join("");
+  }
+
+  function showWorkspace() {
+    $("#landing").hidden = true;
+    $("#workspace").hidden = false;
+    $("#restart-btn").hidden = false;
+    $("#summary-toggle").hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+
+  function showLanding() {
+    $("#landing").hidden = false;
+    $("#workspace").hidden = true;
+    $("#restart-btn").hidden = true;
+    $("#summary-toggle").hidden = true;
+    applyStatic();
+  }
+
+  async function startAssessment(category) {
+    $("#chat").innerHTML = ""; $("#results").hidden = true; $("#results").innerHTML = ""; $("#emergency-slot").innerHTML = "";
+    S.lastAssessKey = null;
+    const r = await api("/api/assessments", { method: "POST", body: { language: S.lang } });
+    S.sid = r.session_id; store.set("medibot_sid", S.sid);
+    showWorkspace();
+    handle(r);
+    if (category) renderCategoryPicker(category);
+    $("#input").focus();
+  }
+
+  async function resume(sid) {
+    const r = await api(`/api/assessments/${sid}`);
+    S.sid = sid; S.lang = r.language; store.set("medibot_lang", S.lang); applyStatic();
+    showWorkspace();
+    $("#chat").innerHTML = "";
+    (r.transcript || []).forEach((m) => addMessage(m.role === "user" ? "user" : "bot", m.text, m.kind));
+    r.messages = [];
+    handle(r);
+  }
+
+  // ── chat rendering ───────────────────────────────────────────────────────
+  function addMessage(who, text, kind) {
+    if (!text) return;
+    const div = document.createElement("div");
+    div.className = `msg ${who}${kind === "answer" ? " answer" : ""}`;
+    div.innerHTML = `<div class="avatar" aria-hidden="true">${who === "user" ? "You" : "M"}</div><div class="bubble"></div>`;
+    div.querySelector(".avatar").textContent = who === "user" ? (S.lang === "hi" ? "Aap" : "You") : "M";
+    div.querySelector(".bubble").textContent = text;
+    $("#chat").appendChild(div);
+    scrollChat();
+  }
+
+  function scrollChat() {
+    const last = $("#chat").lastElementChild;
+    if (last) last.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+
+  function setBusy(on, label) {
+    $("#send-btn").disabled = on;
+    $$(".qcard button").forEach((b) => (b.disabled = on));
+    const existing = $("#typing");
+    if (on && !existing) {
+      const d = document.createElement("div");
+      d.id = "typing"; d.className = "msg bot";
+      d.innerHTML = `<div class="avatar" aria-hidden="true">M</div><div class="bubble typing" aria-label="${esc(label || t("thinking"))}"><i></i><i></i><i></i><span class="typing-label">${esc(label || t("thinking"))}</span></div>`;
+      $("#chat").appendChild(d); scrollChat();
+    } else if (!on && existing) existing.remove();
+  }
+
+  // ── main response handler ────────────────────────────────────────────────
+  function handle(r) {
+    S.last = r;
+    if (r.language && r.language !== S.lang) { S.lang = r.language; applyStatic(); }
+    $(".qcard") && $$(".qcard").forEach((q) => q.remove());
+    (r.messages || []).forEach((m) => addMessage("bot", m.text, m.kind));
+    renderStepper(r.progress, r.stage);
+    renderEmergency(r.emergency);
+    if (r.question) renderQuestion(r.question);
+    renderSide(r);
+    renderResults(r.assessment);
+    $("#assess-now").hidden = !(r.can_assess && r.stage !== "assessment" && r.stage !== "emergency");
+    $("#summary-count").textContent = (r.symptoms || []).filter((s) => s.status === "present").length;
+  }
+
+  function renderStepper(p, stage) {
+    if (!p) return;
+    const steps = t("steps");
+    $("#stepper").classList.toggle("emergency", stage === "emergency");
+    $("#stepper-list").innerHTML = steps.map((s, i) => {
+      const cls = i < p.step ? "done" : i === p.step ? "current" : "";
+      return `<li class="${cls}" ${i === p.step ? 'aria-current="step"' : ""}><div class="bar"></div><div class="lbl">${esc(s)}</div></li>`;
+    }).join("");
+  }
+
+  // ── question cards ───────────────────────────────────────────────────────
+  function renderQuestion(q) {
+    const card = document.createElement("div");
+    card.className = "qcard" + (q.kind === "screen" ? " screen" : "");
+    const tag = q.kind === "screen" ? t("tag_screen") : q.kind === "clarify" ? t("tag_clarify") : t("tag_q");
+    let inner = `<fieldset><legend tabindex="-1"><span class="qtag">${esc(tag)}</span><br>${esc(q.text)}</legend>
+      <p class="why"><span><strong>${esc(t("why"))}</strong> ${esc(q.why)}</span></p>`;
+    if (q.type === "multi") {
+      const pre = new Set(q.preselected || []);
+      inner += `<div class="options" role="group">` + q.options.map((o) =>
+        `<button type="button" class="opt" role="checkbox" aria-checked="${pre.has(o.value)}" data-v="${esc(o.value)}"><span class="box" aria-hidden="true">${pre.has(o.value) ? "✓" : ""}</span>${esc(o.label)}</button>`).join("") +
+        (q.none_option ? `<button type="button" class="opt none" data-none="1">${esc(t("none"))}</button>` : "") + `</div>
+        <div class="qactions"><button type="button" class="btn btn-primary btn-sm" data-submit="1">${esc(t("cont"))}</button></div>`;
+    } else if (q.type === "scale") {
+      inner += `<div class="scale" role="group">` + Array.from({ length: q.max - q.min + 1 }, (_, i) => i + q.min)
+        .map((n) => `<button type="button" class="opt" data-v="${n}" aria-label="${n}">${n}</button>`).join("") + `</div>
+        <div class="scale-labels">${Object.entries(q.labels || {}).map(([k, v]) => `<span>${esc(k)} · ${esc(v)}</span>`).join("")}</div>`;
+    } else {
+      inner += `<div class="options" role="group">` + q.options.map((o) => `<button type="button" class="opt" data-v="${esc(o.value)}">${esc(o.label)}</button>`).join("") + `</div>`;
+    }
+    inner += `</fieldset>`;
+    card.innerHTML = inner;
+    card.dataset.qid = q.id;
+
+    card.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b || b.disabled) return;
+      if (q.type === "multi") {
+        if (b.dataset.none) return submitAnswer(q, "none");
+        if (b.dataset.submit) {
+          const vals = $$('.opt[aria-checked="true"]', card).map((x) => x.dataset.v);
+          return submitAnswer(q, vals.length ? vals : "none");
+        }
+        if (b.dataset.v !== undefined) {
+          const on = b.getAttribute("aria-checked") !== "true";
+          b.setAttribute("aria-checked", String(on));
+          b.querySelector(".box").textContent = on ? "✓" : "";
+        }
+      } else if (b.dataset.v !== undefined) {
+        b.setAttribute("aria-pressed", "true");
+        submitAnswer(q, q.type === "scale" ? Number(b.dataset.v) : b.dataset.v);
+      }
+    });
+    $("#chat").appendChild(card);
+    scrollChat();
+    const lg = card.querySelector("legend");
+    if (document.activeElement !== $("#input")) lg.focus({ preventScroll: true });
+  }
+
+  function submitAnswer(q, value) {
+    const label = q.kind === "screen" ? t("checking") : t("thinking");
+    guarded(async () => {
+      const r = await api(`/api/assessments/${S.sid}/answers`, { method: "POST", body: { question_id: q.id, value } });
+      $$(".qcard").forEach((c) => c.remove());
+      // echo the chosen answer as the user's message
+      let text;
+      if (value === "none") text = t("none");
+      else if (Array.isArray(value)) text = value.map((v) => (q.options.find((o) => o.value === v) || {}).label || v).join(", ");
+      else if (q.type === "scale") text = `${value}/10`;
+      else text = (q.options.find((o) => o.value === value) || {}).label || value;
+      addMessage("user", text, "answer");
+      handle(r);
+    }, label);
+  }
+
+  function renderCategoryPicker(catId) {
+    const c = CATEGORIES.find((x) => x.id === catId);
+    if (!c || !S.meta) return;
+    const labels = Object.fromEntries(S.meta.symptoms.map((s) => [s.id, s[S.lang] || s.en]));
+    const q = { id: "__cat", kind: "category", type: "multi", text: t("cat_prompt"), why: t("cat_note"),
+      options: c.symptoms.map((s) => ({ value: s, label: labels[s] || s })), none_option: false, preselected: [] };
+    const card = document.createElement("div");
+    card.className = "qcard";
+    card.innerHTML = `<fieldset><legend tabindex="-1">${esc(c[S.lang][0])}<br>${esc(q.text)}</legend><p class="why"><span>${esc(q.why)}</span></p>
+      <div class="options" role="group">${q.options.map((o) => `<button type="button" class="opt" role="checkbox" aria-checked="false" data-v="${esc(o.value)}"><span class="box" aria-hidden="true"></span>${esc(o.label)}</button>`).join("")}</div>
+      <div class="qactions"><button type="button" class="btn btn-primary btn-sm" data-submit="1">${esc(t("cont"))}</button></div></fieldset>`;
+    card.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      if (b.dataset.submit) {
+        const vals = $$('.opt[aria-checked="true"]', card).map((x) => x.dataset.v);
+        if (!vals.length) return;
+        guarded(async () => {
+          const r = await api(`/api/assessments/${S.sid}/symptoms`, { method: "POST", body: { symptoms: vals.map((id) => ({ id, status: "present" })) } });
+          card.remove();
+          addMessage("user", vals.map((v) => labels[v] || v).join(", "), "answer");
+          handle(r);
+        });
+      } else if (b.dataset.v) {
+        const on = b.getAttribute("aria-checked") !== "true";
+        b.setAttribute("aria-checked", String(on));
+        b.querySelector(".box").textContent = on ? "✓" : "";
+      }
+    });
+    $("#chat").appendChild(card);
+    scrollChat();
+  }
+
+  // ── emergency ────────────────────────────────────────────────────────────
+  function citeLink(c) {
+    if (!c) return "";
+    return `<a class="cite-link" href="${esc(c.link || c.url)}" target="_blank" rel="noopener noreferrer">${esc(c.publisher.split(" (")[0])}: ${esc(c.title)} ↗</a>`;
+  }
+  function quoteBlock(c) {
+    if (!c) return "";
+    return `<div class="quote"><q>${esc(c.quote)}</q> — ${citeLink(c)}</div>`;
+  }
+
+  function renderEmergency(em) {
+    const slot = $("#emergency-slot");
+    if (!em) { slot.innerHTML = ""; $("#composer").hidden = false; return; }
+    slot.innerHTML = `<div class="emergency-card" role="alert">
+      <h2><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5M12 18h.01"/></svg>${esc(em.title)}</h2>
+      <p class="instr">${esc(em.instruction)}</p>
+      <div class="call-row">
+        <a class="btn btn-danger btn-lg" href="tel:112">${esc(t("em_call"))}</a>
+        ${em.mental_health ? `<a class="btn btn-danger btn-lg" href="tel:14416">${esc(t("em_mh"))}</a>` : `<a class="btn btn-danger btn-lg" href="tel:108">${esc(t("em_amb"))}</a>`}
+      </div>
+      <p class="small">${esc(em.while_waiting)}</p>
+      <h3 class="small">${esc(t("em_reasons"))}</h3>
+      ${em.reasons.map((r) => `<div class="reason"><strong>${esc(r.label)}</strong>
+        <div class="matched">${esc(t("em_you_said"))} “${esc(r.matched)}”</div>
+        ${r.citations.map(quoteBlock).join("")}
+        <button type="button" class="btn btn-sm btn-ghost" data-dismiss="${esc(r.id)}">${esc(t("em_mistake"))}</button></div>`).join("")}
+      <p class="small muted">${esc(em.note)}</p></div>`;
+    slot.querySelectorAll("[data-dismiss]").forEach((b) => b.addEventListener("click", () =>
+      guarded(async () => handle(await api(`/api/assessments/${S.sid}/red-flags/${b.dataset.dismiss}/dismiss`, { method: "POST" })))));
+    slot.querySelector(".emergency-card").scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+
+  // ── side panel ───────────────────────────────────────────────────────────
+  function opts(list, val) { return list.map(([v, l]) => `<option value="${esc(v)}" ${String(val ?? "") === v ? "selected" : ""}>${esc(l)}</option>`).join(""); }
+
+  function renderSide(r) {
+    const list = $("#sym-list");
+    const syms = r.symptoms || [];
+    const row = (s) => `
+      <li class="sym ${s.status}">
+        <span class="st" aria-hidden="true">${s.status === "present" ? "✓" : s.status === "absent" ? "✕" : "?"}</span>
+        <span class="name">${esc(s.label)}${s.user_words && s.user_words.length ? `<span class="words">“${esc(s.user_words.slice(-1)[0])}”</span>` : ""}</span>
+        <label class="visually-hidden" for="st-${esc(s.id)}">${esc(s.label)}</label>
+        <select id="st-${esc(s.id)}" data-sym="${esc(s.id)}">
+          <option value="present" ${s.status === "present" ? "selected" : ""}>${esc(t("st_present"))}</option>
+          <option value="absent" ${s.status === "absent" ? "selected" : ""}>${esc(t("st_absent"))}</option>
+          <option value="unsure" ${s.status === "unsure" ? "selected" : ""}>${esc(t("st_unsure"))}</option>
+        </select>
+        <button type="button" class="rm" data-rm="${esc(s.id)}" aria-label="${esc(t("remove"))}: ${esc(s.label)}">✕</button>
+      </li>`;
+    const shown = syms.filter((s) => s.status !== "absent");
+    const absent = syms.filter((s) => s.status === "absent");
+    const wasOpen = !!$("#absent-group[open]");
+    list.innerHTML = (shown.length ? shown.map(row).join("") : `<li class="empty">${esc(t("no_symptoms"))}</li>`) +
+      (absent.length ? `<li><details id="absent-group" class="plain" ${wasOpen ? "open" : ""}><summary class="small">${esc(t("absent_lbl"))} (${absent.length})</summary>
+        <ul class="sym-list" style="margin-top:6px">${absent.map(row).join("")}</ul></details></li>` : "");
+
+    if (S.meta) {
+      const have = new Set(syms.map((s) => s.id));
+      $("#add-symptom").innerHTML = `<option value="">${esc(t("choose_symptom"))}</option>` +
+        S.meta.symptoms.filter((s) => !have.has(s.id) && s.id !== "other_pain")
+          .sort((a, b) => (a[S.lang] || a.en).localeCompare(b[S.lang] || b.en))
+          .map((s) => `<option value="${esc(s.id)}">${esc(s[S.lang] || s.en)}</option>`).join("");
+    }
+    const a = r.attributes || {};
+    const dur = a.duration_days == null ? "" : String(a.duration_days);
+    const durList = t("dur_opts").some(([v]) => v === dur) ? t("dur_opts") : [...t("dur_opts"), [dur, `${dur} d`]];
+    $("#details").innerHTML = `
+      <dt><label for="a-duration">${esc(t("d_duration"))}</label></dt><dd><select id="a-duration" data-attr="duration_days">${opts(durList, dur)}</select></dd>
+      <dt><label for="a-severity">${esc(t("d_severity"))}</label></dt><dd><select id="a-severity" data-attr="severity">${opts([["", "—"], ...Array.from({ length: 10 }, (_, i) => [String(i + 1), String(i + 1)])], a.severity == null ? "" : String(a.severity))}</select></dd>
+      <dt><label for="a-onset">${esc(t("d_onset"))}</label></dt><dd><select id="a-onset" data-attr="onset">${opts(t("onset_opts"), a.onset || "")}</select></dd>
+      <dt><label for="a-prog">${esc(t("d_progression"))}</label></dt><dd><select id="a-prog" data-attr="progression">${opts(t("prog_opts"), a.progression || "")}</select></dd>
+      <dt><label for="a-age">${esc(t("d_age"))}</label></dt><dd><select id="a-age" data-attr="age_group">${opts(t("age_opts"), a.age_group || "")}</select></dd>`;
+    $("#side-notices").innerHTML = (r.notices || []).map((n) => `<div class="notice lvl-${esc(n.level)}"><div class="lvl-title"><strong>${esc(n.label)}</strong></div>${n.citations.map(quoteBlock).join("")}</div>`).join("");
+  }
+
+  // ── results ──────────────────────────────────────────────────────────────
+  function renderResults(a) {
+    const box = $("#results");
+    if (!a) { box.hidden = true; box.innerHTML = ""; S.results = null; return; }
+    const key = JSON.stringify([a.status, a.conditions.map((c) => [c.id, c.support.level]), a.urgency.level, S.lang, a.reported]);
+    const updated = S.lastAssessKey && S.lastAssessKey !== key;
+    if (S.lastAssessKey === key && !box.hidden) return;
+    S.lastAssessKey = key; S.results = a;
+    const levelDots = { stronger: 3, partial: 2, limited: 1 };
+    const rep = a.reported;
+    box.innerHTML = `<div class="results">
+      <div class="results-head"><h2 tabindex="-1" id="results-title">${esc(t("res_title"))}</h2>
+        <div class="toolbar">
+          <button type="button" class="btn btn-sm btn-outline" data-act="copy">${esc(t("copy"))}</button>
+          <button type="button" class="btn btn-sm btn-outline" data-act="download">${esc(t("download"))}</button>
+          <button type="button" class="btn btn-sm btn-outline" data-act="print">${esc(t("print"))}</button>
+        </div></div>
+      ${updated ? `<div class="notice lvl-soon small">${esc(t("res_updated"))}</div>` : ""}
+      <div class="urgency lvl-${esc(a.urgency.level)}" role="status">
+        <div class="lvl-title">${esc(a.urgency.label)}</div>
+        ${a.urgency.reasons.length ? `<ul>${a.urgency.reasons.map((r) => `<li>${esc(r.text)} ${r.citations.map(citeLink).join(" ")}</li>`).join("")}</ul>` : ""}
+      </div>
+      <p class="summary-text">${esc(a.summary)}</p>
+      <div id="ai-summary"></div>
+      <div class="pill-row" aria-label="${esc(t("reported"))}">
+        ${rep.present.map((s) => `<span class="pill">✓ ${esc(s.label)}</span>`).join("")}
+        ${rep.absent.length ? `<span class="pill muted" title="${esc(rep.absent.map((s) => s.label).join(", "))}">✕ ${esc(t("absent_lbl"))}: ${rep.absent.length}</span>` : ""}
+        ${rep.duration ? `<span class="pill">⏱ ${esc(rep.duration)}</span>` : ""}
+        ${rep.severity ? `<span class="pill">${esc(t("d_severity"))}: ${esc(rep.severity)}</span>` : ""}
+      </div>
+      ${a.conditions.map((c, i) => `
+        <details class="cond" ${i === 0 ? "open" : ""}>
+          <summary>
+            <div style="flex:1;min-width:0">
+              <div class="cond-title">${esc(c.name)}</div>
+              <div class="cond-desc">${esc(c.description)}</div>
+            </div>
+            <span class="badge ${esc(c.support.level)}"><span class="dots" aria-hidden="true">${[1, 2, 3].map((n) => `<i class="${n <= levelDots[c.support.level] ? "on" : ""}"></i>`).join("")}</span>${esc(c.support.label)}</span>
+            <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </summary>
+          <div class="cond-body">
+            <div class="explain">${esc(c.explanation)}<div class="rule">${esc(c.support.rule)}</div>
+              ${c.description_citation ? `<div class="quote" style="margin-top:6px">${citeLink(c.description_citation)}</div>` : ""}</div>
+            <div><h4>${esc(t("what_fits"))}</h4><ul class="evi-list">
+              ${c.supporting.map((s) => `<li class="evi for"><span><strong>${esc(s.label)}</strong> · <span class="muted small">${esc(s.role_label)}</span></span>
+                ${s.user_words.length ? `<span class="yw">“${esc(s.user_words.join("”, “"))}”</span>` : ""}${quoteBlock(s.citation)}</li>`).join("")}
+            </ul></div>
+            ${c.against.length ? `<div><h4>${esc(t("what_not"))}</h4><ul class="evi-list">${c.against.map((x) => `<li class="evi against"><strong>${esc(x.label)}</strong><span class="small">${esc(x.note)}</span>${quoteBlock(x.citation)}</li>`).join("")}</ul></div>` : ""}
+            <div class="two-col">
+              ${c.unknown.length ? `<div><h4>${esc(t("what_unknown"))}</h4><div class="pill-row">${c.unknown.map((u) => `<span class="pill">${esc(u)}</span>`).join("")}</div></div>` : ""}
+              ${c.unexplained.length ? `<div><h4>${esc(t("what_unexplained"))}</h4><div class="pill-row">${c.unexplained.map((u) => `<span class="pill">${esc(u)}</span>`).join("")}</div></div>` : ""}
+            </div>
+            <div><h4>${esc(t("what_help"))}</h4><ul class="care-list">${c.clarify.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+            ${c.alternatives.length ? `<div><h4>${esc(t("alternatives"))}</h4><ul class="care-list">${c.alternatives.map((x) => `<li><strong>${esc(x.name)}</strong> — ${esc(x.why)}</li>`).join("")}</ul></div>` : ""}
+            ${c.context_note ? `<div class="notice lvl-soon small">${esc(c.context_note.text)} ${citeLink(c.context_note.citation)}</div>` : ""}
+            <div class="two-col">
+              <div><h4>${esc(t("self_care"))}</h4><ul class="care-list">${c.self_care.map((x) => `<li>${esc(x.text)} ${citeLink(x.citation)}</li>`).join("")}</ul></div>
+              <div><h4>${esc(t("see_doc"))}</h4><ul class="care-list">${c.see_doctor_if.map((x) => `<li>${esc(x.text)} ${citeLink(x.citation)}</li>`).join("")}</ul></div>
+            </div>
+            ${c.related_passages.length ? `<details class="plain"><summary>${esc(t("related"))}</summary>${c.related_passages.map((p) => `<div class="passage" style="margin-top:8px"><strong>${esc(p.section)}</strong>\n${esc(p.text)}\n<a class="cite-link" href="${esc(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.publisher.split(" (")[0])}: ${esc(p.title)} ↗</a></div>`).join("")}</details>` : ""}
+          </div>
+        </details>`).join("")}
+      ${a.more_conditions.length ? `<div><h4>${esc(t("more_conds"))}</h4><div class="pill-row">${a.more_conditions.map((m) => `<span class="pill">${esc(m.name)} · ${esc(m.support)}</span>`).join("")}</div></div>` : ""}
+      ${a.set_aside.length ? `<div><h4>${esc(t("set_aside"))}</h4><ul class="care-list">${a.set_aside.map((m) => `<li><strong>${esc(m.name)}</strong> — ${esc(m.reasons.filter(Boolean).join("; "))}</li>`).join("")}</ul></div>` : ""}
+      <details class="plain"><summary>${esc(t("how_assessed"))}</summary><p class="small">${esc(a.method)}</p>
+        <p class="small muted">${esc(t("validation"))}: ${esc(t("grounded")(a.validation.grounded, a.validation.claims))}${a.validation.issues.length ? " " + esc(a.validation.issues.join("; ")) : ""}</p></details>
+      <details class="plain"><summary>${esc(t("limitations"))}</summary><ul class="care-list small">${a.limitations.map((l) => `<li>${esc(l)}</li>`).join("")}</ul></details>
+      ${a.sources.length ? `<details class="plain"><summary>${esc(t("sources"))} (${a.sources.length})</summary><div class="sources-list" style="margin-top:8px">${a.sources.map(sourceRow).join("")}</div></details>` : ""}
+    </div>`;
+    box.hidden = false;
+    box.querySelector('[data-act="copy"]').addEventListener("click", copySummary);
+    box.querySelector('[data-act="download"]').addEventListener("click", downloadSummary);
+    box.querySelector('[data-act="print"]').addEventListener("click", () => window.print());
+    box.scrollIntoView({ block: "start", behavior: "smooth" });
+    if (a.status === "candidates") loadAiSummary();
+  }
+
+  function sourceRow(s) {
+    const f = s.freshness || {};
+    return `<div class="source-item"><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.publisher.split(" (")[0])}: ${esc(s.title)} ↗</a>
+      <span class="small muted">${s.last_reviewed ? `${esc(t("reviewed"))}: ${esc(s.last_reviewed)}` : ""}
+      <span class="fresh ${esc(f.status || "unknown")}" title="${esc(f.note || "")}">${f.status === "current" ? "✓" : f.status === "unknown" ? "?" : esc(t("outdated"))}</span></span></div>`;
+  }
+
+  async function loadAiSummary() {
+    const slot = $("#ai-summary");
+    if (!slot) return;
+    slot.innerHTML = `<p class="small muted">${esc(t("ai_loading"))}</p>`;
+    try {
+      const r = await api(`/api/assessments/${S.sid}/summary`, { timeout: 40000 });
+      if (!$("#ai-summary")) return;
+      $("#ai-summary").innerHTML = r.available ? `<div class="ai-summary"><strong class="small">${esc(t("ai_title"))}</strong><div>${esc(r.text)}</div><small>${esc(r.note)}</small></div>` : "";
+    } catch { const s2 = $("#ai-summary"); if (s2) s2.innerHTML = ""; }
+  }
+
+  function summaryText() {
+    const a = S.results;
+    if (!a) return "";
+    const L = [];
+    L.push(`MediBot — ${t("res_title")} (${new Date().toLocaleString()})`, "");
+    L.push(`${a.urgency.label}`);
+    a.urgency.reasons.forEach((r) => L.push(`  - ${r.text}${r.citations[0] ? ` [${r.citations[0].publisher}: ${r.citations[0].url}]` : ""}`));
+    L.push("", a.summary, "");
+    L.push(`${t("reported")}: ${a.reported.present.map((s) => s.label).join(", ")}`);
+    if (a.reported.absent.length) L.push(`${t("absent_lbl")}: ${a.reported.absent.map((s) => s.label).join(", ")}`);
+    if (a.reported.duration) L.push(`${t("d_duration")}: ${a.reported.duration}`);
+    a.conditions.forEach((c) => {
+      L.push("", `## ${c.name} — ${c.support.label}`, c.explanation, c.support.rule);
+      c.supporting.forEach((s) => L.push(`  + ${s.label}: "${s.citation.quote}" (${s.citation.publisher}, ${s.citation.url})`));
+      c.against.forEach((x) => L.push(`  - ${x.label}: ${x.note}${x.citation ? ` (${x.citation.url})` : ""}`));
+      L.push(`  ${t("see_doc")}:`); c.see_doctor_if.forEach((x) => L.push(`   • ${x.text}`));
+    });
+    L.push("", `${t("limitations")}:`); a.limitations.forEach((l) => L.push(`  • ${l}`));
+    return L.join("\n");
+  }
+  async function copySummary() {
+    try { await navigator.clipboard.writeText(summaryText()); toast(t("copied")); }
+    catch { downloadSummary(); }
+  }
+  function downloadSummary() {
+    const blob = new Blob([summaryText()], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href = url; a.download = "medibot-assessment.txt"; a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  // ── sending messages ─────────────────────────────────────────────────────
+  function send() {
+    const input = $("#input");
+    const text = input.value.trim();
+    if (!text || S.busy) return;
+    input.value = ""; autoGrow();
+    addMessage("user", text);
+    guarded(async () => handle(await api(`/api/assessments/${S.sid}/messages`, { method: "POST", body: { text } })), t("checking"));
+  }
+  function autoGrow() { const i = $("#input"); i.style.height = "auto"; i.style.height = Math.min(i.scrollHeight, 140) + "px"; }
+
+  // ── voice input (Groq Whisper via /transcribe) ───────────────────────────
+  let rec = null, chunks = [];
+  async function toggleMic() {
+    const btn = $("#mic-btn");
+    if (rec && rec.state === "recording") { rec.stop(); return; }
+    if (!navigator.mediaDevices || !window.MediaRecorder) { toast(t("mic_err"), true); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      rec = new MediaRecorder(stream); chunks = [];
+      rec.ondataavailable = (e) => chunks.push(e.data);
+      rec.onstop = async () => {
+        stream.getTracks().forEach((tr) => tr.stop());
+        btn.classList.remove("recording");
+        const fd = new FormData();
+        fd.append("audio", new Blob(chunks, { type: "audio/webm" }), "audio.webm");
+        fd.append("language", S.lang === "hi" ? "hi" : "en");
+        try {
+          const r = await fetch("/transcribe", { method: "POST", body: fd });
+          const d = await r.json();
+          if (!r.ok || !d.transcript) throw new Error();
+          $("#input").value = d.transcript; autoGrow(); $("#input").focus();
+        } catch { toast(t("mic_err"), true); }
+      };
+      rec.start(); btn.classList.add("recording");
+    } catch { toast(t("mic_err"), true); }
+  }
+
+  // ── sources dialog (landing footer) ──────────────────────────────────────
+  async function showSources(e) {
+    e.preventDefault();
+    try {
+      const r = await api("/api/sources");
+      const w = document.createElement("div");
+      w.className = "scrim"; w.style.zIndex = 60; w.style.display = "grid"; w.style.placeItems = "center"; w.style.padding = "16px";
+      w.innerHTML = `<div class="panel" role="dialog" aria-modal="true" aria-labelledby="src-t" style="max-width:720px;width:100%;max-height:85vh;overflow:auto;padding:18px">
+        <div class="results-head"><h2 id="src-t" style="font-size:1.1rem;margin:0">${esc(t("sources_title"))}</h2><button class="btn btn-sm btn-outline" data-close>${esc(t("close"))}</button></div>
+        <div class="sources-list" style="margin-top:12px">${r.sources.map(sourceRow).join("")}</div></div>`;
+      document.body.appendChild(w);
+      const close = () => w.remove();
+      w.addEventListener("click", (ev) => { if (ev.target === w || ev.target.closest("[data-close]")) close(); });
+      document.addEventListener("keydown", function esc_(ev) { if (ev.key === "Escape") { close(); document.removeEventListener("keydown", esc_); } });
+      w.querySelector("[data-close]").focus();
+    } catch (err) { toast(err.message, true); }
+  }
+
+  // ── wiring ───────────────────────────────────────────────────────────────
+  function openSide(open) {
+    $("#side").classList.toggle("open", open);
+    let scrim = $(".scrim.side-scrim");
+    if (open && !scrim && window.matchMedia("(max-width: 960px)").matches) {
+      scrim = document.createElement("div"); scrim.className = "scrim side-scrim";
+      scrim.addEventListener("click", () => openSide(false)); document.body.appendChild(scrim);
+    } else if (!open && scrim) scrim.remove();
+  }
+
+  async function restart() {
+    store.set("medibot_sid", null);
+    await guarded(() => startAssessment());
+  }
+
+  function init() {
+    S.lang = store.get("medibot_lang") || "hi";
+    applyStatic();
+    api("/api/meta").then((m) => { S.meta = m; if (S.last) renderSide(S.last); }).catch(() => {});
+
+    $$(".lang-toggle button").forEach((b) => b.addEventListener("click", () => setLanguage(b.dataset.lang)));
+    $("#start-btn").addEventListener("click", () => guarded(async () => {
+      const saved = store.get("medibot_sid");
+      if (saved) { try { await resume(saved); return; } catch { store.set("medibot_sid", null); } }
+      await startAssessment();
+    }));
+    $("#categories").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-cat]");
+      if (b) guarded(() => startAssessment(b.dataset.cat));
+    });
+    $("#composer").addEventListener("submit", (e) => { e.preventDefault(); send(); });
+    $("#input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } });
+    $("#input").addEventListener("input", autoGrow);
+    $("#mic-btn").addEventListener("click", toggleMic);
+    $("#assess-now").addEventListener("click", () => guarded(async () => {
+      $$(".qcard").forEach((c) => c.remove());
+      handle(await api(`/api/assessments/${S.sid}/assessment`, { method: "POST" }));
+    }, t("building")));
+    $("#restart-btn").addEventListener("click", restart);
+    $("#restart-btn-2").addEventListener("click", restart);
+    $("#home-link").addEventListener("click", (e) => { e.preventDefault(); showLanding(); });
+    $("#sources-link").addEventListener("click", showSources);
+    $("#summary-toggle").addEventListener("click", () => openSide(!$("#side").classList.contains("open")));
+    $("#side-close").addEventListener("click", () => openSide(false));
+
+    $("#sym-list").addEventListener("change", (e) => {
+      const sel = e.target.closest("select[data-sym]");
+      if (sel) guarded(async () => handle(await api(`/api/assessments/${S.sid}/symptoms/${sel.dataset.sym}`, { method: "PATCH", body: { status: sel.value } })));
+    });
+    $("#sym-list").addEventListener("click", (e) => {
+      const b = e.target.closest("[data-rm]");
+      if (b) guarded(async () => handle(await api(`/api/assessments/${S.sid}/symptoms/${b.dataset.rm}`, { method: "DELETE" })));
+    });
+    $("#add-symptom-btn").addEventListener("click", () => {
+      const id = $("#add-symptom").value;
+      if (id) guarded(async () => handle(await api(`/api/assessments/${S.sid}/symptoms`, { method: "POST", body: { symptoms: [{ id, status: "present" }] } })));
+    });
+    $("#details").addEventListener("change", (e) => {
+      const sel = e.target.closest("select[data-attr]");
+      if (sel) guarded(async () => handle(await api(`/api/assessments/${S.sid}/attributes`, { method: "PATCH", body: { name: sel.dataset.attr, value: sel.value || null } })));
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+})();

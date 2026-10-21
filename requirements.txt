@@ -2,3 +2,7 @@ flask
 groq
 python-dotenv
 gunicorn
+pydantic>=2
+numpy
+requests
+beautifulsoup4
