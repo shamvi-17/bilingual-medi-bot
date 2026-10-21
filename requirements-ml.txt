@@ -1,0 +1,3 @@
+# Optional: multilingual dense retrieval (hybrid with BM25). Without it the app uses BM25 only.
+-r requirements.txt
+sentence-transformers

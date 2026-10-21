@@ -1,161 +1,137 @@
-# Explainable Bilingual Medical Chatbot
+# MediBot — Explainable Bilingual Symptom Guide
 
-A Hinglish (Hindi + English) medical chatbot that provides symptom-based disease guidance using a knowledge graph built from WHO fact sheets. Powered by Groq LLM with an interactive D3.js knowledge graph visualization.
+A prototype symptom-assessment assistant for Indian users that talks in **Hinglish** (Roman-script Hindi + English) or **English**, screens for emergency warning signs first, asks only the follow-up questions that change the picture, and explains which common, lower-risk conditions fit — with a verifiable source passage behind every medical statement.
 
----
-
-## Features
-
-- **Bilingual chat** — responds in natural Hinglish (Hindi + English mix)
-- **Symptom-based retrieval** — matches user symptoms to diseases via a keyword-indexed knowledge graph
-- **Explainable reasoning** — tells users *why* a disease is suspected, not just what it is
-- **Emergency triage** — bypasses LLM for critical keywords (chest pain, seizure, etc.) and routes to emergency services immediately
-- **Knowledge graph visualization** — interactive D3.js force-directed graph of 76 diseases and their symptom connections
-- **WHO-sourced data** — all disease facts scraped from official WHO fact sheets and structured by LLM
+> **Not a diagnostic device.** It compares answers with public patient-information pages (NHS, MedlinePlus, WHO). The rules have **not** been reviewed by a clinician, and the evaluation in `evaluation/` is a software test, not a clinical validation.
 
 ---
 
-## Project Structure
-
-```
-project_out/
-├── app.py                  # Flask web server and API routes
-├── chatbot.py              # Groq LLM client, system prompt, message builder
-├── knowledge_graph.py      # DiseaseKnowledgeGraph — loads JSON, indexes symptoms, retrieves context
-├── fetch_datasets.py       # One-time scraper: fetches 73 diseases from WHO → dataset_OUR/
-├── refetch.py              # Re-fetches 21 sparse/old disease files with better WHO content
-├── refetch2.py             # Re-fetches 11 remaining empty disease files
-├── requirements.txt        # Python dependencies
-├── .env                    # API keys (not committed)
-├── dataset_OUR/            # 76 WHO-sourced disease JSON files
-└── templates/
-    ├── index.html          # Chat UI (Hinglish, suggestion chips, emergency banner)
-    └── graph.html          # D3.js knowledge graph visualization
-```
-
----
-
-## Setup
-
-### 1. Install dependencies
+## Quick start
 
 ```bash
-pip install -r requirements.txt
-pip install beautifulsoup4 requests  # needed for fetch scripts
+pip install -r requirements-dev.txt
 ```
 
-### 2. Configure environment
-
-Create a `.env` file in the project root:
-
+```bash
+cp .env.example .env    # optional: add GROQ_API_KEY
 ```
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-Get a free key at [console.groq.com](https://console.groq.com).
-
-### 3. Run the app
 
 ```bash
 python app.py
 ```
 
-Open `http://127.0.0.1:5000` in your browser.
-
----
-
-## How It Works
-
-### Chat Flow
-
-```
-User message
-    │
-    ├─ is_emergency() ──► Hardcoded emergency response (112/108)
-    │
-    └─ DiseaseKnowledgeGraph.retrieve()
-            │  keyword match + disease name match
-            └─ Top 3–4 relevant diseases
-                    │
-                    └─ Injected into user turn as [KNOWLEDGE BASE]
-                            │
-                            └─ Groq LLM (llama-3.3-70b-versatile)
-                                    │
-                                    └─ Hinglish response with reasoning
-```
-
-### Knowledge Graph
-
-- **76 diseases** from WHO fact sheets
-- **42 symptom keywords** (English + Hinglish)
-- Each disease is linked to symptom nodes it mentions across all fields (symptoms, diagnosis, treatment, transmission, prevention, overview)
-- Retrieval uses keyword scoring — diseases with more symptom matches rank higher
-
-### Model Fallback Chain
-
-The app tries models in order, falling back on rate limits:
-1. `llama-3.3-70b-versatile` — primary (best quality)
-2. `llama-3.1-8b-instant` — fallback
-3. `gemma2-9b-it` — last resort
-
----
-
-## API Routes
-
-| Route | Method | Description |
-|-------|--------|-------------|
-| `/` | GET | Chat UI |
-| `/chat` | POST | Send message, get LLM reply |
-| `/reset` | POST | Clear conversation history |
-| `/graph` | GET | Knowledge graph visualization |
-| `/kg-info` | GET | `{"count": 76}` — number of loaded diseases |
-| `/kg-data` | GET | Graph nodes and links for D3.js |
-
-### `/chat` Request/Response
-
-```json
-// Request
-{ "message": "mujhe bukhar aur sar dard hai" }
-
-// Response
-{ "reply": "Samajh sakta hoon...", "emergency": false }
-```
-
----
-
-## Dataset
-
-76 JSON files in `dataset_OUR/`, each structured as:
-
-```json
-{
-  "disease": "Dengue",
-  "source": "World Health Organization (WHO) – Fact Sheet",
-  "overview": "...",
-  "symptoms": ["high fever", "severe headache", "pain behind eyes", ...],
-  "diagnosis": ["NS1 antigen test", "PCR", ...],
-  "treatment": ["fluid replacement", "paracetamol", ...],
-  "transmission": ["Aedes mosquito bite"],
-  "prevention": ["mosquito repellent", "eliminate standing water", ...],
-  "risk_factors": ["tropical climate", "urban areas", ...],
-  "complications": ["dengue haemorrhagic fever", "dengue shock syndrome"],
-  "key_facts": ["400 million infections per year", ...]
-}
-```
-
-To rebuild the dataset from scratch:
+Open http://localhost:5001. Optional multilingual dense retrieval (otherwise BM25 only):
 
 ```bash
-python fetch_datasets.py   # fetches all 73+ diseases
-python refetch.py          # re-fetches sparse entries
-python refetch2.py         # re-fetches remaining empty entries
+pip install -r requirements-ml.txt
 ```
+
+Run the tests and the scenario evaluation:
+
+```bash
+python -m pytest -q
+```
+
+```bash
+python -m evaluation.run_eval
+```
+
+The app works **without** a Groq key: rule-based extraction, red-flag screening, matching, retrieval and explanations are all local. The key only enables (a) understanding wording the rules don't recognise, (b) an optional plain-language rephrasing of the assessment, and (c) voice input.
 
 ---
 
-## Safety Disclaimers
+## How an assessment works
 
-- This chatbot is for **informational purposes only** and does not provide medical diagnosis.
-- All responses end with a recommendation to consult a doctor.
-- Emergency symptoms trigger an immediate hardcoded response directing users to call 112 (India emergency) or 108 (ambulance).
-- The LLM is explicitly instructed never to give definitive diagnoses — only possibilities.
+```
+user text / answer
+   │
+   ├─ extraction.py     English + Hinglish lexicon → canonical symptoms (present / absent / unsure),
+   │                    user's own words, duration, onset, progression, severity hints; ambiguous words
+   │                    ("dard", "cold", "weakness") trigger a clarification question instead of a guess
+   │                    └─ llm.py (optional) maps unrecognised wording onto the SAME vocabulary; output is
+   │                       rejected unless ids exist and the quoted words are really in the message
+   ├─ redflags.py       runs on every turn, before anything else; emergency → routine assessment stops
+   │                    and 112 / 108 (or Tele-MANAS 14416) guidance is shown with the cited reason
+   ├─ followup.py       safety screen for the body areas involved → age, duration → discriminating
+   │                    checklists chosen by how much they separate the remaining candidates → a few
+   │                    context questions only when relevant. Nothing already answered is asked again.
+   ├─ matcher.py        explicit counting rules over source-derived symptom–condition associations;
+   │                    qualitative levels only (no percentages); conditions with too much against them
+   │                    are "set aside", never "ruled out"; no candidate → "insufficient", no guess
+   ├─ retrieval.py      hybrid BM25 + multilingual MiniLM embeddings over the ingested corpus, with
+   │                    topic filters, source priority and a relevance check
+   ├─ explain.py        per-condition explanation: what fits (user's words + source quote), what fits
+   │                    less well, what's unknown, alternatives, what would help, self-care, when to see
+   │                    a doctor, urgency with reasons — every claim resolved to a verbatim passage
+   └─ engine.py / state.py   orchestration + structured state persisted in SQLite between requests
+```
+
+The language model never decides likelihoods or conditions. It is optional and its output is validated.
+
+### Scope
+
+Common cold, flu-like illness, allergic rhinitis, sinusitis, sore throat, indigestion/acid reflux, constipation, tension-type headache, migraine, contact dermatitis, hives, heat rash. Symptoms outside this scope are recorded and the user is told the tool can't assess them. Children under 12 are out of scope (no condition suggestions; advice to see a doctor). Red-flag screening covers chest pain, severe breathing difficulty, stroke signs, sudden severe headache, meningitis signs, anaphylaxis, inability to swallow, severe bleeding / vomiting blood, black stool, severe abdominal pain, dengue warning signs, seizures, confusion/fainting and self-harm, plus "get help today" rules (e.g. blood in stool, headache with vomiting).
+
+No medicines or doses are recommended; self-care is limited to non-drug measures from the sources, and medicine questions are directed to a pharmacist or doctor.
+
+---
+
+## Project structure
+
+```
+app.py                      Flask app: UI, /api blueprint, legacy /chat, /transcribe, knowledge-graph pages
+medassist/
+  config.py                 environment-driven settings
+  extraction.py             symptom extraction (EN / Hinglish), negation, uncertainty, duration
+  redflags.py               red-flag screening layer
+  followup.py               adaptive question selection + answer application
+  matcher.py                conservative condition matching
+  retrieval.py              hybrid retrieval (BM25 + optional embeddings)
+  explain.py                explanation engine + urgency + citation validation
+  llm.py                    optional Groq helpers with output validation
+  engine.py, state.py       orchestration and persisted state
+  api.py                    JSON API with validated request models
+  data/                     reviewable rule data: symptoms.json, redflags.json, conditions.json, questions.json
+  knowledge/                sources.json, ingest.py, corpus.jsonl, manifest.json, verify_live.py
+templates/index.html        landing page + assessment workspace
+static/css/app.css, static/js/app.js
+tests/                      pytest suite (147 tests)
+evaluation/                 scenario dataset, runner, results.md
+docs/KNOWLEDGE_BASE.md      sources, ingestion, licensing, known gaps
+dataset_OUR/, knowledge_graph.py, chatbot.py, templates/graph.html, fetch_datasets.py, refetch*.py
+                            original WHO fact-sheet dataset and D3 knowledge-graph explorer (kept)
+```
+
+## API
+
+| Method | Path | Purpose |
+|---|---|---|
+| POST | `/api/assessments` | start (`{"language": "hi"\|"en"}`) |
+| GET | `/api/assessments/{id}` | current state + transcript |
+| POST | `/api/assessments/{id}/messages` | free-text symptoms (`{"text": ...}`) |
+| POST | `/api/assessments/{id}/answers` | answer a follow-up (`{"question_id", "value"}`) |
+| POST | `/api/assessments/{id}/symptoms` | add structured symptoms |
+| PATCH / DELETE | `/api/assessments/{id}/symptoms/{symptom}` | correct (`present`/`absent`/`unsure`) or remove |
+| PATCH | `/api/assessments/{id}/attributes` | edit duration, severity, onset, progression, age group |
+| PATCH | `/api/assessments/{id}/language` | switch language, keeping all answers |
+| POST | `/api/assessments/{id}/red-flags/{flag}/dismiss` | "this doesn't apply to me" |
+| POST | `/api/assessments/{id}/assessment` | produce the assessment now |
+| GET | `/api/assessments/{id}/summary` | optional LLM plain-language rephrasing (validated) |
+| POST | `/api/assessments/{id}/reset` | start over |
+| GET | `/api/evidence?q=&condition=` | search the evidence corpus |
+| GET | `/api/sources`, `/api/sources/{id}` | source metadata, review dates, passages |
+| GET | `/api/health`, `/api/meta` | corpus / retrieval / LLM status; symptom & condition vocabulary |
+
+Every response for an assessment has the same shape: `stage`, `progress`, new `messages`, at most one `question`, `emergency` or `assessment`, plus the editable `symptoms` and `attributes`. Errors are `{"error": {"code", "message", "details"}}`.
+
+## Knowledge base
+
+`python -m medassist.knowledge.ingest` fetches the 40 pages in `medassist/knowledge/sources.json` (NHS, MedlinePlus, WHO), extracts the main text, and stores 374 section-aware chunks verbatim with publisher, URL, last-reviewed date and retrieval date. `python -m medassist.knowledge.verify_live` checks every quote the rules cite against the live pages. See [docs/KNOWLEDGE_BASE.md](docs/KNOWLEDGE_BASE.md) for licensing and the documented gaps (no India-specific MoHFW/NHP pages yet; CDC blocks automated access).
+
+## Original WHO knowledge graph
+
+The original 76-disease WHO dataset and the D3 explorer are still available at `/graph`. Those JSON files were structured by an LLM from WHO fact sheets and contain no source URLs or verbatim text, so they are **not** used as evidence in assessments.
+
+## Deployment (Render)
+
+`render.yaml` deploys with gunicorn, BM25-only retrieval (torch is too heavy for the free plan) and a generated `SECRET_KEY`. Set `GROQ_API_KEY` in the dashboard if wanted. The free plan's disk is ephemeral, so saved assessments don't survive redeploys.

@@ -1,49 +1,64 @@
 from flask import Flask, request, jsonify, render_template, session
-from chatbot import get_reply, is_emergency, kg, transcribe_audio
+from chatbot import kg, transcribe_audio
+from medassist.api import bp as api_bp, store
+from medassist.engine import get_engine
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+# A fixed SECRET_KEY keeps sessions valid across gunicorn workers/restarts; random is fine for local dev.
+app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
+app.config["JSON_SORT_KEYS"] = False
+app.register_blueprint(api_bp)
+
+
+def _warm_up():
+    """Load the corpus and embedding index in the background so the first assessment isn't slow."""
+    try:
+        from medassist.retrieval import get_retriever
+        get_retriever()
+    except Exception:
+        app.logger.exception("Retriever warm-up failed; retrieval will fall back on first use")
+
+
+if os.environ.get("MEDASSIST_WARMUP", "1") == "1":
+    import threading
+    threading.Thread(target=_warm_up, daemon=True).start()
+
 
 @app.route("/")
 def index():
-    session["history"] = []
     return render_template("index.html")
+
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.get_json()
+    """Legacy text-only endpoint, now backed by the structured assessment engine."""
+    data = request.get_json(silent=True) or {}
     user_message = data.get("message", "").strip()
     if not user_message:
         return jsonify({"error": "Empty message"}), 400
+    engine = get_engine()
+    st = store().get(session.get("assessment_id", "")) if session.get("assessment_id") else None
+    if st is None:
+        st, _ = engine.start(data.get("language", "hi"))
+        session["assessment_id"] = st.id
+    resp = engine.message(st, user_message)
+    store().save(st)
+    parts = [m["text"] for m in resp["messages"]]
+    if resp["emergency"]:
+        e = resp["emergency"]
+        parts = [e["title"], e["instruction"]]
+    elif resp["question"]:
+        q = resp["question"]
+        parts.append(q["text"] + (" (" + " / ".join(o["label"] for o in q["options"]) + ")" if q["options"] else ""))
+    elif resp["assessment"]:
+        parts.append(resp["assessment"]["summary"])
+    return jsonify({"reply": "\n".join(p for p in parts if p), "emergency": bool(resp["emergency"]),
+                    "assessment_id": st.id})
 
-    # Emergency triage — bypass LLM for speed
-    if is_emergency(user_message):
-        reply = (
-            "Yeh symptoms serious lag rahe hain. "
-            "Please ABHI emergency services call karein ya nearest hospital jaayein. "
-            "India mein: 112 (emergency) | 108 (ambulance)"
-        )
-        return jsonify({"reply": reply, "emergency": True})
-
-    # Get or init conversation history
-    history = session.get("history", [])
-
-    # Get LLM reply
-    try:
-        reply = get_reply(user_message, history)
-    except Exception as e:
-        return jsonify({"reply": "Server abhi busy hai. Thodi der baad try karein. (Service temporarily unavailable)", "emergency": False}), 200
-
-    # Update session history (keep last 10 turns to manage token cost)
-    history.append({"role": "user", "content": user_message})
-    history.append({"role": "assistant", "content": reply})
-    session["history"] = history[-20:]  # last 10 turns = 20 messages
-
-    return jsonify({"reply": reply, "emergency": False})
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
@@ -56,11 +71,12 @@ def transcribe():
         transcript = transcribe_audio(audio.read(), audio.filename or "audio.webm", language, context)
         return jsonify({"transcript": transcript})
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": "Voice input is unavailable right now. Please type your symptoms instead."}), 503
+
 
 @app.route("/reset", methods=["POST"])
 def reset():
-    session["history"] = []
+    session.pop("assessment_id", None)
     return jsonify({"status": "ok"})
 
 @app.route("/kg-info")
@@ -112,4 +128,4 @@ def kg_data():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=os.environ.get("FLASK_DEBUG") == "1")

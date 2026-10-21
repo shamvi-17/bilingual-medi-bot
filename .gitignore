@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .DS_Store
 requirements/settings.local.json
+instance/
+medassist/knowledge/index/
+.pytest_cache/
+evaluation/results.json

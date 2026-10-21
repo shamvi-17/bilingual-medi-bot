@@ -1,0 +1,372 @@
+{
+  "_comment": "Symptom-condition associations for the initial, lower-risk scope. Each association is transcribed from the cited passage (quote must appear verbatim in corpus.jsonl; enforced by tests/test_grounding.py). These rules were written by the software author from public NHS / MedlinePlus / WHO patient information and have NOT been reviewed by a clinician. role=key: a characteristic feature named in the source's main symptom list; role=supporting: listed as a possible/additional symptom. `not_typical`: reported findings the sources link to a different cause. `required_any`: the condition is not suggested unless at least one of these is present. Self-care items are deliberately limited to non-drug measures; medicine questions are directed to a pharmacist or doctor.",
+  "conditions": {
+    "common_cold": {
+      "name": {"en": "Common cold", "hi": "Common cold (sardi-zukaam)"},
+      "description": {"en": "A mild viral infection of the nose and throat. It usually gets better on its own.", "hi": "Naak aur gale ka halka viral infection. Yeh aam taur par apne aap theek ho jaata hai."},
+      "description_evidence": {"source_id": "mlp-common-cold", "quote": "The common cold is a mild infection of your upper respiratory tract (which includes your nose and throat)."},
+      "required_any": ["blocked_nose", "runny_nose", "sneezing", "sore_throat"],
+      "features": [
+        {"symptom": "blocked_nose", "role": "key", "evidence": {"source_id": "nhs-common-cold", "quote": "a blocked or runny nose"}},
+        {"symptom": "runny_nose", "role": "key", "evidence": {"source_id": "nhs-common-cold", "quote": "a blocked or runny nose"}},
+        {"symptom": "sneezing", "role": "key", "evidence": {"source_id": "nhs-common-cold", "quote": "sneezing"}},
+        {"symptom": "sore_throat", "role": "key", "evidence": {"source_id": "nhs-common-cold", "quote": "a sore throat"}},
+        {"symptom": "throat_irritation", "role": "supporting", "evidence": {"source_id": "nhs-sore-throat", "quote": "Sore throats are usually caused by viruses (like cold or flu)"}},
+        {"symptom": "hoarse_voice", "role": "supporting", "evidence": {"source_id": "nhs-common-cold", "quote": "a hoarse voice"}},
+        {"symptom": "cough", "role": "supporting", "evidence": {"source_id": "nhs-common-cold", "quote": "a cough"}},
+        {"symptom": "fatigue", "role": "supporting", "evidence": {"source_id": "nhs-common-cold", "quote": "feeling tired and unwell"}},
+        {"symptom": "fever", "role": "supporting", "evidence": {"source_id": "nhs-common-cold", "quote": "a high temperature"}},
+        {"symptom": "body_ache", "role": "supporting", "evidence": {"source_id": "nhs-common-cold", "quote": "aching muscles"}},
+        {"symptom": "loss_of_smell", "role": "supporting", "evidence": {"source_id": "nhs-common-cold", "quote": "a loss of taste and smell"}},
+        {"symptom": "facial_pain", "role": "supporting", "evidence": {"source_id": "nhs-common-cold", "quote": "a feeling of pressure in your ears and face"}},
+        {"symptom": "postnasal_drip", "role": "supporting", "evidence": {"source_id": "mlp-ency-common-cold", "quote": "Postnasal drip"}},
+        {"symptom": "headache", "role": "supporting", "evidence": {"source_id": "nhs-headaches", "quote": "having a cold or flu"}}
+      ],
+      "onset": {"expected": "gradual", "evidence": {"source_id": "nhs-common-cold", "quote": "Cold symptoms come on gradually over 2 to 3 days."}},
+      "max_typical_days": 14,
+      "duration_evidence": {"source_id": "nhs-hay-fever", "quote": "Hay fever can last for weeks or months, unlike a cold, which usually goes away after 1 to 2 weeks."},
+      "not_typical": [
+        {"symptom": "itchy_eyes", "note": {"en": "Itchy, watery eyes are listed as a typical allergic rhinitis symptom, not in the main cold symptom list.", "hi": "Aankhon mein khujli/paani allergic rhinitis ka typical symptom bataya gaya hai, cold ki main list mein nahi."}, "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "itchy, red and watery eyes"}}
+      ],
+      "alternatives": ["allergic_rhinitis", "flu_like_illness", "sinusitis", "sore_throat"],
+      "self_care": [
+        {"en": "Rest and drink plenty of fluids such as water.", "hi": "Aaram karein aur paani jaise liquids khoob piyein.", "evidence": {"source_id": "nhs-common-cold", "quote": "drink lots of fluid, such as water, to avoid dehydration"}},
+        {"en": "Gargle with warm salt water to soothe a sore throat (not for children).", "hi": "Gale ke liye gungune namak-paani se garare karein (bachchon ke liye nahi).", "evidence": {"source_id": "nhs-common-cold", "quote": "gargle salt water to soothe a sore throat (not suitable for children)"}},
+        {"en": "Breathing in steam (for example near a hot shower) can ease a blocked nose. Do not let children breathe steam from a bowl of hot water.", "hi": "Bhaap lena (jaise garam shower ke paas) band naak mein madad kar sakta hai. Bachchon ko garam paani ke bowl se bhaap na dilayein.", "evidence": {"source_id": "nhs-common-cold", "quote": "breathe in steam to ease a blocked nose"}},
+        {"en": "Antibiotics do not help a cold, because colds are caused by viruses.", "hi": "Cold mein antibiotics kaam nahi karte, kyunki cold virus se hota hai.", "evidence": {"source_id": "mlp-common-cold", "quote": "Antibiotics will not help with a cold."}},
+        {"en": "Ask a pharmacist before taking any cold medicine, especially if you take other medicines.", "hi": "Koi bhi cold medicine lene se pehle pharmacist se poochein, khaaskar agar aap doosri dawaiyan le rahe hain.", "evidence": {"source_id": "nhs-common-cold", "quote": "A pharmacist can advise you on the best medicine"}}
+      ],
+      "see_doctor_if": [
+        {"en": "Fever lasts more than 3 days, or is very high.", "hi": "Bukhar 3 din se zyada rahe, ya bahut tez ho.", "evidence": {"source_id": "nhs-common-cold", "quote": "you have a high temperature for more than 3 days"}},
+        {"en": "Symptoms get worse, or do not improve after 10 days.", "hi": "Symptoms badhte jaayein, ya 10 din baad bhi theek na hon.", "evidence": {"source_id": "nhs-common-cold", "quote": "your cold symptoms do not get better after 10 days"}},
+        {"en": "You feel short of breath or have chest pain.", "hi": "Saans phoole ya seene mein dard ho.", "evidence": {"source_id": "nhs-common-cold", "quote": "you feel short of breath or have chest pain"}},
+        {"en": "Cough lasts more than 3 weeks, or you have a long-term condition (like diabetes, heart, lung or kidney disease) or weak immunity.", "hi": "Khaansi 3 hafte se zyada chale, ya aapko diabetes, dil, phephde ya kidney ki lambi bimari ya kamzor immunity ho.", "evidence": {"source_id": "nhs-common-cold", "quote": "you have a cough for more than 3 weeks"}}
+      ]
+    },
+
+    "flu_like_illness": {
+      "name": {"en": "Flu (influenza)-like illness", "hi": "Flu (influenza) jaisi bimari"},
+      "description": {"en": "A viral infection that tends to come on quickly and feel more severe than a cold, with fever and body aches.", "hi": "Ek viral infection jo jaldi shuru hota hai aur cold se zyada bhaari lagta hai — bukhar aur badan dard ke saath."},
+      "description_evidence": {"source_id": "nhs-common-cold", "quote": "Cold and flu symptoms are similar, but flu tends to be more severe."},
+      "required_any": ["fever"],
+      "features": [
+        {"symptom": "fever", "role": "key", "evidence": {"source_id": "nhs-flu", "quote": "a sudden high temperature"}},
+        {"symptom": "body_ache", "role": "key", "evidence": {"source_id": "nhs-flu", "quote": "an aching body"}},
+        {"symptom": "fatigue", "role": "key", "evidence": {"source_id": "nhs-flu", "quote": "feeling tired or exhausted"}},
+        {"symptom": "cough", "role": "supporting", "evidence": {"source_id": "nhs-flu", "quote": "a dry cough"}},
+        {"symptom": "sore_throat", "role": "supporting", "evidence": {"source_id": "nhs-flu", "quote": "a sore throat"}},
+        {"symptom": "headache", "role": "supporting", "evidence": {"source_id": "nhs-flu", "quote": "a headache"}},
+        {"symptom": "loss_of_appetite", "role": "supporting", "evidence": {"source_id": "nhs-flu", "quote": "loss of appetite"}},
+        {"symptom": "chills", "role": "supporting", "evidence": {"source_id": "nhs-fever-adults", "quote": "feeling shivery (chills)"}}
+      ],
+      "onset": {"expected": "sudden", "evidence": {"source_id": "nhs-flu", "quote": "Flu symptoms come on very quickly"}},
+      "max_typical_days": 14,
+      "duration_evidence": {"source_id": "nhs-flu", "quote": "your symptoms do not improve after 7 days"},
+      "not_typical": [],
+      "alternatives": ["common_cold"],
+      "context_note": {"en": "In India, fever with body aches can also be caused by infections such as dengue, which cannot be told apart from flu by symptoms alone and need a doctor's assessment and sometimes a blood test.", "hi": "India mein bukhar aur badan dard dengue jaise infections se bhi ho sakte hain, jinhe sirf symptoms se flu se alag nahi kiya ja sakta — iske liye doctor ka check-up aur kabhi blood test zaroori hota hai.",
+        "evidence": {"source_id": "who-dengue", "quote": "muscle and joint pains"}},
+      "self_care": [
+        {"en": "Rest, sleep and drink plenty of water to avoid dehydration.", "hi": "Aaram karein, neend poori lein aur dehydration se bachne ke liye khoob paani piyein.", "evidence": {"source_id": "nhs-flu", "quote": "drink plenty of water to avoid dehydration"}},
+        {"en": "Stay at home and avoid contact with others while you have a fever.", "hi": "Bukhar rehne tak ghar par rahein aur doosron se door rahein.", "evidence": {"source_id": "nhs-flu", "quote": "Try to stay at home and avoid contact with other people if you have a high temperature"}},
+        {"en": "Antibiotics do not work for flu; ask a pharmacist or doctor about medicines for fever and aches.", "hi": "Flu mein antibiotics kaam nahi karte; bukhar ya dard ki dawai ke liye pharmacist ya doctor se poochein.", "evidence": {"source_id": "nhs-flu", "quote": "Antibiotics do not work for viral infections such as flu."}}
+      ],
+      "see_doctor_if": [
+        {"en": "You feel very unwell, short of breath, or symptoms do not improve after 7 days.", "hi": "Bahut zyada bimaar lage, saans phoole, ya 7 din baad bhi sudhaar na ho.", "evidence": {"source_id": "nhs-flu", "quote": "your symptoms do not improve after 7 days"}},
+        {"en": "You are 65 or over, pregnant, or have a long-term condition or weak immunity.", "hi": "Aapki umar 65+ hai, pregnant hain, ya koi lambi bimari ya kamzor immunity hai.", "evidence": {"source_id": "nhs-flu", "quote": "you're 65 or over"}}
+      ]
+    },
+
+    "allergic_rhinitis": {
+      "name": {"en": "Allergic rhinitis (nasal allergy)", "hi": "Allergic rhinitis (naak ki allergy)"},
+      "description": {"en": "Sneezing, itchy and runny or blocked nose caused by an allergic reaction to things like dust mites, pollen, pet dander or mould.", "hi": "Dhool ke kanon (dust mites), pollen, paaltu jaanwaron ke baal ya seelan jaisi cheezon se allergic reaction — jisme chheenk, naak mein khujli aur naak behna/band hona hota hai."},
+      "description_evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "Allergic rhinitis is caused by an allergic reaction."},
+      "required_any": ["sneezing", "runny_nose", "blocked_nose", "itchy_nose"],
+      "features": [
+        {"symptom": "sneezing", "role": "key", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "sneezing"}},
+        {"symptom": "itchy_nose", "role": "key", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "an itchy nose"}},
+        {"symptom": "runny_nose", "role": "key", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "a runny or blocked nose"}},
+        {"symptom": "blocked_nose", "role": "key", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "a runny or blocked nose"}},
+        {"symptom": "itchy_eyes", "role": "key", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "itchy, red and watery eyes"}},
+        {"symptom": "allergen_trigger", "role": "key", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "This usually happens within minutes of coming into contact with something you're allergic to."}},
+        {"symptom": "cough", "role": "supporting", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "a cough"}},
+        {"symptom": "throat_irritation", "role": "supporting", "evidence": {"source_id": "nhs-hay-fever", "quote": "itchy throat, mouth, nose and ears"}},
+        {"symptom": "postnasal_drip", "role": "supporting", "evidence": {"source_id": "mlp-hay-fever", "quote": "Coughing and postnasal drip"}},
+        {"symptom": "loss_of_smell", "role": "supporting", "evidence": {"source_id": "nhs-hay-fever", "quote": "loss of smell"}},
+        {"symptom": "headache", "role": "supporting", "evidence": {"source_id": "nhs-hay-fever", "quote": "headache"}},
+        {"symptom": "fatigue", "role": "supporting", "evidence": {"source_id": "mlp-ency-allergic-rhinitis", "quote": "Fatigue and irritability"}},
+        {"symptom": "sore_throat", "role": "supporting", "evidence": {"source_id": "mlp-ency-allergic-rhinitis", "quote": "Sore throat"}}
+      ],
+      "long_duration_supports": true,
+      "duration_evidence": {"source_id": "nhs-hay-fever", "quote": "Hay fever can last for weeks or months, unlike a cold, which usually goes away after 1 to 2 weeks."},
+      "not_typical": [
+        {"symptom": "fever", "note": {"en": "Fever is not listed among allergic rhinitis symptoms in the cited sources; fever points more towards an infection such as a cold or flu.", "hi": "Diye gaye sources mein bukhar allergic rhinitis ke symptoms mein nahi hai; bukhar infection (jaise cold ya flu) ki taraf zyada ishaara karta hai."}, "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "Common symptoms of allergic rhinitis are similar to a cold and include:"}},
+        {"symptom": "body_ache", "note": {"en": "Body aches are not listed among allergic rhinitis symptoms in the cited sources.", "hi": "Badan dard allergic rhinitis ke listed symptoms mein nahi hai."}, "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "Common symptoms of allergic rhinitis are similar to a cold and include:"}}
+      ],
+      "alternatives": ["common_cold", "sinusitis"],
+      "self_care": [
+        {"en": "Try to avoid the things that trigger your symptoms (for example dust, pollen, pets, mould).", "hi": "Jin cheezon se symptoms badhte hain (jaise dhool, pollen, paaltu jaanwar, seelan) unse bachne ki koshish karein.", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "If you can, try to avoid the things that trigger your allergies."}},
+        {"en": "Dust with a damp cloth and wash bedding regularly in hot water.", "hi": "Geele kapde se dhool saaf karein aur bedsheet-takiye garam paani mein regularly dhoyein.", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "dust with a damp cloth and use a vacuum with a HEPA filter"}},
+        {"en": "Rinsing the inside of the nose with a salt-water solution can help.", "hi": "Namak-paani (saline) se naak saaf karna madad kar sakta hai.", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "salt water nasal sprays or solutions to rinse out the inside of your nose"}},
+        {"en": "A pharmacist can advise on allergy medicines; nasal decongestant sprays should not be used for more than 5 days.", "hi": "Allergy ki dawaiyon ke liye pharmacist se salah lein; naak kholne wale decongestant spray 5 din se zyada use na karein.", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "they should not be used for longer than 5 days"}}
+      ],
+      "see_doctor_if": [
+        {"en": "Symptoms affect your sleep or daily life, or pharmacy treatments do not help.", "hi": "Symptoms neend ya rozmarra ke kaam par asar daalein, ya pharmacy ki dawai se fayda na ho.", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "your symptoms are affecting your sleep and everyday life"}},
+        {"en": "You also have asthma and it is getting worse.", "hi": "Aapko asthma bhi hai aur woh badh raha hai.", "evidence": {"source_id": "nhs-allergic-rhinitis", "quote": "you also have asthma and it's getting worse"}}
+      ]
+    },
+
+    "sinusitis": {
+      "name": {"en": "Sinusitis (sinus inflammation)", "hi": "Sinusitis (sinus mein sujan)"},
+      "description": {"en": "Swelling of the sinuses, often after a cold or flu, causing a blocked nose and pain or pressure around the cheeks, eyes or forehead.", "hi": "Sinus mein sujan, jo aksar cold ya flu ke baad hoti hai — naak band hona aur gaal, aankh ya maathe ke aas-paas dard/bhaaripan."},
+      "description_evidence": {"source_id": "nhs-sinusitis", "quote": "Sinusitis is common after a cold or flu ."},
+      "required_any": ["facial_pain", "coloured_mucus"],
+      "features": [
+        {"symptom": "facial_pain", "role": "key", "evidence": {"source_id": "nhs-sinusitis", "quote": "pain, swelling and tenderness around your cheeks, eyes or forehead"}},
+        {"symptom": "coloured_mucus", "role": "key", "evidence": {"source_id": "nhs-sinusitis", "quote": "green or yellow mucus from your nose"}},
+        {"symptom": "blocked_nose", "role": "key", "evidence": {"source_id": "nhs-sinusitis", "quote": "a blocked or runny nose"}},
+        {"symptom": "runny_nose", "role": "supporting", "evidence": {"source_id": "nhs-sinusitis", "quote": "a blocked or runny nose"}},
+        {"symptom": "loss_of_smell", "role": "key", "evidence": {"source_id": "nhs-sinusitis", "quote": "a reduced sense of smell"}},
+        {"symptom": "fever", "role": "supporting", "evidence": {"source_id": "nhs-sinusitis", "quote": "a high temperature"}},
+        {"symptom": "headache", "role": "supporting", "evidence": {"source_id": "nhs-sinusitis", "quote": "a headache"}},
+        {"symptom": "toothache", "role": "supporting", "evidence": {"source_id": "nhs-sinusitis", "quote": "toothache"}},
+        {"symptom": "cough", "role": "supporting", "evidence": {"source_id": "nhs-sinusitis", "quote": "a cough"}}
+      ],
+      "not_typical": [],
+      "alternatives": ["common_cold", "allergic_rhinitis"],
+      "self_care": [
+        {"en": "Get plenty of rest and drink plenty of fluids.", "hi": "Khoob aaram karein aur liquids piyein.", "evidence": {"source_id": "nhs-sinusitis", "quote": "drinking plenty of fluids"}},
+        {"en": "Clean your nose with a salt-water solution and avoid smoking.", "hi": "Namak-paani se naak saaf karein aur smoking se bachein.", "evidence": {"source_id": "nhs-sinusitis", "quote": "cleaning your nose with a salt water solution"}},
+        {"en": "Sinusitis is usually caused by a virus, so antibiotics are rarely needed; a pharmacist can advise on treatment.", "hi": "Sinusitis aam taur par virus se hota hai, isliye antibiotics ki zaroorat kam hi padti hai; ilaaj ke liye pharmacist se salah lein.", "evidence": {"source_id": "nhs-sinusitis", "quote": "This is not common as sinusitis is usually caused by a virus, not bacteria."}}
+      ],
+      "see_doctor_if": [
+        {"en": "You do not get better after 3 weeks of self-care, or you keep getting sinusitis.", "hi": "3 hafte ghar ke ilaaj ke baad bhi theek na hon, ya baar-baar sinusitis ho.", "evidence": {"source_id": "nhs-sinusitis", "quote": "you do not get better after 3 weeks of treating symptoms yourself"}},
+        {"en": "You feel very unwell, painkillers do not help, or symptoms get worse.", "hi": "Bahut bimaar lage, dard ki dawai se fayda na ho, ya symptoms badhein.", "evidence": {"source_id": "nhs-sinusitis", "quote": "painkillers do not help or symptoms get worse"}}
+      ]
+    },
+
+    "sore_throat": {
+      "name": {"en": "Sore throat (throat irritation, usually viral)", "hi": "Gale mein kharash / dard (aam taur par viral)"},
+      "description": {"en": "Pain or scratchiness in the throat, usually caused by a virus (like a cold) or by smoking. It usually gets better with simple self-care.", "hi": "Gale mein dard ya kharash, jo aksar virus (jaise cold) ya smoking se hota hai. Aam taur par ghar ke simple upaayon se theek ho jaata hai."},
+      "description_evidence": {"source_id": "nhs-sore-throat", "quote": "Sore throats are usually caused by viruses (like cold or flu) or from smoking."},
+      "required_any": ["sore_throat", "throat_irritation"],
+      "features": [
+        {"symptom": "sore_throat", "role": "key", "evidence": {"source_id": "nhs-sore-throat", "quote": "a painful throat, especially when swallowing"}},
+        {"symptom": "throat_irritation", "role": "key", "evidence": {"source_id": "nhs-sore-throat", "quote": "a dry, scratchy throat"}},
+        {"symptom": "cough", "role": "supporting", "evidence": {"source_id": "nhs-sore-throat", "quote": "a mild cough"}},
+        {"symptom": "swollen_glands", "role": "supporting", "evidence": {"source_id": "nhs-sore-throat", "quote": "swollen neck glands"}},
+        {"symptom": "hoarse_voice", "role": "supporting", "evidence": {"source_id": "nhs-laryngitis", "quote": "a hoarse (croaky) voice"}},
+        {"symptom": "postnasal_drip", "role": "supporting", "evidence": {"source_id": "nhs-laryngitis", "quote": "always needing to clear your throat"}}
+      ],
+      "not_typical": [],
+      "alternatives": ["common_cold", "allergic_rhinitis", "indigestion"],
+      "self_care": [
+        {"en": "Gargle with warm, salty water (not for children) and drink plenty of water.", "hi": "Gungune namak-paani se garare karein (bachchon ke liye nahi) aur khoob paani piyein.", "evidence": {"source_id": "nhs-sore-throat", "quote": "gargle with warm, salty water (children should not try this)"}},
+        {"en": "Eat cool or soft foods, rest, and avoid smoking or smoky places.", "hi": "Thanda ya naram khana khaayein, aaram karein, aur smoking ya dhuaan wali jagah se bachein.", "evidence": {"source_id": "nhs-sore-throat", "quote": "avoid smoking or smoky places"}},
+        {"en": "Antibiotics are not normally needed for a sore throat.", "hi": "Gale ke dard mein aam taur par antibiotics ki zaroorat nahi hoti.", "evidence": {"source_id": "nhs-sore-throat", "quote": "You do not normally need antibiotics for a sore throat"}}
+      ],
+      "see_doctor_if": [
+        {"en": "It does not improve after a week, or you get sore throats often.", "hi": "Ek hafte mein sudhaar na ho, ya baar-baar gala kharab ho.", "evidence": {"source_id": "nhs-sore-throat", "quote": "you or your child's sore throat does not improve after a week"}},
+        {"en": "You have a very high temperature, feel hot/cold/shivery, or have white patches or pus on the tonsils.", "hi": "Bahut tez bukhar ho, garmi-thand/kapkapi lage, ya tonsils par safed daag/pus dikhe.", "evidence": {"source_id": "nhs-sore-throat", "quote": "you have a very high temperature, or you feel hot, cold or shivery"}},
+        {"en": "A lump in the mouth or neck, or a mouth ulcer that lasts more than 3 weeks.", "hi": "Munh ya gardan mein gaanth, ya munh ka chhala jo 3 hafte se zyada rahe.", "evidence": {"source_id": "nhs-sore-throat", "quote": "you have a sore throat and symptoms like a lump in your mouth or neck, or a mouth ulcer that lasts for more than 3 weeks"}}
+      ]
+    },
+
+    "indigestion": {
+      "name": {"en": "Indigestion / acidity (acid reflux)", "hi": "Badhazmi / acidity (acid reflux)"},
+      "description": {"en": "Discomfort or a burning feeling after eating, often caused by stomach acid irritating the stomach lining or throat. It is usually not a sign of anything serious.", "hi": "Khaane ke baad pet ya seene mein jalan/bechaini, jo aksar pet ke acid se hoti hai. Aam taur par yeh kisi gambhir bimari ka sanket nahi hota."},
+      "description_evidence": {"source_id": "nhs-indigestion", "quote": "Indigestion is often caused by acid from your stomach irritating your stomach lining or throat."},
+      "required_any": ["heartburn", "sour_regurgitation", "bloating", "burping"],
+      "features": [
+        {"symptom": "heartburn", "role": "key", "evidence": {"source_id": "nhs-indigestion", "quote": "heartburn - a painful burning feeling in the chest, often after eating"}},
+        {"symptom": "sour_regurgitation", "role": "key", "evidence": {"source_id": "nhs-heartburn", "quote": "an unpleasant sour taste in your mouth, caused by stomach acid"}},
+        {"symptom": "bloating", "role": "key", "evidence": {"source_id": "nhs-indigestion", "quote": "feeling full and bloated"}},
+        {"symptom": "worse_after_eating", "role": "key", "evidence": {"source_id": "nhs-heartburn", "quote": "Symptoms are often worse after eating, when lying down and when bending over."}},
+        {"symptom": "burping", "role": "supporting", "evidence": {"source_id": "nhs-indigestion", "quote": "burping and farting"}},
+        {"symptom": "nausea", "role": "supporting", "evidence": {"source_id": "nhs-indigestion", "quote": "feeling sick"}},
+        {"symptom": "spicy_food_trigger", "role": "supporting", "evidence": {"source_id": "nhs-indigestion", "quote": "certain food and drink - such as coffee, tomatoes, alcohol, chocolate and fatty or spicy foods"}},
+        {"symptom": "hoarse_voice", "role": "supporting", "evidence": {"source_id": "nhs-heartburn", "quote": "a hoarse voice"}},
+        {"symptom": "cough", "role": "supporting", "evidence": {"source_id": "nhs-heartburn", "quote": "a cough or hiccups that keep coming back"}}
+      ],
+      "not_typical": [
+        {"symptom": "abdominal_pain", "note": {"en": "The NHS notes that stomach ache is usually not a symptom of indigestion and may point to constipation or another cause.", "hi": "NHS ke anusaar pet dard aam taur par indigestion ka symptom nahi hota — yeh constipation ya kisi aur wajah se ho sakta hai."}, "evidence": {"source_id": "nhs-indigestion", "quote": "Stomach ache or back pain are usually not symptoms of indigestion."}},
+        {"symptom": "back_pain", "note": {"en": "Back pain is usually not a symptom of indigestion.", "hi": "Kamar dard aam taur par indigestion ka symptom nahi hota."}, "evidence": {"source_id": "nhs-indigestion", "quote": "Stomach ache or back pain are usually not symptoms of indigestion."}}
+      ],
+      "alternatives": ["constipation"],
+      "self_care": [
+        {"en": "Cut down on tea, coffee, cola and alcohol, and avoid rich, spicy or fatty foods.", "hi": "Chai, coffee, cola aur alcohol kam karein, aur bahut masaledar, tala ya bhaari khana avoid karein.", "evidence": {"source_id": "nhs-indigestion", "quote": "cut down on tea, coffee, cola or alcohol"}},
+        {"en": "Eat smaller, more frequent meals and do not eat in the 3 to 4 hours before bed.", "hi": "Thoda-thoda karke zyada baar khaayein, aur sone se 3-4 ghante pehle khana na khaayein.", "evidence": {"source_id": "nhs-heartburn", "quote": "eat smaller, more frequent meals"}},
+        {"en": "Raise your head and shoulders in bed, and avoid tight clothes around the waist.", "hi": "Sote waqt sir aur kandhe thoda ooncha rakhein, aur kamar par tight kapde na pehnein.", "evidence": {"source_id": "nhs-indigestion", "quote": "raise your head and shoulders up when in bed"}},
+        {"en": "Do not take painkillers like ibuprofen or aspirin unless prescribed — they can make indigestion worse. A pharmacist can advise on acidity medicines.", "hi": "Ibuprofen ya aspirin jaisi dard ki dawaiyan bina doctor ke na lein — inse acidity badh sakti hai. Acidity ki dawai ke liye pharmacist se poochein.", "evidence": {"source_id": "nhs-indigestion", "quote": "do not take ibuprofen or aspirin unless it has been prescribed for you"}}
+      ],
+      "see_doctor_if": [
+        {"en": "You keep getting indigestion, have heartburn most days, or are in severe pain.", "hi": "Baar-baar acidity ho, lagbhag roz heartburn ho, ya bahut tez dard ho.", "evidence": {"source_id": "nhs-indigestion", "quote": "keep getting indigestion"}},
+        {"en": "Difficulty swallowing, food getting stuck, repeated vomiting, or weight loss without trying.", "hi": "Nigalne mein dikkat, khana atakna, baar-baar ulti, ya bina koshish wajan kam hona.", "evidence": {"source_id": "nhs-indigestion", "quote": "have difficulty swallowing (dysphagia)"}},
+        {"en": "Blood in vomit or stool — get help urgently.", "hi": "Ulti ya potty mein khoon — turant medical madad lein.", "evidence": {"source_id": "nhs-indigestion", "quote": "have bloody vomit or poo"}}
+      ]
+    },
+
+    "constipation": {
+      "name": {"en": "Constipation", "hi": "Kabz (constipation)"},
+      "description": {"en": "Passing stool less often than usual, or stool that is hard and difficult to pass. Common causes include low fibre, not drinking enough fluids and inactivity.", "hi": "Normal se kam baar potty jaana, ya potty sakht aur mushkil se nikalna. Aam kaaran: khaane mein fibre kam, paani kam peena aur kam chalna-phirna."},
+      "description_evidence": {"source_id": "nhs-constipation", "quote": "not eating enough fibre, which is found in fruits, vegetables and cereals"},
+      "required_any": ["infrequent_stools", "hard_stools", "straining", "incomplete_evacuation"],
+      "features": [
+        {"symptom": "infrequent_stools", "role": "key", "evidence": {"source_id": "nhs-constipation", "quote": "you have not had a poo at least 3 times during the last week or you're pooing less often than usual"}},
+        {"symptom": "hard_stools", "role": "key", "evidence": {"source_id": "nhs-constipation", "quote": "the poo is unusually large or small and is dry, hard or lumpy"}},
+        {"symptom": "straining", "role": "key", "evidence": {"source_id": "nhs-constipation", "quote": "you are straining or in pain when you have a poo"}},
+        {"symptom": "incomplete_evacuation", "role": "key", "evidence": {"source_id": "nhs-constipation", "quote": "you feel like you haven't fully emptied your bowels"}},
+        {"symptom": "abdominal_pain", "role": "supporting", "evidence": {"source_id": "nhs-constipation", "quote": "You may also have a stomach ache and feel bloated or sick."}},
+        {"symptom": "bloating", "role": "supporting", "evidence": {"source_id": "nhs-constipation", "quote": "You may also have a stomach ache and feel bloated or sick."}},
+        {"symptom": "nausea", "role": "supporting", "evidence": {"source_id": "nhs-constipation", "quote": "You may also have a stomach ache and feel bloated or sick."}}
+      ],
+      "not_typical": [
+        {"symptom": "diarrhoea", "note": {"en": "Loose or watery stools do not fit constipation and suggest a different cause, such as a stomach bug.", "hi": "Patli/paani jaisi potty kabz se match nahi karti — yeh kisi aur wajah (jaise pet ka infection) ki taraf ishaara karti hai."}, "evidence": {"source_id": "nhs-stomach-ache", "quote": "Watery poo, feeling sick, vomiting"}}
+      ],
+      "alternatives": ["indigestion"],
+      "self_care": [
+        {"en": "Drink plenty of water and other fluids, and gradually increase fibre (fruits, vegetables, oats, whole grains).", "hi": "Khoob paani aur liquids piyein, aur dheere-dheere fibre badhayein (phal, sabzi, oats, sabut anaaj).", "evidence": {"source_id": "nhs-constipation", "quote": "gradually increase the fibre in your diet"}},
+        {"en": "Keep a regular toilet routine and do not delay when you feel the urge.", "hi": "Toilet jaane ka ek fix time rakhein, aur urge aane par rokein nahi.", "evidence": {"source_id": "nhs-constipation", "quote": "Do not delay if you feel the urge to poo."}},
+        {"en": "Resting your feet on a low stool while on the toilet can make it easier.", "hi": "Toilet par pairon ke neeche chhota stool rakhne se aasaani ho sakti hai.", "evidence": {"source_id": "nhs-constipation", "quote": "try resting your feet on a low stool while going to the toilet"}},
+        {"en": "A daily walk or other activity can help. If these changes do not help, speak to a pharmacist.", "hi": "Roz walk ya halki exercise madad karti hai. Agar fark na pade to pharmacist se baat karein.", "evidence": {"source_id": "nhs-constipation", "quote": "A daily walk or run can help you poo more regularly."}}
+      ],
+      "see_doctor_if": [
+        {"en": "It is not getting better with treatment, or you are regularly constipated or bloated.", "hi": "Ilaaj se theek na ho, ya baar-baar kabz ya pet phoolna ho.", "evidence": {"source_id": "nhs-constipation", "quote": "are constipated and it's not getting better with treatment"}},
+        {"en": "Blood in your stool, weight loss without trying, or tiredness all the time.", "hi": "Potty mein khoon, bina koshish wajan kam hona, ya hamesha thakan.", "evidence": {"source_id": "nhs-constipation", "quote": "have blood in your poo"}},
+        {"en": "A sudden change in your bowel habits, or tummy pain.", "hi": "Potty ki aadat mein achanak badlaav, ya pet dard.", "evidence": {"source_id": "nhs-constipation", "quote": "notice sudden changes in the how you poo (your bowel habits)"}}
+      ]
+    },
+
+    "tension_headache": {
+      "name": {"en": "Tension-type headache", "hi": "Tension headache"},
+      "description": {"en": "A very common headache that feels like pressure or a tight band on both sides of the head. It is not a sign of an underlying condition and is often linked to stress, poor sleep or caffeine.", "hi": "Bahut aam sar dard jo sar ke dono taraf dabaav ya kasi hui patti jaisa lagta hai. Yeh kisi andar ki bimari ka sanket nahi hota — aksar stress, kam neend ya caffeine se juda hota hai."},
+      "description_evidence": {"source_id": "nhs-tension-headaches", "quote": "Tension headaches are not a sign of an underlying condition."},
+      "required_any": ["headache"],
+      "features": [
+        {"symptom": "headache", "role": "supporting", "evidence": {"source_id": "nhs-tension-headaches", "quote": "Tension headaches last at least 30 minutes but they can last much longer, sometimes for several days."}},
+        {"symptom": "headache_both_sides", "role": "key", "evidence": {"source_id": "nhs-tension-headaches", "quote": "pain on both sides of your head, face or neck"}},
+        {"symptom": "headache_pressing", "role": "key", "evidence": {"source_id": "nhs-tension-headaches", "quote": "feeling like something is pressing on your head or being tightened around it"}},
+        {"symptom": "scalp_tender", "role": "supporting", "evidence": {"source_id": "nhs-tension-headaches", "quote": "the affected area may feel tender and your head may hurt more when touched"}},
+        {"symptom": "neck_pain", "role": "supporting", "evidence": {"source_id": "nhs-tension-headaches", "quote": "pain on both sides of your head, face or neck"}}
+      ],
+      "not_typical": [
+        {"symptom": "headache_throbbing", "note": {"en": "A throbbing pain on one side can be a sign of a different type of headache, such as migraine.", "hi": "Ek taraf dhak-dhak wala dard kisi aur type ke sar dard (jaise migraine) ka sanket ho sakta hai."}, "evidence": {"source_id": "nhs-tension-headaches", "quote": "you have a throbbing pain at the front, or on 1 side of, your head"}},
+        {"symptom": "headache_one_side", "note": {"en": "Pain on one side of the head is more typical of migraine.", "hi": "Sar ke ek taraf dard migraine mein zyada hota hai."}, "evidence": {"source_id": "nhs-tension-headaches", "quote": "These can be signs of a different type of headache, such as a migraine or cluster headache ."}},
+        {"symptom": "nausea", "note": {"en": "Feeling sick with the headache can be a sign of a different type of headache, such as migraine.", "hi": "Sar dard ke saath ji machalna migraine jaise doosre sar dard ka sanket ho sakta hai."}, "evidence": {"source_id": "nhs-tension-headaches", "quote": "you feel sick, vomit and find light or noise painful"}},
+        {"symptom": "light_sensitivity", "note": {"en": "Finding light or noise painful can be a sign of migraine rather than tension headache.", "hi": "Roshni ya awaaz se takleef tension headache ki jagah migraine ka sanket ho sakti hai."}, "evidence": {"source_id": "nhs-tension-headaches", "quote": "you feel sick, vomit and find light or noise painful"}}
+      ],
+      "alternatives": ["migraine"],
+      "self_care": [
+        {"en": "Try activities that help you relax, such as exercise, yoga or massage.", "hi": "Relax karne wali activities try karein — jaise exercise, yoga ya massage.", "evidence": {"source_id": "nhs-tension-headaches", "quote": "try doing activities to help you relax like exercise, yoga and massage"}},
+        {"en": "Improve your sleep habits, and cut down on tea, coffee and cola.", "hi": "Neend ki aadat sudhaarein, aur chai, coffee, cola kam karein.", "evidence": {"source_id": "nhs-tension-headaches", "quote": "do not have drinks with caffeine in them like tea, coffee or cola - or try to cut down on them"}},
+        {"en": "Taking painkillers too often can itself cause headaches — ask a pharmacist which is suitable and how often.", "hi": "Dard ki dawai baar-baar lene se khud sar dard ho sakta hai — kaunsi aur kitni baar, yeh pharmacist se poochein.", "evidence": {"source_id": "nhs-tension-headaches", "quote": "Taking painkillers for headaches too often or for a long time can also cause headaches."}}
+      ],
+      "see_doctor_if": [
+        {"en": "Headaches happen several times a week or are severe, or self-care does not help.", "hi": "Hafte mein kai baar sar dard ho ya bahut tez ho, ya ghar ke upaayon se fayda na ho.", "evidence": {"source_id": "nhs-tension-headaches", "quote": "you get headaches several times a week or they're severe"}},
+        {"en": "Severe headache with jaw pain when eating, blurred or double vision, a sore scalp, or numbness or weakness — get urgent help.", "hi": "Tez sar dard ke saath khaate waqt jabde mein dard, dhundhla/double dikhna, sar ki skin mein dard, ya sunn-pan/kamzori — turant madad lein.", "evidence": {"source_id": "nhs-tension-headaches", "quote": "blurred or double vision"}}
+      ]
+    },
+
+    "migraine": {
+      "name": {"en": "Migraine", "hi": "Migraine"},
+      "description": {"en": "A common condition causing attacks of throbbing headache, often on one side, usually with feeling sick and sensitivity to light or sound. Attacks usually last between 4 hours and 3 days.", "hi": "Ek aam condition jisme dhak-dhak wala sar dard (aksar ek taraf) ke daure padte hain, saath mein ji machalna aur roshni/awaaz se takleef. Daura aam taur par 4 ghante se 3 din tak rehta hai."},
+      "description_evidence": {"source_id": "nhs-migraine", "quote": "Migraine attacks usually last between 4 hours and 3 days"},
+      "required_any": ["headache"],
+      "features": [
+        {"symptom": "headache", "role": "supporting", "evidence": {"source_id": "nhs-migraine", "quote": "a throbbing headache - this can be severe, often on 1 side of the head and can be worse when you move around"}},
+        {"symptom": "headache_throbbing", "role": "key", "evidence": {"source_id": "nhs-migraine", "quote": "a throbbing headache - this can be severe, often on 1 side of the head and can be worse when you move around"}},
+        {"symptom": "headache_one_side", "role": "key", "evidence": {"source_id": "nhs-migraine", "quote": "a throbbing headache - this can be severe, often on 1 side of the head and can be worse when you move around"}},
+        {"symptom": "nausea", "role": "key", "evidence": {"source_id": "nhs-migraine", "quote": "feeling or being sick (nausea and vomiting)"}},
+        {"symptom": "vomiting", "role": "supporting", "evidence": {"source_id": "nhs-migraine", "quote": "feeling or being sick (nausea and vomiting)"}},
+        {"symptom": "light_sensitivity", "role": "key", "evidence": {"source_id": "nhs-migraine", "quote": "being very sensitive to light and sounds"}},
+        {"symptom": "visual_aura", "role": "supporting", "evidence": {"source_id": "nhs-migraine", "quote": "problems with your sight, such as seeing zigzag lines or flashing lights"}},
+        {"symptom": "fatigue", "role": "supporting", "evidence": {"source_id": "nhs-migraine", "quote": "feeling very tired and yawning a lot"}}
+      ],
+      "not_typical": [
+        {"symptom": "headache_pressing", "note": {"en": "A pressing or tight-band feeling on both sides is described for tension-type headache rather than migraine.", "hi": "Dono taraf dabaav ya kasi patti jaisa dard tension headache mein bataya gaya hai, migraine mein nahi."}, "evidence": {"source_id": "nhs-tension-headaches", "quote": "feeling like something is pressing on your head or being tightened around it"}}
+      ],
+      "alternatives": ["tension_headache"],
+      "self_care": [
+        {"en": "During an attack, try lying down in a darkened room.", "hi": "Daure ke dauraan andhere kamre mein letne ki koshish karein.", "evidence": {"source_id": "nhs-migraine", "quote": "try sleeping or lying down in a darkened room during a migraine attack"}},
+        {"en": "Eat meals at regular times, stay hydrated, and limit caffeine and alcohol.", "hi": "Samay par khana khaayein, paani peete rahein, aur caffeine-alcohol kam karein.", "evidence": {"source_id": "nhs-migraine", "quote": "stay well hydrated, and limit how much caffeine and alcohol you drink"}},
+        {"en": "Keeping a headache diary can help you find your triggers.", "hi": "Headache diary rakhne se trigger samajhne mein madad milti hai.", "evidence": {"source_id": "nhs-migraine", "quote": "It can help to keep a migraine diary to help you work out what might trigger your migraine attacks."}},
+        {"en": "Try not to take painkillers on more than 2 days a week; a doctor can advise on migraine treatment.", "hi": "Hafte mein 2 din se zyada dard ki dawai na lein; migraine ke ilaaj ke liye doctor se salah lein.", "evidence": {"source_id": "nhs-migraine", "quote": "Try not to take painkillers for more than 2 days a week"}}
+      ],
+      "see_doctor_if": [
+        {"en": "Attacks are severe, getting worse, lasting longer than usual, or happen more than once a week.", "hi": "Daure tez hon, badh rahe hon, normal se lambe chalein, ya hafte mein ek se zyada baar hon.", "evidence": {"source_id": "nhs-migraine", "quote": "your migraine attacks are severe or getting worse, or lasting longer than usual"}},
+        {"en": "An attack lasts longer than 72 hours, or aura lasts more than 1 hour — get urgent advice.", "hi": "Daura 72 ghante se zyada chale, ya aura 1 ghante se zyada rahe — turant salah lein.", "evidence": {"source_id": "nhs-migraine", "quote": "it's lasted longer than 72 hours"}},
+        {"en": "Weakness on one side, problems speaking, confusion or a sudden extremely painful headache — call 112/108.", "hi": "Ek taraf kamzori, bolne mein dikkat, confusion ya achanak bahut tez sar dard — 112/108 call karein.", "evidence": {"source_id": "nhs-migraine", "quote": "have a headache that came on suddenly and is extremely painful"}}
+      ]
+    },
+
+    "contact_dermatitis": {
+      "name": {"en": "Contact dermatitis (skin irritation from a substance)", "hi": "Contact dermatitis (kisi cheez ke contact se skin irritation)"},
+      "description": {"en": "Itchy, dry or blistered skin caused by contact with an irritant (such as soap, detergent or frequent water) or something you are allergic to.", "hi": "Kisi irritant (jaise sabun, detergent ya baar-baar paani) ya allergy wali cheez ke contact se skin par khujli, rookhapan ya chhaale."},
+      "description_evidence": {"source_id": "nhs-contact-dermatitis", "quote": "Contact dermatitis is a type of eczema triggered by contact with a particular substance."},
+      "required_any": ["skin_rash", "skin_itch", "dry_cracked_skin", "blisters"],
+      "features": [
+        {"symptom": "skin_itch", "role": "supporting", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "Contact dermatitis causes the skin to become itchy, blistered, dry and cracked."}},
+        {"symptom": "skin_rash", "role": "supporting", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "Lighter skin can become red, and darker skin can become dark brown, purple or grey."}},
+        {"symptom": "dry_cracked_skin", "role": "key", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "Contact dermatitis causes the skin to become itchy, blistered, dry and cracked."}},
+        {"symptom": "blisters", "role": "key", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "Contact dermatitis causes the skin to become itchy, blistered, dry and cracked."}},
+        {"symptom": "contact_trigger", "role": "key", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "This reaction usually occurs within a few hours or days of exposure to an irritant or allergen."}}
+      ],
+      "not_typical": [],
+      "alternatives": ["hives", "heat_rash"],
+      "self_care": [
+        {"en": "Identify and avoid the substance causing the problem — the skin usually improves once it is avoided.", "hi": "Jis cheez se problem ho rahi hai use pehchaan kar avoid karein — aam taur par skin phir theek ho jaati hai.", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "Contact dermatitis usually improves or clears up completely if the substance causing the problem is identified and avoided."}},
+        {"en": "If you touch an irritant, rinse the skin with warm water as soon as possible; wear gloves to protect your hands.", "hi": "Irritant ke contact mein aane par skin ko turant gungune paani se dhoyein; haathon ki suraksha ke liye gloves pehnein.", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "using gloves to protect your hands"}},
+        {"en": "Moisturisers (emollients) help stop the skin becoming dry; a pharmacist can advise.", "hi": "Moisturiser (emollient) skin ko rookha hone se bachaate hain; pharmacist se salah lein.", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "They can recommend treatments such as emollients (moisturisers) , which you rub on your skin to stop it becoming dry."}}
+      ],
+      "see_doctor_if": [
+        {"en": "Symptoms are persistent, keep coming back, or are severe.", "hi": "Symptoms lagataar rahein, baar-baar aayein, ya tez hon.", "evidence": {"source_id": "nhs-contact-dermatitis", "quote": "See a GP if you have persistent, recurrent or severe symptoms of contact dermatitis."}}
+      ]
+    },
+
+    "hives": {
+      "name": {"en": "Hives (urticaria)", "hi": "Pitti / hives (urticaria)"},
+      "description": {"en": "An itchy rash of raised bumps or patches that can appear anywhere on the body, triggered by things like certain foods, heat, stress, medicines, insect bites or infections.", "hi": "Ubhre hue khujli wale chakatte jo shareer par kahin bhi ho sakte hain — kuch khaane, garmi, stress, dawai, keede ke kaatne ya infection se trigger ho sakte hain."},
+      "description_evidence": {"source_id": "nhs-hives", "quote": "The main symptom of hives is an itchy rash."},
+      "required_any": ["raised_welts", "skin_rash"],
+      "features": [
+        {"symptom": "raised_welts", "role": "key", "evidence": {"source_id": "nhs-hives", "quote": "be raised bumps or patches in many shapes and sizes"}},
+        {"symptom": "skin_itch", "role": "key", "evidence": {"source_id": "nhs-hives", "quote": "The main symptom of hives is an itchy rash."}},
+        {"symptom": "skin_rash", "role": "supporting", "evidence": {"source_id": "nhs-hives", "quote": "appear anywhere on the body"}},
+        {"symptom": "spicy_food_trigger", "role": "supporting", "evidence": {"source_id": "nhs-hives", "quote": "hot, sweaty skin from exercise, emotional stress or eating spicy food"}},
+        {"symptom": "heat_sweat_trigger", "role": "supporting", "evidence": {"source_id": "nhs-hives", "quote": "hot, sweaty skin from exercise, emotional stress or eating spicy food"}}
+      ],
+      "not_typical": [],
+      "alternatives": ["contact_dermatitis", "heat_rash"],
+      "self_care": [
+        {"en": "Try to find out what triggers your hives so you can avoid it.", "hi": "Pata lagaane ki koshish karein ki pitti kis cheez se hoti hai, taaki use avoid kar sakein.", "evidence": {"source_id": "nhs-hives", "quote": "Try to find out what triggers hives for you, so you can avoid those triggers, if possible."}},
+        {"en": "A pharmacist can advise on allergy treatment for a hives rash; tell them about any long-term conditions.", "hi": "Pitti ke ilaaj ke liye pharmacist salah de sakte hain; unhe apni kisi lambi bimari ke baare mein zaroor batayein.", "evidence": {"source_id": "nhs-hives", "quote": "Tell the pharmacist if you have a long-term condition"}}
+      ],
+      "see_doctor_if": [
+        {"en": "It does not improve after 2 days, is spreading, keeps coming back, or you also have a high temperature.", "hi": "2 din mein sudhaar na ho, phail raha ho, baar-baar ho, ya saath mein tez bukhar ho.", "evidence": {"source_id": "nhs-hives", "quote": "symptoms of hives do not improve after 2 days"}},
+        {"en": "Swelling of lips, mouth, throat or tongue, or difficulty breathing — call 112/108 immediately.", "hi": "Hoth, munh, gale ya jeebh mein sujan, ya saans lene mein takleef — turant 112/108 call karein.", "evidence": {"source_id": "nhs-hives", "quote": "your lips, mouth, throat or tongue suddenly become swollen"}}
+      ]
+    },
+
+    "heat_rash": {
+      "name": {"en": "Heat rash (prickly heat / ghamoriyan)", "hi": "Heat rash (ghamoriyan)"},
+      "description": {"en": "Small raised spots with an itchy, prickly feeling, usually caused by sweating a lot when sweat glands get blocked.", "hi": "Chhote ubhre daane jinme khujli aur chubhan hoti hai — aam taur par zyada paseene se, jab paseene ki granthiyan band ho jaati hain."},
+      "description_evidence": {"source_id": "nhs-heat-rash", "quote": "Heat rash is usually caused by sweating a lot."},
+      "required_any": ["small_raised_spots", "skin_rash"],
+      "features": [
+        {"symptom": "small_raised_spots", "role": "key", "evidence": {"source_id": "nhs-heat-rash", "quote": "small, raised spots"}},
+        {"symptom": "skin_itch", "role": "supporting", "evidence": {"source_id": "nhs-heat-rash", "quote": "an itchy, prickly feeling"}},
+        {"symptom": "skin_rash", "role": "supporting", "evidence": {"source_id": "nhs-heat-rash", "quote": "small, raised spots"}},
+        {"symptom": "heat_sweat_trigger", "role": "key", "evidence": {"source_id": "nhs-heat-rash", "quote": "Heat rash is usually caused by sweating a lot."}}
+      ],
+      "not_typical": [],
+      "alternatives": ["hives", "contact_dermatitis"],
+      "self_care": [
+        {"en": "Keep your skin cool: wear loose cotton clothing, take cool baths or showers, and drink plenty of fluids.", "hi": "Skin ko thanda rakhein: dheele cotton ke kapde pehnein, thande paani se nahaayein, aur khoob paani piyein.", "evidence": {"source_id": "nhs-heat-rash", "quote": "Wear loose cotton clothing."}},
+        {"en": "Pat or tap the rash instead of scratching, and avoid perfumed shower gels or creams.", "hi": "Khujaane ki jagah halke se thapthapaayein, aur khushboo wale soap/cream avoid karein.", "evidence": {"source_id": "nhs-heat-rash", "quote": "Tap or pat the rash instead of scratching it."}}
+      ],
+      "see_doctor_if": [
+        {"en": "It does not improve after a few days.", "hi": "Kuch dinon mein sudhaar na ho.", "evidence": {"source_id": "nhs-heat-rash", "quote": "you have heat rash that does not improve after a few days"}}
+      ]
+    }
+  }
+}

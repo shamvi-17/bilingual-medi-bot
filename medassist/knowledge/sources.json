@@ -1,0 +1,52 @@
+{
+  "_comment": "Registry of medical sources ingested into the RAG corpus. Run `python -m medassist.knowledge.ingest` to (re)build corpus.jsonl. priority: 1 = primary clinical-information page for the topic, 2 = supporting overview. Add India-specific sources (MoHFW / NHP India / ICMR) here once reachable; see docs/KNOWLEDGE_BASE.md.",
+  "sources": [
+    {"id": "nhs-common-cold", "title": "Common cold", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/common-cold/", "parser": "nhs", "topics": ["common_cold", "flu_like_illness"], "priority": 1},
+    {"id": "mlp-common-cold", "title": "Common Cold", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/commoncold.html", "parser": "medlineplus_topic", "topics": ["common_cold"], "priority": 2},
+    {"id": "mlp-ency-common-cold", "title": "Common cold", "publisher": "MedlinePlus Medical Encyclopedia", "url": "https://medlineplus.gov/ency/article/000678.htm", "parser": "medlineplus_ency", "topics": ["common_cold"], "priority": 2},
+    {"id": "nhs-flu", "title": "Flu", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/flu/", "parser": "nhs", "topics": ["flu_like_illness", "common_cold"], "priority": 1},
+    {"id": "who-influenza", "title": "Influenza (seasonal) fact sheet", "publisher": "World Health Organization", "url": "https://www.who.int/news-room/fact-sheets/detail/influenza-(seasonal)", "parser": "who_factsheet", "topics": ["flu_like_illness"], "priority": 2},
+
+    {"id": "nhs-allergic-rhinitis", "title": "Allergic rhinitis", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/allergic-rhinitis/", "parser": "nhs", "topics": ["allergic_rhinitis"], "priority": 1},
+    {"id": "nhs-hay-fever", "title": "Hay fever", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/hay-fever/", "parser": "nhs", "topics": ["allergic_rhinitis"], "priority": 1},
+    {"id": "mlp-hay-fever", "title": "Hay Fever", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/hayfever.html", "parser": "medlineplus_topic", "topics": ["allergic_rhinitis"], "priority": 2},
+    {"id": "mlp-ency-allergic-rhinitis", "title": "Allergic rhinitis", "publisher": "MedlinePlus Medical Encyclopedia", "url": "https://medlineplus.gov/ency/article/000813.htm", "parser": "medlineplus_ency", "topics": ["allergic_rhinitis"], "priority": 2},
+    {"id": "nhs-sinusitis", "title": "Sinusitis (sinus infection)", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/sinusitis-sinus-infection/", "parser": "nhs", "topics": ["sinusitis"], "priority": 1},
+
+    {"id": "nhs-sore-throat", "title": "Sore throat", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/sore-throat/", "parser": "nhs", "topics": ["sore_throat"], "priority": 1},
+    {"id": "mlp-sore-throat", "title": "Sore Throat", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/sorethroat.html", "parser": "medlineplus_topic", "topics": ["sore_throat"], "priority": 2},
+    {"id": "nhs-tonsillitis", "title": "Tonsillitis", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/tonsillitis/", "parser": "nhs", "topics": ["sore_throat"], "priority": 2},
+    {"id": "nhs-laryngitis", "title": "Laryngitis", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/laryngitis/", "parser": "nhs", "topics": ["sore_throat"], "priority": 2},
+
+    {"id": "nhs-indigestion", "title": "Indigestion", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/indigestion/", "parser": "nhs", "topics": ["indigestion"], "priority": 1},
+    {"id": "nhs-heartburn", "title": "Heartburn and acid reflux", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/heartburn-and-acid-reflux/", "parser": "nhs", "topics": ["indigestion"], "priority": 1},
+    {"id": "mlp-indigestion", "title": "Indigestion", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/indigestion.html", "parser": "medlineplus_topic", "topics": ["indigestion"], "priority": 2},
+    {"id": "mlp-gerd", "title": "GERD", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/gerd.html", "parser": "medlineplus_topic", "topics": ["indigestion"], "priority": 2},
+
+    {"id": "nhs-constipation", "title": "Constipation", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/constipation/", "parser": "nhs", "topics": ["constipation"], "priority": 1},
+    {"id": "mlp-constipation", "title": "Constipation", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/constipation.html", "parser": "medlineplus_topic", "topics": ["constipation"], "priority": 2},
+
+    {"id": "nhs-headaches", "title": "Headaches", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/headaches/", "parser": "nhs", "topics": ["tension_headache", "migraine"], "priority": 1},
+    {"id": "nhs-tension-headaches", "title": "Tension headaches", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/tension-headaches/", "parser": "nhs", "topics": ["tension_headache"], "priority": 1},
+    {"id": "nhs-migraine", "title": "Migraine", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/migraine/", "parser": "nhs", "topics": ["migraine"], "priority": 1},
+    {"id": "mlp-headache", "title": "Headache", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/headache.html", "parser": "medlineplus_topic", "topics": ["tension_headache", "migraine"], "priority": 2},
+    {"id": "who-headache", "title": "Headache disorders fact sheet", "publisher": "World Health Organization", "url": "https://www.who.int/news-room/fact-sheets/detail/headache-disorders", "parser": "who_factsheet", "topics": ["tension_headache", "migraine"], "priority": 2},
+
+    {"id": "nhs-contact-dermatitis", "title": "Contact dermatitis", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/contact-dermatitis/", "parser": "nhs", "topics": ["contact_dermatitis"], "priority": 1},
+    {"id": "nhs-hives", "title": "Hives", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/hives/", "parser": "nhs", "topics": ["hives"], "priority": 1},
+    {"id": "nhs-heat-rash", "title": "Heat rash (prickly heat)", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/heat-rash-prickly-heat/", "parser": "nhs", "topics": ["heat_rash"], "priority": 1},
+    {"id": "nhs-itchy-skin", "title": "Itchy skin", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/itchy-skin/", "parser": "nhs", "topics": ["contact_dermatitis", "hives", "heat_rash"], "priority": 2},
+    {"id": "mlp-rashes", "title": "Rashes", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/rashes.html", "parser": "medlineplus_topic", "topics": ["contact_dermatitis", "hives", "heat_rash"], "priority": 2},
+
+    {"id": "nhs-stroke-symptoms", "title": "Stroke – symptoms", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/stroke/symptoms/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
+    {"id": "nhs-heart-attack-symptoms", "title": "Heart attack – symptoms", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/heart-attack/symptoms/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
+    {"id": "nhs-chest-pain", "title": "Chest pain", "publisher": "NHS", "url": "https://www.nhs.uk/symptoms/chest-pain/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
+    {"id": "nhs-shortness-of-breath", "title": "Shortness of breath", "publisher": "NHS", "url": "https://www.nhs.uk/symptoms/shortness-of-breath/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
+    {"id": "nhs-anaphylaxis", "title": "Anaphylaxis", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/anaphylaxis/", "parser": "nhs", "topics": ["red_flag", "hives"], "priority": 1},
+    {"id": "nhs-meningitis-symptoms", "title": "Meningitis – symptoms", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/meningitis/symptoms/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
+    {"id": "nhs-sepsis", "title": "Sepsis", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/sepsis/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
+    {"id": "nhs-stomach-ache", "title": "Stomach ache", "publisher": "NHS", "url": "https://www.nhs.uk/symptoms/stomach-ache/", "parser": "nhs", "topics": ["red_flag", "indigestion", "constipation"], "priority": 2},
+    {"id": "nhs-fever-adults", "title": "High temperature (fever) in adults", "publisher": "NHS", "url": "https://www.nhs.uk/symptoms/fever-in-adults/", "parser": "nhs", "topics": ["red_flag", "flu_like_illness"], "priority": 2},
+    {"id": "who-dengue", "title": "Dengue and severe dengue fact sheet", "publisher": "World Health Organization", "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue", "parser": "who_factsheet", "topics": ["red_flag", "flu_like_illness"], "priority": 2}
+  ]
+}
