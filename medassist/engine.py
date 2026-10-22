@@ -35,10 +35,10 @@ class Engine:
     def start(self, language: str = "hi") -> tuple[AssessmentState, dict]:
         st = AssessmentState(language="hi" if language == "hi" else "en")
         greet = T(st.language,
-                  "Hi! Tell me what symptoms you're having, in your own words — for example: \"blocked nose and sore throat since 2 days\". "
-                  "I'll ask a few questions, check for warning signs first, and then explain which common causes fit and why, with sources.",
-                  "Namaste! Apne symptoms apne shabdon mein batayein — jaise: \"2 din se naak band hai aur gale mein dard\". "
-                  "Main pehle warning signs check karunga, kuch zaroori sawaal poochunga, aur phir sources ke saath samjhaunga ki kaunse common causes match karte hain aur kyun.")
+                  "Hi. Tell me what's going on, the way you'd tell a doctor — for example, "
+                  "\"blocked nose and a sore throat for two days.\"",
+                  "Namaste. Batayein kya takleef hai — waise hi jaise doctor ko batate. "
+                  "Maslan: \"2 din se naak band hai aur gale mein dard hai.\"")
         self._say(st, greet, "greeting")
         return st, self.respond(st, [st.messages[-1]])
 
@@ -257,35 +257,45 @@ class Engine:
         absn = [s for s, v in changed.items() if v == "absent"]
         uns = [s for s, v in changed.items() if v == "unsure"]
 
-        def fmt(s):
+        def said(s):
+            # echo the user's own words where we have them; fall back to the plain label
             e = st.symptoms[s]
-            w = e.user_words[-1] if e.user_words else None
+            if e.user_words:
+                return e.user_words[-1]
             lab = self.lex.label(s, lang)
-            return f"{lab} (“{w}”)" if w and w.lower() != lab.lower() else lab
+            return lab[0].lower() + lab[1:] if lang == "en" else lab
+
+        def listing(items):
+            items = list(dict.fromkeys(items))
+            if len(items) == 1:
+                return items[0]
+            return ", ".join(items[:-1]) + T(lang, " and ", " aur ") + items[-1]
 
         if not (pres or absn or uns):
             return None
         if pres:
-            parts.append(T(lang, "Noted: ", "Samajh gaya — aapne bataya: ") + ", ".join(fmt(s) for s in pres) + ".")
+            parts.append(T(lang, "Okay — ", "Theek hai — ") + listing([said(s) for s in pres]) + ".")
         if absn:
-            parts.append(T(lang, "Not present: ", "Yeh nahi hai: ") + ", ".join(self.lex.label(s, lang) for s in absn) + ".")
+            parts.append(T(lang, "No ", "") + listing([said(s) for s in absn])
+                         + T(lang, ", noted.", " nahi hai, yeh bhi note kar liya."))
         if uns:
-            parts.append(T(lang, "Not sure about: ", "Iske baare mein pakka nahi: ") + ", ".join(self.lex.label(s, lang) for s in uns) + ".")
+            parts.append(T(lang, "Not sure about ", "") + listing([said(s) for s in uns])
+                         + T(lang, " — that's fine.", " ke baare mein pakka nahi — koi baat nahi."))
         cands, _ = match_all(st.status_map(), st.attributes.model_dump())
         if cands and not st.active_flags():
             names = [load_conditions()[c.condition_id]["name"]["hi" if lang == "hi" else "en"] for c in cands[:2]]
             j = " ya " if lang == "hi" else " or "
             parts.append(T(lang,
-                f"So far this could fit something like {j.join(names)}, but the information isn't enough to say which.",
-                f"Abhi tak ki information se yeh {j.join(names)} jaisa kuch ho sakta hai, lekin exact cause abhi confirm nahi hota."))
-        return self._say(st, " ".join(parts), "ack")
+                f"So far it sounds like it could be {j.join(names)}, but it's too early to say which.",
+                f"Abhi tak yeh {j.join(names)} jaisa lag raha hai, par itne se pakka nahi keh sakte."))
+        return self._say(st, " ".join(p[0].upper() + p[1:] for p in parts if p), "ack")
 
     def _lead(self, st: AssessmentState, q: dict) -> str | None:
         lang = st.language
         if q["kind"] == "screen":
-            return T(lang, "First, a quick safety check.", "Pehle ek chhota safety check.")
+            return T(lang, "Before anything else, a quick safety check.", "Usse pehle ek zaroori safety check.")
         if q["kind"] == "clarify":
-            return T(lang, "I want to make sure I understood you correctly.", "Main confirm karna chahta hoon ki maine sahi samjha.")
+            return T(lang, "Just so I don't get this wrong —", "Bas yeh pakka kar loon —")
         return None
 
     def _answer_text(self, st: AssessmentState, qid: str, value) -> str:

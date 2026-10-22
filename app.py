@@ -128,6 +128,50 @@ def kg_data():
 
     return jsonify({"nodes": nodes, "links": links})
 
+def _local_ips() -> list[str]:
+    import socket
+    ips = set()
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.connect(("10.255.255.255", 1))      # no packet is sent; this just picks the LAN interface
+            ips.add(s.getsockname()[0])
+    except OSError:
+        pass
+    return sorted(ips)
+
+
+def _self_signed_cert() -> tuple[str, str]:
+    """Create (once) a self-signed certificate for localhost and this machine's LAN address.
+
+    Browsers only allow the microphone on https:// or localhost, so this is needed to use
+    voice input from another device (e.g. a phone) on the same network.
+    """
+    import subprocess
+    folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "instance")
+    os.makedirs(folder, exist_ok=True)
+    cert, key = os.path.join(folder, "dev-cert.pem"), os.path.join(folder, "dev-key.pem")
+    sans = ["DNS:localhost", "IP:127.0.0.1"] + [f"IP:{ip}" for ip in _local_ips()]
+    marker = os.path.join(folder, "dev-cert.san")
+    if not (os.path.exists(cert) and os.path.exists(key) and os.path.exists(marker)
+            and open(marker).read() == ",".join(sans)):
+        subprocess.run(["openssl", "req", "-x509", "-newkey", "rsa:2048", "-nodes", "-days", "365",
+                        "-keyout", key, "-out", cert, "-subj", "/CN=MediBot local",
+                        "-addext", "subjectAltName=" + ",".join(sans)],
+                       check=True, capture_output=True)
+        with open(marker, "w") as f:
+            f.write(",".join(sans))
+    return cert, key
+
+
 if __name__ == "__main__":
+    import sys
     port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port, debug=os.environ.get("FLASK_DEBUG") == "1")
+    use_https = "--https" in sys.argv or os.environ.get("HTTPS") == "1"
+    scheme = "https" if use_https else "http"
+    print(f"\n  MediBot on this computer:  {scheme}://localhost:{port}")
+    for ip in _local_ips():
+        print(f"  On your network:           {scheme}://{ip}:{port}"
+              + ("" if use_https else "   (voice input needs --https here)"))
+    print()
+    app.run(host="0.0.0.0", port=port, debug=os.environ.get("FLASK_DEBUG") == "1",
+            ssl_context=_self_signed_cert() if use_https else None)

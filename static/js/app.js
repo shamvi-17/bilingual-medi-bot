@@ -6,35 +6,22 @@
   // ── UI strings ────────────────────────────────────────────────────────────
   const I18N = {
     hi: {
-      brand_sub: "Symptom guide · Hinglish & English",
-      eyebrow: "Explainable symptom guide",
-      hero_title: "Apne symptoms samjhiye — har baat ke saath uska evidence",
-      hero_lead: "Batayein kya ho raha hai. Main pehle warning signs check karunga, kuch zaroori sawaal poochunga, aur phir NHS, WHO aur MedlinePlus jaise sources ke saath samjhaunga ki kaunse common causes match karte hain — aur kyun.",
-      start: "Assessment shuru karein", resume: "Pichla assessment jaari rakhein", how_link: "Kaise kaam karta hai?",
-      example_title: "Example",
-      example_bot: "Samajh gaya — naak band hona aur gale mein mucus. Yeh allergy ya common cold jaisa kuch ho sakta hai, lekin exact cause abhi confirm nahi hota. Isliye main duration aur bukhar ke baare mein poochunga.",
-      example_cite: "Har conclusion ke saath source: NHS · MedlinePlus · WHO",
-      how_title: "Kaise kaam karta hai",
-      s1_t: "Symptoms batayein", s1_d: "Hindi, English ya Hinglish — jaise aap normally bolte hain.",
-      s2_t: "Safety check + sawaal", s2_d: "Pehle emergency signs check hote hain, phir sirf wahi sawaal jo fark daalte hain.",
-      s3_t: "Samjhaane wala assessment", s3_d: "Kaunse symptoms match karte hain, kaunse nahi, kya pata nahi — har point ka source link ke saath.",
-      scope_title: "Yeh tool kya kar sakta hai, kya nahi",
-      can_t: "Kar sakta hai", cant_t: "Nahi kar sakta",
-      can1: "Common, kam-risk conditions ko compare karna: cold, flu jaisi bimari, naak ki allergy, sinus, gale ki kharash, acidity, kabz, tension headache, migraine, skin irritation",
-      can2: "Emergency warning signs pehchaan kar turant guidance dena",
-      can3: "Har baat ka source dikhana taaki aap khud check kar sakein",
-      cant1: "Diagnosis dena ya doctor ki jagah lena", cant2: "Dawai ya dose batana", cant3: "Serious bimariyon ko rule out karna",
-      emerg_strip_t: "Emergency?", emerg_strip_d: "Seene mein dard, saans lene mein bahut takleef, chehra latakna ya behoshi ho to abhi 112 ya 108 call karein.",
-      footer_disclaimer: "Sirf jaankari ke liye — medical diagnosis nahi. Software tested hai, clinically validated nahi.",
-      footer_sources: "Medical sources", footer_graph: "WHO disease knowledge graph",
-      stepper_note: "Interview progress — yeh medical validation nahi hai.",
-      steps: ["Symptoms", "Safety check", "Sawaal", "Assessment"],
-      input_label: "Apne symptoms likhein", placeholder: "Apne symptoms likhein… jaise \"2 din se sar dard aur halka bukhar\"",
-      composer_hint: "Enter = bhejein · 🎤 = bolkar batayein · Aap kabhi bhi kuch correct kar sakte hain",
-      assess_now: "Assessment abhi dikhayein",
-      side_title: "Aapka summary", side_help: "Yahan aapke bataye symptoms dikhenge. Kuch galat ho to yahin badal sakte hain.",
-      side_symptoms: "Symptoms", side_details: "Details", add_symptom: "Symptom jodein", add: "Jodein", close: "Band karein",
-      restart: "Restart", restart_full: "Naya assessment shuru karein", summary_btn: "Summary",
+      brand_sub: "symptom guide",
+      hero_title: "Kya takleef hai? Batayein.",
+      hero_lead: "Kuch sawaal poochkar bataunga ki kaunsi aam wajah ho sakti hai — source ke saath.",
+      start: "Shuru karein", resume: "Jahan chhoda tha wahin se",
+      voice_hint: "Bolkar bhi bata sakte hain.",
+      scope_line: "Sirf aam takleefon ke liye. Diagnosis ya dawai nahi batata.",
+      emerg_strip_t: "Emergency?", emerg_strip_d: "Abhi call karein:",
+      footer_disclaimer: "Sirf jaankari ke liye. Software tested hai, clinically validated nahi.",
+      footer_sources: "Sources ki list", footer_graph: "WHO disease graph",
+      steps: ["Aapki baat", "Safety check", "Sawaal", "Nateeja"], step_of: (n, m, name) => `${n}/${m} — ${name}`,
+      input_label: "Apne symptoms likhein", placeholder: "Likhiye ya bolkar batayiye… jaise \"2 din se sar dard aur halka bukhar\"",
+      composer_hint: "Enter dabakar bhejein. Kuch galat likha gaya ho to baad mein bhi badal sakte hain.",
+      assess_now: "Ab tak ki baat par nateeja dikhayein",
+      side_title: "Ab tak ki baat", side_help: "Jo aapne bataya, woh yahan likha jaata hai. Kuch galat ho to yahin theek kar dein.",
+      side_symptoms: "Symptoms", side_details: "Aur details", add_symptom: "Symptom jodein", add: "Jodein", close: "Band karein",
+      restart: "Shuru se", restart_full: "Shuru se karein", summary_btn: "Notes",
       no_symptoms: "Abhi koi symptom nahi.", choose_symptom: "Symptom chunein…",
       st_present: "Hai", st_absent: "Nahi hai", st_unsure: "Pata nahi", remove: "Hatayein",
       d_duration: "Kab se", d_severity: "Takleef (1–10)", d_onset: "Shuruaat", d_progression: "Badlaav", d_age: "Kiske liye",
@@ -60,45 +47,34 @@
       timeout: "Jawab aane mein zyada time lag raha hai. Dobara koshish karein.",
       expired: "Yeh session expire ho gaya. Naya assessment shuru kar rahe hain.",
       mic_err: "Voice input abhi available nahi hai — kripya type karein.",
-      mic_label: "Bolkar batayein", mic_denied: "Microphone ki permission nahi mili. Browser settings mein allow karein, ya type karein.",
+      mic_label: "Bolkar batayein",
+      mic_insecure: "Mic is address par block hai — browser sirf https ya localhost par mic deta hai. Isi computer par {url} kholein, ya app ko `python app.py --https` se chalayein.",
+      mic_unsupported: "Is browser mein voice recording support nahi hai — kripya type karein.", mic_denied: "Microphone ki permission nahi mili. Browser settings mein allow karein, ya type karein.",
       voice_listening: "Sun raha hoon… bolna rokte hi apne-aap ruk jaayega", voice_processing: "Samajh raha hoon…",
       voice_stop: "Ho gaya", voice_cancel: "Cancel", voice_no_speech: "Kuch sunai nahi diya — mic ke paas dobara bolein, ya type karein.",
-      voice_note: "🎤 Aapki awaaz se likha gaya — bhejne se pehle check kar lein", autosend: "Bolne ke baad apne-aap bhejein",
+      voice_note: "Awaaz se likha gaya hai — bhejne se pehle ek baar padh lein.", autosend: "Bolne ke baad apne-aap bhejein",
       speak_on: "Jawab bolkar sunayein", speak_off: "Jawab bolna band karein",
       lang_suggest: "Kya aap English mein jaari rakhna chahenge?",
       sources_title: "Medical sources (knowledge base)",
       outdated: "Purana ho sakta hai",
     },
     en: {
-      brand_sub: "Symptom guide · Hinglish & English",
-      eyebrow: "Explainable symptom guide",
-      hero_title: "Understand your symptoms — with the evidence for every point",
-      hero_lead: "Tell me what's going on. I'll check for warning signs first, ask only the questions that matter, then explain which common causes fit — and why — using sources like the NHS, WHO and MedlinePlus.",
-      start: "Start assessment", resume: "Continue previous assessment", how_link: "How does it work?",
-      example_title: "Example",
-      example_bot: "Got it — blocked nose and mucus in the throat. This could fit an allergy or a common cold, but the exact cause isn't clear yet. So I'll ask about how long it's lasted and whether you have a fever.",
-      example_cite: "Every conclusion comes with a source: NHS · MedlinePlus · WHO",
-      how_title: "How it works",
-      s1_t: "Describe your symptoms", s1_d: "In English, Hindi or Hinglish — the way you'd normally say it.",
-      s2_t: "Safety check + questions", s2_d: "Emergency signs are checked first, then only questions that change the picture.",
-      s3_t: "An assessment that explains itself", s3_d: "What fits, what doesn't, what's unknown — each point linked to its source.",
-      scope_title: "What this tool can and can't do",
-      can_t: "It can", cant_t: "It can't",
-      can1: "Compare common, lower-risk conditions: colds, flu-like illness, nasal allergy, sinusitis, sore throat, acidity, constipation, tension headache, migraine, skin irritation",
-      can2: "Recognise emergency warning signs and give immediate guidance",
-      can3: "Show the source of every point so you can check it yourself",
-      cant1: "Diagnose you or replace a doctor", cant2: "Recommend medicines or doses", cant3: "Rule out serious illness",
-      emerg_strip_t: "Emergency?", emerg_strip_d: "For chest pain, severe breathing difficulty, face drooping or fainting, call 112 or 108 now.",
-      footer_disclaimer: "For information only — not a medical diagnosis. Software-tested, not clinically validated.",
-      footer_sources: "Medical sources", footer_graph: "WHO disease knowledge graph",
-      stepper_note: "Interview progress — this is not a medical validation.",
-      steps: ["Symptoms", "Safety check", "Questions", "Assessment"],
-      input_label: "Describe your symptoms", placeholder: "Describe your symptoms… e.g. \"headache and mild fever for 2 days\"",
-      composer_hint: "Enter = send · 🎤 = speak · You can correct anything at any time",
-      assess_now: "Show assessment now",
-      side_title: "Your summary", side_help: "Symptoms you mention appear here. If anything is wrong, change it here.",
-      side_symptoms: "Symptoms", side_details: "Details", add_symptom: "Add a symptom", add: "Add", close: "Close",
-      restart: "Restart", restart_full: "Start a new assessment", summary_btn: "Summary",
+      brand_sub: "symptom guide",
+      hero_title: "What's bothering you?",
+      hero_lead: "A few questions, then the likely common causes — with sources.",
+      start: "Let's start", resume: "Pick up where you left off",
+      voice_hint: "You can also just speak.",
+      scope_line: "For common, minor problems only. No diagnosis, no medicines.",
+      emerg_strip_t: "Emergency?", emerg_strip_d: "Call now:",
+      footer_disclaimer: "For information only. Software-tested, not clinically validated.",
+      footer_sources: "List of sources", footer_graph: "WHO disease graph",
+      steps: ["Your story", "Safety check", "Questions", "Result"], step_of: (n, m, name) => `${n} of ${m} — ${name}`,
+      input_label: "Describe your symptoms", placeholder: "Type or speak… e.g. \"headache and a mild fever for 2 days\"",
+      composer_hint: "Press Enter to send. You can still change anything later.",
+      assess_now: "Show me the result so far",
+      side_title: "What you've told me", side_help: "Everything you mention is noted here. If something's wrong, fix it here.",
+      side_symptoms: "Symptoms", side_details: "Other details", add_symptom: "Add a symptom", add: "Add", close: "Close",
+      restart: "Start over", restart_full: "Start over", summary_btn: "Notes",
       no_symptoms: "No symptoms yet.", choose_symptom: "Choose a symptom…",
       st_present: "Yes", st_absent: "No", st_unsure: "Not sure", remove: "Remove",
       d_duration: "How long", d_severity: "Severity (1–10)", d_onset: "Onset", d_progression: "Change", d_age: "For",
@@ -124,10 +100,12 @@
       timeout: "The server is taking too long. Please try again.",
       expired: "This session expired. Starting a new assessment.",
       mic_err: "Voice input isn't available right now — please type instead.",
-      mic_label: "Speak your symptoms", mic_denied: "Microphone permission was blocked. Allow it in your browser settings, or type instead.",
+      mic_label: "Speak your symptoms",
+      mic_insecure: "The microphone is blocked on this address — browsers only allow it on https or localhost. Open {url} on this computer, or start the app with `python app.py --https`.",
+      mic_unsupported: "This browser can't record audio — please type instead.", mic_denied: "Microphone permission was blocked. Allow it in your browser settings, or type instead.",
       voice_listening: "Listening… I'll stop when you pause", voice_processing: "Understanding…",
       voice_stop: "Done", voice_cancel: "Cancel", voice_no_speech: "I didn't hear anything — try again closer to the mic, or type.",
-      voice_note: "🎤 Typed from your voice — please check before sending", autosend: "Send automatically after speaking",
+      voice_note: "Typed from your voice — give it a quick read before sending.", autosend: "Send automatically after speaking",
       speak_on: "Read replies aloud", speak_off: "Stop reading replies aloud",
       lang_suggest: "Would you like to continue in Hinglish?",
       sources_title: "Medical sources (knowledge base)",
@@ -166,13 +144,13 @@
     return data;
   }
 
-  function toast(msg, isError = false) {
+  function toast(msg, isError = false, ms) {
     const el = document.createElement("div");
     el.className = "toast" + (isError ? " error" : "");
     el.setAttribute("role", isError ? "alert" : "status");
     el.textContent = msg;
     document.body.appendChild(el);
-    setTimeout(() => el.remove(), isError ? 6000 : 2500);
+    setTimeout(() => el.remove(), ms || (isError ? 6000 : 2500));
   }
 
   async function guarded(fn, label) {
@@ -245,8 +223,11 @@
     if (!text) return;
     const div = document.createElement("div");
     div.className = `msg ${who}${kind === "answer" ? " answer" : ""}`;
-    div.innerHTML = `<div class="avatar" aria-hidden="true">${who === "user" ? "You" : "M"}</div><div class="bubble"></div>`;
-    div.querySelector(".avatar").textContent = who === "user" ? (S.lang === "hi" ? "Aap" : "You") : "M";
+    // name only at the start of a run of messages from the same side, like a written transcript
+    const prev = [...$("#chat").children].reverse().find((el) => el.classList.contains("msg") && el.id !== "typing");
+    const first = !prev || !prev.classList.contains(who);
+    div.innerHTML = `${first ? `<div class="who"></div>` : ""}<div class="bubble"></div>`;
+    if (first) div.querySelector(".who").textContent = who === "user" ? (S.lang === "hi" ? "Aap" : "You") : "MediBot";
     div.querySelector(".bubble").textContent = text;
     $("#chat").appendChild(div);
     scrollChat();
@@ -264,7 +245,7 @@
     if (on && !existing) {
       const d = document.createElement("div");
       d.id = "typing"; d.className = "msg bot";
-      d.innerHTML = `<div class="avatar" aria-hidden="true">M</div><div class="bubble typing" aria-label="${esc(label || t("thinking"))}"><i></i><i></i><i></i><span class="typing-label">${esc(label || t("thinking"))}</span></div>`;
+      d.innerHTML = `<div class="bubble typing" role="status"><span class="typing-label">${esc(label || t("thinking"))}</span></div>`;
       $("#chat").appendChild(d); scrollChat();
     } else if (!on && existing) existing.remove();
   }
@@ -295,9 +276,10 @@
     if (!p) return;
     const steps = t("steps");
     $("#stepper").classList.toggle("emergency", stage === "emergency");
+    $("#step-label").textContent = t("step_of")(p.step + 1, steps.length, steps[p.step]);
     $("#stepper-list").innerHTML = steps.map((s, i) => {
       const cls = i < p.step ? "done" : i === p.step ? "current" : "";
-      return `<li class="${cls}" ${i === p.step ? 'aria-current="step"' : ""}><div class="bar"></div><div class="lbl">${esc(s)}</div></li>`;
+      return `<li class="${cls}" ${i === p.step ? 'aria-current="step"' : ""}><span class="visually-hidden">${esc(s)}</span></li>`;
     }).join("");
   }
 
@@ -432,7 +414,7 @@
     }
     const a = r.attributes || {};
     const dur = a.duration_days == null ? "" : String(a.duration_days);
-    const durList = t("dur_opts").some(([v]) => v === dur) ? t("dur_opts") : [...t("dur_opts"), [dur, `${dur} d`]];
+    const durList = t("dur_opts").some(([v]) => v === dur) ? t("dur_opts") : [...t("dur_opts"), [dur, `${dur} ${S.lang === "hi" ? "din" : "days"}`]];
     $("#details").innerHTML = `
       <dt><label for="a-duration">${esc(t("d_duration"))}</label></dt><dd><select id="a-duration" data-attr="duration_days">${opts(durList, dur)}</select></dd>
       <dt><label for="a-severity">${esc(t("d_severity"))}</label></dt><dd><select id="a-severity" data-attr="severity">${opts([["", "—"], ...Array.from({ length: 10 }, (_, i) => [String(i + 1), String(i + 1)])], a.severity == null ? "" : String(a.severity))}</select></dd>
@@ -450,7 +432,6 @@
     const updated = S.lastAssessKey && S.lastAssessKey !== key;
     if (S.lastAssessKey === key && !box.hidden) return;
     S.lastAssessKey = key; S.results = a;
-    const levelDots = { stronger: 3, partial: 2, limited: 1 };
     const rep = a.reported;
     box.innerHTML = `<div class="results">
       <div class="results-head"><h2 tabindex="-1" id="results-title">${esc(t("res_title"))}</h2>
@@ -469,7 +450,7 @@
       <div class="pill-row" aria-label="${esc(t("reported"))}">
         ${rep.present.map((s) => `<span class="pill">✓ ${esc(s.label)}</span>`).join("")}
         ${rep.absent.length ? `<span class="pill muted" title="${esc(rep.absent.map((s) => s.label).join(", "))}">✕ ${esc(t("absent_lbl"))}: ${rep.absent.length}</span>` : ""}
-        ${rep.duration ? `<span class="pill">⏱ ${esc(rep.duration)}</span>` : ""}
+        ${rep.duration ? `<span class="pill">${esc(t("d_duration"))}: ${esc(rep.duration)}</span>` : ""}
         ${rep.severity ? `<span class="pill">${esc(t("d_severity"))}: ${esc(rep.severity)}</span>` : ""}
       </div>
       ${a.conditions.map((c, i) => `
@@ -479,7 +460,7 @@
               <div class="cond-title">${esc(c.name)}</div>
               <div class="cond-desc">${esc(c.description)}</div>
             </div>
-            <span class="badge ${esc(c.support.level)}"><span class="dots" aria-hidden="true">${[1, 2, 3].map((n) => `<i class="${n <= levelDots[c.support.level] ? "on" : ""}"></i>`).join("")}</span>${esc(c.support.label)}</span>
+            <span class="badge ${esc(c.support.level)}">${esc(c.support.label)}</span>
             <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
           </summary>
           <div class="cond-body">
@@ -608,7 +589,12 @@
   }
 
   async function startRecording() {
-    if (!navigator.mediaDevices || !window.MediaRecorder) { toast(t("mic_err"), true); return; }
+    if (!window.isSecureContext) {
+      // browsers only expose the microphone on https:// or localhost
+      toast(t("mic_insecure").replace("{url}", `http://localhost:${location.port || 80}`), true, 12000);
+      return;
+    }
+    if (!navigator.mediaDevices || !window.MediaRecorder) { toast(t("mic_unsupported"), true); return; }
     stopSpeaking();
     try {
       V.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });

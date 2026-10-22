@@ -20,7 +20,17 @@ cp .env.example .env    # optional: add GROQ_API_KEY
 python app.py
 ```
 
-Open http://localhost:5001. Optional multilingual dense retrieval (otherwise BM25 only):
+Open http://localhost:5001.
+
+**Voice input needs `https://` or `localhost`.** Browsers block the microphone on plain `http://` network addresses such as `http://192.168.x.x:5001`. To use voice from another device (e.g. a phone on the same Wi-Fi), start with a self-signed certificate (created with `openssl`, stored in `instance/`):
+
+```bash
+python app.py --https
+```
+
+Then open the `https://<your-ip>:5001` address it prints and accept the browser's certificate warning once.
+
+Optional multilingual dense retrieval (otherwise BM25 only):
 
 ```bash
 pip install -r requirements-ml.txt
