@@ -145,3 +145,13 @@ def test_assessment_updates_when_answer_changes(engine):
     assert r["stage"] == "assessment"
     assert "flu_like_illness" in after or after.get("allergic_rhinitis") != "stronger"
     assert before != list(after) or after.get("allergic_rhinitis") != "stronger"
+
+
+def test_vague_complaint_flow(engine):
+    st, r = engine.start("hi")
+    r = engine.message(st, "mujhe infection ho raha hai")
+    assert r["question"]["id"] == "clarify_general"
+    assert not any(m["kind"] == "unrecognised" for m in r["messages"])
+    r = engine.answer(st, "clarify_general", ["fever", "sore_throat"])
+    assert {"fever", "sore_throat"} <= st.present()
+    assert r["question"]["kind"] == "screen"          # normal flow continues with the safety check

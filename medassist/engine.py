@@ -294,6 +294,9 @@ class Engine:
         lang = st.language
         if q["kind"] == "screen":
             return T(lang, "Before anything else, a quick safety check.", "Usse pehle ek zaroori safety check.")
+        if q is load_questions()["clarify_general"]:
+            return T(lang, "That could mean a lot of different things — the symptoms will tell us more.",
+                     "Infection ya tabiyat kharab hona kai cheezon se ho sakta hai — symptoms se zyada pata chalega.")
         if q["kind"] == "clarify":
             return T(lang, "Just so I don't get this wrong —", "Bas yeh pakka kar loon —")
         return None

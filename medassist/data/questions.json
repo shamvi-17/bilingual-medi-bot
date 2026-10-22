@@ -27,6 +27,23 @@
         {"value": "cough", "label": {"en": "Cough", "hi": "Khaansi"}, "present": ["cough"]},
         {"value": "chills", "label": {"en": "Feeling cold / shivery", "hi": "Thand lagna / kapkapi"}, "present": ["chills"]}
       ]},
+    "clarify_general": {
+      "kind": "clarify", "type": "multi", "priority": 98, "unchecked_absent": false,
+      "text": {"en": "What exactly are you feeling? Select everything that applies — or describe it in your own words.", "hi": "Exactly kya ho raha hai? Jo bhi ho, sab select karein — ya apne shabdon mein likhein."},
+      "why": {"en": "'Infection' or 'feeling unwell' is a guess about the cause. The symptoms themselves are what tell common causes apart.", "hi": "'Infection' ya 'tabiyat kharab' wajah ka andaza hai — asli fark symptoms se hi pata chalta hai."},
+      "options": [
+        {"value": "fever", "label": {"en": "Fever", "hi": "Bukhar"}, "present": ["fever"]},
+        {"value": "sore_throat", "label": {"en": "Sore throat", "hi": "Gale mein dard"}, "present": ["sore_throat"]},
+        {"value": "cough", "label": {"en": "Cough", "hi": "Khaansi"}, "present": ["cough"]},
+        {"value": "nose", "label": {"en": "Runny or blocked nose", "hi": "Naak behna ya band"}, "present": ["runny_nose"]},
+        {"value": "body_ache", "label": {"en": "Body aches", "hi": "Badan dard"}, "present": ["body_ache"]},
+        {"value": "headache", "label": {"en": "Headache", "hi": "Sar dard"}, "present": ["headache"]},
+        {"value": "stomach", "label": {"en": "Stomach pain", "hi": "Pet dard"}, "present": ["abdominal_pain"]},
+        {"value": "diarrhoea", "label": {"en": "Loose motions", "hi": "Loose motion / dast"}, "present": ["diarrhoea"]},
+        {"value": "vomiting", "label": {"en": "Vomiting", "hi": "Ulti"}, "present": ["vomiting"]},
+        {"value": "urine", "label": {"en": "Burning while passing urine", "hi": "Peshab mein jalan"}, "present": ["urinary_burning"]},
+        {"value": "skin", "label": {"en": "Rash, itching or a sore on the skin", "hi": "Skin par rash, khujli ya ghaav"}, "present": ["skin_rash"]}
+      ]},
     "clarify_weakness": {
       "kind": "clarify", "type": "single", "priority": 101,
       "text": {"en": "What kind of weakness do you mean?", "hi": "Kis tarah ki kamzori ki baat kar rahe hain?"},

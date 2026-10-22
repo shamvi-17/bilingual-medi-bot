@@ -130,3 +130,21 @@ def test_unseen_phrasings(text, sym, not_sym):
     assert got.get(sym) == "present", got
     if not_sym:
         assert not_sym not in got, got
+
+
+@pytest.mark.parametrize("text", ["mujhe infection ho raha hai", "tabiyat kharab hai", "I have an infection",
+                                  "viral ho gaya hai", "feeling unwell"])
+def test_vague_illness_asks_what_the_symptoms_are(text):
+    ex = extract(text)
+    assert not ex.findings and "clarify_general" in ex.clarifications
+
+
+def test_vague_word_with_a_real_symptom_needs_no_clarification():
+    ex = extract("infection hai aur bukhar bhi")
+    assert [f.symptom for f in ex.findings] == ["fever"] and not ex.clarifications
+
+
+@pytest.mark.parametrize("text,sym", [("gale mein infection hai", "sore_throat"), ("throat infection", "sore_throat"),
+                                      ("urine infection hai", "urinary_burning"), ("UTI", "urinary_burning")])
+def test_infection_with_a_location(text, sym):
+    assert found(text).get(sym) == "present"

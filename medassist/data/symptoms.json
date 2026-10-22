@@ -10,7 +10,7 @@
   "facial_pain": {"en": "Pain or pressure around cheeks, eyes or forehead", "hi": "Gaal, aankh ya maathe ke aas-paas dard/bhaaripan", "category": "nose", "patterns": ["sinus (pain|pressure)", "(face|facial) (pain|pressure)", "pain (around|in) (my )?(cheeks?|forehead|face)", "pressure (around|in) (my )?(cheeks?|forehead|face)", "chehre (mein|me|par) (dard|bhaari\\w*)", "maathe (mein|me|par) (dard|bhaari\\w*)", "gaal (mein|me) dard"]},
   "loss_of_smell": {"en": "Reduced sense of smell", "hi": "Smell kam aana", "category": "nose", "patterns": ["loss of (taste and )?smell", "(can'?t|cannot|unable to) smell", "no smell", "smell (nahi|nahin|nhi|na) aa", "khushboo (nahi|nahin|nhi) aa", "gandh (nahi|nahin) aa", "smell (kam|chali)"]},
   "itchy_eyes": {"en": "Itchy, red or watery eyes", "hi": "Aankhon mein khujli / paani / laali", "category": "eyes", "patterns": ["itchy eyes?", "watery eyes?", "red eyes?", "eyes? (are )?(itch\\w*|water\\w*|red)", "aankh\\w* (mein|me|mai|se) (khujli|paa?ni|jalan)", "aankh\\w* (laal|lal)", "aankh\\w* (se )?paani"]},
-  "sore_throat": {"en": "Sore / painful throat", "hi": "Gale mein dard", "category": "throat", "patterns": ["sore throat", "throat (pain|ache|hurts?|is sore)", "pain(ful)? (in )?(my )?throat", "painful swallowing", "gala (dard|kharab)", "gale (mein|me|mai) dard", "gala dukh\\w*", "nigalne (mein|me) dard", "throat (mein|me) (dard|pain)", "gala chhil\\w*", "gale (mein|me) chubh\\w*", "nigalte (hi |waqt |samay )?(chubh|dard)\\w*", "(swallowing|swallow) hurts"]},
+  "sore_throat": {"en": "Sore / painful throat", "hi": "Gale mein dard", "category": "throat", "patterns": ["sore throat", "throat (pain|ache|hurts?|is sore)", "pain(ful)? (in )?(my )?throat", "painful swallowing", "gala (dard|kharab)", "gale (mein|me|mai) dard", "gala dukh\\w*", "nigalne (mein|me) dard", "throat (mein|me) (dard|pain)", "gala chhil\\w*", "gale (mein|me) chubh\\w*", "nigalte (hi |waqt |samay )?(chubh|dard)\\w*", "(swallowing|swallow) hurts", "throat infection", "(gale|gala) (mein |me |ka )?infection", "infection (in|of) (my |the )?throat"]},
   "throat_irritation": {"en": "Scratchy or itchy throat", "hi": "Gale mein kharash / khujli", "category": "throat", "patterns": ["scratchy throat", "itchy throat", "throat irritation", "irritat\\w* throat", "throat (is )?(scratchy|itchy|irritated)", "kharash", "khara?sh", "gale (mein|me|mai) khujli", "gala (khara?sh|chubh\\w*)"]},
   "hoarse_voice": {"en": "Hoarse voice", "hi": "Awaaz baith jaana", "category": "throat", "patterns": ["hoarse\\w*", "lost (my )?voice", "croaky voice", "awaa?z (baith|bait|bhaari|nahi nikal)\\w*", "gala baith\\w*"]},
   "swollen_glands": {"en": "Swollen neck glands", "hi": "Gardan mein gilti / sujan", "category": "throat", "patterns": ["swollen (neck )?glands?", "swollen lymph nodes?", "neck glands?", "gardan (mein|me) (gilti|gaanth|sujan)", "gilti"]},
@@ -58,7 +58,7 @@
   "toothache": {"en": "Toothache", "hi": "Daant dard", "category": "other", "patterns": ["tooth ?ache", "teeth pain", "daa?nt ?dard", "daa?nt (mein|me) dard"]},
   "back_pain": {"en": "Back pain", "hi": "Kamar dard", "category": "other", "patterns": ["back ?pain", "back ?ache", "kamar ?dard", "peeth (mein|me)? ?dard"]},
   "joint_pain": {"en": "Joint pain", "hi": "Jodon mein dard", "category": "other", "patterns": ["joint pain", "joints? (hurt|ache)", "jodo?n (mein|me) dard", "ghutn\\w* (mein|me)? ?dard"]},
-  "urinary_burning": {"en": "Burning or pain while passing urine", "hi": "Peshab mein jalan", "category": "other", "patterns": ["burning (urine|urination|while peeing)", "painful urination", "pain(ful)? (when|while) (peeing|urinating)", "pesh?aa?b (mein|me|karte (waqt|samay)) (jalan|dard)", "urine (mein|me) jalan"]},
+  "urinary_burning": {"en": "Burning or pain while passing urine", "hi": "Peshab mein jalan", "category": "other", "patterns": ["burning (urine|urination|while peeing)", "painful urination", "pain(ful)? (when|while) (peeing|urinating)", "pesh?aa?b (mein|me|karte (waqt|samay)) (jalan|dard)", "urine (mein|me) jalan", "urine infection", "urinary (tract )?infection", "\\buti\\b", "(peshab|pesaab|urine) (ka |mein |me )?infection"]},
   "weight_loss": {"en": "Unintentional weight loss", "hi": "Bina koshish wajan kam hona", "category": "other", "patterns": ["weight loss", "losing weight", "lost weight", "wajan (kam|ghat)\\w*", "vajan (kam|ghat)\\w*"]},
   "palpitations": {"en": "Racing or fluttering heartbeat", "hi": "Dil ki dhadkan tez", "category": "other", "patterns": ["palpitation\\w*", "heart (is )?racing", "racing heart", "dhadkan tez", "dil (ki dhadkan )?tez", "dil ghabra\\w*"]},
   "other_pain": {"en": "Pain elsewhere", "hi": "Kahin aur dard", "category": "other", "patterns": []},
@@ -107,6 +107,19 @@
       "\\bsardi[- ]?zu?kh?aa?m\\b"
     ],
     "question": "clarify_cold"
+  },
+  "vague_illness": {
+    "patterns": [
+      "\\binfect\\w*",
+      "\\bviral\\b",
+      "\\bvirus\\b",
+      "\\btabiy?a?t (\\w+ )?(kharab|theek nahi|thik nahi|bigad\\w*|achhi nahi)",
+      "\\b(unwell|not feeling well|not well|feeling ill|i am ill|i'?m ill|sick)\\b",
+      "\\bbimaa?r\\b",
+      "\\b(kuch )?(theek|thik) nahi lag\\w*"
+    ],
+    "question": "clarify_general",
+    "only_if_nothing_found": true
   },
   "weakness_word": {
     "patterns": [

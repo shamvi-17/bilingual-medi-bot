@@ -90,7 +90,8 @@ class Lexicon:
                 target = self.gap_patterns if p.startswith("~") else self.patterns
                 target.append((sid, re.compile(rf"(?<![a-z])(?:{p.lstrip('~')})(?![a-z])")))
         self.ambiguous = [
-            (name, [re.compile(p) for p in info["patterns"]], info["question"], set(info.get("unless_any", [])))
+            (name, [re.compile(p) for p in info["patterns"]], info["question"], set(info.get("unless_any", [])),
+             bool(info.get("only_if_nothing_found")))
             for name, info in data.get("ambiguous_terms", {}).items() if not name.startswith("_")
         ]
 
@@ -219,7 +220,9 @@ def extract(text: str, lexicon: Lexicon | None = None) -> Extraction:
         residual = residual[:s] + " " * (e - s) + residual[e:]
     result.residual = residual
     found = {f.symptom for f in result.findings if f.status == "present"}
-    for _name, pats, question, unless in lex.ambiguous:
+    for _name, pats, question, unless, only_if_empty in lex.ambiguous:
+        if only_if_empty and result.findings:
+            continue
         if not (unless & found) and any(p.search(residual) for p in pats):
             result.clarifications.append(question)
 
