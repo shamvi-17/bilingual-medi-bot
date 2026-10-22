@@ -7,7 +7,7 @@
   const I18N = {
     hi: {
       brand_sub: "symptom guide",
-      hero_title: "Kya takleef hai? Batayein.",
+      hero_title: "Kya takleef hai?", hero_title_b: "Batayein.",
       hero_lead: "Kuch sawaal poochkar bataunga ki kaunsi aam wajah ho sakti hai — source ke saath.",
       start: "Shuru karein", resume: "Jahan chhoda tha wahin se",
       voice_hint: "Bolkar bhi bata sakte hain.",
@@ -60,7 +60,7 @@
     },
     en: {
       brand_sub: "symptom guide",
-      hero_title: "What's bothering you?",
+      hero_title: "What's bothering you?", hero_title_b: "Tell me.",
       hero_lead: "A few questions, then the likely common causes — with sources.",
       start: "Let's start", resume: "Pick up where you left off",
       voice_hint: "You can also just speak.",
