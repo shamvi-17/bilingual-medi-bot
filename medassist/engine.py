@@ -85,10 +85,12 @@ class Engine:
                 st.asked.append(pending)
                 st.pending_question = None
 
+        flags_before = {f.id for f in st.active_flags()}
         self._screen_texts(st)
         changed = {s: e.status for s, e in st.symptoms.items() if before.get(s) != e.status}
+        new_flags = [f for f in st.active_flags() if f.id not in flags_before]
         # after an assessment, new information simply updates it (assessment_requested stays set)
-        new.append(self._ack(st, changed, ex))
+        new.append(self._ack(st, changed, ex, new_flags))
         return self.respond(st, new)
 
     def answer(self, st: AssessmentState, qid: str, value, echo: bool = True) -> dict:
@@ -195,7 +197,7 @@ class Engine:
                 lead = self._lead(st, q)
                 if lead:
                     out["messages"].append(self._say(st, lead, "lead").model_dump())
-            elif not present and not st.assessment_requested:
+            elif not present and not flags and not st.assessment_requested:
                 out["stage"] = "symptoms"
             else:
                 st.pending_question = None
@@ -242,8 +244,12 @@ class Engine:
         return [{"id": s, "label": self.lex.label(s, lang), "status": e.status, "user_words": e.user_words,
                  "source": e.source, "category": self.lex.category(s)} for s, e in st.symptoms.items()]
 
-    def _ack(self, st: AssessmentState, changed: dict[str, str], ex) -> Message | None:
+    def _ack(self, st: AssessmentState, changed: dict[str, str], ex, new_flags=()) -> Message | None:
         lang = st.language
+        if not changed and new_flags:
+            # the message described a warning sign rather than a listed symptom: acknowledge it, don't say "not understood"
+            labels = [self.rules.rules[f.id]["label"]["hi" if lang == "hi" else "en"] for f in new_flags]
+            return self._say(st, T(lang, "Noted: ", "Note kar liya: ") + "; ".join(labels) + ".", "ack")
         if not changed and not ex.clarifications:
             if ex.duration_days is not None or ex.onset or ex.progression:
                 return self._say(st, T(lang, "Thanks, noted.", "Shukriya, note kar liya."), "ack")
@@ -294,9 +300,8 @@ class Engine:
         lang = st.language
         if q["kind"] == "screen":
             return T(lang, "Before anything else, a quick safety check.", "Usse pehle ek zaroori safety check.")
-        if q is load_questions()["clarify_general"]:
-            return T(lang, "That could mean a lot of different things — the symptoms will tell us more.",
-                     "Infection ya tabiyat kharab hona kai cheezon se ho sakta hai — symptoms se zyada pata chalega.")
+        if q.get("lead"):
+            return q["lead"]["hi" if lang == "hi" else "en"]
         if q["kind"] == "clarify":
             return T(lang, "Just so I don't get this wrong —", "Bas yeh pakka kar loon —")
         return None

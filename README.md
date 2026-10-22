@@ -118,7 +118,7 @@ medassist/
   knowledge/                sources.json, ingest.py, corpus.jsonl, manifest.json, verify_live.py
 templates/index.html        landing page + assessment workspace
 static/css/app.css, static/js/app.js
-tests/                      pytest suite (189 tests)
+tests/                      pytest suite (232 tests)
 evaluation/                 scenario dataset, runner, results.md
 docs/KNOWLEDGE_BASE.md      sources, ingestion, licensing, known gaps
 dataset_OUR/, knowledge_graph.py, chatbot.py, templates/graph.html, fetch_datasets.py, refetch*.py
@@ -150,7 +150,7 @@ Every response for an assessment has the same shape: `stage`, `progress`, new `m
 
 ## Knowledge base
 
-`python -m medassist.knowledge.ingest` fetches the 40 pages in `medassist/knowledge/sources.json` (NHS, MedlinePlus, WHO), extracts the main text, and stores 374 section-aware chunks verbatim with publisher, URL, last-reviewed date and retrieval date. `python -m medassist.knowledge.verify_live` checks every quote the rules cite against the live pages. See [docs/KNOWLEDGE_BASE.md](docs/KNOWLEDGE_BASE.md) for licensing and the documented gaps (no India-specific MoHFW/NHP pages yet; CDC blocks automated access).
+`python -m medassist.knowledge.ingest` fetches the 41 pages in `medassist/knowledge/sources.json` (NHS, MedlinePlus, WHO), extracts the main text, and stores 391 section-aware chunks verbatim with publisher, URL, last-reviewed date and retrieval date. `python -m medassist.knowledge.verify_live` checks every quote the rules cite against the live pages. See [docs/KNOWLEDGE_BASE.md](docs/KNOWLEDGE_BASE.md) for licensing and the documented gaps (no India-specific MoHFW/NHP pages yet; CDC blocks automated access).
 
 ## Original WHO knowledge graph
 

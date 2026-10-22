@@ -38,6 +38,8 @@
     {"id": "nhs-itchy-skin", "title": "Itchy skin", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/itchy-skin/", "parser": "nhs", "topics": ["contact_dermatitis", "hives", "heat_rash"], "priority": 2},
     {"id": "mlp-rashes", "title": "Rashes", "publisher": "MedlinePlus (U.S. National Library of Medicine)", "url": "https://medlineplus.gov/rashes.html", "parser": "medlineplus_topic", "topics": ["contact_dermatitis", "hives", "heat_rash"], "priority": 2},
 
+    {"id": "nhs-uti", "title": "Urinary tract infections (UTIs)", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/urinary-tract-infections-utis/", "parser": "nhs", "topics": ["red_flag", "urinary"], "priority": 1},
+
     {"id": "nhs-stroke-symptoms", "title": "Stroke – symptoms", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/stroke/symptoms/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
     {"id": "nhs-heart-attack-symptoms", "title": "Heart attack – symptoms", "publisher": "NHS", "url": "https://www.nhs.uk/conditions/heart-attack/symptoms/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},
     {"id": "nhs-chest-pain", "title": "Chest pain", "publisher": "NHS", "url": "https://www.nhs.uk/symptoms/chest-pain/", "parser": "nhs", "topics": ["red_flag"], "priority": 1},

@@ -13,7 +13,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 
 from .config import DATA_DIR
-from .extraction import normalise
+from .extraction import hinglish_variants, normalise
 from .knowledge.store import get_store
 
 LEVEL_ORDER = {"emergency": 3, "urgent": 2, "soon": 1}
@@ -35,10 +35,10 @@ class RedFlagRules:
         self.mental_health = data["mental_health_contacts"]
         self.rules = {r["id"]: r for r in data["rules"]}
         self._patterns = {
-            r["id"]: [re.compile(rf"(?<![a-z])(?:{p})(?![a-z])") for p in r.get("patterns", [])] for r in data["rules"]
+            r["id"]: [re.compile(rf"(?<![a-z])(?:{hinglish_variants(p)})(?![a-z])") for p in r.get("patterns", [])] for r in data["rules"]
         }
         self._unless = {
-            r["id"]: [re.compile(p) for p in r.get("unless", [])] for r in data["rules"]
+            r["id"]: [re.compile(hinglish_variants(p)) for p in r.get("unless", [])] for r in data["rules"]
         }
 
     def screen_text(self, text: str, present: set[str]) -> list[RedFlagHit]:

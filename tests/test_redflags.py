@@ -107,3 +107,34 @@ def test_correcting_symptom_withdraws_its_text_flag_only(engine):
     r = engine.edit_symptom(st2, "chest_pain", "absent")
     assert r["stage"] == "emergency"
     assert [x["id"] for x in r["emergency"]["reasons"]] == ["chest_pain_radiating"]
+
+
+@pytest.mark.parametrize("text,rule", [
+    ("kal se peshab nahi hua", "cannot_pee"), ("peshab bilkul nahi ho raha", "cannot_pee"),
+    ("peshab mein khoon aa raha hai", "blood_in_urine"),
+    ("pet mai bahut tez dard", "severe_abdominal_pain"), ("hoth mai sujan", "anaphylaxis"),
+])
+def test_urine_and_mai_red_flags(text, rule):
+    assert rule in ids(text)
+
+
+def test_urine_infection_rules():
+    hits = lambda present: {h.rule_id for h in get_rules().screen_state(present)}
+    assert "uti_symptoms" in hits({"urinary_burning"})
+    assert "uti_fever" in hits({"urinary_burning", "fever"})
+    assert "uti_pain" in hits({"urinary_frequency", "back_pain"})
+
+
+def test_warning_only_message_is_acknowledged_not_rejected(engine):
+    st, r = engine.start("hi")
+    r = engine.message(st, "kal se peshab nahi hua")
+    assert r["stage"] == "emergency"
+    assert not any(m["kind"] == "unrecognised" for m in r["messages"])
+
+
+def test_weak_match_set_aside_when_symptom_out_of_scope(engine):
+    from conftest import run_flow
+    _, r = run_flow(engine, "hi", ["susu mai jalan aur bukhar"])
+    a = r["assessment"]
+    assert a["conditions"] == [] and a["urgency"]["level"] == "urgent"
+    assert any("explain" in " ".join(x["reasons"]) for x in a["set_aside"])

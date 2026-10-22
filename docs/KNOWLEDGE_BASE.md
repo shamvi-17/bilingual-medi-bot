@@ -2,11 +2,11 @@
 
 ## What is in it
 
-`medassist/knowledge/sources.json` lists 40 public patient-information pages:
+`medassist/knowledge/sources.json` lists 41 public patient-information pages:
 
 | Publisher | Pages | Used for |
 |---|---|---|
-| NHS (UK) | 31 | main symptom lists, self-care, "see a GP / call 999" safety-netting, red flags |
+| NHS (UK) | 32 | main symptom lists, self-care, "see a GP / call 999" safety-netting, red flags |
 | MedlinePlus (U.S. National Library of Medicine) | 9 | descriptions and additional symptom lists |
 | WHO | 3 | influenza, headache disorders, dengue warning signs |
 
@@ -22,7 +22,7 @@ Text is stored verbatim (only whitespace and typographic quotes/dashes are norma
 * **Retrieval** (`medassist/retrieval.py`): BM25 plus, when available, `paraphrase-multilingual-MiniLM-L12-v2` embeddings (cached in `knowledge/index/`). Results carry a relevance flag (minimum cosine similarity and lexical overlap) and can be filtered by topic. Assessments show up to two relevant retrieved passages per condition as "more from the sources", clearly separate from the cited claims.
 * Queries are built from **canonical English symptom labels**, not the raw Hinglish text. In testing, Roman-script Hinglish queries retrieved poorly even with the multilingual model (e.g. "naak band hai aur chheenk aa rahi hai" scored below the relevance threshold for every chunk), while the normalised query found the right NHS section first.
 * **Freshness**: each source's review date is shown; sources whose publisher review date has passed, or that were last reviewed more than 3 years ago, are flagged "may be outdated" in the UI.
-* **Drift**: `python -m medassist.knowledge.verify_live` re-fetches the pages and checks every cited quote is still there. On 2026-10-21 all 255 quotes were present.
+* **Drift**: `python -m medassist.knowledge.verify_live` re-fetches the pages and checks every cited quote is still there. On 2026-10-21 all 255 quotes were present (the NHS UTI page was added on 2026-10-22).
 
 ## Licensing
 

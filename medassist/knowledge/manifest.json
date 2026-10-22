@@ -318,5 +318,13 @@
     "last_reviewed": "21 August 2025",
     "next_review_due": null,
     "retrieved": "2026-10-21"
+  },
+  "nhs-uti": {
+    "url": "https://www.nhs.uk/conditions/urinary-tract-infections-utis/",
+    "status": "ok",
+    "chunks": 17,
+    "last_reviewed": "11 July 2025",
+    "next_review_due": "11 July 2028",
+    "retrieved": "2026-10-22"
   }
 }

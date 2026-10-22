@@ -148,3 +148,33 @@ def test_vague_word_with_a_real_symptom_needs_no_clarification():
                                       ("urine infection hai", "urinary_burning"), ("UTI", "urinary_burning")])
 def test_infection_with_a_location(text, sym):
     assert found(text).get(sym) == "present"
+
+
+@pytest.mark.parametrize("text,sym", [
+    ("susu mai jalan ho rahi hai", "urinary_burning"), ("peshab me jalan", "urinary_burning"),
+    ("pesab mein jalan", "urinary_burning"), ("pishab karne mein dard", "urinary_burning"),
+    ("peshab karte time jalan", "urinary_burning"), ("peshab karne par jalan hoti hai", "urinary_burning"),
+    ("jalan wala peshab", "urinary_burning"), ("burning when I pee", "urinary_burning"),
+    ("baar baar peshab aa raha hai", "urinary_frequency"), ("frequent urination", "urinary_frequency"),
+    ("raat ko baar baar susu", "urinary_frequency"), ("peshab ruk ruk ke aata hai", "urinary_difficulty"),
+    ("peshab karne mein dikkat", "urinary_difficulty"), ("peshab ka rang peela hai", "dark_urine"),
+    ("peshab mein khoon", "blood_in_urine"),
+])
+def test_urine_complaints(text, sym):
+    assert found(text).get(sym) == "present", found(text)
+
+
+def test_burning_next_to_another_urine_complaint_is_burning_urine():
+    ex = extract("baar baar peshab aa raha hai aur jalan")
+    assert {f.symptom for f in ex.findings} == {"urinary_frequency", "urinary_burning"}
+    assert not ex.clarifications
+
+
+@pytest.mark.parametrize("text", ["peshab", "peshab mein problem", "peshab mein dikkat hai"])
+def test_vague_urine_mention_asks_what_is_wrong(text):
+    assert "clarify_urine" in extract(text).clarifications
+
+
+@pytest.mark.parametrize("text", ["pet mai bahut tez dard", "gale mai dard", "aankh mai khujli"])
+def test_mai_spelling_of_mein(text):
+    assert extract(text).findings

@@ -88,9 +88,9 @@ class Lexicon:
         for sid, info in self.symptoms.items():
             for p in info.get("patterns", []):
                 target = self.gap_patterns if p.startswith("~") else self.patterns
-                target.append((sid, re.compile(rf"(?<![a-z])(?:{p.lstrip('~')})(?![a-z])")))
+                target.append((sid, re.compile(rf"(?<![a-z])(?:{hinglish_variants(p.lstrip('~'))})(?![a-z])")))
         self.ambiguous = [
-            (name, [re.compile(p) for p in info["patterns"]], info["question"], set(info.get("unless_any", [])),
+            (name, [re.compile(hinglish_variants(p)) for p in info["patterns"]], info["question"], set(info.get("unless_any", [])),
              bool(info.get("only_if_nothing_found")))
             for name, info in data.get("ambiguous_terms", {}).items() if not name.startswith("_")
         ]
@@ -109,6 +109,13 @@ class Lexicon:
 def get_lexicon() -> Lexicon:
     return Lexicon(json.loads((DATA_DIR / "symptoms.json").read_text()))
 
+
+def hinglish_variants(pattern: str) -> str:
+    """Accept common spellings of the postposition 'mein' (in): 'mai', 'mei' — "pet mai dard"."""
+    return re.sub(r"\bmein\b", "(?:mein|mai|mei)", pattern)
+
+
+URINE_COMPLAINTS = {"urinary_frequency", "urinary_difficulty", "dark_urine", "blood_in_urine"}
 
 HINGLISH_MARKERS = {"hai", "hain", "mujhe", "mera", "meri", "mere", "nahi", "nahin", "kya", "ho", "raha", "rahi", "se",
                     "mein", "aur", "bhi", "ka", "ki", "ke", "kal", "din", "bahut", "thoda", "ji", "haan", "kuch", "lag",
@@ -220,6 +227,13 @@ def extract(text: str, lexicon: Lexicon | None = None) -> Extraction:
         residual = residual[:s] + " " * (e - s) + residual[e:]
     result.residual = residual
     found = {f.symptom for f in result.findings if f.status == "present"}
+    # "baar baar peshab aata hai aur jalan bhi": a bare 'jalan' alongside another urine complaint is burning urine
+    if found & URINE_COMPLAINTS and "urinary_burning" not in found:
+        m = re.search(r"\b(jalan|burning|chubhan)\b", residual)
+        if m:
+            result.findings.append(Finding("urinary_burning", "present", raw[m.start():m.end()], m.start()))
+            found.add("urinary_burning")
+            residual = residual[:m.start()] + " " * (m.end() - m.start()) + residual[m.end():]
     for _name, pats, question, unless, only_if_empty in lex.ambiguous:
         if only_if_empty and result.findings:
             continue

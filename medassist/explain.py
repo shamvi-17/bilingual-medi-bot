@@ -65,6 +65,10 @@ class Builder:
             return ""
         return d if isinstance(d, str) else d.get(self.L) or d.get("en", "")
 
+    def out_of_scope(self) -> list[str]:
+        """Reported symptoms that no condition in this tool covers."""
+        return sorted(self.state.present() - in_scope_symptoms() - {"other_pain"})
+
     def label(self, sid: str) -> str:
         return self.lex.label(sid, self.L)
 
@@ -126,7 +130,7 @@ class Builder:
 
         absent_notes = [self.label(s) for s in m.key_absent]
         unknown = [self.label(s) for s in m.key_unknown] + [self.label(s) for s in m.supporting_unknown[:2]]
-        unexplained = [self.label(s) for s in m.unexplained]
+        unexplained = [self.label(s) for s in m.unexplained + self.out_of_scope()]
 
         alternatives = []
         cand_ids = {c.condition_id for c in cands}
@@ -281,7 +285,7 @@ class Builder:
                 "age_out_of_scope": "This tool is not designed for children under 12" if self.L == "en" else "Yeh tool 12 saal se chhote bachchon ke liye nahi hai",
                 "evidence_unavailable": "Medical sources could not be loaded" if self.L == "en" else "Medical sources load nahi ho paaye",
             }[status], citations=[])
-        oos = sorted(present - in_scope_symptoms() - {"other_pain"})
+        oos = self.out_of_scope()
         if oos:
             add("soon", (f"Some symptoms are outside this tool's scope: {self.join([self.label(s).lower() for s in oos])}" if self.L == "en"
                          else f"Kuch symptoms is tool ke scope se bahar hain: {self.join([self.label(s) for s in oos])}"), citations=[])
@@ -321,6 +325,17 @@ class Builder:
             status, cands, aside = "age_out_of_scope", [], []
         else:
             cands, aside = match_all(st.status_map(), st.attributes.model_dump())
+            # When a reported symptom is outside this tool's scope, a weak match on the remaining
+            # symptoms is likely to be the wrong explanation, so it is set aside rather than suggested.
+            oos = self.out_of_scope()
+            if oos:
+                weak = [m for m in cands if m.level == "limited"]
+                for m in weak:
+                    m.against.append({"type": "out_of_scope", "symptom": None, "evidence": None, "note": {
+                        "en": f"Doesn't explain {self.join([self.lex.label(x, 'en').lower() for x in oos])}",
+                        "hi": f"{self.join([self.lex.label(x, 'hi') for x in oos])} ko explain nahi karta"}})
+                cands = [m for m in cands if m.level != "limited"]
+                aside = weak + aside
             status = "candidates" if cands else "insufficient"
         cards = [self.condition_card(m, cands) for m in cands[:MAX_SHOWN]]
         more = [{"id": m.condition_id, "name": self.t(self.conds[m.condition_id]["name"]),
