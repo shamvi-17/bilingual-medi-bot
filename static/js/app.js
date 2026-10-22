@@ -14,7 +14,6 @@
       example_title: "Example",
       example_bot: "Samajh gaya — naak band hona aur gale mein mucus. Yeh allergy ya common cold jaisa kuch ho sakta hai, lekin exact cause abhi confirm nahi hota. Isliye main duration aur bukhar ke baare mein poochunga.",
       example_cite: "Har conclusion ke saath source: NHS · MedlinePlus · WHO",
-      quick_title: "Ya ek category se shuru karein",
       how_title: "Kaise kaam karta hai",
       s1_t: "Symptoms batayein", s1_d: "Hindi, English ya Hinglish — jaise aap normally bolte hain.",
       s2_t: "Safety check + sawaal", s2_d: "Pehle emergency signs check hote hain, phir sirf wahi sawaal jo fark daalte hain.",
@@ -61,7 +60,6 @@
       timeout: "Jawab aane mein zyada time lag raha hai. Dobara koshish karein.",
       expired: "Yeh session expire ho gaya. Naya assessment shuru kar rahe hain.",
       mic_err: "Voice input abhi available nahi hai — kripya type karein.",
-      cat_prompt: "Inme se kya-kya ho raha hai? Sab select karein.", cat_note: "Ya neeche apne shabdon mein likhein.",
       lang_suggest: "Kya aap English mein jaari rakhna chahenge?",
       sources_title: "Medical sources (knowledge base)",
       outdated: "Purana ho sakta hai",
@@ -75,7 +73,6 @@
       example_title: "Example",
       example_bot: "Got it — blocked nose and mucus in the throat. This could fit an allergy or a common cold, but the exact cause isn't clear yet. So I'll ask about how long it's lasted and whether you have a fever.",
       example_cite: "Every conclusion comes with a source: NHS · MedlinePlus · WHO",
-      quick_title: "Or start from a category",
       how_title: "How it works",
       s1_t: "Describe your symptoms", s1_d: "In English, Hindi or Hinglish — the way you'd normally say it.",
       s2_t: "Safety check + questions", s2_d: "Emergency signs are checked first, then only questions that change the picture.",
@@ -122,29 +119,11 @@
       timeout: "The server is taking too long. Please try again.",
       expired: "This session expired. Starting a new assessment.",
       mic_err: "Voice input isn't available right now — please type instead.",
-      cat_prompt: "Which of these do you have? Select all that apply.", cat_note: "Or describe it in your own words below.",
       lang_suggest: "Would you like to continue in Hinglish?",
       sources_title: "Medical sources (knowledge base)",
       outdated: "May be outdated",
     },
   };
-
-  const CATEGORIES = [
-    { id: "nose", icon: "🤧", en: ["Nose & cold", "Sneezing, blocked/runny nose"], hi: ["Naak & sardi", "Chheenk, naak band/behna"],
-      symptoms: ["blocked_nose", "runny_nose", "sneezing", "itchy_nose", "itchy_eyes", "postnasal_drip", "cough", "fever"] },
-    { id: "throat", icon: "🗣️", en: ["Throat", "Sore, scratchy throat, hoarse voice"], hi: ["Gala", "Gale mein dard, kharash, awaaz baithna"],
-      symptoms: ["sore_throat", "throat_irritation", "hoarse_voice", "cough", "swollen_glands", "fever"] },
-    { id: "stomach", icon: "🔥", en: ["Acidity & stomach", "Burning, bloating, sour burps"], hi: ["Acidity & pet", "Jalan, pet phoolna, khatti dakar"],
-      symptoms: ["heartburn", "sour_regurgitation", "bloating", "burping", "nausea", "worse_after_eating", "abdominal_pain"] },
-    { id: "bowel", icon: "🚽", en: ["Constipation", "Hard or infrequent stools"], hi: ["Kabz", "Potty sakht ya kam"],
-      symptoms: ["infrequent_stools", "hard_stools", "straining", "incomplete_evacuation", "bloating", "abdominal_pain"] },
-    { id: "head", icon: "🤕", en: ["Headache", "Pressure, throbbing, light sensitivity"], hi: ["Sar dard", "Dabaav, dhak-dhak, roshni se takleef"],
-      symptoms: ["headache", "headache_both_sides", "headache_one_side", "headache_pressing", "headache_throbbing", "nausea", "light_sensitivity"] },
-    { id: "skin", icon: "🩹", en: ["Skin", "Itching, rash, bumps"], hi: ["Skin", "Khujli, rash, daane"],
-      symptoms: ["skin_itch", "skin_rash", "raised_welts", "small_raised_spots", "dry_cracked_skin", "blisters"] },
-    { id: "fever", icon: "🌡️", en: ["Fever & body ache", "Temperature, aches, tiredness"], hi: ["Bukhar & badan dard", "Bukhar, dard, thakan"],
-      symptoms: ["fever", "body_ache", "chills", "fatigue", "headache", "cough", "sore_throat"] },
-  ];
 
   // ── state ────────────────────────────────────────────────────────────────
   const S = { lang: "hi", sid: null, last: null, busy: false, meta: null, results: null, lastAssessKey: null };
@@ -202,7 +181,6 @@
     $$("[data-i18n]").forEach((el) => { const v = t(el.dataset.i18n); if (typeof v === "string") el.textContent = v; });
     $$("[data-i18n-placeholder]").forEach((el) => { el.placeholder = t(el.dataset.i18nPlaceholder); });
     $$(".lang-toggle button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === S.lang)));
-    renderCategories();
     const sb = $("#start-btn");
     if (sb) sb.textContent = store.get("medibot_sid") ? t("resume") : t("start");
   }
@@ -216,16 +194,6 @@
   }
 
   // ── landing ──────────────────────────────────────────────────────────────
-  function renderCategories() {
-    const box = $("#categories");
-    if (!box) return;
-    box.innerHTML = CATEGORIES.map((c) => `
-      <button type="button" class="category" data-cat="${c.id}">
-        <span class="icon" aria-hidden="true">${c.icon}</span>
-        <strong>${esc(c[S.lang][0])}</strong><span>${esc(c[S.lang][1])}</span>
-      </button>`).join("");
-  }
-
   function showWorkspace() {
     $("#landing").hidden = true;
     $("#workspace").hidden = false;
@@ -242,14 +210,13 @@
     applyStatic();
   }
 
-  async function startAssessment(category) {
+  async function startAssessment() {
     $("#chat").innerHTML = ""; $("#results").hidden = true; $("#results").innerHTML = ""; $("#emergency-slot").innerHTML = "";
     S.lastAssessKey = null;
     const r = await api("/api/assessments", { method: "POST", body: { language: S.lang } });
     S.sid = r.session_id; store.set("medibot_sid", S.sid);
     showWorkspace();
     handle(r);
-    if (category) renderCategoryPicker(category);
     $("#input").focus();
   }
 
@@ -380,39 +347,6 @@
       addMessage("user", text, "answer");
       handle(r);
     }, label);
-  }
-
-  function renderCategoryPicker(catId) {
-    const c = CATEGORIES.find((x) => x.id === catId);
-    if (!c || !S.meta) return;
-    const labels = Object.fromEntries(S.meta.symptoms.map((s) => [s.id, s[S.lang] || s.en]));
-    const q = { id: "__cat", kind: "category", type: "multi", text: t("cat_prompt"), why: t("cat_note"),
-      options: c.symptoms.map((s) => ({ value: s, label: labels[s] || s })), none_option: false, preselected: [] };
-    const card = document.createElement("div");
-    card.className = "qcard";
-    card.innerHTML = `<fieldset><legend tabindex="-1">${esc(c[S.lang][0])}<br>${esc(q.text)}</legend><p class="why"><span>${esc(q.why)}</span></p>
-      <div class="options" role="group">${q.options.map((o) => `<button type="button" class="opt" role="checkbox" aria-checked="false" data-v="${esc(o.value)}"><span class="box" aria-hidden="true"></span>${esc(o.label)}</button>`).join("")}</div>
-      <div class="qactions"><button type="button" class="btn btn-primary btn-sm" data-submit="1">${esc(t("cont"))}</button></div></fieldset>`;
-    card.addEventListener("click", (e) => {
-      const b = e.target.closest("button");
-      if (!b) return;
-      if (b.dataset.submit) {
-        const vals = $$('.opt[aria-checked="true"]', card).map((x) => x.dataset.v);
-        if (!vals.length) return;
-        guarded(async () => {
-          const r = await api(`/api/assessments/${S.sid}/symptoms`, { method: "POST", body: { symptoms: vals.map((id) => ({ id, status: "present" })) } });
-          card.remove();
-          addMessage("user", vals.map((v) => labels[v] || v).join(", "), "answer");
-          handle(r);
-        });
-      } else if (b.dataset.v) {
-        const on = b.getAttribute("aria-checked") !== "true";
-        b.setAttribute("aria-checked", String(on));
-        b.querySelector(".box").textContent = on ? "✓" : "";
-      }
-    });
-    $("#chat").appendChild(card);
-    scrollChat();
   }
 
   // ── emergency ────────────────────────────────────────────────────────────
@@ -699,10 +633,6 @@
       if (saved) { try { await resume(saved); return; } catch { store.set("medibot_sid", null); } }
       await startAssessment();
     }));
-    $("#categories").addEventListener("click", (e) => {
-      const b = e.target.closest("[data-cat]");
-      if (b) guarded(() => startAssessment(b.dataset.cat));
-    });
     $("#composer").addEventListener("submit", (e) => { e.preventDefault(); send(); });
     $("#input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } });
     $("#input").addEventListener("input", autoGrow);
