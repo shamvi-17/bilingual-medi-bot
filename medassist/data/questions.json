@@ -1,0 +1,259 @@
+{
+  "_comment": "Follow-up question bank. type: single | multi | scale | yesno. `when_categories`: asked only if a present symptom belongs to one of these categories (empty = always eligible). `targets`: symptoms this question can resolve; the selector scores a question by how much its unanswered targets would separate the current candidate conditions. Multi-select checklists with unchecked_absent=true record unticked items as 'absent' (the user has seen and not ticked them). `why` is shown to the user so they know why each question is asked.",
+  "questions": {
+    "clarify_pain_location": {
+      "kind": "clarify", "type": "single", "priority": 100,
+      "text": {"en": "Where exactly is the pain or burning?", "hi": "Dard ya jalan exactly kahan ho rahi hai?"},
+      "why": {"en": "'Pain' can mean many different things, so I need the location before I can look at likely causes.", "hi": "'Dard' alag-alag jagah ho sakta hai, isliye wajah samajhne se pehle location jaanna zaroori hai."},
+      "options": [
+        {"value": "head", "label": {"en": "Head", "hi": "Sar"}, "present": ["headache"]},
+        {"value": "throat", "label": {"en": "Throat", "hi": "Gala"}, "present": ["sore_throat"]},
+        {"value": "chest_burn", "label": {"en": "Burning in chest/upper stomach after eating", "hi": "Khaane ke baad seene/upar pet mein jalan"}, "present": ["heartburn"]},
+        {"value": "chest_pain", "label": {"en": "Pain or tightness in the chest", "hi": "Seene mein dard ya jakdan"}, "red_flag": "chest_pain"},
+        {"value": "stomach", "label": {"en": "Stomach / tummy", "hi": "Pet"}, "present": ["abdominal_pain"]},
+        {"value": "body", "label": {"en": "Whole body / muscles", "hi": "Poora badan / muscles"}, "present": ["body_ache"]},
+        {"value": "skin", "label": {"en": "Skin (burning or itching)", "hi": "Skin (jalan ya khujli)"}, "present": ["skin_itch"]},
+        {"value": "other", "label": {"en": "Somewhere else", "hi": "Kahin aur"}, "present": ["other_pain"]}
+      ]},
+    "clarify_cold": {
+      "kind": "clarify", "type": "multi", "priority": 99, "unchecked_absent": false,
+      "text": {"en": "When you say 'cold', which of these do you mean? Select all that apply.", "hi": "'Cold/sardi' se aapka matlab kya hai? Jo bhi ho, sab select karein."},
+      "why": {"en": "People use 'cold' for different things — a runny nose, a sore throat, or feeling chilly — and each points in a different direction.", "hi": "'Cold' log alag cheezon ke liye bolte hain — naak behna, gala kharab, ya thand lagna — aur har ek ka matlab alag ho sakta hai."},
+      "options": [
+        {"value": "runny_nose", "label": {"en": "Runny nose", "hi": "Naak behna"}, "present": ["runny_nose"]},
+        {"value": "blocked_nose", "label": {"en": "Blocked nose", "hi": "Naak band"}, "present": ["blocked_nose"]},
+        {"value": "sneezing", "label": {"en": "Sneezing", "hi": "Chheenk"}, "present": ["sneezing"]},
+        {"value": "sore_throat", "label": {"en": "Sore throat", "hi": "Gale mein dard"}, "present": ["sore_throat"]},
+        {"value": "cough", "label": {"en": "Cough", "hi": "Khaansi"}, "present": ["cough"]},
+        {"value": "chills", "label": {"en": "Feeling cold / shivery", "hi": "Thand lagna / kapkapi"}, "present": ["chills"]}
+      ]},
+    "clarify_weakness": {
+      "kind": "clarify", "type": "single", "priority": 101,
+      "text": {"en": "What kind of weakness do you mean?", "hi": "Kis tarah ki kamzori ki baat kar rahe hain?"},
+      "why": {"en": "General tiredness is common, but sudden weakness on one side of the body can be an emergency sign, so I must check this first.", "hi": "Aam thakan common hai, lekin shareer ke ek taraf achanak kamzori emergency ka sanket ho sakti hai — isliye yeh pehle check karna zaroori hai."},
+      "options": [
+        {"value": "tired", "label": {"en": "General tiredness, low energy", "hi": "Aam thakan, energy kam"}, "present": ["fatigue"]},
+        {"value": "one_side", "label": {"en": "Sudden weakness or numbness on one side of the body or face", "hi": "Shareer ya chehre ke ek taraf achanak kamzori ya sunn-pan"}, "red_flag": "stroke_signs"},
+        {"value": "unsure", "label": {"en": "Not sure", "hi": "Pata nahi"}}
+      ]},
+
+    "rf_resp": {
+      "kind": "screen", "type": "multi", "priority": 95, "when_categories": ["nose", "throat", "chest", "eyes"],
+      "text": {"en": "Safety check: do you have any of these right now?", "hi": "Safety check: kya abhi inme se kuch ho raha hai?"},
+      "why": {"en": "Before looking at common causes, I check for warning signs that need urgent care.", "hi": "Common causes dekhne se pehle main un warning signs ko check karta hoon jinme turant ilaaj chahiye."},
+      "options": [
+        {"value": "breath", "label": {"en": "Severe difficulty breathing (gasping, can't speak full sentences)", "hi": "Saans lene mein bahut takleef (haanfna, poora vaakya na bol paana)"}, "red_flag": "severe_breathing"},
+        {"value": "sob", "label": {"en": "Feeling short of breath", "hi": "Saans phoolna"}, "present": ["breathlessness"]},
+        {"value": "chest", "label": {"en": "Chest pain or tightness", "hi": "Seene mein dard ya jakdan"}, "red_flag": "chest_pain"},
+        {"value": "swallow", "label": {"en": "Unable to swallow, or drooling", "hi": "Bilkul nigal na paana, ya laar tapakna"}, "red_flag": "cannot_swallow"},
+        {"value": "swelling", "label": {"en": "Swelling of lips, tongue or throat", "hi": "Hoth, jeebh ya gale mein sujan"}, "red_flag": "anaphylaxis"},
+        {"value": "blood", "label": {"en": "Coughing up blood", "hi": "Khaansi mein khoon"}, "red_flag": "severe_bleeding"}
+      ], "none_option": true},
+    "rf_head": {
+      "kind": "screen", "type": "multi", "priority": 96, "when_categories": ["head"],
+      "text": {"en": "Safety check for headache: do you have any of these?", "hi": "Sar dard ka safety check: kya inme se kuch hai?"},
+      "why": {"en": "Most headaches are not serious, but these signs need urgent medical care and must be ruled out first.", "hi": "Zyada tar sar dard serious nahi hote, lekin in signs mein turant ilaaj chahiye — isliye yeh pehle check karna zaroori hai."},
+      "options": [
+        {"value": "sudden", "label": {"en": "Started suddenly and is extremely painful", "hi": "Achanak shuru hua aur bahut zyada tez hai"}, "red_flag": "thunderclap_headache"},
+        {"value": "weak", "label": {"en": "Weakness/numbness in face, arm or leg, or face drooping", "hi": "Chehre, haath ya pair mein kamzori/sunn-pan, ya chehra latakna"}, "red_flag": "stroke_signs"},
+        {"value": "speech", "label": {"en": "Trouble speaking, confusion or unusual drowsiness", "hi": "Bolne mein dikkat, confusion ya bahut zyada neend"}, "red_flag": "confusion_drowsy"},
+        {"value": "neck", "label": {"en": "Stiff neck with fever, or a rash that doesn't fade when pressed", "hi": "Bukhar ke saath gardan akadna, ya dabaane par na mitne wala rash"}, "red_flag": "meningitis_signs"},
+        {"value": "injury", "label": {"en": "Recent head injury", "hi": "Haal hi mein sar par chot"}, "red_flag": "head_injury"},
+        {"value": "seizure", "label": {"en": "A seizure (fit)", "hi": "Daura / fit"}, "red_flag": "seizure"},
+        {"value": "vision", "label": {"en": "Blurred, double or lost vision", "hi": "Dhundhla, double ya bilkul na dikhna"}, "red_flag": "headache_vision"},
+        {"value": "vomit", "label": {"en": "Vomiting", "hi": "Ulti"}, "present": ["vomiting"]}
+      ], "none_option": true},
+    "rf_stomach": {
+      "kind": "screen", "type": "multi", "priority": 94, "when_categories": ["stomach", "bowel"],
+      "text": {"en": "Safety check: do you have any of these?", "hi": "Safety check: kya inme se kuch hai?"},
+      "why": {"en": "Stomach symptoms are usually minor, but these signs need urgent care. Chest burning can sometimes be a heart problem, so I check that too.", "hi": "Pet ki takleef aam taur par chhoti hoti hai, lekin in signs mein turant ilaaj chahiye. Seene ki jalan kabhi dil ki problem bhi ho sakti hai, isliye woh bhi check kar raha hoon."},
+      "options": [
+        {"value": "severe", "label": {"en": "Sudden or severe stomach pain", "hi": "Achanak ya bahut tez pet dard"}, "red_flag": "severe_abdominal_pain"},
+        {"value": "radiating", "label": {"en": "Chest pain/burning spreading to arm, jaw, neck or back, or with sweating or breathlessness", "hi": "Seene ka dard/jalan jo baanh, jabde, gardan ya peeth tak jaaye, ya paseena/saans phoolna saath mein"}, "red_flag": "chest_pain_radiating"},
+        {"value": "blood_vomit", "label": {"en": "Vomiting blood or 'coffee-ground' vomit", "hi": "Khoon ki ulti ya coffee jaisi kaali ulti"}, "red_flag": "severe_bleeding"},
+        {"value": "black_stool", "label": {"en": "Black, sticky stool", "hi": "Kaali, chipchipi potty"}, "red_flag": "black_stool"},
+        {"value": "blood_stool", "label": {"en": "Blood in stool", "hi": "Potty mein khoon"}, "red_flag": "blood_in_stool"},
+        {"value": "no_gas", "label": {"en": "Unable to pass stool or gas at all", "hi": "Potty ya gas bilkul na nikalna"}, "red_flag": "severe_abdominal_pain"},
+        {"value": "weight", "label": {"en": "Losing weight without trying", "hi": "Bina koshish wajan kam hona"}, "present": ["weight_loss"]},
+        {"value": "swallow", "label": {"en": "Difficulty swallowing / food getting stuck", "hi": "Nigalne mein dikkat / khana atakna"}, "red_flag": "difficulty_swallowing"}
+      ], "none_option": true},
+    "rf_skin": {
+      "kind": "screen", "type": "multi", "priority": 93, "when_categories": ["skin"],
+      "text": {"en": "Safety check: do you have any of these?", "hi": "Safety check: kya inme se kuch hai?"},
+      "why": {"en": "A skin rash with these signs can be a severe allergic reaction or a serious infection, which need urgent care.", "hi": "In signs ke saath rash ek gambhir allergic reaction ya serious infection ho sakta hai, jisme turant ilaaj chahiye."},
+      "options": [
+        {"value": "swelling", "label": {"en": "Swelling of lips, tongue, mouth or throat", "hi": "Hoth, jeebh, munh ya gale mein sujan"}, "red_flag": "anaphylaxis"},
+        {"value": "breath", "label": {"en": "Difficulty breathing or wheezing", "hi": "Saans lene mein takleef ya seeti jaisi awaaz"}, "red_flag": "severe_breathing"},
+        {"value": "nonfading", "label": {"en": "Rash that does not fade when a glass is pressed on it", "hi": "Glass dabaane par bhi na mitne wala rash"}, "red_flag": "meningitis_signs"},
+        {"value": "underskin", "label": {"en": "Swelling under the skin (eyes, hands, feet)", "hi": "Skin ke neeche sujan (aankh, haath, pair)"}, "red_flag": "angioedema"},
+        {"value": "fever", "label": {"en": "Fever and feeling very unwell", "hi": "Bukhar aur bahut bimaar mehsoos hona"}, "present": ["fever"]}
+      ], "none_option": true},
+    "rf_other": {
+      "kind": "screen", "type": "multi", "priority": 91, "when_categories": ["other"],
+      "text": {"en": "Safety check: do you have any of these right now?", "hi": "Safety check: kya abhi inme se kuch ho raha hai?"},
+      "why": {"en": "Some of your symptoms are outside the common conditions this tool covers, so I check for signs that need urgent care first.", "hi": "Aapke kuch symptoms is tool ki common conditions se bahar hain, isliye pehle un signs ko check karta hoon jinme turant ilaaj chahiye."},
+      "options": [
+        {"value": "chest", "label": {"en": "Chest pain or tightness", "hi": "Seene mein dard ya jakdan"}, "red_flag": "chest_pain"},
+        {"value": "weak", "label": {"en": "Sudden weakness/numbness on one side, face drooping or slurred speech", "hi": "Ek taraf achanak kamzori/sunn-pan, chehra latakna ya zubaan ladkhadana"}, "red_flag": "stroke_signs"},
+        {"value": "faint", "label": {"en": "Fainting, confusion or unusual drowsiness", "hi": "Behosh hona, confusion ya bahut zyada neend"}, "red_flag": "confusion_drowsy"},
+        {"value": "breath", "label": {"en": "Severe difficulty breathing", "hi": "Saans lene mein bahut takleef"}, "red_flag": "severe_breathing"},
+        {"value": "severe_pain", "label": {"en": "Sudden or severe stomach pain", "hi": "Achanak ya bahut tez pet dard"}, "red_flag": "severe_abdominal_pain"}
+      ], "none_option": true},
+    "rf_fever": {
+      "kind": "screen", "type": "multi", "priority": 92, "requires_present": ["fever"],
+      "text": {"en": "Since you have a fever — do you have any of these?", "hi": "Aapko bukhar hai — kya inme se kuch bhi hai?"},
+      "why": {"en": "Fever is usually from a common infection, but these signs can mean a serious illness (such as severe dengue or meningitis) that needs urgent care.", "hi": "Bukhar aksar aam infection se hota hai, lekin in signs ka matlab serious bimari (jaise severe dengue ya meningitis) ho sakta hai, jisme turant ilaaj chahiye."},
+      "options": [
+        {"value": "confused", "label": {"en": "Confusion or unusual drowsiness", "hi": "Confusion ya bahut zyada neend"}, "red_flag": "confusion_drowsy"},
+        {"value": "neck", "label": {"en": "Stiff neck or bright light hurting the eyes", "hi": "Gardan akadna ya tez roshni se aankhon mein takleef"}, "red_flag": "stiff_neck_fever"},
+        {"value": "rash", "label": {"en": "Rash that does not fade when pressed", "hi": "Dabaane par na mitne wala rash"}, "red_flag": "meningitis_signs"},
+        {"value": "bleed", "label": {"en": "Bleeding gums or nose, or blood in vomit/stool", "hi": "Masoodon ya naak se khoon, ya ulti/potty mein khoon"}, "red_flag": "dengue_warning"},
+        {"value": "vomit", "label": {"en": "Vomiting again and again", "hi": "Baar-baar ulti"}, "red_flag": "dengue_warning"},
+        {"value": "belly", "label": {"en": "Severe stomach pain", "hi": "Tez pet dard"}, "red_flag": "severe_abdominal_pain"},
+        {"value": "breath", "label": {"en": "Breathing fast or difficulty breathing", "hi": "Tez saans ya saans lene mein takleef"}, "red_flag": "severe_breathing"}
+      ], "none_option": true},
+
+    "q_age": {
+      "kind": "context", "type": "single", "priority": 85,
+      "text": {"en": "Who is this assessment for?", "hi": "Yeh assessment kiske liye hai?"},
+      "why": {"en": "Guidance is different for young children, and this tool is designed for teenagers and adults.", "hi": "Chhote bachchon ke liye guidance alag hoti hai, aur yeh tool teenagers aur adults ke liye banaya gaya hai."},
+      "options": [
+        {"value": "adult", "label": {"en": "Adult (18+)", "hi": "Adult (18+)"}, "set": {"age_group": "adult"}},
+        {"value": "teen", "label": {"en": "Teenager (12–17)", "hi": "Teenager (12–17)"}, "set": {"age_group": "teen"}},
+        {"value": "child", "label": {"en": "Child under 12", "hi": "12 saal se chhota bachcha"}, "set": {"age_group": "child"}},
+        {"value": "older", "label": {"en": "Adult aged 65 or over", "hi": "65 saal ya usse zyada"}, "set": {"age_group": "older"}}
+      ]},
+    "q_duration": {
+      "kind": "context", "type": "single", "priority": 80,
+      "text": {"en": "How long have you had these symptoms?", "hi": "Yeh symptoms kab se ho rahe hain?"},
+      "why": {"en": "How long symptoms last helps tell apart causes — for example, a cold usually settles in 1–2 weeks, while allergies can last for weeks or months.", "hi": "Symptoms kitne din se hain, isse wajah samajhne mein madad milti hai — jaise cold aam taur par 1–2 hafte mein theek hota hai, jabki allergy hafton ya mahinon tak chal sakti hai."},
+      "options": [
+        {"value": "lt1", "label": {"en": "Less than a day", "hi": "Ek din se kam"}, "set": {"duration_days": 0.5}},
+        {"value": "1to3", "label": {"en": "1–3 days", "hi": "1–3 din"}, "set": {"duration_days": 2}},
+        {"value": "4to7", "label": {"en": "4–7 days", "hi": "4–7 din"}, "set": {"duration_days": 5}},
+        {"value": "1to2w", "label": {"en": "1–2 weeks", "hi": "1–2 hafte"}, "set": {"duration_days": 10}},
+        {"value": "2to4w", "label": {"en": "2–4 weeks", "hi": "2–4 hafte"}, "set": {"duration_days": 21}},
+        {"value": "gt1m", "label": {"en": "More than a month", "hi": "Ek mahine se zyada"}, "set": {"duration_days": 45}},
+        {"value": "recurring", "label": {"en": "Comes and goes / keeps coming back", "hi": "Aata-jaata rehta hai / baar-baar hota hai"}, "set": {"recurring": true}}
+      ]},
+    "q_onset": {
+      "kind": "context", "type": "single", "priority": 50, "when_categories": ["nose", "throat", "general", "chest"],
+      "text": {"en": "Did the symptoms start suddenly (within a few hours) or gradually (over a few days)?", "hi": "Symptoms achanak (kuch ghanton mein) shuru hue ya dheere-dheere (kuch dinon mein)?"},
+      "why": {"en": "Flu tends to start within a few hours, while a cold usually comes on gradually over 2–3 days.", "hi": "Flu aksar kuch ghanton mein shuru hota hai, jabki cold dheere-dheere 2–3 din mein aata hai."},
+      "evidence_for_why": [{"source_id": "nhs-common-cold", "quote": "Cold symptoms come on gradually over 2 to 3 days."}],
+      "discriminates": ["common_cold", "flu_like_illness"],
+      "options": [
+        {"value": "sudden", "label": {"en": "Suddenly", "hi": "Achanak"}, "set": {"onset": "sudden"}},
+        {"value": "gradual", "label": {"en": "Gradually", "hi": "Dheere-dheere"}, "set": {"onset": "gradual"}},
+        {"value": "unsure", "label": {"en": "Not sure", "hi": "Pata nahi"}}
+      ]},
+    "q_severity": {
+      "kind": "context", "type": "scale", "priority": 45, "min": 1, "max": 10,
+      "text": {"en": "How much are the symptoms affecting you right now? (1 = barely, 10 = worst imaginable)", "hi": "Abhi symptoms aapko kitna pareshaan kar rahe hain? (1 = bahut kam, 10 = sabse zyada)"},
+      "why": {"en": "Severity doesn't decide the cause, but it changes how soon you should see a doctor.", "hi": "Takleef kitni hai, isse wajah tay nahi hoti, lekin yeh tay hota hai ki doctor ko kitni jaldi dikhana chahiye."},
+      "labels": {"1": {"en": "Mild", "hi": "Halka"}, "4": {"en": "Moderate", "hi": "Madhyam"}, "7": {"en": "Severe", "hi": "Tez"}}},
+    "q_progression": {
+      "kind": "context", "type": "single", "priority": 40,
+      "text": {"en": "Since they started, are the symptoms getting better, staying the same, or getting worse?", "hi": "Shuru hone ke baad se symptoms behtar ho rahe hain, waise hi hain, ya badh rahe hain?"},
+      "why": {"en": "Symptoms that keep getting worse are a reason to see a doctor, even for common conditions.", "hi": "Agar symptoms badhte ja rahe hain to aam bimari mein bhi doctor ko dikhana chahiye."},
+      "options": [
+        {"value": "better", "label": {"en": "Getting better", "hi": "Behtar ho rahe hain"}, "set": {"progression": "improving"}},
+        {"value": "same", "label": {"en": "About the same", "hi": "Waise hi hain"}, "set": {"progression": "same"}},
+        {"value": "worse", "label": {"en": "Getting worse", "hi": "Badh rahe hain"}, "set": {"progression": "worsening"}}
+      ]},
+    "q_risk": {
+      "kind": "context", "type": "multi", "priority": 35, "when_categories": ["nose", "throat", "general", "chest"], "unchecked_absent": false,
+      "text": {"en": "Do any of these apply to you?", "hi": "Kya inme se kuch aap par laagu hota hai?"},
+      "why": {"en": "With these, even a common infection like a cold or flu should be checked by a doctor sooner.", "hi": "Inme se kuch ho to cold ya flu jaise aam infection mein bhi doctor ko jaldi dikhana chahiye."},
+      "options": [
+        {"value": "pregnant", "label": {"en": "Pregnant or recently gave birth", "hi": "Pregnant ya haal hi mein delivery hui"}, "set": {"risk_pregnant": true}},
+        {"value": "longterm", "label": {"en": "Long-term condition (diabetes, heart, lung, kidney or liver disease, asthma)", "hi": "Lambi bimari (diabetes, dil, phephde, kidney ya liver, asthma)"}, "set": {"risk_longterm": true}},
+        {"value": "immune", "label": {"en": "Weakened immunity (e.g. chemotherapy, HIV, steroid tablets)", "hi": "Kamzor immunity (jaise chemotherapy, HIV, steroid ki goliyan)"}, "set": {"risk_immune": true}}
+      ], "none_option": true},
+
+    "q_nose_more": {
+      "kind": "discriminate", "type": "multi", "priority": 60, "when_categories": ["nose", "throat", "eyes"], "unchecked_absent": true,
+      "text": {"en": "Do you also have any of these? Select all that apply.", "hi": "Kya inme se kuch aur bhi hai? Jo bhi ho, sab select karein."},
+      "why": {"en": "These help tell apart a cold, a nasal allergy and a sinus problem, which share many symptoms.", "hi": "Inse cold, naak ki allergy aur sinus problem mein fark samajhne mein madad milti hai — inke kaafi symptoms milte-julte hain."},
+      "targets": ["sneezing", "itchy_nose", "itchy_eyes", "runny_nose", "blocked_nose", "coloured_mucus", "facial_pain", "postnasal_drip"],
+      "none_option": true},
+    "q_systemic": {
+      "kind": "discriminate", "type": "multi", "priority": 58, "unchecked_absent": true,
+      "text": {"en": "Any of these along with it? Select all that apply.", "hi": "Saath mein inme se kuch hai? Jo bhi ho, sab select karein."},
+      "why": {"en": "Fever and body aches point more towards an infection like a cold or flu than towards an allergy.", "hi": "Bukhar aur badan dard allergy ke bajaye cold ya flu jaise infection ki taraf zyada ishaara karte hain."},
+      "targets": ["fever", "body_ache", "chills", "fatigue", "headache", "loss_of_appetite"],
+      "none_option": true},
+    "q_throat_more": {
+      "kind": "discriminate", "type": "multi", "priority": 57, "when_categories": ["throat"], "unchecked_absent": true,
+      "text": {"en": "About your throat — which of these do you notice?", "hi": "Gale ke baare mein — inme se kya mehsoos ho raha hai?"},
+      "why": {"en": "These details help separate simple throat irritation from signs that need a doctor to look at your throat.", "hi": "Inse simple gale ki kharash aur un signs mein fark pata chalta hai jinme doctor ko gala dikhana chahiye."},
+      "targets": ["sore_throat", "throat_irritation", "hoarse_voice", "swollen_glands", "tonsil_patches", "cough"],
+      "none_option": true},
+    "q_allergen": {
+      "kind": "discriminate", "type": "yesno", "priority": 55, "when_categories": ["nose", "eyes"],
+      "text": {"en": "Do the symptoms get worse around dust, pollen, pets or damp/mould?", "hi": "Kya dhool, pollen, paaltu jaanwar ya seelan ke paas symptoms badh jaate hain?"},
+      "why": {"en": "Symptoms that start soon after contact with a trigger like dust or pollen suggest an allergy.", "hi": "Agar dhool ya pollen jaise trigger ke contact ke turant baad symptoms aate hain, to yeh allergy ki taraf ishaara hai."},
+      "targets": ["allergen_trigger"]},
+    "q_headache_location": {
+      "kind": "discriminate", "type": "single", "priority": 62, "when_categories": ["head"],
+      "text": {"en": "Where is the headache?", "hi": "Sar dard kahan hai?"},
+      "why": {"en": "Pain on both sides is typical of tension-type headache; pain on one side is more typical of migraine.", "hi": "Dono taraf dard tension headache mein hota hai; ek taraf dard migraine mein zyada hota hai."},
+      "targets": ["headache_both_sides", "headache_one_side"],
+      "options": [
+        {"value": "both", "label": {"en": "Both sides / all over", "hi": "Dono taraf / poore sar mein"}, "present": ["headache_both_sides"], "absent": ["headache_one_side"]},
+        {"value": "one", "label": {"en": "One side", "hi": "Ek taraf"}, "present": ["headache_one_side"], "absent": ["headache_both_sides"]},
+        {"value": "front", "label": {"en": "Forehead / around the eyes", "hi": "Maatha / aankhon ke aas-paas"}},
+        {"value": "unsure", "label": {"en": "Not sure", "hi": "Pata nahi"}}
+      ]},
+    "q_headache_quality": {
+      "kind": "discriminate", "type": "single", "priority": 61, "when_categories": ["head"],
+      "text": {"en": "What does the pain feel like?", "hi": "Dard kaisa lagta hai?"},
+      "why": {"en": "A pressing, tight-band feeling fits tension-type headache; a throbbing pain fits migraine better.", "hi": "Dabaav ya kasi patti jaisa dard tension headache jaisa hai; dhak-dhak wala dard migraine se zyada milta hai."},
+      "targets": ["headache_pressing", "headache_throbbing"],
+      "options": [
+        {"value": "pressing", "label": {"en": "Pressing or tight, like a band", "hi": "Dabaav ya kasaav, jaise patti bandhi ho"}, "present": ["headache_pressing"], "absent": ["headache_throbbing"]},
+        {"value": "throbbing", "label": {"en": "Throbbing / pulsing", "hi": "Dhak-dhak / dhadakta hua"}, "present": ["headache_throbbing"], "absent": ["headache_pressing"]},
+        {"value": "unsure", "label": {"en": "Something else / not sure", "hi": "Kuch aur / pata nahi"}}
+      ]},
+    "q_headache_assoc": {
+      "kind": "discriminate", "type": "multi", "priority": 59, "when_categories": ["head"], "unchecked_absent": true,
+      "text": {"en": "Along with the headache, do you have any of these?", "hi": "Sar dard ke saath inme se kuch hai?"},
+      "why": {"en": "Feeling sick and sensitivity to light or sound are typical of migraine.", "hi": "Ji machalna aur roshni/awaaz se takleef migraine mein typical hote hain."},
+      "targets": ["nausea", "light_sensitivity", "visual_aura", "scalp_tender", "neck_pain"],
+      "none_option": true},
+    "q_stomach_more": {
+      "kind": "discriminate", "type": "multi", "priority": 60, "when_categories": ["stomach"], "unchecked_absent": true,
+      "text": {"en": "Which of these do you notice? Select all that apply.", "hi": "Inme se kya-kya mehsoos hota hai? Sab select karein."},
+      "why": {"en": "These help tell apart acidity/indigestion from constipation or other stomach problems.", "hi": "Inse acidity/badhazmi aur kabz ya pet ki doosri problems mein fark samajh aata hai."},
+      "targets": ["heartburn", "sour_regurgitation", "bloating", "burping", "nausea", "worse_after_eating", "abdominal_pain"],
+      "none_option": true},
+    "q_food_trigger": {
+      "kind": "discriminate", "type": "yesno", "priority": 50, "when_categories": ["stomach"],
+      "text": {"en": "Does it get worse after spicy, oily or fatty food, tea/coffee or alcohol?", "hi": "Kya masaledar, tala/oily khana, chai-coffee ya alcohol ke baad badh jaata hai?"},
+      "why": {"en": "These foods and drinks are common triggers of acidity.", "hi": "Yeh khaane-peene ki cheezein acidity ke aam triggers hain."},
+      "targets": ["spicy_food_trigger"]},
+    "q_bowel": {
+      "kind": "discriminate", "type": "multi", "priority": 59, "when_categories": ["bowel", "stomach"], "unchecked_absent": true,
+      "text": {"en": "About your bowel movements — which of these apply?", "hi": "Potty ke baare mein — inme se kya laagu hota hai?"},
+      "why": {"en": "These are the features the NHS uses to describe constipation, and loose stools would point elsewhere.", "hi": "NHS kabz ko inhi baaton se describe karta hai; patli potty ho to wajah kuch aur ho sakti hai."},
+      "targets": ["infrequent_stools", "hard_stools", "straining", "incomplete_evacuation", "diarrhoea"],
+      "none_option": true},
+    "q_skin_look": {
+      "kind": "discriminate", "type": "multi", "priority": 60, "when_categories": ["skin"], "unchecked_absent": true,
+      "text": {"en": "How does the skin look or feel? Select all that apply.", "hi": "Skin kaisi dikhti ya lagti hai? Sab select karein."},
+      "why": {"en": "Raised itchy welts, small prickly spots and dry cracked skin point to different common causes.", "hi": "Ubhre khujli wale chakatte, chhote chubhne wale daane aur rookhi phati skin — teeno alag aam wajahon ki taraf ishaara karte hain."},
+      "targets": ["raised_welts", "small_raised_spots", "dry_cracked_skin", "blisters", "skin_itch"],
+      "none_option": true},
+    "q_skin_trigger": {
+      "kind": "discriminate", "type": "single", "priority": 58, "when_categories": ["skin"],
+      "text": {"en": "Did it start after any of these?", "hi": "Kya yeh inme se kisi ke baad shuru hua?"},
+      "why": {"en": "Knowing the trigger is the most useful clue for common rashes — and avoiding it is usually the main treatment.", "hi": "Trigger jaanna aam rashes mein sabse kaam ka clue hai — aur use avoid karna hi aksar main ilaaj hota hai."},
+      "targets": ["contact_trigger", "heat_sweat_trigger"],
+      "options": [
+        {"value": "contact", "label": {"en": "A new soap, cream, detergent, metal (e.g. jewellery) or plant", "hi": "Naya sabun, cream, detergent, metal (jaise jewellery) ya paudha"}, "present": ["contact_trigger"], "absent": ["heat_sweat_trigger"]},
+        {"value": "heat", "label": {"en": "Hot weather or heavy sweating", "hi": "Garmi ya bahut paseena"}, "present": ["heat_sweat_trigger"], "absent": ["contact_trigger"]},
+        {"value": "food_med", "label": {"en": "A food, medicine or insect bite", "hi": "Koi khaana, dawai ya keede ka kaatna"}, "set": {"trigger_food_med": true}, "absent": ["contact_trigger", "heat_sweat_trigger"]},
+        {"value": "unsure", "label": {"en": "Not sure", "hi": "Pata nahi"}}
+      ]}
+  }
+}

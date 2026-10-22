@@ -1,0 +1,122 @@
+{
+ "_comment": "Canonical symptom lexicon. `patterns` are case-insensitive regular expressions matched on word boundaries against normalised user text (English, Roman-script Hindi and Hinglish). Longer matches win and consume their span, so 'aankh mein khujli' maps to itchy_eyes rather than skin_itch. Patterns starting with '~' are 'gap' patterns that only run on text left over after the first pass (so 'sar ke ek taraf dard' yields both headache and one-sided pain). `implies` adds related symptoms (a one-sided headache is a headache). Symptoms not referenced by any condition in conditions.json are recorded but treated as outside the prototype's scope.",
+ "symptoms": {
+  "blocked_nose": {"en": "Blocked / stuffy nose", "hi": "Naak band hona", "category": "nose", "patterns": ["blocked nose", "block(ed)? nose", "stuffy nose", "stuffed nose", "nasal congestion", "congested nose", "nose (is )?blocked", "naa?k (bhi )?(band|bandh|jam|block)", "band naa?k", "nose block", "naa?k se saa?ns (\\w+ ){0,3}(nahi|nahin|nhi|dikkat|takleef)\\w*", "(can'?t|cannot|unable to) breathe? (properly )?(through|from|via) (my |the )?nose", "breath\\w* through (my )?mouth", "stuffed up", "stuffy", "nose (is )?(stuffed|congested)"]},
+  "runny_nose": {"en": "Runny nose", "hi": "Naak behna", "category": "nose", "patterns": ["runny nose", "running nose", "nose (is )?running", "nose dripping", "naa?k (se )?(beh|bah)\\w*", "naa?k se paa?ni", "naa?k (se )?paani", "zu?kh?aa?m", "ju?kaa?m", "sardi", "jukham", "jukhaam", "zukham", "blowing (my )?nose"]},
+  "sneezing": {"en": "Sneezing", "hi": "Chheenk aana", "category": "nose", "patterns": ["sneez\\w*", "chh?e+nk\\w*", "chh?i+nk\\w*"]},
+  "itchy_nose": {"en": "Itchy nose", "hi": "Naak mein khujli", "category": "nose", "patterns": ["itchy nose", "nose (is )?itch\\w*", "naa?k (mein|me|mai) khujli"]},
+  "postnasal_drip": {"en": "Mucus dripping into throat", "hi": "Gale mein mucus / balgam aana", "category": "nose", "patterns": ["post ?nasal drip", "mucus (in|into) (my |the )?throat", "throat (mein|me|mai) mucus", "gale (mein|me|mai) (mucus|balgam|kaf)", "mucus", "phlegm", "balgam", "balgham", "kaf", "clear(ing)? (my )?throat", "gala saaf karna padta"]},
+  "coloured_mucus": {"en": "Green or yellow mucus from nose", "hi": "Naak se hara/peela mucus", "category": "nose", "patterns": ["(green|yellow|greenish|yellowish) (mucus|phlegm|discharge|snot)", "(hara|peela|pila) (mucus|balgam|kaf)"], "implies": ["runny_nose"]},
+  "facial_pain": {"en": "Pain or pressure around cheeks, eyes or forehead", "hi": "Gaal, aankh ya maathe ke aas-paas dard/bhaaripan", "category": "nose", "patterns": ["sinus (pain|pressure)", "(face|facial) (pain|pressure)", "pain (around|in) (my )?(cheeks?|forehead|face)", "pressure (around|in) (my )?(cheeks?|forehead|face)", "chehre (mein|me|par) (dard|bhaari\\w*)", "maathe (mein|me|par) (dard|bhaari\\w*)", "gaal (mein|me) dard"]},
+  "loss_of_smell": {"en": "Reduced sense of smell", "hi": "Smell kam aana", "category": "nose", "patterns": ["loss of (taste and )?smell", "(can'?t|cannot|unable to) smell", "no smell", "smell (nahi|nahin|nhi|na) aa", "khushboo (nahi|nahin|nhi) aa", "gandh (nahi|nahin) aa", "smell (kam|chali)"]},
+  "itchy_eyes": {"en": "Itchy, red or watery eyes", "hi": "Aankhon mein khujli / paani / laali", "category": "eyes", "patterns": ["itchy eyes?", "watery eyes?", "red eyes?", "eyes? (are )?(itch\\w*|water\\w*|red)", "aankh\\w* (mein|me|mai|se) (khujli|paa?ni|jalan)", "aankh\\w* (laal|lal)", "aankh\\w* (se )?paani"]},
+  "sore_throat": {"en": "Sore / painful throat", "hi": "Gale mein dard", "category": "throat", "patterns": ["sore throat", "throat (pain|ache|hurts?|is sore)", "pain(ful)? (in )?(my )?throat", "painful swallowing", "gala (dard|kharab)", "gale (mein|me|mai) dard", "gala dukh\\w*", "nigalne (mein|me) dard", "throat (mein|me) (dard|pain)", "gala chhil\\w*", "gale (mein|me) chubh\\w*", "nigalte (hi |waqt |samay )?(chubh|dard)\\w*", "(swallowing|swallow) hurts"]},
+  "throat_irritation": {"en": "Scratchy or itchy throat", "hi": "Gale mein kharash / khujli", "category": "throat", "patterns": ["scratchy throat", "itchy throat", "throat irritation", "irritat\\w* throat", "throat (is )?(scratchy|itchy|irritated)", "kharash", "khara?sh", "gale (mein|me|mai) khujli", "gala (khara?sh|chubh\\w*)"]},
+  "hoarse_voice": {"en": "Hoarse voice", "hi": "Awaaz baith jaana", "category": "throat", "patterns": ["hoarse\\w*", "lost (my )?voice", "croaky voice", "awaa?z (baith|bait|bhaari|nahi nikal)\\w*", "gala baith\\w*"]},
+  "swollen_glands": {"en": "Swollen neck glands", "hi": "Gardan mein gilti / sujan", "category": "throat", "patterns": ["swollen (neck )?glands?", "swollen lymph nodes?", "neck glands?", "gardan (mein|me) (gilti|gaanth|sujan)", "gilti"]},
+  "tonsil_patches": {"en": "White patches or pus on tonsils", "hi": "Tonsils par safed daag / pus", "category": "throat", "patterns": ["white (patches|spots) on (my )?tonsils?", "pus on (my )?tonsils?", "tonsils? (par|pe) (safed|pus)"]},
+  "cough": {"en": "Cough", "hi": "Khansi", "category": "chest", "patterns": ["cough\\w*", "kh?aa?nsi", "khasi", "khans\\w*", "khaas\\w*"]},
+  "fever": {"en": "Fever / high temperature", "hi": "Bukhar", "category": "general", "patterns": ["fever\\w*", "high temperature", "temperature", "temp", "bukh?aa?r", "bukhaar", "taap", "tap (hai|aa)", "badan garam", "body (is )?hot"]},
+  "chills": {"en": "Chills / shivering", "hi": "Kapkapi / thand lagna", "category": "general", "patterns": ["chills?", "shiver\\w*", "kap ?kapi", "kaa?np\\w*", "thand (lag|lagt)\\w*"]},
+  "body_ache": {"en": "Body or muscle aches", "hi": "Badan dard", "category": "general", "patterns": ["body ?aches?", "body pain", "aching (body|muscles)", "muscle (pain|aches?)", "badan dard", "badan (mein|me) dard", "sharee?r (mein )?dard", "haath pair (mein )?dard", "body (mein|me) dard"]},
+  "fatigue": {"en": "Tiredness", "hi": "Thakan", "category": "general", "patterns": ["tired\\w*", "fatigue\\w*", "exhaust\\w*", "no energy", "thakaa?n", "thakaa?vat", "thak (gaya|gayi|jata|jaati|jaata)\\w*", "kamzori", "kamjori", "weakness all over", "general weakness"]},
+  "loss_of_appetite": {"en": "Loss of appetite", "hi": "Bhookh na lagna", "category": "general", "patterns": ["loss of appetite", "no appetite", "not hungry", "bhookh? (nahi|nahin|nhi|kam) (lag|lagti|hai)\\w*", "bhook nahi"]},
+  "headache": {"en": "Headache", "hi": "Sar dard", "category": "head", "patterns": ["head ?aches?", "head pain", "head (is )?(pain|hurt|ach|throb|pound)\\w*", "my head hurts", "pain in (my )?head", "migraine", "sa?r ?dard", "sir ?dard", "sa?r (mein|me|mai) dard", "sir (mein|me|mai) dard", "sar phat\\w*", "~(sa?r|sir|head)( \\w+){1,4}? (dard|pain|ache)", "sa?r bhaa?ri", "sir bhaa?ri"]},
+  "headache_both_sides": {"en": "Pain on both sides of the head", "hi": "Sar ke dono taraf dard", "category": "head", "patterns": ["both sides of (my )?head", "whole head", "dono (taraf|side)", "poore sar (mein|me)"], "implies": ["headache"]},
+  "headache_one_side": {"en": "Pain on one side of the head", "hi": "Sar ke ek taraf dard", "category": "head", "patterns": ["one side of (my )?head", "on (one|1|the left|the right) side", "one[- ]sided", "left side of (my )?head", "right side of (my )?head", "ek (taraf|side)", "aadha sar", "aadhe sar"], "implies": ["headache"]},
+  "headache_pressing": {"en": "Pressing or tight-band feeling", "hi": "Sar par dabaav / kasaav jaisa", "category": "head", "patterns": ["pressing", "tight band", "band around (my )?head", "pressure (on|in) (my )?head", "squeez\\w* (my )?head", "dabaa?v", "kasaa?v", "kasa hua"], "implies": ["headache"]},
+  "headache_throbbing": {"en": "Throbbing / pulsating pain", "hi": "Dhak-dhak / tapakta hua dard", "category": "head", "patterns": ["throbb\\w*", "pulsat\\w*", "pounding", "dhak ?dhak", "tapak\\w*"], "implies": ["headache"]},
+  "light_sensitivity": {"en": "Sensitivity to light or sound", "hi": "Roshni ya awaaz se takleef", "category": "head", "patterns": ["sensitiv\\w* to (light|sound|noise)", "light (hurts|bothers|se takleef)", "bright lights? (hurt|bother)", "photophobia", "roshni (se|mein) (takleef|dikkat|chubh)\\w*", "light (se|me) (dikkat|problem|takleef)", "awaaz (se|mein) (takleef|chidh)"]},
+  "visual_aura": {"en": "Zigzag lines or flashing lights before headache", "hi": "Sar dard se pehle zigzag lines / chamak dikhna", "category": "head", "patterns": ["zig ?zag", "flashing lights?", "aura"]},
+  "scalp_tender": {"en": "Tender scalp / head sore to touch", "hi": "Sar chhoone par dard", "category": "head", "patterns": ["tender (scalp|head)", "scalp (is )?(tender|sore)", "sar chhoone (par|pe) dard"], "implies": ["headache"]},
+  "neck_pain": {"en": "Neck or shoulder tightness", "hi": "Gardan / kandhe mein akdan", "category": "head", "patterns": ["neck (pain|ache|tight\\w*)", "shoulder (pain|tight\\w*)", "gardan (mein|me) dard", "kandh\\w* (mein|me) dard"]},
+  "nausea": {"en": "Nausea (feeling sick)", "hi": "Ji machlana / matli", "category": "stomach", "patterns": ["nause\\w*", "feel(ing)? sick", "queasy", "ji? machal\\w*", "jee machal\\w*", "matli", "ulti jaisa", "ulti jaisi", "ji ghabra\\w*"]},
+  "vomiting": {"en": "Vomiting", "hi": "Ulti", "category": "stomach", "patterns": ["vomit\\w*", "throw(ing)? up", "threw up", "ult(i|ee|iyan|iyaan)", "ulti (ho|aa)\\w*"]},
+  "heartburn": {"en": "Burning feeling in chest / upper stomach (heartburn)", "hi": "Seene / pet mein jalan (acidity)", "category": "stomach", "patterns": ["heart ?burn", "acidity", "acid reflux", "reflux", "burning (in|feeling in) (my )?(chest|stomach|food pipe)", "(seene|seena|sine|chhati|chati|chhaati|pet|chest|gale) (mein|me|mai) jalan", "acid ban\\w*", "gas aur jalan"]},
+  "sour_regurgitation": {"en": "Sour taste or food/fluid coming back up", "hi": "Khatti dakar / khatta paani munh mein aana", "category": "stomach", "patterns": ["sour taste", "bitter taste", "food coming (back )?up", "regurgitat\\w*", "khatti? dakaa?r", "khatta paani", "khatta paa?ni", "munh (mein|me) khatta"]},
+  "bloating": {"en": "Bloating / feeling full", "hi": "Pet phoolna / bhaaripan / gas", "category": "stomach", "patterns": ["bloat\\w*", "feeling full", "full (stomach|quickly)", "pet (phool|fool|fula|phula|bhaari|bhara)\\w*", "afara", "gas", "gassy", "tummy (feels )?(heavy|full)", "stomach (feels )?(heavy|full)"]},
+  "burping": {"en": "Burping", "hi": "Dakar aana", "category": "stomach", "patterns": ["burp\\w*", "belch\\w*", "dakaa?r"]},
+  "worse_after_eating": {"en": "Worse after eating or lying down", "hi": "Khaane ke baad ya letne par badhna", "category": "stomach", "patterns": ["after (eating|meals?|food|dinner|lunch)", "khaa?ne ke baa?d", "khana khaa?ne ke baa?d", "lying down", "letne (par|pe|se)"]},
+  "spicy_food_trigger": {"en": "Spicy, oily food, tea/coffee or alcohol as trigger", "hi": "Masaledar / tala khana, chai-coffee ya alcohol ke baad", "category": "stomach", "patterns": ["spicy (food)?", "oily (food)?", "fried food", "fatty food", "masaa?ledaa?r", "teekha", "tala hua", "chai", "coffee", "alcohol", "sharaab"]},
+  "abdominal_pain": {"en": "Stomach / tummy pain", "hi": "Pet dard", "category": "stomach", "patterns": ["stomach ?ache", "stomach pain", "tummy (pain|ache)", "abdominal pain", "belly pain", "pain in (my )?(stomach|tummy|abdomen)", "pet ?dard", "pet (mein|me|mai) dard", "pet dukh\\w*", "marod"]},
+  "infrequent_stools": {"en": "Passing stool less often than usual", "hi": "Potty kam / pet saaf na hona", "category": "bowel", "patterns": ["constipat\\w*", "no bowel movement", "haven'?t (pooped|passed stool)", "not (pooping|passing stool)", "ka?bz\\w*", "kabj\\w*", "qabz\\w*", "pet saa?f (nahi|nahin|nhi|na)", "potty (nahi|nahin|nhi|na) (ho|aa|hui|aayi)\\w*", "latrine (nahi|nahin|nhi) (ho|aa|hui)\\w*", "motion (nahi|nahin|nhi) (ho|aa|hua)\\w*", "toilet (nahi|nahin|nhi) (ho|aa|hua|hui)\\w*", "(latrine|toilet|potty) (\\w+ )?(nahi|nahin|nhi) (gaya|gayi|gaye|hui|ja)\\w*", "(nahi|nahin) (ho )?rahi potty"]},
+  "hard_stools": {"en": "Hard, dry or lumpy stool", "hi": "Sakht / sookhi potty", "category": "bowel", "patterns": ["hard (stools?|poo|potty|motion)", "dry (stools?|poo)", "lumpy (stools?|poo)", "(sakht|sukhi|sookhi|tight|kadak) (potty|latrine|motion|mal)", "(potty|latrine|motion|stools?|mal) (\\w+ )?(sakht|sukhi|sookhi|tight|kadak|hard)"]},
+  "straining": {"en": "Straining or pain while passing stool", "hi": "Potty karte waqt zor lagana", "category": "bowel", "patterns": ["strain\\w*", "zor laga\\w*", "zor lagta"]},
+  "incomplete_evacuation": {"en": "Feeling bowels haven't fully emptied", "hi": "Pet poori tarah saaf na lagna", "category": "bowel", "patterns": ["not (fully|completely) empt\\w*", "incomplete (evacuation|emptying)", "pet poora saa?f (nahi|nahin|nhi)", "poori tarah saa?f (nahi|nahin|nhi)"]},
+  "diarrhoea": {"en": "Diarrhoea / loose stools", "hi": "Dast / loose motion", "category": "bowel", "patterns": ["diarrh?o?ea", "diarrhea", "loose (motions?|stools?|potty)", "watery (stools?|poo)", "dast", "patli potty", "(motion|potty|latrine|tatti|stool)s? (\\w+ )?(patl[aie]|paani jais[ae]|loose)"]},
+  "skin_rash": {"en": "Skin rash or spots", "hi": "Skin par daane / rash", "category": "skin", "patterns": ["rash\\w*", "spots on (my )?skin", "red spots", "(lal )?daa?ne", "chakatt\\w*", "skin (par|pe) (daane|lal)", "funsi\\w*"]},
+  "skin_itch": {"en": "Itchy skin", "hi": "Skin par khujli", "category": "skin", "patterns": ["itch\\w*", "khujli", "khujlee", "kharish", "kharij"]},
+  "dry_cracked_skin": {"en": "Dry, cracked or scaly skin", "hi": "Rookhi / phati hui skin", "category": "skin", "patterns": ["dry skin", "cracked skin", "skin (is )?(dry|cracked|cracking|peeling)", "(rookhi|rukhi|sookhi) (skin|twacha|chamdi)", "skin phat\\w*", "phati (hui )?skin"]},
+  "blisters": {"en": "Small blisters", "hi": "Chhaale / phaphole", "category": "skin", "patterns": ["blister\\w*", "chh?aa?le", "phaphol\\w*"], "implies": ["skin_rash"]},
+  "raised_welts": {"en": "Raised itchy bumps or patches (welts)", "hi": "Ubhre hue chakatte / pitti", "category": "skin", "patterns": ["hives", "welts?", "urticaria", "raised (bumps|patches|rash)", "bumps", "pitti", "sheet ?pitti", "ubh?re? (hue )?(daane|chakatte)"], "implies": ["skin_rash"]},
+  "small_raised_spots": {"en": "Small raised spots with prickly feeling", "hi": "Chhote daane aur chubhan (ghamoriyan)", "category": "skin", "patterns": ["prickly heat", "heat rash", "prickl\\w*", "ghamori\\w*", "ghamaur\\w*", "garmi (ke|wale) daane", "(skin|twacha|daane?|badan|shareer)( \\w+){0,2} chubh\\w*", "chubhne wale daane"], "implies": ["skin_rash"]},
+  "contact_trigger": {"en": "Started after contact with a new soap, cream, detergent, metal or plant", "hi": "Naye soap, cream, detergent, metal ya plant ke contact ke baad", "category": "skin", "patterns": ["new (soap|cream|lotion|detergent|cosmetic|shampoo|perfume|product)", "after using", "detergent", "nickel", "(naya|naye|nayi) (soap|sabun|cream|detergent)", "lagaane ke baa?d", "use karne ke baa?d"]},
+  "heat_sweat_trigger": {"en": "Started with heat or heavy sweating", "hi": "Garmi / paseene ke baad shuru hua", "category": "skin", "patterns": ["sweat\\w*", "hot weather", "in the heat", "pas[ie]+n[ae]", "garmi (mein|me|ki wajah|se)"]},
+  "allergen_trigger": {"en": "Triggered by dust, pollen, pets or mould", "hi": "Dhool, pollen, paaltu jaanwar ya seelan se badhna", "category": "nose", "patterns": ["dust", "pollen", "allerg\\w*", "cat hair", "dog hair", "mould", "mold", "dhool", "dhul", "mitti", "paraag", "billi", "kutt[ae]", "seelan", "pets", "pet (dogs?|cats?|animals?)", "(dogs?|cats?) (hair|fur|dander)", "animals?"]},
+  "dizziness": {"en": "Dizziness", "hi": "Chakkar aana", "category": "other", "patterns": ["dizz\\w*", "lightheaded", "light headed", "vertigo", "chakk?a?r", "chakr?a (raha|rahi|rahe|aa)\\w*", "sar (ghoom|chakra)\\w*", "sir (ghoom|chakra)\\w*"]},
+  "ear_pain": {"en": "Ear pain", "hi": "Kaan dard", "category": "other", "patterns": ["ear ?ache", "ear pain", "kaa?n ?dard", "kaa?n (mein|me) dard"]},
+  "toothache": {"en": "Toothache", "hi": "Daant dard", "category": "other", "patterns": ["tooth ?ache", "teeth pain", "daa?nt ?dard", "daa?nt (mein|me) dard"]},
+  "back_pain": {"en": "Back pain", "hi": "Kamar dard", "category": "other", "patterns": ["back ?pain", "back ?ache", "kamar ?dard", "peeth (mein|me)? ?dard"]},
+  "joint_pain": {"en": "Joint pain", "hi": "Jodon mein dard", "category": "other", "patterns": ["joint pain", "joints? (hurt|ache)", "jodo?n (mein|me) dard", "ghutn\\w* (mein|me)? ?dard"]},
+  "urinary_burning": {"en": "Burning or pain while passing urine", "hi": "Peshab mein jalan", "category": "other", "patterns": ["burning (urine|urination|while peeing)", "painful urination", "pain(ful)? (when|while) (peeing|urinating)", "pesh?aa?b (mein|me|karte (waqt|samay)) (jalan|dard)", "urine (mein|me) jalan"]},
+  "weight_loss": {"en": "Unintentional weight loss", "hi": "Bina koshish wajan kam hona", "category": "other", "patterns": ["weight loss", "losing weight", "lost weight", "wajan (kam|ghat)\\w*", "vajan (kam|ghat)\\w*"]},
+  "palpitations": {"en": "Racing or fluttering heartbeat", "hi": "Dil ki dhadkan tez", "category": "other", "patterns": ["palpitation\\w*", "heart (is )?racing", "racing heart", "dhadkan tez", "dil (ki dhadkan )?tez", "dil ghabra\\w*"]},
+  "other_pain": {"en": "Pain elsewhere", "hi": "Kahin aur dard", "category": "other", "patterns": []},
+  "breathlessness": {"en": "Shortness of breath", "hi": "Saans phoolna", "category": "chest", "patterns": ["short(ness)? of breath", "breathless\\w*", "out of breath", "saa?ns (phool|fool)\\w*", "saa?ns lene (mein|me) (dikkat|takleef|problem|pareshani)", "saa?ns (ki )?(dikkat|takleef|problem)", "difficulty breathing", "trouble breathing"]},
+  "chest_pain": {"en": "Chest pain or tightness", "hi": "Seene mein dard ya jakdan", "category": "chest", "patterns": ["chest (pain|tightness|pressure|heaviness)", "pain in (my )?chest", "chest (is |feels )?(tight|heavy|hurts|pressure)", "(seene|seena|sine|chhati|chati|chhaati|chest) (mein|me|mai|par) (dard|jakdan|dabaav|bhaari\\w*)", "seena (bhaari|jakda)\\w*", "heart attack", "dil ka daura"]},
+  "nosebleed": {"en": "Nosebleed", "hi": "Naak se khoon", "category": "other", "patterns": ["nose ?bleed\\w*", "bleeding (from )?(my )?nose", "naa?k se khoon"]},
+  "numbness": {"en": "Numbness or tingling", "hi": "Sunn-pan / jhanjhanahat", "category": "other", "patterns": ["numb\\w*", "tingl\\w*", "pins and needles", "sunn", "jhanjhan\\w*"]}
+ },
+ "ambiguous_terms": {
+  "_comment": "Words that do not map to one symptom. When matched (and nothing more specific is found in the same message) the engine asks the linked clarification question instead of guessing.",
+  "pain_location": {
+    "patterns": [
+      "\\bjalan\\b",
+      "\\bdard\\b",
+      "\\bpain\\b",
+      "\\bache\\b",
+      "\\bhurts?\\b"
+    ],
+    "question": "clarify_pain_location",
+    "unless_any": [
+      "headache",
+      "headache_one_side",
+      "headache_both_sides",
+      "headache_throbbing",
+      "headache_pressing",
+      "abdominal_pain",
+      "sore_throat",
+      "body_ache",
+      "heartburn",
+      "facial_pain",
+      "ear_pain",
+      "toothache",
+      "back_pain",
+      "joint_pain",
+      "neck_pain",
+      "chest_pain",
+      "other_pain",
+      "urinary_burning",
+      "straining"
+    ]
+  },
+  "cold_word": {
+    "patterns": [
+      "\\bcold\\b",
+      "\\bthand\\b",
+      "\\bsardi[- ]?zu?kh?aa?m\\b"
+    ],
+    "question": "clarify_cold"
+  },
+  "weakness_word": {
+    "patterns": [
+      "\\bweak(ness)?\\b",
+      "\\bkamzor\\b"
+    ],
+    "question": "clarify_weakness",
+    "unless_any": [
+      "fatigue"
+    ]
+  }
+}
+}

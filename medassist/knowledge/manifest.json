@@ -1,0 +1,322 @@
+{
+  "nhs-common-cold": {
+    "url": "https://www.nhs.uk/conditions/common-cold/",
+    "status": "ok",
+    "chunks": 9,
+    "last_reviewed": "22 March 2024",
+    "next_review_due": "22 March 2027",
+    "retrieved": "2026-10-21"
+  },
+  "mlp-common-cold": {
+    "url": "https://medlineplus.gov/commoncold.html",
+    "status": "ok",
+    "chunks": 6,
+    "last_reviewed": "2022-11-16",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "mlp-ency-common-cold": {
+    "url": "https://medlineplus.gov/ency/article/000678.htm",
+    "status": "ok",
+    "chunks": 14,
+    "last_reviewed": "1/1/2025",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-flu": {
+    "url": "https://www.nhs.uk/conditions/flu/",
+    "status": "ok",
+    "chunks": 12,
+    "last_reviewed": "03 February 2026",
+    "next_review_due": "03 February 2029",
+    "retrieved": "2026-10-21"
+  },
+  "who-influenza": {
+    "url": "https://www.who.int/news-room/fact-sheets/detail/influenza-(seasonal)",
+    "status": "ok",
+    "chunks": 16,
+    "last_reviewed": "28 February 2025",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-allergic-rhinitis": {
+    "url": "https://www.nhs.uk/conditions/allergic-rhinitis/",
+    "status": "ok",
+    "chunks": 10,
+    "last_reviewed": "08 January 2026",
+    "next_review_due": "08 January 2029",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-hay-fever": {
+    "url": "https://www.nhs.uk/conditions/hay-fever/",
+    "status": "ok",
+    "chunks": 8,
+    "last_reviewed": "21 March 2024",
+    "next_review_due": "21 March 2027",
+    "retrieved": "2026-10-21"
+  },
+  "mlp-hay-fever": {
+    "url": "https://medlineplus.gov/hayfever.html",
+    "status": "ok",
+    "chunks": 1,
+    "last_reviewed": "2018-06-28",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "mlp-ency-allergic-rhinitis": {
+    "url": "https://medlineplus.gov/ency/article/000813.htm",
+    "status": "ok",
+    "chunks": 16,
+    "last_reviewed": "1/20/2026",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-sinusitis": {
+    "url": "https://www.nhs.uk/conditions/sinusitis-sinus-infection/",
+    "status": "ok",
+    "chunks": 8,
+    "last_reviewed": "31 January 2024",
+    "next_review_due": "31 January 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-sore-throat": {
+    "url": "https://www.nhs.uk/conditions/sore-throat/",
+    "status": "ok",
+    "chunks": 10,
+    "last_reviewed": "08 April 2024",
+    "next_review_due": "08 April 2027",
+    "retrieved": "2026-10-21"
+  },
+  "mlp-sore-throat": {
+    "url": "https://medlineplus.gov/sorethroat.html",
+    "status": "ok",
+    "chunks": 1,
+    "last_reviewed": "2025-06-29",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-tonsillitis": {
+    "url": "https://www.nhs.uk/conditions/tonsillitis/",
+    "status": "ok",
+    "chunks": 13,
+    "last_reviewed": "08 March 2024",
+    "next_review_due": "08 March 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-laryngitis": {
+    "url": "https://www.nhs.uk/conditions/laryngitis/",
+    "status": "ok",
+    "chunks": 11,
+    "last_reviewed": "17 January 2024",
+    "next_review_due": "17 January 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-indigestion": {
+    "url": "https://www.nhs.uk/conditions/indigestion/",
+    "status": "ok",
+    "chunks": 10,
+    "last_reviewed": "05 May 2023",
+    "next_review_due": "05 May 2026",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-heartburn": {
+    "url": "https://www.nhs.uk/conditions/heartburn-and-acid-reflux/",
+    "status": "ok",
+    "chunks": 11,
+    "last_reviewed": "20 November 2023",
+    "next_review_due": "20 November 2026",
+    "retrieved": "2026-10-21"
+  },
+  "mlp-indigestion": {
+    "url": "https://medlineplus.gov/indigestion.html",
+    "status": "ok",
+    "chunks": 2,
+    "last_reviewed": "2025-12-04",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "mlp-gerd": {
+    "url": "https://medlineplus.gov/gerd.html",
+    "status": "ok",
+    "chunks": 6,
+    "last_reviewed": "2025-11-24",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-constipation": {
+    "url": "https://www.nhs.uk/conditions/constipation/",
+    "status": "ok",
+    "chunks": 11,
+    "last_reviewed": "26 October 2023",
+    "next_review_due": "26 October 2026",
+    "retrieved": "2026-10-21"
+  },
+  "mlp-constipation": {
+    "url": "https://medlineplus.gov/constipation.html",
+    "status": "ok",
+    "chunks": 1,
+    "last_reviewed": "2025-07-21",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-headaches": {
+    "url": "https://www.nhs.uk/conditions/headaches/",
+    "status": "ok",
+    "chunks": 8,
+    "last_reviewed": "17 April 2024",
+    "next_review_due": "17 April 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-tension-headaches": {
+    "url": "https://www.nhs.uk/conditions/tension-headaches/",
+    "status": "ok",
+    "chunks": 11,
+    "last_reviewed": "01 August 2025",
+    "next_review_due": "01 August 2028",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-migraine": {
+    "url": "https://www.nhs.uk/conditions/migraine/",
+    "status": "ok",
+    "chunks": 15,
+    "last_reviewed": "10 March 2026",
+    "next_review_due": "10 March 2029",
+    "retrieved": "2026-10-21"
+  },
+  "mlp-headache": {
+    "url": "https://medlineplus.gov/headache.html",
+    "status": "ok",
+    "chunks": 2,
+    "last_reviewed": "2025-11-19",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "who-headache": {
+    "url": "https://www.who.int/news-room/fact-sheets/detail/headache-disorders",
+    "status": "ok",
+    "chunks": 14,
+    "last_reviewed": "24 October 2025",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-contact-dermatitis": {
+    "url": "https://www.nhs.uk/conditions/contact-dermatitis/",
+    "status": "ok",
+    "chunks": 9,
+    "last_reviewed": "03 May 2023",
+    "next_review_due": "03 May 2026",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-hives": {
+    "url": "https://www.nhs.uk/conditions/hives/",
+    "status": "ok",
+    "chunks": 7,
+    "last_reviewed": "26 April 2024",
+    "next_review_due": "26 April 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-heat-rash": {
+    "url": "https://www.nhs.uk/conditions/heat-rash-prickly-heat/",
+    "status": "ok",
+    "chunks": 8,
+    "last_reviewed": "09 May 2024",
+    "next_review_due": "09 May 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-itchy-skin": {
+    "url": "https://www.nhs.uk/conditions/itchy-skin/",
+    "status": "ok",
+    "chunks": 9,
+    "last_reviewed": "19 July 2023",
+    "next_review_due": "19 July 2026",
+    "retrieved": "2026-10-21"
+  },
+  "mlp-rashes": {
+    "url": "https://medlineplus.gov/rashes.html",
+    "status": "ok",
+    "chunks": 2,
+    "last_reviewed": "2025-06-17",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  },
+  "nhs-stroke-symptoms": {
+    "url": "https://www.nhs.uk/conditions/stroke/symptoms/",
+    "status": "ok",
+    "chunks": 4,
+    "last_reviewed": "12 September 2024",
+    "next_review_due": "12 September 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-heart-attack-symptoms": {
+    "url": "https://www.nhs.uk/conditions/heart-attack/symptoms/",
+    "status": "ok",
+    "chunks": 14,
+    "last_reviewed": "31 March 2026",
+    "next_review_due": "31 March 2029",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-chest-pain": {
+    "url": "https://www.nhs.uk/symptoms/chest-pain/",
+    "status": "ok",
+    "chunks": 5,
+    "last_reviewed": "08 August 2023",
+    "next_review_due": "08 August 2026",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-shortness-of-breath": {
+    "url": "https://www.nhs.uk/symptoms/shortness-of-breath/",
+    "status": "ok",
+    "chunks": 7,
+    "last_reviewed": "30 January 2024",
+    "next_review_due": "30 January 2027",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-anaphylaxis": {
+    "url": "https://www.nhs.uk/conditions/anaphylaxis/",
+    "status": "ok",
+    "chunks": 12,
+    "last_reviewed": "21 June 2023",
+    "next_review_due": "21 June 2026",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-meningitis-symptoms": {
+    "url": "https://www.nhs.uk/conditions/meningitis/symptoms/",
+    "status": "ok",
+    "chunks": 16,
+    "last_reviewed": "12 June 2026",
+    "next_review_due": "12 June 2029",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-sepsis": {
+    "url": "https://www.nhs.uk/conditions/sepsis/",
+    "status": "ok",
+    "chunks": 21,
+    "last_reviewed": "14 May 2026",
+    "next_review_due": "14 May 2029",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-stomach-ache": {
+    "url": "https://www.nhs.uk/symptoms/stomach-ache/",
+    "status": "ok",
+    "chunks": 6,
+    "last_reviewed": "26 May 2023",
+    "next_review_due": "26 May 2026",
+    "retrieved": "2026-10-21"
+  },
+  "nhs-fever-adults": {
+    "url": "https://www.nhs.uk/symptoms/fever-in-adults/",
+    "status": "ok",
+    "chunks": 11,
+    "last_reviewed": "19 October 2026",
+    "next_review_due": "19 October 2029",
+    "retrieved": "2026-10-21"
+  },
+  "who-dengue": {
+    "url": "https://www.who.int/news-room/fact-sheets/detail/dengue-and-severe-dengue",
+    "status": "ok",
+    "chunks": 17,
+    "last_reviewed": "21 August 2025",
+    "next_review_due": null,
+    "retrieved": "2026-10-21"
+  }
+}

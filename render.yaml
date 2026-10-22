@@ -4,9 +4,17 @@ services:
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 60
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.4
       - key: GROQ_API_KEY
         sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      # torch / sentence-transformers are too heavy for the free plan; BM25 retrieval is used instead
+      - key: RETRIEVAL_MODE
+        value: lexical
+      # note: the free plan's disk is ephemeral, so saved assessments are lost on redeploy
+      - key: MEDASSIST_DB
+        value: /tmp/assessments.db
