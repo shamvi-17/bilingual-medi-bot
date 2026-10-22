@@ -36,7 +36,7 @@ python -m pytest -q
 python -m evaluation.run_eval
 ```
 
-The app works **without** a Groq key: rule-based extraction, red-flag screening, matching, retrieval and explanations are all local. The key only enables (a) understanding wording the rules don't recognise, (b) an optional plain-language rephrasing of the assessment, and (c) voice input.
+The app works **without** a Groq key: rule-based extraction, red-flag screening, matching, retrieval and explanations are all local. The key only enables (a) understanding wording the rules don't recognise, (b) an optional plain-language rephrasing of the assessment, and (c) voice input. Reading replies aloud works without it.
 
 ---
 
@@ -68,6 +68,18 @@ user text / answer
 
 The language model never decides likelihoods or conditions. It is optional and its output is validated.
 
+### Voice
+
+The 🎤 button records speech (Hinglish, Hindi or English) and `medassist/voice.py` transcribes it with Groq Whisper (`whisper-large-v3-turbo`, falling back to `whisper-large-v3`):
+
+* **Roman-script output.** Whisper in Hindi mode writes Devanagari, which the symptom extractor can't read. The main pass asks for English output with a Hinglish example prompt, so Hindi speech comes back as "Mujhe 3 din se bukhar hai…".
+* **Echo protection.** On silence or noise, Whisper tends to repeat its prompt, which would invent symptoms (seen in testing: noise → "I have a sore throat, runny nose and fever."). Every recording is therefore also transcribed without a prompt in Hindi mode, transliterated (`medassist/translit.py`), and compared with the main pass. The transcript is used only if the two agree; otherwise the user is asked to repeat or type.
+* **In the browser**, recording stops by itself after a pause and isn't uploaded if no speech was detected. The transcript goes into the input box for review (or is sent straight away if "send automatically" is ticked).
+* **Spoken answers**: short replies such as "nahi", "behtar ho rahe hain", "dono taraf" or "paanch" answer the question card on screen (`followup.match_answer`).
+* **Read aloud**: the 🔊 button reads replies, questions and emergency guidance using the browser's speech synthesis (an Indian-English voice when available).
+
+Voice needs `GROQ_API_KEY` and uses two Whisper requests per recording; Groq's free tier has a per-minute request limit.
+
 ### Scope
 
 Common cold, flu-like illness, allergic rhinitis, sinusitis, sore throat, indigestion/acid reflux, constipation, tension-type headache, migraine, contact dermatitis, hives, heat rash. Symptoms outside this scope are recorded and the user is told the tool can't assess them. Children under 12 are out of scope (no condition suggestions; advice to see a doctor). Red-flag screening covers chest pain, severe breathing difficulty, stroke signs, sudden severe headache, meningitis signs, anaphylaxis, inability to swallow, severe bleeding / vomiting blood, black stool, severe abdominal pain, dengue warning signs, seizures, confusion/fainting and self-harm, plus "get help today" rules (e.g. blood in stool, headache with vomiting).
@@ -89,13 +101,14 @@ medassist/
   retrieval.py              hybrid retrieval (BM25 + optional embeddings)
   explain.py                explanation engine + urgency + citation validation
   llm.py                    optional Groq helpers with output validation
+  voice.py, translit.py     speech-to-text with echo cross-check; Devanagari → Roman transliteration
   engine.py, state.py       orchestration and persisted state
   api.py                    JSON API with validated request models
   data/                     reviewable rule data: symptoms.json, redflags.json, conditions.json, questions.json
   knowledge/                sources.json, ingest.py, corpus.jsonl, manifest.json, verify_live.py
 templates/index.html        landing page + assessment workspace
 static/css/app.css, static/js/app.js
-tests/                      pytest suite (147 tests)
+tests/                      pytest suite (189 tests)
 evaluation/                 scenario dataset, runner, results.md
 docs/KNOWLEDGE_BASE.md      sources, ingestion, licensing, known gaps
 dataset_OUR/, knowledge_graph.py, chatbot.py, templates/graph.html, fetch_datasets.py, refetch*.py
@@ -118,6 +131,7 @@ dataset_OUR/, knowledge_graph.py, chatbot.py, templates/graph.html, fetch_datase
 | POST | `/api/assessments/{id}/assessment` | produce the assessment now |
 | GET | `/api/assessments/{id}/summary` | optional LLM plain-language rephrasing (validated) |
 | POST | `/api/assessments/{id}/reset` | start over |
+| POST | `/api/voice/transcribe` | speech → Roman-script text (multipart `audio`, `language`, optional `session_id`) |
 | GET | `/api/evidence?q=&condition=` | search the evidence corpus |
 | GET | `/api/sources`, `/api/sources/{id}` | source metadata, review dates, passages |
 | GET | `/api/health`, `/api/meta` | corpus / retrieval / LLM status; symptom & condition vocabulary |

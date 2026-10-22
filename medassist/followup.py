@@ -13,7 +13,9 @@ Questions already asked, or whose answers are already known from free text, are 
 
 from __future__ import annotations
 
+import difflib
 import json
+import re
 from functools import lru_cache
 
 from .config import DATA_DIR, settings
@@ -222,3 +224,84 @@ def render_question(qid: str, lang: str, status: dict[str, str] | None = None) -
                           {"value": "no", "label": "No" if L == "en" else "Nahi"},
                           {"value": "unsure", "label": "Not sure" if L == "en" else "Pata nahi"}]
     return out
+
+
+# ── short spoken/typed replies to the question on screen ─────────────────────
+
+_STOP = {"hai", "hain", "he", "ho", "raha", "rahe", "rahi", "the", "a", "an", "i", "my", "mera", "meri", "mujhe", "se", "mein",
+         "me", "ka", "ki", "ke", "aur", "and", "ya", "or", "is", "are", "it", "its", "to", "of", "bhi", "toh", "to"}
+_NONE = re.compile(r"^\s*(inme se )?(koi (bhi )?nahi?n?|kuch (bhi )?nahi?n?|nahi?n?|nhi|no|none( of (these|them))?|nothing|"
+                   r"none of the above|aisa kuch nahi?n?)( hai)?\s*[.!]*\s*$")
+_UNSURE = re.compile(r"\b(pata nahi?n?|not sure|unsure|malum nahi?n?|don'?t know|shayad)\b")
+_NUMBERS = {"ek": 1, "one": 1, "do": 2, "two": 2, "teen": 3, "three": 3, "char": 4, "chaar": 4, "four": 4,
+            "paanch": 5, "panch": 5, "five": 5, "chhe": 6, "che": 6, "six": 6, "saat": 7, "seven": 7,
+            "aath": 8, "eight": 8, "nau": 9, "nine": 9, "das": 10, "ten": 10}
+
+
+def _canon(s: str) -> str:
+    """Spelling-tolerant form for matching spoken replies: 'In me se kooi nahi' ~ 'inme se koi nahi'."""
+    s = s.lower()
+    s = re.sub(r"\bin (me|mein|men)\b", "inme", s)
+    s = re.sub(r"\binmein\b", "inme", s)
+    return re.sub(r"([aeiou])\1+", r"\1", s)
+
+
+def _tokens(s: str) -> set[str]:
+    return {t for t in re.findall(r"[a-z0-9]+", _canon(s)) if t not in _STOP}
+
+
+def _label_score(label: str, text: str) -> float:
+    text = _canon(text)
+    lab = " ".join(re.findall(r"[a-z0-9]+", _canon(label)))
+    if lab and re.search(rf"\b{re.escape(lab)}\b", text):
+        return 1.0
+    lt, tt = _tokens(label), _tokens(text)
+    if not lt or not tt:
+        return 0.0
+    # exact token matches, plus near-misses for longer words ("bahetar" ~ "behtar")
+    common = sum(1 for a in lt if a in tt or (len(a) >= 5 and any(
+        len(b) >= 5 and difflib.SequenceMatcher(None, a, b).ratio() >= 0.8 for b in tt)))
+    # average of "how much of the option was said" and "how much of the reply is about this option"
+    return (common / len(lt) + common / len(tt)) / 2
+
+
+def match_answer(qid: str, text: str):
+    """Interpret a short reply ("nahi", "behtar ho rahe hain", "paanch") as an answer to question `qid`.
+
+    Returns a value accepted by apply_answer, or None when the reply isn't clearly an answer
+    (it is then handled as an ordinary message). Longer messages are never treated as answers,
+    so a description like "bukhar bhi hai aur 3 din se" is not read as ticking only one box.
+    """
+    from .extraction import normalise, parse_yes_no
+    q = load_questions()[qid]
+    t = _canon(normalise(text))
+    words = len(t.split())
+    if not t or words > 8:
+        return None
+    if q["type"] == "yesno":
+        return parse_yes_no(t) if words <= 6 else None
+    if q["type"] == "scale":
+        m = re.search(r"\b(10|[1-9])\b", t) or next((re.search(rf"\b{w}\b", t) for w in _NUMBERS if re.search(rf"\b{w}\b", t)), None)
+        if not m:
+            return None
+        n = int(m.group(1)) if m.group(0).isdigit() else _NUMBERS[m.group(0)]
+        return n if q.get("min", 1) <= n <= q.get("max", 10) else None
+    opts = options_for(qid)
+    if q["type"] == "multi":
+        if words <= 6 and _NONE.match(t) and (q.get("none_option") or q.get("unchecked_absent")):
+            return "none"
+        if words > 6:
+            return None
+        picked = [o["value"] for o in opts
+                  if max(_label_score(o["label"]["en"], t), _label_score(o["label"]["hi"], t)) >= 0.75]
+        return picked or None
+    # single choice
+    if _UNSURE.search(t):
+        unsure = next((o["value"] for o in opts if o["value"] == "unsure"), None)
+        if unsure:
+            return unsure
+    scored = sorted(((max(_label_score(o["label"]["en"], t), _label_score(o["label"]["hi"], t)), o["value"]) for o in opts),
+                    reverse=True)
+    if scored and scored[0][0] >= 0.6 and (len(scored) == 1 or scored[1][0] < scored[0][0]):
+        return scored[0][1]
+    return None

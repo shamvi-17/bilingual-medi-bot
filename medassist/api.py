@@ -9,9 +9,10 @@ from flask import Blueprint, jsonify, request
 from pydantic import BaseModel, Field, ValidationError
 from werkzeug.exceptions import HTTPException
 
-from . import llm
+from . import llm, voice
 from .engine import get_engine
 from .extraction import get_lexicon
+from .followup import load_questions, render_question
 from .knowledge.store import get_store
 from .matcher import load_conditions
 from .retrieval import get_retriever
@@ -272,6 +273,39 @@ def meta():
         "conditions": [{"id": k, "name": v["name"]} for k, v in conds.items()],
         "symptoms": [{"id": k, "en": v["en"], "hi": v["hi"], "category": v.get("category")} for k, v in lex.symptoms.items()],
     })
+
+
+# ── voice ────────────────────────────────────────────────────────────────────
+
+VOICE_MESSAGES = {
+    "no_speech": {"en": "I couldn't hear any speech. Please try again closer to the microphone, or type instead.",
+                  "hi": "Mujhe kuch sunai nahi diya. Mic ke paas bolkar dobara try karein, ya type karein."},
+    "unclear": {"en": "I couldn't make that out reliably. Please say it again, or type it.",
+                "hi": "Main theek se samajh nahi paaya. Kripya dobara bolein, ya type karein."},
+    "unverified": {"en": "Speech recognition is only partly available right now. Please type your message.",
+                   "hi": "Abhi voice pehchaan poori tarah kaam nahi kar rahi. Kripya type karein."},
+}
+
+
+@bp.post("/voice/transcribe")
+def voice_transcribe():
+    audio = request.files.get("audio")
+    lang = "hi" if request.form.get("language") == "hi" else "en"
+    hints = []
+    sid = request.form.get("session_id")
+    if sid:
+        st = store().get(sid)
+        if st and st.pending_question and st.pending_question in load_questions():
+            q = render_question(st.pending_question, lang)
+            hints = [o["label"] for o in q["options"]]
+    try:
+        res = voice.transcribe(audio.read() if audio else b"", (audio.filename if audio else "") or "audio.webm", hints)
+    except voice.VoiceError as e:
+        status = {"unavailable": 503, "provider_error": 502}.get(e.code, 422)
+        return error(status, e.code, str(e))
+    body = res.to_dict()
+    body["message"] = None if res.accepted else VOICE_MESSAGES[res.reason][lang]
+    return jsonify(body)
 
 
 @bp.get("/health")

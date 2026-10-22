@@ -12,8 +12,8 @@ import hashlib
 
 from . import llm
 from .explain import build_assessment
-from .extraction import Extraction, extract, get_lexicon, parse_yes_no
-from .followup import apply_answer, load_questions, next_question, render_question
+from .extraction import Extraction, extract, get_lexicon
+from .followup import apply_answer, load_questions, match_answer, next_question, render_question
 from .matcher import load_conditions, match_all
 from .redflags import get_rules
 from .state import AssessmentState, FlagRecord, Message
@@ -49,12 +49,13 @@ class Engine:
         new = []
         before = st.status_map()
 
-        # a short reply to a pending yes/no question is treated as its answer
+        # a short reply to the question on screen ("nahi", "behtar hai", "paanch") answers it,
+        # so the assessment can be completed by voice or typing as well as by tapping options
         pending = st.pending_question
-        if pending and load_questions()[pending]["type"] == "yesno":
-            yn = parse_yes_no(text)
-            if yn and len(text.split()) <= 4:
-                return self.answer(st, pending, yn, echo=False)
+        if pending:
+            value = match_answer(pending, text)
+            if value is not None:
+                return self.answer(st, pending, value, echo=False)
 
         ex = extract(text)
         for f in ex.findings:

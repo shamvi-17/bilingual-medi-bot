@@ -106,17 +106,30 @@
         <div class="panel">
           <div class="chat" id="chat" role="log" aria-live="polite" aria-relevant="additions"></div>
           <div id="emergency-slot"></div>
+          <div class="voice-bar" id="voice-bar" hidden aria-live="polite">
+            <span class="rec-dot" aria-hidden="true"></span>
+            <span class="voice-status" id="voice-status">Listening…</span>
+            <span class="level" id="voice-level" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="voice-time" id="voice-time">0:00</span>
+            <button type="button" class="btn btn-sm btn-primary" id="voice-stop" data-i18n="voice_stop">Done</button>
+            <button type="button" class="btn btn-sm btn-ghost" id="voice-cancel" data-i18n="voice_cancel">Cancel</button>
+          </div>
           <form class="composer" id="composer" autocomplete="off">
             <label for="input" class="visually-hidden" data-i18n="input_label">Describe your symptoms</label>
             <textarea id="input" rows="1" data-i18n-placeholder="placeholder" placeholder="Apne symptoms likhein…"></textarea>
             <button type="button" class="icon-btn" id="mic-btn" aria-label="Voice input">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3"/></svg>
             </button>
+            <button type="button" class="icon-btn" id="speak-btn" aria-pressed="false" aria-label="Read replies aloud" hidden>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path class="wave" d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+            </button>
             <button type="submit" class="icon-btn primary" id="send-btn" aria-label="Send">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </button>
           </form>
           <div class="composer-hint">
+            <span class="voice-note" id="voice-note" hidden data-i18n="voice_note">Voice transcript — please check before sending</span>
+            <label class="autosend"><input type="checkbox" id="autosend"> <span data-i18n="autosend">Send automatically after speaking</span></label>
             <span data-i18n="composer_hint">Enter = bhejein · Shift+Enter = nayi line · Aap kabhi bhi kuch correct kar sakte hain</span>
             <button type="button" class="btn btn-sm btn-outline" id="assess-now" hidden data-i18n="assess_now">Assessment abhi dikhayein</button>
           </div>

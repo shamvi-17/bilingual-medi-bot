@@ -98,34 +98,6 @@ def get_reply(user_message: str, history: list[dict]) -> str:
             raise
     return "Abhi server busy hai — thodi der baad try karein. (Rate limit reached, please try again in a few minutes.)"
 
-def transcribe_audio(
-    audio_bytes: bytes,
-    filename: str = "audio.webm",
-    language: str | None = None,
-    context: str = "",
-) -> str:
-    """Transcribe audio via Groq Whisper — handles Hindi, English, and Hinglish."""
-    # Prompt seeds Whisper with domain vocabulary so it spells medical Hinglish correctly.
-    # If the last bot message is passed as context it also primes the transcription window.
-    vocab = (
-        "bukhar, dard, khansi, sar dard, thakan, rash, ulti, nausea, pet dard, "
-        "saans, kamzori, khujli, sujan, chakkad, diabetes, dengue, malaria, TB."
-    )
-    prompt = f"{context} {vocab}".strip() if context else vocab
-
-    kwargs = dict(
-        file=(filename, audio_bytes),
-        model="whisper-large-v3",        # full model — highest accuracy
-        response_format="text",
-        temperature=0,                   # deterministic output
-        prompt=prompt,
-    )
-    if language:                         # hi / en — skip for auto-detect
-        kwargs["language"] = language
-
-    transcription = get_client().audio.transcriptions.create(**kwargs)
-    return transcription.strip() if isinstance(transcription, str) else transcription
-
 def is_emergency(text: str) -> bool:
     """Quick rule-based triage before hitting the LLM."""
     RED_FLAGS = [

@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template, session
-from chatbot import kg, transcribe_audio
+from chatbot import kg
+from medassist import voice
 from medassist.api import bp as api_bp, store
 from medassist.engine import get_engine
 import os
@@ -62,16 +63,17 @@ def chat():
 
 @app.route("/transcribe", methods=["POST"])
 def transcribe():
-    audio    = request.files.get("audio")
-    language = request.form.get("language") or None   # "hi" | "en" | None (auto)
-    context  = request.form.get("context", "")        # last bot message for priming
+    """Legacy endpoint; the UI uses /api/voice/transcribe."""
+    audio = request.files.get("audio")
     if not audio:
         return jsonify({"error": "No audio file"}), 400
     try:
-        transcript = transcribe_audio(audio.read(), audio.filename or "audio.webm", language, context)
-        return jsonify({"transcript": transcript})
-    except Exception as e:
-        return jsonify({"error": "Voice input is unavailable right now. Please type your symptoms instead."}), 503
+        res = voice.transcribe(audio.read(), audio.filename or "audio.webm")
+    except voice.VoiceError as e:
+        return jsonify({"error": str(e)}), 503 if e.code in ("unavailable", "provider_error") else 422
+    if not res.accepted:
+        return jsonify({"error": "Could not recognise speech reliably. Please try again or type."}), 422
+    return jsonify({"transcript": res.text})
 
 
 @app.route("/reset", methods=["POST"])

@@ -30,7 +30,7 @@
       stepper_note: "Interview progress — yeh medical validation nahi hai.",
       steps: ["Symptoms", "Safety check", "Sawaal", "Assessment"],
       input_label: "Apne symptoms likhein", placeholder: "Apne symptoms likhein… jaise \"2 din se sar dard aur halka bukhar\"",
-      composer_hint: "Enter = bhejein · Shift+Enter = nayi line · Aap kabhi bhi kuch correct kar sakte hain",
+      composer_hint: "Enter = bhejein · 🎤 = bolkar batayein · Aap kabhi bhi kuch correct kar sakte hain",
       assess_now: "Assessment abhi dikhayein",
       side_title: "Aapka summary", side_help: "Yahan aapke bataye symptoms dikhenge. Kuch galat ho to yahin badal sakte hain.",
       side_symptoms: "Symptoms", side_details: "Details", add_symptom: "Symptom jodein", add: "Jodein", close: "Band karein",
@@ -60,6 +60,11 @@
       timeout: "Jawab aane mein zyada time lag raha hai. Dobara koshish karein.",
       expired: "Yeh session expire ho gaya. Naya assessment shuru kar rahe hain.",
       mic_err: "Voice input abhi available nahi hai — kripya type karein.",
+      mic_label: "Bolkar batayein", mic_denied: "Microphone ki permission nahi mili. Browser settings mein allow karein, ya type karein.",
+      voice_listening: "Sun raha hoon… bolna rokte hi apne-aap ruk jaayega", voice_processing: "Samajh raha hoon…",
+      voice_stop: "Ho gaya", voice_cancel: "Cancel", voice_no_speech: "Kuch sunai nahi diya — mic ke paas dobara bolein, ya type karein.",
+      voice_note: "🎤 Aapki awaaz se likha gaya — bhejne se pehle check kar lein", autosend: "Bolne ke baad apne-aap bhejein",
+      speak_on: "Jawab bolkar sunayein", speak_off: "Jawab bolna band karein",
       lang_suggest: "Kya aap English mein jaari rakhna chahenge?",
       sources_title: "Medical sources (knowledge base)",
       outdated: "Purana ho sakta hai",
@@ -89,7 +94,7 @@
       stepper_note: "Interview progress — this is not a medical validation.",
       steps: ["Symptoms", "Safety check", "Questions", "Assessment"],
       input_label: "Describe your symptoms", placeholder: "Describe your symptoms… e.g. \"headache and mild fever for 2 days\"",
-      composer_hint: "Enter = send · Shift+Enter = new line · You can correct anything at any time",
+      composer_hint: "Enter = send · 🎤 = speak · You can correct anything at any time",
       assess_now: "Show assessment now",
       side_title: "Your summary", side_help: "Symptoms you mention appear here. If anything is wrong, change it here.",
       side_symptoms: "Symptoms", side_details: "Details", add_symptom: "Add a symptom", add: "Add", close: "Close",
@@ -119,6 +124,11 @@
       timeout: "The server is taking too long. Please try again.",
       expired: "This session expired. Starting a new assessment.",
       mic_err: "Voice input isn't available right now — please type instead.",
+      mic_label: "Speak your symptoms", mic_denied: "Microphone permission was blocked. Allow it in your browser settings, or type instead.",
+      voice_listening: "Listening… I'll stop when you pause", voice_processing: "Understanding…",
+      voice_stop: "Done", voice_cancel: "Cancel", voice_no_speech: "I didn't hear anything — try again closer to the mic, or type.",
+      voice_note: "🎤 Typed from your voice — please check before sending", autosend: "Send automatically after speaking",
+      speak_on: "Read replies aloud", speak_off: "Stop reading replies aloud",
       lang_suggest: "Would you like to continue in Hinglish?",
       sources_title: "Medical sources (knowledge base)",
       outdated: "May be outdated",
@@ -265,6 +275,13 @@
     if (r.language && r.language !== S.lang) { S.lang = r.language; applyStatic(); }
     $(".qcard") && $$(".qcard").forEach((q) => q.remove());
     (r.messages || []).forEach((m) => addMessage("bot", m.text, m.kind));
+    if (TTS.on) {
+      stopSpeaking();
+      (r.messages || []).forEach((m) => speak(m.text));
+      if (r.emergency) { speak(r.emergency.title); speak(r.emergency.instruction); }
+      else if (r.question) speak(r.question.text);
+      else if (r.assessment) speak(r.assessment.urgency.label + ". " + r.assessment.summary);
+    }
     renderStepper(r.progress, r.stage);
     renderEmergency(r.emergency);
     if (r.question) renderQuestion(r.question);
@@ -557,36 +574,173 @@
     const text = input.value.trim();
     if (!text || S.busy) return;
     input.value = ""; autoGrow();
+    $("#voice-note").hidden = true;
+    stopSpeaking();
     addMessage("user", text);
     guarded(async () => handle(await api(`/api/assessments/${S.sid}/messages`, { method: "POST", body: { text } })), t("checking"));
   }
   function autoGrow() { const i = $("#input"); i.style.height = "auto"; i.style.height = Math.min(i.scrollHeight, 140) + "px"; }
 
-  // ── voice input (Groq Whisper via /transcribe) ───────────────────────────
-  let rec = null, chunks = [];
-  async function toggleMic() {
-    const btn = $("#mic-btn");
-    if (rec && rec.state === "recording") { rec.stop(); return; }
+  // ── voice: speech input (Groq Whisper via /api/voice/transcribe) ─────────
+  // The recorder measures loudness locally: it stops by itself after a pause once
+  // speech was heard, and it never uploads a recording in which nobody spoke
+  // (silence is where speech models hallucinate). The server cross-checks the
+  // transcript; it is put in the input box for review unless auto-send is on.
+  const V = { state: "idle", rec: null, stream: null, ctx: null, chunks: [], raf: 0, t0: 0,
+              speechMs: 0, lastSpeech: 0, floor: null, cancelled: false, mime: "" };
+  const VOICE = { minSpeechMs: 350, silenceStopMs: 1800, noSpeechStopMs: 8000, maxMs: 45000 };
+
+  function pickMime() {
+    if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) return "";
+    return ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg;codecs=opus"].find((m) => MediaRecorder.isTypeSupported(m)) || "";
+  }
+  function setVoiceUI(state) {
+    V.state = state;
+    const bar = $("#voice-bar"), btn = $("#mic-btn");
+    bar.hidden = state === "idle";
+    bar.classList.toggle("processing", state === "processing");
+    btn.classList.toggle("recording", state === "recording");
+    btn.setAttribute("aria-pressed", String(state === "recording"));
+    btn.setAttribute("aria-label", state === "recording" ? t("voice_stop") : t("mic_label"));
+    $("#voice-stop").hidden = state !== "recording";
+    $("#voice-cancel").hidden = state === "idle";
+    $("#voice-status").textContent = state === "processing" ? t("voice_processing") : t("voice_listening");
+  }
+
+  async function startRecording() {
     if (!navigator.mediaDevices || !window.MediaRecorder) { toast(t("mic_err"), true); return; }
+    stopSpeaking();
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      rec = new MediaRecorder(stream); chunks = [];
-      rec.ondataavailable = (e) => chunks.push(e.data);
-      rec.onstop = async () => {
-        stream.getTracks().forEach((tr) => tr.stop());
-        btn.classList.remove("recording");
-        const fd = new FormData();
-        fd.append("audio", new Blob(chunks, { type: "audio/webm" }), "audio.webm");
-        fd.append("language", S.lang === "hi" ? "hi" : "en");
-        try {
-          const r = await fetch("/transcribe", { method: "POST", body: fd });
-          const d = await r.json();
-          if (!r.ok || !d.transcript) throw new Error();
-          $("#input").value = d.transcript; autoGrow(); $("#input").focus();
-        } catch { toast(t("mic_err"), true); }
-      };
-      rec.start(); btn.classList.add("recording");
-    } catch { toast(t("mic_err"), true); }
+      V.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+    } catch (e) {
+      toast(e && e.name === "NotAllowedError" ? t("mic_denied") : t("mic_err"), true);
+      return;
+    }
+    V.mime = pickMime();
+    V.rec = new MediaRecorder(V.stream, V.mime ? { mimeType: V.mime } : undefined);
+    V.chunks = []; V.speechMs = 0; V.lastSpeech = 0; V.floor = null; V.cancelled = false; V.t0 = performance.now();
+    V.rec.ondataavailable = (e) => { if (e.data && e.data.size) V.chunks.push(e.data); };
+    V.rec.onstop = onRecordingStop;
+    // loudness meter + automatic stop
+    V.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const src = V.ctx.createMediaStreamSource(V.stream);
+    const an = V.ctx.createAnalyser(); an.fftSize = 1024; src.connect(an);
+    const buf = new Float32Array(an.fftSize);
+    const bars = $$("#voice-level i");
+    let prev = performance.now();
+    const tick = (now) => {
+      an.getFloatTimeDomainData(buf);
+      let sum = 0; for (let k = 0; k < buf.length; k++) sum += buf[k] * buf[k];
+      const rms = Math.sqrt(sum / buf.length), dt = now - prev; prev = now;
+      const elapsed = now - V.t0;
+      if (elapsed < 300) V.floor = V.floor == null ? rms : Math.min(V.floor, rms);     // calibrate background level
+      const threshold = Math.max(0.012, (V.floor || 0) * 3);
+      if (elapsed >= 300 && rms > threshold) { V.speechMs += dt; V.lastSpeech = now; }
+      const level = Math.min(1, rms / 0.12);
+      bars.forEach((b, k) => { b.style.transform = `scaleY(${Math.max(0.15, Math.min(1, level * (1.4 - Math.abs(k - 3) * 0.25)))})`; });
+      const sec = Math.floor(elapsed / 1000);
+      $("#voice-time").textContent = `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
+      const heard = V.speechMs >= VOICE.minSpeechMs;
+      if ((heard && now - V.lastSpeech > VOICE.silenceStopMs) || (!heard && elapsed > VOICE.noSpeechStopMs) || elapsed > VOICE.maxMs) {
+        stopRecording(false);
+        return;
+      }
+      V.raf = requestAnimationFrame(tick);
+    };
+    V.rec.start(250);
+    setVoiceUI("recording");
+    V.raf = requestAnimationFrame(tick);
+  }
+
+  function stopRecording(cancel) {
+    if (!V.rec || V.rec.state !== "recording") return;
+    V.cancelled = cancel;
+    cancelAnimationFrame(V.raf);
+    V.rec.stop();
+  }
+
+  function releaseMic() {
+    if (V.stream) V.stream.getTracks().forEach((tr) => tr.stop());
+    if (V.ctx) V.ctx.close().catch(() => {});
+    V.stream = null; V.ctx = null; V.rec = null;
+  }
+
+  async function onRecordingStop() {
+    releaseMic();
+    if (V.cancelled) { setVoiceUI("idle"); return; }
+    if (V.speechMs < VOICE.minSpeechMs || !V.chunks.length) { setVoiceUI("idle"); toast(t("voice_no_speech"), true); return; }
+    setVoiceUI("processing");
+    const type = V.mime.split(";")[0] || "audio/webm";
+    const ext = type.includes("mp4") ? "m4a" : type.includes("ogg") ? "ogg" : "webm";
+    const fd = new FormData();
+    fd.append("audio", new Blob(V.chunks, { type }), `voice.${ext}`);
+    fd.append("language", S.lang);
+    if (S.sid) fd.append("session_id", S.sid);
+    try {
+      const ctrl = new AbortController(); const timer = setTimeout(() => ctrl.abort(), 30000);
+      const res = await fetch("/api/voice/transcribe", { method: "POST", body: fd, signal: ctrl.signal });
+      clearTimeout(timer);
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error((d.error && d.error.message) || t("mic_err"));
+      if (!d.accepted) { toast(d.message || t("voice_no_speech"), true); return; }
+      const input = $("#input");
+      input.value = (input.value.trim() ? input.value.trim() + " " : "") + d.text;
+      autoGrow();
+      if ($("#autosend").checked) { send(); }
+      else { $("#voice-note").hidden = false; input.focus(); input.setSelectionRange(input.value.length, input.value.length); }
+    } catch (e) {
+      toast(e.name === "AbortError" ? t("timeout") : (e.message || t("mic_err")), true);
+    } finally {
+      if (V.state === "processing") setVoiceUI("idle");
+    }
+  }
+
+  function toggleMic() {
+    if (V.state === "recording") stopRecording(false);
+    else if (V.state === "idle") startRecording();
+  }
+
+  // ── voice: reading replies aloud (browser speech synthesis) ─────────────
+  // Replies are Roman-script Hinglish or English, which an Indian-English voice
+  // reads most naturally; a Hindi voice would spell out the Latin letters.
+  const TTS = { on: false, voice: null };
+  function pickVoice() {
+    const vs = window.speechSynthesis ? speechSynthesis.getVoices() : [];
+    const by = (re) => vs.find((v) => re.test(v.lang));
+    TTS.voice = by(/^en[-_]IN/i) || by(/^en[-_]GB/i) || by(/^en/i) || null;
+  }
+  function speak(text) {
+    if (!TTS.on || !window.speechSynthesis || !text) return;
+    const clean = text.replace(/[“”"()↗]/g, " ").replace(/\s+/g, " ").trim();
+    const u = new SpeechSynthesisUtterance(clean);
+    if (TTS.voice) { u.voice = TTS.voice; u.lang = TTS.voice.lang; } else u.lang = "en-IN";
+    u.rate = 0.97;
+    speechSynthesis.speak(u);
+  }
+  function stopSpeaking() { if (window.speechSynthesis) speechSynthesis.cancel(); }
+  function setSpeak(on) {
+    TTS.on = on; store.set("medibot_speak", on ? "1" : null);
+    const b = $("#speak-btn");
+    b.setAttribute("aria-pressed", String(on));
+    b.setAttribute("aria-label", on ? t("speak_off") : t("speak_on"));
+    b.title = on ? t("speak_off") : t("speak_on");
+    if (!on) stopSpeaking();
+  }
+  function initVoice() {
+    if (window.speechSynthesis) {
+      pickVoice();
+      speechSynthesis.onvoiceschanged = pickVoice;
+      $("#speak-btn").hidden = false;
+      setSpeak(store.get("medibot_speak") === "1");
+      $("#speak-btn").addEventListener("click", () => setSpeak(!TTS.on));
+    }
+    $("#autosend").checked = store.get("medibot_autosend") === "1";
+    $("#autosend").addEventListener("change", (e) => store.set("medibot_autosend", e.target.checked ? "1" : null));
+    $("#voice-stop").addEventListener("click", () => stopRecording(false));
+    $("#voice-cancel").addEventListener("click", () => stopRecording(true));
+    $("#input").addEventListener("input", () => { $("#voice-note").hidden = true; });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && V.state === "recording") stopRecording(true); });
+    setVoiceUI("idle");
   }
 
   // ── sources dialog (landing footer) ──────────────────────────────────────
@@ -637,6 +791,7 @@
     $("#input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); send(); } });
     $("#input").addEventListener("input", autoGrow);
     $("#mic-btn").addEventListener("click", toggleMic);
+    initVoice();
     $("#assess-now").addEventListener("click", () => guarded(async () => {
       $$(".qcard").forEach((c) => c.remove());
       handle(await api(`/api/assessments/${S.sid}/assessment`, { method: "POST" }));
