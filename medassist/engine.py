@@ -195,7 +195,9 @@ class Engine:
                 out["stage"] = {"screen": "safety", "clarify": "symptoms"}.get(q["kind"], "questions")
                 out["question"] = render_question(qid, lang, st.status_map())
                 lead = self._lead(st, q)
-                if lead:
+                # re-rendering the same pending question (reopening the page, switching tabs) must not repeat its lead-in
+                last = st.messages[-1] if st.messages else None
+                if lead and not (last and last.role == "assistant" and last.kind == "lead" and last.text == lead):
                     out["messages"].append(self._say(st, lead, "lead").model_dump())
             elif not present and not flags and not st.assessment_requested:
                 out["stage"] = "symptoms"

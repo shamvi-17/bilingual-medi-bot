@@ -177,3 +177,27 @@ def test_assets_are_versioned_and_page_not_cached(client):
     assert re.search(r'/static/js/app\.js\?v=\d+', html) and re.search(r'/static/css/app\.css\?v=\d+', html)
     from app import app
     assert app.config["TEMPLATES_AUTO_RELOAD"] is True
+
+
+def test_dark_theme_blocks_match():
+    """Dark tokens are declared twice (manual choice + system setting); they must stay identical."""
+    css = (ROOT / "static" / "css" / "app.css").read_text()
+    manual = re.search(r':root\[data-theme="dark"\] \{(.*?)\n\}', css, re.S).group(1)
+    system = re.search(r':root:not\(\[data-theme="light"\]\) \{(.*?)\n  \}', css, re.S).group(1)
+    norm = lambda block: sorted(" ".join(block.split()).split(";"))
+    assert norm(manual) == norm(system)
+
+
+def test_theme_toggle_present(client):
+    html = client.get("/").data.decode()
+    assert 'id="theme-btn"' in html and "medibot_theme" in html
+
+
+def test_reopening_a_conversation_does_not_repeat_messages(client):
+    sid, _ = start(client, "hi")
+    client.post(f"/api/assessments/{sid}/messages", json={"text": "sar dard hai"})
+    first = client.get(f"/api/assessments/{sid}").json["transcript"]
+    again = client.get(f"/api/assessments/{sid}").json["transcript"]
+    assert len(again) == len(first)
+    texts = [m["text"] for m in again]
+    assert all(a != b for a, b in zip(texts, texts[1:])), "a message was repeated back-to-back"

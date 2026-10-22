@@ -47,7 +47,7 @@
       timeout: "Jawab aane mein zyada time lag raha hai. Dobara koshish karein.",
       expired: "Yeh session expire ho gaya. Naya assessment shuru kar rahe hain.",
       mic_err: "Voice input abhi available nahi hai — kripya type karein.",
-      mic_label: "Bolkar batayein",
+      mic_label: "Bolkar batayein", theme_dark: "Dark mode karein", theme_light: "Light mode karein",
       mic_insecure: "Mic is address par block hai — browser sirf https ya localhost par mic deta hai. Isi computer par {url} kholein, ya app ko `python app.py --https` se chalayein.",
       mic_unsupported: "Is browser mein voice recording support nahi hai — kripya type karein.", mic_denied: "Microphone ki permission nahi mili. Browser settings mein allow karein, ya type karein.",
       voice_listening: "Sun raha hoon… bolna rokte hi apne-aap ruk jaayega", voice_processing: "Samajh raha hoon…",
@@ -100,7 +100,7 @@
       timeout: "The server is taking too long. Please try again.",
       expired: "This session expired. Starting a new assessment.",
       mic_err: "Voice input isn't available right now — please type instead.",
-      mic_label: "Speak your symptoms",
+      mic_label: "Speak your symptoms", theme_dark: "Switch to dark mode", theme_light: "Switch to light mode",
       mic_insecure: "The microphone is blocked on this address — browsers only allow it on https or localhost. Open {url} on this computer, or start the app with `python app.py --https`.",
       mic_unsupported: "This browser can't record audio — please type instead.", mic_denied: "Microphone permission was blocked. Allow it in your browser settings, or type instead.",
       voice_listening: "Listening… I'll stop when you pause", voice_processing: "Understanding…",
@@ -169,6 +169,7 @@
     $$("[data-i18n]").forEach((el) => { const v = t(el.dataset.i18n); if (typeof v === "string") el.textContent = v; });
     $$("[data-i18n-placeholder]").forEach((el) => { el.placeholder = t(el.dataset.i18nPlaceholder); });
     $$(".lang-toggle button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === S.lang)));
+    if (typeof paintTheme === "function") paintTheme();
     const sb = $("#start-btn");
     if (sb) sb.textContent = store.get("medibot_sid") ? t("resume") : t("start");
   }
@@ -780,8 +781,36 @@
     await guarded(() => startAssessment());
   }
 
+  // ── light / dark theme ──────────────────────────────────────────────────
+  // With no saved choice the page follows the system setting (and keeps following it).
+  // A choice that matches the system is not stored, so "back to automatic" is just toggling back.
+  const darkQuery = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+  function effectiveTheme() {
+    const chosen = document.documentElement.getAttribute("data-theme");
+    return chosen || (darkQuery && darkQuery.matches ? "dark" : "light");
+  }
+  function paintTheme() {
+    const theme = effectiveTheme(), root = document.documentElement;
+    root.setAttribute("data-effective-theme", theme);
+    const label = theme === "dark" ? t("theme_light") : t("theme_dark");
+    const btn = $("#theme-btn");
+    if (btn) { btn.setAttribute("aria-label", label); btn.title = label; }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", getComputedStyle(root).getPropertyValue("--bg").trim() || (theme === "dark" ? "#062a2a" : "#efeeec"));
+  }
+  function toggleTheme() {
+    const next = effectiveTheme() === "dark" ? "light" : "dark";
+    const system = darkQuery && darkQuery.matches ? "dark" : "light";
+    if (next === system) { document.documentElement.removeAttribute("data-theme"); store.set("medibot_theme", null); }
+    else { document.documentElement.setAttribute("data-theme", next); store.set("medibot_theme", next); }
+    paintTheme();
+  }
+
   function init() {
     S.lang = store.get("medibot_lang") || "hi";
+    paintTheme();
+    $("#theme-btn").addEventListener("click", toggleTheme);
+    if (darkQuery && darkQuery.addEventListener) darkQuery.addEventListener("change", paintTheme);
     applyStatic();
     api("/api/meta").then((m) => { S.meta = m; if (S.last) renderSide(S.last); }).catch(() => {});
 

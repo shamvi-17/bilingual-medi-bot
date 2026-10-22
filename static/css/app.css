@@ -20,22 +20,44 @@
   --urgent: #8f4a1e;    --urgent-bg: #f7ebe3;    --urgent-border: #e2c0a8;   /* rust */
   --soon: var(--teal);  --soon-bg: #e6eeed;      --soon-border: #b4cbca;
   --ok: #5c5c00;        --ok-bg: #f0f0dd;        --ok-border: #c4c47c;       /* olive, darkened for text contrast */
+  --on-emergency: #ffffff;
+  --hero: var(--teal);             /* landing headline */
+  --mark-color: inherit; --mark-style: normal;
+  --stripe: linear-gradient(90deg, var(--teal) 0 34%, var(--rose) 34% 67%, var(--olive) 67% 100%);
   --radius: 6px;
   --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --sans: "Source Sans 3", "Source Sans Pro", -apple-system, "Segoe UI", "Noto Sans", Arial, sans-serif;
   color-scheme: light;
 }
+/* Dark theme: chosen with the header toggle (data-theme="dark"), or following the system
+   setting when nothing was chosen. Both blocks hold the same declarations (checked by a test). */
+:root[data-theme="dark"] {
+  --bg: #062a2a; --surface: #0a3434; --surface-2: #0f3e3e; --border: #215050; --rule: #174646;
+  --text: #f3e7e9; --muted: #a8bfbc;
+  --accent: var(--rose); --accent-strong: #f6e2e6; --accent-soft: #1d4747; --on-accent: #063737;
+  --mark: transparent; --mark-color: var(--rose); --mark-style: italic;
+  --hero: var(--text);
+  --focus: #9cc3ef;
+  --emergency: #ff8f84; --emergency-bg: #3a1716; --emergency-border: #6e2b27; --on-emergency: #062a2a;
+  --urgent: #e2a27a;    --urgent-bg: #2e2419;    --urgent-border: #6a4128;
+  --soon: var(--rose);  --soon-bg: #113c3c;      --soon-border: #2c5656;
+  --ok: #c6c65e;        --ok-bg: #1f3318;        --ok-border: #555a23;
+  --stripe: linear-gradient(90deg, var(--rose) 0 34%, #2c6161 34% 67%, var(--olive) 67% 100%);
+  color-scheme: dark;
+}
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #062a2a; --surface: #0a3434; --surface-2: #0f3e3e; --border: #215050; --rule: #174646;
     --text: #f3e7e9; --muted: #a8bfbc;
     --accent: var(--rose); --accent-strong: #f6e2e6; --accent-soft: #1d4747; --on-accent: #063737;
-    --mark: transparent;
+    --mark: transparent; --mark-color: var(--rose); --mark-style: italic;
+    --hero: var(--text);
     --focus: #9cc3ef;
-    --emergency: #ff8f84; --emergency-bg: #3a1716; --emergency-border: #6e2b27;
+    --emergency: #ff8f84; --emergency-bg: #3a1716; --emergency-border: #6e2b27; --on-emergency: #062a2a;
     --urgent: #e2a27a;    --urgent-bg: #2e2419;    --urgent-border: #6a4128;
     --soon: var(--rose);  --soon-bg: #113c3c;      --soon-border: #2c5656;
     --ok: #c6c65e;        --ok-bg: #1f3318;        --ok-border: #555a23;
+    --stripe: linear-gradient(90deg, var(--rose) 0 34%, #2c6161 34% 67%, var(--olive) 67% 100%);
     color-scheme: dark;
   }
 }
@@ -68,8 +90,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn-ghost:hover { border-color: var(--border); }
 .btn-sm { min-height: 34px; padding: 4px 12px; font-size: .9rem; }
 .btn-lg { min-height: 50px; padding: 10px 26px; font-size: 1.05rem; }
-.btn-danger { background: var(--emergency); border-color: var(--emergency); color: #fff; }
-@media (prefers-color-scheme: dark) { .btn-danger { color: #062a2a; } }
+.btn-danger { background: var(--emergency); border-color: var(--emergency); color: var(--on-emergency); }
 .link-btn {
   background: none; border: 0; padding: 4px 2px; cursor: pointer; color: var(--accent-strong);
   font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px;
@@ -79,14 +100,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ── header ──────────────────────────────────────────── */
 .topbar { background: var(--bg); position: sticky; top: 0; z-index: 20; }
 /* signature: a thin stripe in the palette's teal, rose and olive */
-.topbar::after { content: ""; display: block; height: 4px;
-  background: linear-gradient(90deg, var(--teal) 0 34%, var(--rose) 34% 67%, var(--olive) 67% 100%); }
-@media (prefers-color-scheme: dark) { .topbar::after { background: linear-gradient(90deg, var(--rose) 0 34%, #2c6161 34% 67%, var(--olive) 67% 100%); } }
+.topbar::after { content: ""; display: block; height: 4px; background: var(--stripe); }
 .topbar-inner { max-width: 1160px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: baseline; gap: 16px; }
 .brand { text-decoration: none; color: var(--text); display: flex; align-items: baseline; gap: 10px; }
 .brand-name { font-family: var(--serif); font-size: 1.35rem; font-weight: 600; }
 .brand-sub { color: var(--muted); font-size: .9rem; font-style: italic; }
 .topbar-actions { margin-left: auto; display: flex; align-items: baseline; gap: 18px; }
+.theme-btn {
+  align-self: center; width: 34px; height: 34px; display: grid; place-items: center; cursor: pointer;
+  border: 1px solid var(--border); border-radius: 50%; background: transparent; color: var(--accent);
+  transition: border-color .15s, background .15s, transform .3s;
+}
+.theme-btn:hover { border-color: var(--text); background: var(--surface-2); }
+.theme-btn:active { transform: rotate(-20deg); }
+.theme-btn .icon-sun { display: none; }
+:root[data-effective-theme="dark"] .theme-btn .icon-sun { display: block; }
+:root[data-effective-theme="dark"] .theme-btn .icon-moon { display: none; }
 .lang-toggle { display: inline-flex; align-items: baseline; gap: 6px; }
 .lang-toggle .sep { color: var(--border); }
 .lang-toggle button { background: none; border: 0; padding: 2px 0; cursor: pointer; color: var(--muted); font-weight: 600; }
@@ -94,9 +123,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* ── landing ─────────────────────────────────────────── */
 .landing { max-width: 640px; margin: 0 auto; padding: 18vh 20px 48px; }
-.landing h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0 0 18px; color: var(--accent); letter-spacing: -0.02em; }
-.landing h1 .mark { background: linear-gradient(transparent 46%, var(--mark) 46%, var(--mark) 86%, transparent 86%); padding: 0 .12em; margin-left: -.06em; }
-@media (prefers-color-scheme: dark) { .landing h1 { color: var(--text); } .landing h1 .mark { color: var(--rose); font-style: italic; } }
+.landing h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0 0 18px; color: var(--hero); letter-spacing: -0.02em; }
+.landing h1 .mark { background: linear-gradient(transparent 46%, var(--mark) 46%, var(--mark) 86%, transparent 86%); padding: 0 .12em; margin-left: -.06em; color: var(--mark-color); font-style: var(--mark-style); }
 .landing .lead { font-size: 1.15rem; color: var(--text); margin: 0 0 26px; }
 .hero-cta { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
 .aside-note { color: var(--muted); font-style: italic; }
@@ -173,7 +201,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .icon-btn { width: 46px; height: 46px; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); display: grid; place-items: center; cursor: pointer; flex: none; color: var(--text); }
 .icon-btn:hover { border-color: var(--text); }
 .icon-btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.icon-btn.recording { background: var(--emergency); border-color: var(--emergency); color: #fff; }
+.icon-btn.recording { background: var(--emergency); border-color: var(--emergency); color: var(--on-emergency); }
 .composer-hint { font-size: .84rem; color: var(--muted); padding: 2px 16px 14px; display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; }
 
 /* voice */
@@ -285,8 +313,7 @@ details.plain[open] > summary { color: var(--text); }
 .toolbar { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .toast { position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 50; background: var(--text); color: var(--bg); padding: 10px 16px; border-radius: var(--radius); max-width: min(560px, calc(100% - 32px)); font-size: .95rem; animation: rise .2s ease both; }
-.toast.error { background: var(--emergency); color: #fff; }
-@media (prefers-color-scheme: dark) { .toast.error { color: #062a2a; } }
+.toast.error { background: var(--emergency); color: var(--on-emergency); }
 .scrim { position: fixed; inset: 0; background: rgba(4, 30, 30, .5); z-index: 35; }
 
 /* ── responsive ──────────────────────────────────────── */
