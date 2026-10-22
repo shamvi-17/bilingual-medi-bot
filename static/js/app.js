@@ -251,33 +251,45 @@
   }
 
   // ── main response handler ────────────────────────────────────────────────
+  // Run one part of the screen update; a failure in one part (e.g. a page/script version
+  // mismatch) is logged instead of stopping the reply, the question or the safety guidance.
+  function part(name, fn) {
+    try { fn(); } catch (e) { console.error(`MediBot: could not update ${name}`, e); }
+  }
+
   function handle(r) {
     S.last = r;
-    if (r.language && r.language !== S.lang) { S.lang = r.language; applyStatic(); }
-    $(".qcard") && $$(".qcard").forEach((q) => q.remove());
+    if (r.language && r.language !== S.lang) { S.lang = r.language; part("language", applyStatic); }
+    $$(".qcard").forEach((q) => q.remove());
     (r.messages || []).forEach((m) => addMessage("bot", m.text, m.kind));
-    if (TTS.on) {
+    part("emergency", () => renderEmergency(r.emergency));      // safety guidance first
+    if (r.question) part("question", () => renderQuestion(r.question));
+    part("read-aloud", () => {
+      if (!TTS.on) return;
       stopSpeaking();
       (r.messages || []).forEach((m) => speak(m.text));
       if (r.emergency) { speak(r.emergency.title); speak(r.emergency.instruction); }
       else if (r.question) speak(r.question.text);
       else if (r.assessment) speak(r.assessment.urgency.label + ". " + r.assessment.summary);
-    }
-    renderStepper(r.progress, r.stage);
-    renderEmergency(r.emergency);
-    if (r.question) renderQuestion(r.question);
-    renderSide(r);
-    renderResults(r.assessment);
-    $("#assess-now").hidden = !(r.can_assess && r.stage !== "assessment" && r.stage !== "emergency");
-    $("#summary-count").textContent = (r.symptoms || []).filter((s) => s.status === "present").length;
+    });
+    part("progress", () => renderStepper(r.progress, r.stage));
+    part("notes", () => renderSide(r));
+    part("results", () => renderResults(r.assessment));
+    part("toolbar", () => {
+      const btn = $("#assess-now"), count = $("#summary-count");
+      if (btn) btn.hidden = !(r.can_assess && r.stage !== "assessment" && r.stage !== "emergency");
+      if (count) count.textContent = (r.symptoms || []).filter((s) => s.status === "present").length;
+    });
   }
 
   function renderStepper(p, stage) {
     if (!p) return;
     const steps = t("steps");
-    $("#stepper").classList.toggle("emergency", stage === "emergency");
-    $("#step-label").textContent = t("step_of")(p.step + 1, steps.length, steps[p.step]);
-    $("#stepper-list").innerHTML = steps.map((s, i) => {
+    const box = $("#stepper"), label = $("#step-label"), list = $("#stepper-list");
+    if (!box || !list) return;
+    box.classList.toggle("emergency", stage === "emergency");
+    if (label) label.textContent = t("step_of")(p.step + 1, steps.length, steps[p.step]);
+    list.innerHTML = steps.map((s, i) => {
       const cls = i < p.step ? "done" : i === p.step ? "current" : "";
       return `<li class="${cls}" ${i === p.step ? 'aria-current="step"' : ""}><span class="visually-hidden">${esc(s)}</span></li>`;
     }).join("");
@@ -558,7 +570,13 @@
     $("#voice-note").hidden = true;
     stopSpeaking();
     addMessage("user", text);
-    guarded(async () => handle(await api(`/api/assessments/${S.sid}/messages`, { method: "POST", body: { text } })), t("checking"));
+    guarded(async () => {
+      if (!S.sid) {                              // never lose a message because no assessment was started yet
+        await startAssessment();                 // (this clears the chat, so show the message again)
+        addMessage("user", text);
+      }
+      handle(await api(`/api/assessments/${S.sid}/messages`, { method: "POST", body: { text } }));
+    }, t("checking"));
   }
   function autoGrow() { const i = $("#input"); i.style.height = "auto"; i.style.height = Math.min(i.scrollHeight, 140) + "px"; }
 

@@ -12,7 +12,18 @@ app = Flask(__name__)
 # A fixed SECRET_KEY keeps sessions valid across gunicorn workers/restarts; random is fine for local dev.
 app.secret_key = os.environ.get("SECRET_KEY") or os.urandom(24)
 app.config["JSON_SORT_KEYS"] = False
+# pick up edited templates without a restart, so the page and its script never get out of step
+app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.register_blueprint(api_bp)
+
+
+@app.template_global()
+def asset(filename: str) -> str:
+    """Static URL with the file's modification time, so browsers fetch a changed file instead of a cached one."""
+    from flask import url_for
+    path = os.path.join(app.static_folder, filename)
+    version = int(os.path.getmtime(path)) if os.path.exists(path) else 0
+    return url_for("static", filename=filename, v=version)
 
 
 def _warm_up():
@@ -31,7 +42,9 @@ if os.environ.get("MEDASSIST_WARMUP", "1") == "1":
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    resp = app.make_response(render_template("index.html"))
+    resp.headers["Cache-Control"] = "no-cache"      # always revalidate the page; assets are versioned
+    return resp
 
 
 @app.route("/chat", methods=["POST"])

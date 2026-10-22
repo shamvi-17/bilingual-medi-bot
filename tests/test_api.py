@@ -157,3 +157,23 @@ def test_frontend_has_no_hardcoded_predictions():
     js = (ROOT / "static" / "js" / "app.js").read_text().lower()
     for cond in ["allergic rhinitis", "tension-type headache", "contact dermatitis", "migraine is"]:
         assert cond not in js
+
+
+def test_every_element_the_script_needs_exists_in_the_page(client):
+    """The script and the page must agree on element ids (a mismatch broke the chat once)."""
+    js = (ROOT / "static" / "js" / "app.js").read_text()
+    html = client.get("/").data.decode()
+    ids = set(re.findall(r'\$\("#([A-Za-z0-9_-]+)', js))
+    # ids the script creates itself at runtime
+    created = set(re.findall(r'\.id = "([A-Za-z0-9_-]+)"', js)) | set(re.findall(r'id="([A-Za-z0-9_-]+)"', js))
+    missing = sorted(i for i in ids - created if f'id="{i}"' not in html)
+    assert not missing, f"app.js looks up ids missing from index.html: {missing}"
+
+
+def test_assets_are_versioned_and_page_not_cached(client):
+    r = client.get("/")
+    html = r.data.decode()
+    assert r.headers.get("Cache-Control") == "no-cache"
+    assert re.search(r'/static/js/app\.js\?v=\d+', html) and re.search(r'/static/css/app\.css\?v=\d+', html)
+    from app import app
+    assert app.config["TEMPLATES_AUTO_RELOAD"] is True
